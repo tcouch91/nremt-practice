@@ -1,0 +1,1199 @@
+/* NREMT EMT Cognitive Exam Practice Application Styles */
+/* Combines an authentic Pearson VUE testing interface with a modern NREMT Candidate Portal & Diagnostic Report */
+
+:root {
+  --vue-navy: #003366;
+  --vue-navy-dark: #002244;
+  --vue-navy-light: #0a4b8c;
+  --vue-subbar: #d8e6f3;
+  --vue-subbar-border: #9cb8d2;
+  --vue-bg: #f4f6f9;
+  --vue-panel: #ffffff;
+  --vue-text: #111827;
+  --vue-text-muted: #4b5563;
+  --vue-border: #cbd5e1;
+  --vue-accent: #0284c7;
+  --vue-selected-bg: #e0f2fe;
+  --vue-selected-border: #0284c7;
+  --nremt-gold: #d97706;
+  --pass-green: #15803d;
+  --pass-bg: #dcfce7;
+  --near-amber: #b45309;
+  --near-bg: #fef3c7;
+  --fail-red: #b91c1c;
+  --fail-bg: #fee2e2;
+  --font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  --font-Mono: "Consolas", "SFMono-Regular", Menlo, Monaco, monospace;
+}
+
+/* Pearson VUE Accessibility Contrast Themes */
+body.theme-high-contrast {
+  --vue-navy: #000000;
+  --vue-navy-dark: #000000;
+  --vue-subbar: #1f2937;
+  --vue-subbar-border: #4b5563;
+  --vue-bg: #000000;
+  --vue-panel: #111827;
+  --vue-text: #ffffff;
+  --vue-text-muted: #d1d5db;
+  --vue-border: #4b5563;
+  --vue-selected-bg: #1e3a8a;
+  --vue-selected-border: #60a5fa;
+}
+
+body.theme-yellow-black {
+  --vue-navy: #1a1a00;
+  --vue-navy-dark: #0d0d00;
+  --vue-subbar: #262600;
+  --vue-subbar-border: #fde047;
+  --vue-bg: #000000;
+  --vue-panel: #0a0a00;
+  --vue-text: #fef08a;
+  --vue-text-muted: #facc15;
+  --vue-border: #ca8a04;
+  --vue-selected-bg: #422006;
+  --vue-selected-border: #facc15;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--vue-bg);
+  color: var(--vue-text);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================================================
+   PEARSON VUE TOP HEADER & SUB-TOOLBAR
+   ============================================================================ */
+.vue-header {
+  background: linear-gradient(180deg, var(--vue-navy-light) 0%, var(--vue-navy) 100%);
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--vue-navy-dark);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+.vue-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.nremt-star-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--vue-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  border: 2px solid #93c5fd;
+  flex-shrink: 0;
+}
+
+.vue-exam-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.vue-candidate-subtitle {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.vue-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.vue-status-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.84rem;
+}
+
+.vue-timer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  font-family: var(--font-Mono);
+  font-size: 0.95rem;
+}
+
+.vue-timer-row.timer-warning {
+  color: #fde047;
+}
+
+.vue-timer-row.timer-danger {
+  color: #fca5a5;
+  animation: pulseRed 1s infinite;
+}
+
+@keyframes pulseRed {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.btn-tiny-link {
+  background: rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+}
+
+.btn-tiny-link:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.vue-question-counter {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e0f2fe;
+}
+
+/* Subbar */
+.vue-subbar {
+  background-color: var(--vue-subbar);
+  border-bottom: 1px solid var(--vue-subbar-border);
+  padding: 0.4rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+}
+
+.vue-subbar-left,
+.vue-subbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.vue-tool-btn {
+  background: var(--vue-panel);
+  color: var(--vue-text);
+  border: 1px solid var(--vue-border);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.vue-tool-btn:hover {
+  border-color: var(--vue-navy);
+  background: var(--vue-selected-bg);
+}
+
+.vue-tool-select {
+  background: var(--vue-panel);
+  color: var(--vue-text);
+  border: 1px solid var(--vue-border);
+  padding: 0.22rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Live CAT Telemetry Pill (Optional during exam) */
+.cat-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--vue-panel);
+  border: 1px solid var(--vue-border);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.diff-badge {
+  display: inline-block;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.diff-1 {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.diff-2 {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde047;
+}
+
+.diff-3 {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* ============================================================================
+   MAIN VIEWS CONTAINER
+   ============================================================================ */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+}
+
+/* ============================================================================
+   VIEW 1: PRE-EXAM LOBBY / CANDIDATE DASHBOARD
+   ============================================================================ */
+.lobby-hero {
+  background: var(--vue-panel);
+  border: 1px solid var(--vue-border);
+  border-top: 4px solid var(--vue-navy);
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .lobby-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lobby-hero h1 {
+  font-size: 1.55rem;
+  color: var(--vue-navy);
+  margin-bottom: 0.5rem;
+}
+
+body.theme-high-contrast .lobby-hero h1,
+body.theme-yellow-black .lobby-hero h1 {
+  color: var(--vue-text);
+}
+
+.lobby-hero p {
+  color: var(--vue-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.exam-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin: 1.1rem 0;
+}
+
+.spec-item {
+  background: var(--vue-bg);
+  border: 1px solid var(--vue-border);
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+}
+
+.spec-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--vue-text-muted);
+  font-weight: 700;
+}
+
+.spec-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--vue-text);
+  margin-top: 0.15rem;
+}
+
+.lobby-cta-card {
+  background: linear-gradient(145deg, #003366 0%, #001f3f 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 51, 102, 0.22);
+}
+
+.lobby-cta-card h2 {
+  font-size: 1.18rem;
+  font-weight: 700;
+}
+
+.lobby-cta-card ul {
+  list-style: none;
+  font-size: 0.86rem;
+  color: #dbeafe;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.lobby-cta-card ul li::before {
+  content: "✓ ";
+  color: #38bdf8;
+  font-weight: 800;
+}
+
+.btn-primary-launch {
+  background: #0284c7;
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+  border-radius: 6px;
+  padding: 0.85rem 1.25rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary-launch:hover {
+  background: #0369a1;
+  transform: translateY(-1px);
+}
+
+.lobby-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.lobby-options-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+/* Dashboard Two-Column Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 860px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel-card {
+  background: var(--vue-panel);
+  border: 1px solid var(--vue-border);
+  border-radius: 8px;
+  padding: 1.35rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.panel-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--vue-border);
+}
+
+.panel-card-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Question Pool & Rotation Bar */
+.pool-overview-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--vue-bg);
+  border: 1px solid var(--vue-border);
+  margin: 0.75rem 0;
+}
+
+.pool-bar-unseen {
+  background: #0284c7;
+  transition: width 0.3s ease;
+}
+
+.pool-bar-seen {
+  background: #94a3b8;
+  transition: width 0.3s ease;
+}
+
+.domain-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  margin-top: 0.75rem;
+}
+
+.domain-table th,
+.domain-table td {
+  padding: 0.55rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--vue-border);
+}
+
+.domain-table th {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  color: var(--vue-text-muted);
+  font-weight: 700;
+}
+
+.domain-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+}
+
+/* Past Attempts List */
+.attempts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-height: 330px;
+  overflow-y: auto;
+}
+
+.attempt-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.9rem;
+  background: var(--vue-bg);
+  border: 1px solid var(--vue-border);
+  border-radius: 6px;
+  transition: border-color 0.15s ease;
+}
+
+.attempt-item:hover {
+  border-color: var(--vue-accent);
+}
+
+.attempt-badge {
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.attempt-pass {
+  background: var(--pass-bg);
+  color: var(--pass-green);
+}
+
+.attempt-fail {
+  background: var(--fail-bg);
+  color: var(--fail-red);
+}
+
+/* ============================================================================
+   VIEW 2: ACTIVE EXAM WORKSPACE (AUTHENTIC PEARSON VUE INTERFACE)
+   ============================================================================ */
+.exam-workspace {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--vue-panel);
+  border: 1px solid var(--vue-border);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  min-height: 540px;
+}
+
+.exam-progress-strip {
+  height: 5px;
+  background: var(--vue-border);
+  width: 100%;
+}
+
+.exam-progress-fill {
+  height: 100%;
+  background: var(--vue-accent);
+  transition: width 0.25s ease;
+}
+
+.exam-content-area {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  max-width: 920px;
+}
+
+@media (max-width: 680px) {
+  .exam-content-area {
+    padding: 1.25rem;
+  }
+}
+
+.exam-question-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--vue-border);
+  font-size: 0.82rem;
+  color: var(--vue-text-muted);
+}
+
+.exam-stem {
+  font-size: 1.12rem;
+  line-height: 1.68;
+  font-weight: 500;
+  color: var(--vue-text);
+  margin-bottom: 1.75rem;
+  white-space: pre-line;
+}
+
+.exam-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.exam-option-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.6rem;
+}
+
+.exam-option-card {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.9rem 1.1rem;
+  border: 2px solid var(--vue-border);
+  border-radius: 6px;
+  background: var(--vue-panel);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.exam-option-card:hover {
+  border-color: var(--vue-navy-light);
+  background: var(--vue-bg);
+}
+
+.exam-option-card.selected {
+  border-color: var(--vue-selected-border);
+  background: var(--vue-selected-bg);
+  box-shadow: 0 0 0 1px var(--vue-selected-border);
+}
+
+.exam-option-card.struck-out .option-text {
+  text-decoration: line-through;
+  opacity: 0.42;
+}
+
+.option-radio-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--vue-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.exam-option-card.selected .option-radio-circle {
+  border-color: var(--vue-selected-border);
+  background: var(--vue-selected-border);
+  color: #ffffff;
+}
+
+.option-letter {
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+.option-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.btn-strikeout {
+  background: var(--vue-bg);
+  color: var(--vue-text-muted);
+  border: 1px solid var(--vue-border);
+  border-radius: 6px;
+  padding: 0 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.12s ease;
+}
+
+.btn-strikeout:hover {
+  color: var(--vue-text);
+  border-color: var(--vue-text-muted);
+}
+
+.btn-strikeout.active {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+/* Pearson VUE Bottom Footer Bar */
+.vue-footer {
+  background: var(--vue-navy);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2px solid var(--vue-navy-dark);
+}
+
+.vue-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-vue-nav {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  color: #0f172a;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-vue-nav:hover {
+  background: #ffffff;
+}
+
+.btn-vue-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.btn-vue-secondary:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ============================================================================
+   VIEW 3: POST-EXAM DIAGNOSTIC REPORT & STUDY PLAN (AFTER 35 QUESTIONS)
+   ============================================================================ */
+.report-banner {
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--vue-border);
+  background: var(--vue-panel);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.report-banner.banner-pass {
+  border-top: 6px solid var(--pass-green);
+}
+
+.report-banner.banner-fail {
+  border-top: 6px solid var(--fail-red);
+}
+
+.report-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-pill-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.status-pill-large.pass {
+  background: var(--pass-bg);
+  color: var(--pass-green);
+}
+
+.status-pill-large.fail {
+  background: var(--fail-bg);
+  color: var(--fail-red);
+}
+
+.scaled-score-box {
+  text-align: right;
+  background: var(--vue-bg);
+  border: 1px solid var(--vue-border);
+  padding: 0.9rem 1.35rem;
+  border-radius: 8px;
+  min-width: 210px;
+}
+
+.scaled-score-number {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--vue-navy);
+}
+
+body.theme-high-contrast .scaled-score-number,
+body.theme-yellow-black .scaled-score-number {
+  color: var(--vue-text);
+}
+
+/* NREMT 100-1500 Scale Meter */
+.nremt-scale-meter {
+  margin: 1.25rem 0;
+  padding: 1rem;
+  background: var(--vue-bg);
+  border-radius: 8px;
+  border: 1px solid var(--vue-border);
+}
+
+.scale-track {
+  position: relative;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ef4444 0%, #f59e0b 58%, #22c55e 62%, #15803d 100%);
+  margin: 1.5rem 0 0.6rem;
+}
+
+.scale-pass-marker {
+  position: absolute;
+  top: -22px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--vue-text);
+  left: 60.7%; /* (950 - 100) / (1500 - 100) = 850 / 1400 = 60.71% */
+}
+
+.scale-pass-label {
+  position: absolute;
+  top: -22px;
+  left: 60.7%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: var(--vue-panel);
+  padding: 0 0.35rem;
+  border-radius: 3px;
+  border: 1px solid var(--vue-border);
+}
+
+.scale-user-pin {
+  position: absolute;
+  top: -5px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--vue-navy);
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transform: translateX(-50%);
+  transition: left 0.4s ease;
+}
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--vue-text-muted);
+  font-weight: 600;
+}
+
+/* Summary KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+}
+
+.kpi-card {
+  background: var(--vue-bg);
+  border: 1px solid var(--vue-border);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+}
+
+.kpi-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--vue-text-muted);
+  font-weight: 700;
+}
+
+.kpi-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+
+.kpi-sub {
+  font-size: 0.78rem;
+  color: var(--vue-text-muted);
+}
+
+/* CAT Trajectory SVG Chart Container */
+.cat-chart-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.cat-svg {
+  width: 100%;
+  min-width: 680px;
+  height: 230px;
+  display: block;
+}
+
+/* Domain Performance Cards */
+.domain-perf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.domain-perf-item {
+  border: 1px solid var(--vue-border);
+  border-radius: 6px;
+  padding: 0.95rem 1.1rem;
+  background: var(--vue-bg);
+}
+
+.domain-perf-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.domain-perf-title {
+  font-weight: 700;
+  font-size: 0.96rem;
+}
+
+.comp-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.status-above {
+  background: var(--pass-bg);
+  color: var(--pass-green);
+}
+
+.status-near {
+  background: var(--near-bg);
+  color: var(--near-amber);
+}
+
+.status-below {
+  background: var(--fail-bg);
+  color: var(--fail-red);
+}
+
+.domain-bar-track {
+  height: 9px;
+  background: var(--vue-border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0.45rem 0;
+}
+
+.domain-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* Study Focus & Pearls Cards */
+.focus-subtopic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.focus-subtopic-card {
+  border: 1px solid var(--vue-border);
+  border-left: 4px solid var(--fail-red);
+  background: var(--vue-bg);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+}
+
+.pearl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 0.85rem;
+}
+
+.pearl-item {
+  background: var(--vue-bg);
+  border: 1px solid var(--vue-border);
+  border-left: 4px solid var(--vue-accent);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Question Review Filter & Accordion Cards */
+.review-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  border: 1px solid var(--vue-border);
+  border-radius: 8px;
+  background: var(--vue-panel);
+  overflow: hidden;
+}
+
+.review-card.review-correct {
+  border-left: 5px solid var(--pass-green);
+}
+
+.review-card.review-incorrect {
+  border-left: 5px solid var(--fail-red);
+}
+
+.review-card-header {
+  padding: 0.85rem 1.15rem;
+  background: var(--vue-bg);
+  border-bottom: 1px solid var(--vue-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+}
+
+.review-card-body {
+  padding: 1.15rem;
+}
+
+.review-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0.9rem 0;
+}
+
+.review-opt {
+  padding: 0.55rem 0.85rem;
+  border-radius: 5px;
+  border: 1px solid var(--vue-border);
+  font-size: 0.92rem;
+}
+
+.review-opt.opt-correct {
+  background: var(--pass-bg);
+  border-color: #86efac;
+  color: #14532d;
+  font-weight: 600;
+}
+
+.review-opt.opt-user-wrong {
+  background: var(--fail-bg);
+  border-color: #fca5a5;
+  color: #7f1d1d;
+  font-weight: 600;
+}
+
+.review-rationale {
+  background: var(--vue-bg);
+  border: 1px solid var(--vue-border);
+  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+/* ============================================================================
+   PEARSON VUE AUTHENTIC MODAL DIALOG
+   ============================================================================ */
+.vue-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.vue-modal {
+  background: var(--vue-panel);
+  color: var(--vue-text);
+  border: 2px solid var(--vue-navy);
+  border-radius: 6px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.vue-modal-header {
+  background: var(--vue-navy);
+  color: #ffffff;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vue-modal-body {
+  padding: 1.25rem;
+  font-size: 0.94rem;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.vue-modal-footer {
+  padding: 0.75rem 1.25rem;
+  background: var(--vue-bg);
+  border-top: 1px solid var(--vue-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+/* Form inputs for Custom Question Modal */
+.form-group {
+  margin-bottom: 0.85rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--vue-border);
+  border-radius: 4px;
+  background: var(--vue-panel);
+  color: var(--vue-text);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+
+.form-textarea {
+  min-height: 72px;
+  resize: vertical;
+}
