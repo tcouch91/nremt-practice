@@ -4,7 +4,8 @@
 //
 // Schema for each question object:
 // {
-//   id: "UNIQUE-ID",                                      // e.g. "AIR-021", "CARD-023", "TRAU-019", "MED-029", "OPS-013"
+//   id: "UNIQUE-ID",                                      // e.g. "AIR-041", "CARD-045", "TRAU-036", "MED-058", "OPS-025"
+//   source: "Custom",                                     // Author tag: "Gemini", "Claude", or "Custom"
 //   domain: "Airway, Respiration & Ventilation",          // Must match one of the 5 official NREMT domains
 //   subtopic: "Subtopic Name",                            // Used for targeted post-exam study feedback
 //   patientType: "Adult" | "Pediatric" | "Obstetric" | "Operations",

@@ -1,12 +1,15 @@
 // NREMT EMT Cognitive Exam Practice Question Bank
 // Domain 4: Medical; Obstetrics & Gynecology (28 Questions)
 // Difficulty Tiers: 1 = Easy, 2 = Medium, 3 = Hard
+// Author: Original questions written by Gemini (each tagged source: "Gemini"); reviewed and corrected by Claude.
+// Claude-authored questions for this domain live in data/questions-claude-medical.js
 
 window.NREMT_QUESTIONS = window.NREMT_QUESTIONS || [];
 
 window.NREMT_QUESTIONS.push(
   {
     id: "MED-001",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Endocrine & Metabolic Emergencies",
     patientType: "Adult",
@@ -25,6 +28,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-002",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Allergic Reactions & Anaphylaxis",
     patientType: "Adult",
@@ -43,6 +47,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-003",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Neurologic Emergencies",
     patientType: "Adult",
@@ -61,6 +66,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-004",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
@@ -79,6 +85,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-005",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Toxicology & Environmental Emergencies",
     patientType: "Adult",
@@ -97,12 +104,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-006",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Pediatric Medical Emergencies",
     patientType: "Pediatric",
     difficulty: 1,
     irtB: -0.6,
-    stem: "You are dispatched at 1:00 AM for a 2-year-old boy who woke up with a loud, ''seal-like'' barking cough and mild inspiratory stridor when crying. His mother states he has had a low-grade fever and runny nose for 2 days. He is alert, sitting comfortably on his mother's lap, not drooling, and able to drink sips of water. His SpO2 is 96%. What condition do you suspect, and how should you manage him?",
+    stem: "You are dispatched at 1:00 AM for a 2-year-old boy who woke up with a loud, 'seal-like' barking cough and mild inspiratory stridor when crying. His mother states he has had a low-grade fever and runny nose for 2 days. He is alert, sitting comfortably on his mother's lap, not drooling, and able to drink sips of water. His SpO2 is 96%. What condition do you suspect, and how should you manage him?",
     options: [
       "Acute bacterial epiglottitis; attempt to visualize the epiglottis with a tongue depressor",
       "Laryngotracheobronchitis (croup); keep the child calm on his mother's lap and provide cool mist or humidified oxygen as needed",
@@ -115,6 +123,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-007",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
@@ -122,7 +131,7 @@ window.NREMT_QUESTIONS.push(
     irtB: -0.8,
     stem: "As a newborn's head delivers during an emergency field childbirth, you observe that the umbilical cord is wrapped tightly once around the infant's neck (nuchal cord). What should you do FIRST?",
     options: [
-      "Immediately clamp and cut the cord beforeattempting to slip it over the head",
+      "Immediately clamp and cut the cord before attempting to slip it over the head",
       "Push the infant's head back into the birth canal and transport emergently",
       "Attempt to gently slip the cord over the infant's head (or shoulder) with two fingers",
       "Pull forcefully on the infant's head to complete delivery despite the tight cord"
@@ -133,12 +142,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-008",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Toxicology & Environmental Emergencies",
     patientType: "Adult",
     difficulty: 1,
     irtB: -0.5,
-    stem: "Why is activated charcoal rarely administered—and absolute contraindicated—in patients who have ingested strong acids, alkalis (corrosives), or petroleum distillates (such as gasoline or kerosene)?",
+    stem: "Why is activated charcoal rarely administered—and absolutely contraindicated—in patients who have ingested strong acids, alkalis (corrosives), or petroleum distillates (such as gasoline or kerosene)?",
     options: [
       "Activated charcoal reacts chemically with acids to form cyanide gas",
       "Charcoal does not bind to acids, alkalis, or hydrocarbons, obscures endoscopic view of esophageal burns, and increases the risk of vomiting and fatal chemical aspiration",
@@ -151,12 +161,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-009",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Endocrine & Metabolic Emergencies",
     patientType: "Adult",
     difficulty: 2,
     irtB: -0.2,
-    stem: "You are assessing a 21-year-old female with type 1 diabetes who has had nausea, vomiting, and abdominal pain for 2 days after running out of insulin. She is lethargic, has dry mucous membranes and sunken eyes, a fruity ''acetone'' odor on her breath, and rapid, deep respirations at 32 breaths/min. Her glucometer reads ''HIGH'' (> 500 mg/dL), HR is 126 beats/min, and BP is 94/60 mmHg. What is the physiological purpose of her rapid, deep breathing (Kussmaul respirations)?",
+    stem: "You are assessing a 21-year-old female with type 1 diabetes who has had nausea, vomiting, and abdominal pain for 2 days after running out of insulin. She is lethargic, has dry mucous membranes and sunken eyes, a fruity 'acetone' odor on her breath, and rapid, deep respirations at 32 breaths/min. Her glucometer reads 'HIGH' (> 500 mg/dL), HR is 126 beats/min, and BP is 94/60 mmHg. What is the physiological purpose of her rapid, deep breathing (Kussmaul respirations)?",
     options: [
       "She is retaining carbon dioxide to compensate for metabolic alkalosis",
       "Her body is attempting to blow off carbon dioxide (an acid) to compensate for severe metabolic ketoacidosis",
@@ -169,6 +180,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-010",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Neurologic Emergencies",
     patientType: "Adult",
@@ -187,6 +199,8 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-011",
+    source: "Gemini",
+    reviewNote: "Clarified by Claude: atropine/pralidoxime for patients is an ALS intervention; EMTs generally use auto-injectors for self/peer care or per local protocol.",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Toxicology & Environmental Emergencies",
     patientType: "Adult",
@@ -201,10 +215,11 @@ window.NREMT_QUESTIONS.push(
     ],
     correctIndex: 1,
     explanation: "Organophosphate insecticides (and nerve agents like sarin/VX) irreversibly inhibit acetylcholinesterase, causing massive accumulation of acetylcholine at muscarinic and nicotinic receptors (cholinergic crisis). Remember the mnemonic SLUDGEM / DUMBBELS: Salivation, Lacrimation, Urination, Defecation/Diarrhea, GI cramping, Emesis, Miosis (pinpoint pupils), plus Killer B's: Bronchorrhea, Bronchospasm, and Bradycardia. Ensure scene safety/decontamination first, aggressively suction and ventilate the airway, and request ALS for high-dose atropine and pralidoxime (2-PAM).",
-    studyTip: "Organophosphate / Nerve Agent Poisoning = Cholinergic Crisis (SLUDGEM + Killer B's: Bradycardia, Bronchorrhea, Bronchospasm). Decontaminate FIRST, suction airway, and administer Atropine + Pralidoxime (DuoDote/Mark I)."
+    studyTip: "Organophosphate / Nerve Agent Poisoning = Cholinergic Crisis (SLUDGEM + Killer B's: Bradycardia, Bronchorrhea, Bronchospasm). Decontaminate FIRST, suction and ventilate, and request ALS for atropine/pralidoxime. (EMTs typically use DuoDote/Mark I auto-injectors only for self/peer care or per local protocol.)"
   },
   {
     id: "MED-012",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Toxicology & Environmental Emergencies",
     patientType: "Adult",
@@ -223,6 +238,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-013",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Abdominal, GI & Renal Emergencies",
     patientType: "Adult",
@@ -241,6 +257,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-014",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
@@ -259,6 +276,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-015",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
@@ -277,6 +295,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-016",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
@@ -295,6 +314,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-017",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Abdominal, GI & Renal Emergencies",
     patientType: "Adult",
@@ -313,6 +333,8 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-018",
+    source: "Gemini",
+    reviewNote: "Updated by Claude: 'excited delirium' terminology replaced with current terminology.",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Psychiatric & Behavioral Emergencies",
     patientType: "Adult",
@@ -321,22 +343,23 @@ window.NREMT_QUESTIONS.push(
     stem: "Law enforcement requests EMS for a 28-year-old male who was running naked in traffic, smashing car windows with his bare hands, and shouting incoherently. When you arrive, he is extremely agitated, diaphoretic, hyperthermic, tachycardic, and shows seemingly superhuman strength with complete insensitivity to pain from severe hand lacerations. When restraining this patient for safety, which position is STRICTLY CONTRAINDICATED because it rapidly leads to sudden cardiac arrest?",
     options: [
       "Supine on the stretcher with the head elevated 30 degrees",
-      "Prone (face-down) restraint or ''hog-tying'' with weight applied to the back, which causes positional asphyxia",
+      "Prone (face-down) restraint or 'hog-tying' with weight applied to the back, which causes positional asphyxia",
       "Left lateral recumbent position with four-point soft restraints",
       "Semi-Fowler's position with continuous capnography and pulse oximetry"
     ],
     correctIndex: 1,
-    explanation: "This patient presents with agitated delirium (excited delirium), a true medical emergency characterized by severe metabolic acidosis, hyperthermia, catecholamine surge, and extreme agitation. Restraining a patient in the prone (face-down) position, 'hog-tying' (hobble-tying wrists to ankles behind the back), or placing weight on the back restricts diaphragm and chest wall movement, preventing the patient from maintaining the high minute ventilation needed to compensate for severe metabolic acidosis—leading to rapid positional asphyxia and fatal cardiac arrest.",
-    studyTip: "Agitated/Excited Delirium = True medical emergency (severe acidosis + hyperthermia). NEVER restrain a patient prone (face-down) or sandwich between backboards -> causes fatal Positional Asphyxia!"
+    explanation: "This patient presents with hyperactive delirium with severe agitation (formerly called 'excited delirium'—a term major EMS organizations have retired), a true medical emergency characterized by severe metabolic acidosis, hyperthermia, catecholamine surge, and extreme agitation. Restraining a patient in the prone (face-down) position, 'hog-tying' (hobble-tying wrists to ankles behind the back), or placing weight on the back restricts diaphragm and chest wall movement, preventing the patient from maintaining the high minute ventilation needed to compensate for severe metabolic acidosis—leading to rapid positional asphyxia and fatal cardiac arrest.",
+    studyTip: "Hyperactive delirium with severe agitation = True medical emergency (severe acidosis + hyperthermia). NEVER restrain a patient prone (face-down) or sandwich between backboards -> causes fatal Positional Asphyxia!"
   },
   {
     id: "MED-019",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Abdominal, GI & Renal Emergencies",
     patientType: "Adult",
     difficulty: 2,
     irtB: 0.3,
-    stem: "A 54-year-old male with a history of chronic alcoholism and liver cirrhosis vomits a large volume of bright red blood mixed with dark ''coffee-ground'' emesis. He also reports passing black, tarry, foul-smelling stools (melena) over the past 2 days. He is pale, diaphoretic, and has a BP of 86/54 mmHg and HR of 128 beats/min. What is the MOST likely source of his life-threatening upper gastrointestinal hemorrhage?",
+    stem: "A 54-year-old male with a history of chronic alcoholism and liver cirrhosis vomits a large volume of bright red blood mixed with dark 'coffee-ground' emesis. He also reports passing black, tarry, foul-smelling stools (melena) over the past 2 days. He is pale, diaphoretic, and has a BP of 86/54 mmHg and HR of 128 beats/min. What is the MOST likely source of his life-threatening upper gastrointestinal hemorrhage?",
     options: [
       "Ruptured esophageal varices",
       "Internal hemorrhoids",
@@ -349,12 +372,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-020",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
     difficulty: 3,
     irtB: 0.8,
-    stem: "Compare two pregnant patients who are both at 34 weeks gestation presenting with third-trimester vaginal bleeding:\n• Patient A woke up in a pool of bright red vaginal blood but denies any abdominal pain or contractions; her abdomen is soft and non-tender.\n• Patient B was involved in a minor fall and has sudden, severe, tearing abdominal pain, a rigid ''board-like'' uterus that is tender to palpation, and a small amount of dark red vaginal bleeding.\nWhat are the respective diagnoses for Patient A and Patient B?",
+    stem: "Compare two pregnant patients who are both at 34 weeks gestation presenting with third-trimester vaginal bleeding:\n• Patient A woke up in a pool of bright red vaginal blood but denies any abdominal pain or contractions; her abdomen is soft and non-tender.\n• Patient B was involved in a minor fall and has sudden, severe, tearing abdominal pain, a rigid 'board-like' uterus that is tender to palpation, and a small amount of dark red vaginal bleeding.\nWhat are the respective diagnoses for Patient A and Patient B?",
     options: [
       "Patient A: Abruptio placentae; Patient B: Placenta previa",
       "Patient A: Placenta previa; Patient B: Abruptio placentae",
@@ -367,6 +391,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-021",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Pediatric",
@@ -385,12 +410,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-022",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Endocrine & Metabolic Emergencies",
     patientType: "Adult",
     difficulty: 3,
     irtB: 0.7,
-    stem: "A 72-year-old male with type 2 diabetes is found severely lethargic and confused in his nursing home room after 4 days of a urinary tract infection and poor fluid intake. His skin is warm and extremely dry with poor skin turgor, his glucometer reads ''HIGH'' (> 600 mg/dL), his BP is 88/54 mmHg, and his HR is 124 beats/min. However, his respirations are normal in depth at 18 breaths/min (no Kussmaul respirations), and there is NO fruity acetone odor on his breath. What condition is he experiencing?",
+    stem: "A 72-year-old male with type 2 diabetes is found severely lethargic and confused in his nursing home room after 4 days of a urinary tract infection and poor fluid intake. His skin is warm and extremely dry with poor skin turgor, his glucometer reads 'HIGH' (> 600 mg/dL), his BP is 88/54 mmHg, and his HR is 124 beats/min. However, his respirations are normal in depth at 18 breaths/min (no Kussmaul respirations), and there is NO fruity acetone odor on his breath. What condition is he experiencing?",
     options: [
       "Diabetic ketoacidosis (DKA)",
       "Hyperosmolar hyperglycemic state (HHS / HHNS)",
@@ -403,6 +429,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-023",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Neurologic Emergencies",
     patientType: "Adult",
@@ -421,12 +448,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-024",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
     difficulty: 3,
     irtB: 0.8,
-    stem: "A 24-year-old primigravida female at 35 weeks gestation complains of a severe frontal headache, blurred ''spotted'' vision, right upper quadrant epigastric pain, and marked swelling (edema) of her face and hands. Her blood pressure is 176/114 mmHg. While you are assessing her, she suddenly develops a generalized tonic-clonic seizure. What condition has she progressed into, and how should you manage her?",
+    stem: "A 24-year-old primigravida female at 35 weeks gestation complains of a severe frontal headache, blurred 'spotted' vision, right upper quadrant epigastric pain, and marked swelling (edema) of her face and hands. Her blood pressure is 176/114 mmHg. While you are assessing her, she suddenly develops a generalized tonic-clonic seizure. What condition has she progressed into, and how should you manage her?",
     options: [
       "Gestational diabetes; administer oral glucose into her cheek",
       "Eclampsia; protect her airway, suction as needed, provide high-flow oxygen/BVM ventilation, position her on her left side, minimize bright lights/noise, and request immediate ALS intercept for magnesium sulfate",
@@ -439,12 +467,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-025",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Pediatric Medical Emergencies",
     patientType: "Pediatric",
     difficulty: 3,
     irtB: 1.1,
-    stem: "You are called for a 4-year-old unimmunized boy who developed a sudden high fever of 103.8°F (39.9°C) and severe sore throat 4 hours ago. When you enter the room, the child appears anxious and toxic, is sitting upright leaning forward on his hands with his chin thrust out (sniffing/tripod position), has muffled ''hot potato'' speech, and has saliva drooling down his chin because he refuses to swallow. What is the MOST critical precaution when managing this child?",
+    stem: "You are called for a 4-year-old unimmunized boy who developed a sudden high fever of 103.8°F (39.9°C) and severe sore throat 4 hours ago. When you enter the room, the child appears anxious and toxic, is sitting upright leaning forward on his hands with his chin thrust out (sniffing/tripod position), has muffled 'hot potato' speech, and has saliva drooling down his chin because he refuses to swallow. What is the MOST critical precaution when managing this child?",
     options: [
       "Use a tongue depressor and penlight to inspect the posterior pharynx for swelling",
       "Place the child supine on the stretcher and insert an oropharyngeal airway immediately",
@@ -457,6 +486,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-026",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Toxicology & Environmental Emergencies",
     patientType: "Adult",
@@ -475,6 +505,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-027",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Hematologic Emergencies",
     patientType: "Adult",
@@ -493,6 +524,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "MED-028",
+    source: "Gemini",
     domain: "Medical; Obstetrics & Gynecology",
     subtopic: "Obstetrics & Neonatal Care",
     patientType: "Obstetric",
@@ -501,7 +533,7 @@ window.NREMT_QUESTIONS.push(
     stem: "You are assisting with an imminent field delivery when you observe that the infant's buttocks and both legs have delivered first (frank breech presentation), and the trunk has delivered up to the neck, but the infant's head remains trapped inside the birth canal for more than 3 minutes. What emergency maneuver must you perform to prevent fatal neonatal asphyxiation?",
     options: [
       "Pull forcefully on the infant's legs and torso to extract the trapped head",
-      "Insert a sterile gloved hand into the vagina, placing your fingers in a ''V'' shape on either side of the infant's nose and mouth to push the vaginal wall away from the face and create an airway while transporting emergently",
+      "Insert a sterile gloved hand into the vagina, placing your fingers in a 'V' shape on either side of the infant's nose and mouth to push the vaginal wall away from the face and create an airway while transporting emergently",
       "Clamp and cut the umbilical cord immediately so the infant begins breathing inside the birth canal",
       "Push the infant's buttocks and torso back into the uterus"
     ],

@@ -1,12 +1,15 @@
 // NREMT EMT Cognitive Exam Practice Question Bank
 // Domain 2: Cardiology & Resuscitation (22 Questions)
 // Difficulty Tiers: 1 = Easy, 2 = Medium, 3 = Hard
+// Author: Original questions written by Gemini (each tagged source: "Gemini"); reviewed and corrected by Claude.
+// Claude-authored questions for this domain live in data/questions-claude-cardiology.js
 
 window.NREMT_QUESTIONS = window.NREMT_QUESTIONS || [];
 
 window.NREMT_QUESTIONS.push(
   {
     id: "CARD-001",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Adult & Pediatric BLS / CPR",
     patientType: "Adult",
@@ -25,6 +28,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-002",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "AED Operations & Special Situations",
     patientType: "Adult",
@@ -43,6 +47,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-003",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Acute Coronary Syndrome (ACS)",
     patientType: "Adult",
@@ -61,6 +66,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-004",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Acute Coronary Syndrome (ACS)",
     patientType: "Adult",
@@ -79,6 +85,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-005",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Adult & Pediatric BLS / CPR",
     patientType: "Pediatric",
@@ -97,6 +104,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-006",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "AED Operations & Special Situations",
     patientType: "Adult",
@@ -115,6 +123,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-007",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Adult & Pediatric BLS / CPR",
     patientType: "Pediatric",
@@ -133,6 +142,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-008",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Acute Coronary Syndrome (ACS)",
     patientType: "Adult",
@@ -151,6 +161,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-009",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Heart Failure & Cardiogenic Shock",
     patientType: "Adult",
@@ -169,6 +180,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-010",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "AED Operations & Special Situations",
     patientType: "Pediatric",
@@ -187,6 +199,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-011",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Adult & Pediatric BLS / CPR",
     patientType: "Adult",
@@ -205,12 +218,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-012",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Vascular & Hypertensive Emergencies",
     patientType: "Adult",
     difficulty: 2,
     irtB: 0.3,
-    stem: "A 69-year-old male with a history of poorly controlled hypertension complains of a sudden, severe ''tearing'' pain in his chest that radiates straight through to his interscapular back. He is pale and diaphoretic. You obtain blood pressures in both arms and find a reading of 178/102 mmHg in the right arm and 112/68 mmHg in the left arm. What condition should you suspect?",
+    stem: "A 69-year-old male with a history of poorly controlled hypertension complains of a sudden, severe 'tearing' pain in his chest that radiates straight through to his interscapular back. He is pale and diaphoretic. You obtain blood pressures in both arms and find a reading of 178/102 mmHg in the right arm and 112/68 mmHg in the left arm. What condition should you suspect?",
     options: [
       "Acute pericarditis",
       "Thoracic aortic dissection",
@@ -223,6 +237,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-013",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "AED Operations & Special Situations",
     patientType: "Adult",
@@ -241,6 +256,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-014",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Acute Coronary Syndrome (ACS)",
     patientType: "Adult",
@@ -259,6 +275,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-015",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Heart Failure & Cardiogenic Shock",
     patientType: "Adult",
@@ -277,6 +294,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-016",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Adult & Pediatric BLS / CPR",
     patientType: "Adult",
@@ -295,15 +313,16 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-017",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Mechanical Circulatory Support (LVAD)",
     patientType: "Adult",
     difficulty: 3,
     irtB: 0.9,
-    stem: "You respond to a 62-year-old male who has a left ventricular assist device (LVAD) with a percutaneous driveline exiting his abdomen connected to an external controller and battery pack. The patient is pale, unresponsive, and apneic. You cannot palpate a carotid or radial pulse, and when you auscultate over his left chest/epigastrium, you hear NO continuous mechanical humming sound. The LVAD controller is alarming with a red ''Pump Off / Low Flow'' light. After attempting to reconnect/replace the power source per family guidance without success, should you perform chest compressions?",
+    stem: "You respond to a 62-year-old male who has a left ventricular assist device (LVAD) with a percutaneous driveline exiting his abdomen connected to an external controller and battery pack. The patient is pale, unresponsive, and apneic. You cannot palpate a carotid or radial pulse, and when you auscultate over his left chest/epigastrium, you hear NO continuous mechanical humming sound. The LVAD controller is alarming with a red 'Pump Off / Low Flow' light. After attempting to reconnect/replace the power source per family guidance without success, should you perform chest compressions?",
     options: [
-      "Never perform chest compressions on an LVAD patient under any circumstances because it will instantly fatalize the patient",
-      "Yes; because the patient is unresponsive, apneic, has no Signs of perfusion, and the LVAD pump has stopped functioning (no hum), begin CPR and transport rapidly",
+      "Never perform chest compressions on an LVAD patient under any circumstances because compressions will dislodge the pump",
+      "Yes; because the patient is unresponsive, apneic, has no signs of perfusion, and the LVAD pump has stopped functioning (no hum), begin CPR and transport rapidly",
       "Perform abdominal thrusts instead of chest compressions to circulate blood through the LVAD cannula",
       "Apply an AED and deliver 3 consecutive stacked shocks before touching the chest"
     ],
@@ -313,6 +332,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-018",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Adult & Pediatric BLS / CPR",
     patientType: "Obstetric",
@@ -331,24 +351,27 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-019",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Acute Coronary Syndrome (ACS)",
     patientType: "Adult",
     difficulty: 3,
     irtB: 1.1,
-    stem: "A 60-year-old male presents with acute substernal chest pain radiating to his jaw. You notice prominent jugular venous distension (JVD), but his lung sounds are completely clear bilaterally, and he has no pedal edema. His initial blood pressure is 104/66 mmHg, and HR is 54 beats/min. You assist him with one dose (0.4 mg) of his prescribed sublingual nitroglycerin. Three minutes later, he becomes severely lightheaded, pale, and his blood pressure plummets to 68/40 mmHg. What is the physiological explanation for this sudden drop in blood pressure?",
+    stem: "A 60-year-old male has acute substernal chest pain radiating to his jaw. Just before you arrived, he took one of his prescribed 0.4 mg nitroglycerin tablets. He is now pale and severely lightheaded. You note prominent jugular venous distension (JVD), clear and equal lung sounds, HR 54 beats/min, BP 68/40 mmHg, and SpO2 95%. His chest pain persists. What is your MOST appropriate action?",
     options: [
-      "The patient experienced an acute anaphylactic reaction to sublingual nitroglycerin",
-      "The patient is having an inferior wall myocardial infarction with right ventricular involvement, which is preload-dependent; nitroglycerin caused venodilation that drastically reduced right ventricular preload",
-      "The patient developed an acute tension pneumothorax caused by sublingual vasodilation",
-      "Nitroglycerin caused severe coronary artery vasospasm in the left anterior descending artery"
+      "Assist him with a second nitroglycerin tablet because his chest pain has not been relieved",
+      "Place him supine, withhold further nitroglycerin, request ALS, and transport promptly",
+      "Sit him fully upright to ease his breathing and recheck his blood pressure in 15 minutes",
+      "Apply a nonrebreather mask, give aspirin, and repeat nitroglycerin once the BP is above 90"
     ],
     correctIndex: 1,
-    explanation: "The clinical triad of chest pain, clear lung sounds, and jugular venous distension (JVD)—often accompanied by bradycardia and borderline hypotension—is the hallmark of a Right Ventricular Myocardial Infarction (RVMI, usually associated with an inferior wall STEMI). Because the damaged right ventricle cannot pump effectively, it relies entirely on high venous return (preload) to push blood passively through the pulmonary circulation to the left heart. Nitroglycerin is a venodilator that pools blood in the venous system, wiping out preload and causing catastrophic hypotension. Treatment requires placing the patient supine (and fluid boluses by ALS).",
-    studyTip: "Triad of Right Ventricular MI (RVMI): Hypotension/Borderline BP + JVD + Clear Lung Sounds. RVMI is strictly preload-dependent—nitroglycerin causes precipitous hypotension!"
+    explanation: "Nitroglycerin is a vasodilator that reduces venous return (preload). This patient became profoundly hypotensive after a single dose, so nitroglycerin must be withheld—hypotension (SBP < 90–100 mmHg per protocol) and bradycardia are contraindications to further doses. Lay him supine to improve venous return to the heart, give oxygen only if hypoxic (his SpO2 is 95%), request ALS for IV fluids, and transport promptly to a cardiac center. Aspirin may still be given per protocol if not contraindicated. Background (beyond EMT-level detail): chest pain + JVD + clear lungs + hypotension is the classic picture of an inferior MI with right ventricular involvement, which is especially sensitive to nitroglycerin because the injured right ventricle depends on preload.",
+    studyTip: "Chest pain patient who becomes hypotensive after nitroglycerin: lay supine, NO more nitro, request ALS, transport. Recheck BP before EVERY nitro dose and withhold it if SBP is below your protocol's cutoff (90–100 mmHg).",
+    reviewNote: "Rewritten by Claude: the original version asked for right-ventricular MI pathophysiology (paramedic-level). It now tests the EMT action."
   },
   {
     id: "CARD-020",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Bradycardia & Perfusion Assessment",
     patientType: "Adult",
@@ -367,6 +390,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-021",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Heart Failure & Cardiogenic Shock",
     patientType: "Adult",
@@ -385,6 +409,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "CARD-022",
+    source: "Gemini",
     domain: "Cardiology & Resuscitation",
     subtopic: "Adult & Pediatric BLS / CPR",
     patientType: "Adult",

@@ -1,12 +1,15 @@
 // NREMT EMT Cognitive Exam Practice Question Bank
 // Domain 5: EMS Operations (12 Questions)
 // Difficulty Tiers: 1 = Easy, 2 = Medium, 3 = Hard
+// Author: Original questions written by Gemini (each tagged source: "Gemini"); reviewed and corrected by Claude.
+// Claude-authored questions for this domain live in data/questions-claude-operations.js
 
 window.NREMT_QUESTIONS = window.NREMT_QUESTIONS || [];
 
 window.NREMT_QUESTIONS.push(
   {
     id: "OPS-001",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Medical-Legal & Ethical Issues",
     patientType: "Operations",
@@ -25,6 +28,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-002",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "HazMat & Scene Safety",
     patientType: "Operations",
@@ -43,6 +47,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-003",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Ambulance Operations & Air Medical",
     patientType: "Operations",
@@ -61,6 +66,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-004",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Ambulance Operations & Infection Control",
     patientType: "Operations",
@@ -79,6 +85,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-005",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Triage & Mass Casualty (MCI)",
     patientType: "Operations",
@@ -97,6 +104,8 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-006",
+    source: "Gemini",
+    reviewNote: "Corrected by Claude: START does not include inserting an OPA during triage; you open the airway once.",
     domain: "EMS Operations",
     subtopic: "Triage & Mass Casualty (MCI)",
     patientType: "Operations",
@@ -105,7 +114,7 @@ window.NREMT_QUESTIONS.push(
     stem: "During a mass casualty incident (MCI) using START triage, you approach an unresponsive adult female who is not breathing. What is the ONLY intervention you should perform before deciding whether to tag her Black (Deceased) or Red (Immediate)?",
     options: [
       "Perform 2 minutes of high-quality CPR and apply an AED",
-      "Manually open her airway (and insert an OPA if available); if she remains apneic, tag her Black (Deceased)",
+      "Manually open her airway once; if she remains apneic, tag her Black (Deceased)",
       "Deliver 5 rescue breaths with a bag-valve mask and check a carotid pulse for 30 seconds",
       "Check her blood pressure and pupil reactivity"
     ],
@@ -115,6 +124,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-007",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Medical-Legal & Ethical Issues",
     patientType: "Operations",
@@ -133,6 +143,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-008",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Medical-Legal & Ethical Issues",
     patientType: "Operations",
@@ -146,11 +157,12 @@ window.NREMT_QUESTIONS.push(
       "Defamation of character"
     ],
     correctIndex: 1,
-    explanation: "Abandonment is the unilateral termination of the EMT-patient relationship once care has been initiated, without obtaining a valid patient refusal or transferring care to an healthcare professional of equal or higher training/licensure. Simply wheeling a patient into an ED hallway without a formal face-to-face transfer of care and report to an RN/MD constitutes patient abandonment.",
+    explanation: "Abandonment is the unilateral termination of the EMT-patient relationship once care has been initiated, without obtaining a valid patient refusal or transferring care to a healthcare professional of equal or higher training/licensure. Simply wheeling a patient into an ED hallway without a formal face-to-face transfer of care and report to an RN/MD constitutes patient abandonment.",
     studyTip: "Abandonment = Stopping care or leaving a patient without transferring care to an equal or higher medical authority (e.g., an ALS paramedic handing off a patient needing ALS care to a BLS EMT, or leaving a patient at the ED without a formal nurse/physician handoff)."
   },
   {
     id: "OPS-009",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Medical-Legal & Ethical Issues",
     patientType: "Operations",
@@ -169,6 +181,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-010",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Medical-Legal & Ethical Issues",
     patientType: "Operations",
@@ -187,6 +200,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-011",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Triage & Mass Casualty (MCI)",
     patientType: "Pediatric",
@@ -205,14 +219,15 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "OPS-012",
+    source: "Gemini",
     domain: "EMS Operations",
     subtopic: "Ambulance Operations & Safety",
     patientType: "Operations",
     difficulty: 3,
     irtB: 1.0,
-    stem: "You are driving an ambulance emergently (with warning lights and siren activated) transporting a critical trauma patient on a two-lane undivided road. Ahead of you, a school bus has stopped in the opposite lane with its alternating red lights flashing and its mechanical ''STOP'' arm extended to unload children. What are you legally and safely required to do?",
+    stem: "You are driving an ambulance emergently (with warning lights and siren activated) transporting a critical trauma patient on a two-lane undivided road. Ahead of you, a school bus has stopped in the opposite lane with its alternating red lights flashing and its mechanical 'STOP' arm extended to unload children. What are you legally and safely required to do?",
     options: [
-      "Maintain speed, switch the siren to ''phaser'' mode, and pass the school bus on the left shoulder",
+      "Maintain speed, switch the siren to 'phaser' mode, and pass the school bus on the left shoulder",
       "Slow down to 15 mph and drive past the school bus while sounding the air horn",
       "Come to a complete stop before reaching the school bus, turn off or silence the siren as appropriate, and wait until the bus retracts its stop arm, turns off its flashing red lights, and signals that it is safe to proceed",
       "Drive onto the right sidewalk to bypass the stopped school bus"

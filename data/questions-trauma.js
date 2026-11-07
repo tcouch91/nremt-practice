@@ -1,12 +1,15 @@
 // NREMT EMT Cognitive Exam Practice Question Bank
 // Domain 3: Trauma (18 Questions)
 // Difficulty Tiers: 1 = Easy, 2 = Medium, 3 = Hard
+// Author: Original questions written by Gemini (each tagged source: "Gemini"); reviewed and corrected by Claude.
+// Claude-authored questions for this domain live in data/questions-claude-trauma.js
 
 window.NREMT_QUESTIONS = window.NREMT_QUESTIONS || [];
 
 window.NREMT_QUESTIONS.push(
   {
     id: "TRAU-001",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Bleeding & Shock",
     patientType: "Adult",
@@ -25,6 +28,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-002",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Chest & Abdominal Trauma",
     patientType: "Adult",
@@ -43,6 +47,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-003",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Chest & Abdominal Trauma",
     patientType: "Adult",
@@ -61,6 +66,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-004",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Burns & Soft Tissue Trauma",
     patientType: "Adult",
@@ -79,6 +85,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-005",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Burns & Soft Tissue Trauma",
     patientType: "Adult",
@@ -97,6 +104,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-006",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Bleeding & Shock",
     patientType: "Adult",
@@ -115,6 +123,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-007",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Head, Neck & Spine Trauma",
     patientType: "Adult",
@@ -133,6 +142,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-008",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Burns & Soft Tissue Trauma",
     patientType: "Adult",
@@ -151,6 +161,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-009",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Chest & Abdominal Trauma",
     patientType: "Adult",
@@ -160,7 +171,7 @@ window.NREMT_QUESTIONS.push(
     options: [
       "Wrap circumferential elastic tape tightly around the entire rib cage to immobilize the ribs",
       "Place a 10-pound sandbag directly on the flail segment",
-      "Provide positive pressure ventilation with a bag-valve mask to act as an ''internal pneumatic splint'' and improve tidal volume",
+      "Provide positive pressure ventilation with a bag-valve mask to act as an 'internal pneumatic splint' and improve tidal volume",
       "Perform immediate needle decompression on the right chest"
     ],
     correctIndex: 2,
@@ -169,6 +180,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-010",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Chest & Abdominal Trauma",
     patientType: "Adult",
@@ -187,6 +199,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-011",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Musculoskeletal Trauma",
     patientType: "Adult",
@@ -205,6 +218,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-012",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Head, Neck & Spine Trauma",
     patientType: "Adult",
@@ -223,6 +237,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-013",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Head, Neck & Spine Trauma",
     patientType: "Adult",
@@ -241,6 +256,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-014",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Bleeding & Shock",
     patientType: "Adult",
@@ -259,6 +275,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-015",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Chest & Abdominal Trauma",
     patientType: "Adult",
@@ -277,12 +294,13 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-016",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Head, Neck & Spine Trauma",
     patientType: "Adult",
     difficulty: 3,
     irtB: 0.8,
-    stem: "A 24-year-old male was struck in the right temple (temporal bone) by a line-drive baseball. He was knocked unconscious for 1 minute at the scene, then woke up alert, oriented, and insisted he felt fine. Twenty minutes later during transport, he rapidly becomes lethargic, develops a dilated, nonreactive right pupil, and becomes unresponsive with left-sided hemiparesis. Which intracranial hemorrhage matches this classic ''lucid interval'' presentation?",
+    stem: "A 24-year-old male was struck in the right temple (temporal bone) by a line-drive baseball. He was knocked unconscious for 1 minute at the scene, then woke up alert, oriented, and insisted he felt fine. Twenty minutes later during transport, he rapidly becomes lethargic, develops a dilated, nonreactive right pupil, and becomes unresponsive with left-sided hemiparesis. Which intracranial hemorrhage matches this classic 'lucid interval' presentation?",
     options: [
       "Chronic venous subdural hematoma",
       "Acute epidural hematoma caused by laceration of the middle meningeal artery",
@@ -295,6 +313,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-017",
+    source: "Gemini",
     domain: "Trauma",
     subtopic: "Musculoskeletal Trauma",
     patientType: "Adult",
@@ -313,6 +332,8 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "TRAU-018",
+    source: "Gemini",
+    reviewNote: "Revised by Claude: distractors were ALS-only procedures (needle decompression, IV fluids, pericardiocentesis), which made the answer obvious. Replaced with EMT-level distractors.",
     domain: "Trauma",
     subtopic: "Chest & Abdominal Trauma",
     patientType: "Pediatric",
@@ -320,10 +341,10 @@ window.NREMT_QUESTIONS.push(
     irtB: 1.2,
     stem: "A 13-year-old boy playing baseball was struck squarely in the center of the chest by a pitched baseball and collapsed instantaneously. Upon your arrival 3 minutes later, he is unresponsive, apneic, and pulseless. There is a small circular contusion over the sternum, but no rib instability or crepitus. What is the pathophysiology of his arrest, and what intervention offers the highest chance of survival?",
     options: [
-      "Tension pneumothorax; immediate needle thoracostomy",
+      "Tension pneumothorax; seal the chest with an occlusive dressing and begin BVM ventilation",
       "Commotio cordis—blunt impact during the vulnerable repolarization phase (upstroke of the T-wave) inducing ventricular fibrillation; immediate CPR and AED defibrillation",
-      "Aortic transection; rapid intravenous fluid resuscitation",
-      "Pericardial tamponade; immediate pericardiocentesis"
+      "Aortic injury; withhold compressions to avoid worsening bleeding and transport rapidly",
+      "Sternal fracture with cardiac contusion; ventilate only and avoid chest compressions"
     ],
     correctIndex: 1,
     explanation: "Commotio cordis occurs when a low-to-moderate energy blunt blow to the precordium (such as a baseball, hockey puck, or lacrosse ball in children/adolescents with compliant chest walls) strikes during a narrow 10- to 30-millisecond window on the upstroke of the T-wave (ventricular repolarization), immediately triggering ventricular fibrillation (V-Fib) without structural cardiac damage. Survival depends on immediate high-quality CPR and rapid AED defibrillation.",

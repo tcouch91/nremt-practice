@@ -1197,3 +1197,28 @@ body.theme-yellow-black .scaled-score-number {
   min-height: 72px;
   resize: vertical;
 }
+
+/* Question author badge (shown in post-exam review) */
+.source-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 1px solid var(--vue-border);
+  color: var(--vue-text-muted);
+  background: var(--vue-bg);
+  vertical-align: middle;
+}
+.source-badge.source-claude { border-color: #c2410c; color: #c2410c; }
+.source-badge.source-gemini { border-color: #1d4ed8; color: #1d4ed8; }
+
+.app-disclaimer {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem 1.5rem;
+  font-size: 0.75rem;
+  color: var(--vue-text-muted);
+  text-align: center;
+}

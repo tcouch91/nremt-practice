@@ -1,12 +1,15 @@
 // NREMT EMT Cognitive Exam Practice Question Bank
 // Domain 1: Airway, Respiration & Ventilation (20 Questions)
 // Difficulty Tiers: 1 = Easy, 2 = Medium, 3 = Hard
+// Author: Original questions written by Gemini (each tagged source: "Gemini"); reviewed and corrected by Claude.
+// Claude-authored questions for this domain live in data/questions-claude-airway.js
 
 window.NREMT_QUESTIONS = window.NREMT_QUESTIONS || [];
 
 window.NREMT_QUESTIONS.push(
   {
     id: "AIR-001",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Airway Adjuncts & Suctioning",
     patientType: "Adult",
@@ -25,6 +28,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-002",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Airway Adjuncts & Suctioning",
     patientType: "Adult",
@@ -43,6 +47,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-003",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Airway Anatomy & Assessment",
     patientType: "Adult",
@@ -61,6 +66,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-004",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Oxygenation & Delivery Devices",
     patientType: "Adult",
@@ -79,6 +85,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-005",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Positive Pressure Ventilation & BVM",
     patientType: "Adult",
@@ -97,6 +104,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-006",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Airway Adjuncts & Suctioning",
     patientType: "Adult",
@@ -115,6 +123,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-007",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Positive Pressure Ventilation & BVM",
     patientType: "Adult",
@@ -133,6 +142,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-008",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Lower Airway & Pulmonary Emergencies",
     patientType: "Adult",
@@ -151,6 +161,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-009",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Oxygenation & Delivery Devices",
     patientType: "Adult",
@@ -169,6 +180,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-010",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Oxygenation & Delivery Devices",
     patientType: "Adult",
@@ -187,6 +199,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-011",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Positive Pressure Ventilation & BVM",
     patientType: "Adult",
@@ -205,6 +218,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-012",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Lower Airway & Pulmonary Emergencies",
     patientType: "Adult",
@@ -223,6 +237,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-013",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Lower Airway & Pulmonary Emergencies",
     patientType: "Pediatric",
@@ -241,6 +256,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-014",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Lower Airway & Pulmonary Emergencies",
     patientType: "Adult",
@@ -259,6 +275,8 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-015",
+    source: "Gemini",
+    reviewNote: "Corrected by Claude: original answer said to start compressions immediately; AHA sequence is ventilate first, then compress if HR stays below 60 with poor perfusion.",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Pathophysiology & Perfusion",
     patientType: "Pediatric",
@@ -266,17 +284,18 @@ window.NREMT_QUESTIONS.push(
     irtB: 0.7,
     stem: "You are assessing a 3-year-old boy with a 2-day history of viral respiratory symptoms. Earlier, his mother noted nasal flaring and intercostal retractions with a respiratory rate of 48 breaths/min. Now, the child is lethargic, limp in his mother's arms, and does not cry when you approach. His respiratory rate has dropped to 12 breaths/min and is shallow, his heart rate is 56 beats/min, and central cyanosis is present. How should you interpret these findings and respond?",
     options: [
-      "The child's respiratory distress is resolving as his respiratory rate returns to normal; apply blow-by oxygen",
-      "The child has progressed from respiratory distress into decompensated respiratory failure and imminent arrest; begin BVM ventilations and chest compressions immediately",
-      "The child is in compensated respiratory distress; administer nebulized albuterol and monitor closely",
+      "The child is improving as his respiratory rate returns toward normal; apply blow-by oxygen and observe",
+      "The child is in respiratory failure and near arrest; begin BVM ventilations with high-flow oxygen, and start chest compressions if the heart rate stays below 60 with poor perfusion",
+      "The child is in compensated respiratory distress; give humidified oxygen by mask and monitor closely",
       "The child is experiencing a simple febrile seizure postictal state; place him in the recovery position"
     ],
     correctIndex: 1,
-    explanation: "In pediatric patients, a falling respiratory rate accompanied by lethargy, limp muscle tone, shallow breathing, and bradycardia (HR < 60 beats/min with poor perfusion) is an ominous sign of impending cardiopulmonary arrest—NOT clinical improvement. In pediatrics, bradycardia is a direct result of severe hypoxia. When a pediatric patient's heart rate drops below 60 beats/min with signs of poor perfusion despite oxygenation/ventilation, you must immediately perform both BVM ventilations and chest compressions.",
+    explanation: "In pediatric patients, a falling respiratory rate accompanied by lethargy, limp muscle tone, shallow breathing, and bradycardia (HR < 60 beats/min with poor perfusion) is an ominous sign of impending cardiopulmonary arrest—NOT clinical improvement. In pediatrics, bradycardia is a direct result of severe hypoxia. Your first action is effective BVM ventilation with high-flow oxygen, because correcting hypoxia often restores the heart rate. If the heart rate remains below 60 beats/min with signs of poor perfusion despite effective oxygenation and ventilation, begin chest compressions.",
     studyTip: "In pediatrics, tachypnea + retractions = early respiratory distress. Bradypnea + lethargy + bradycardia (HR < 60 with poor perfusion) = decompensated respiratory failure / imminent arrest requiring BVM + CPR!"
   },
   {
     id: "AIR-016",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Positive Pressure Ventilation & BVM",
     patientType: "Adult",
@@ -295,6 +314,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-017",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Lower Airway & Pulmonary Emergencies",
     patientType: "Adult",
@@ -303,7 +323,7 @@ window.NREMT_QUESTIONS.push(
     stem: "You are called for a 24-year-old female with a history of severe asthma who has been using her albuterol inhaler repeatedly over the past 3 hours without relief. Upon arrival, she is drowsy, diaphoretic, and sitting slumped forward. When you auscultate her chest, you hear almost no air movement and no wheezing bilaterally. Her RR is 32 breaths/min and shallow, HR is 134 beats/min, and SpO2 is 82%. What do these clinical findings indicate?",
     options: [
       "Her bronchospasm has resolved following repeated doses of albuterol",
-      "She has a ''silent chest'' indicating severe, life-threatening airflow obstruction and impending respiratory arrest requiring immediate assisted BVM ventilations",
+      "She has a 'silent chest' indicating severe, life-threatening airflow obstruction and impending respiratory arrest requiring immediate assisted BVM ventilations",
       "She is experiencing an anxiety-induced hyperventilation episode that should be treated with verbal coaching",
       "She has developed right-sided heart failure secondary to beta-agonist toxicity"
     ],
@@ -313,6 +333,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-018",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Pathophysiology & Perfusion",
     patientType: "Adult",
@@ -331,6 +352,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-019",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Pathophysiology & Perfusion",
     patientType: "Adult",
@@ -349,6 +371,7 @@ window.NREMT_QUESTIONS.push(
   },
   {
     id: "AIR-020",
+    source: "Gemini",
     domain: "Airway, Respiration & Ventilation",
     subtopic: "Lower Airway & Pulmonary Emergencies",
     patientType: "Adult",
