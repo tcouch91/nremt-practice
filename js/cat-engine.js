@@ -335,6 +335,8 @@
       questionId: q.id,
       domain: q.domain,
       subtopic: q.subtopic,
+      source: q.source || "Custom",
+      reviewNote: q.reviewNote || "",
       patientType: q.patientType || "Adult",
       difficulty: q.difficulty,
       difficultyLabel: DIFFICULTY_LABELS[q.difficulty],
@@ -373,25 +375,39 @@
     existingExp.lastAttempt = session.attemptNumber;
     existingExp.lastCorrect = isCorrect;
     exposure.items[q.id] = existingExp;
+    // Count the attempt as soon as any question is answered, so an exam that is ended early,
+    // times out, or is abandoned (tab closed) does not reuse the same attempt number next time.
+    exposure.totalAttempts = Math.max(exposure.totalAttempts || 0, session.attemptNumber);
+    saveExposureHistory(exposure);
 
     // Check if exam has reached 35 questions
     if (session.responses.length >= session.totalQuestions) {
-      session.isCompleted = true;
-      session.completedAt = new Date().toISOString();
-      session.currentQuestion = null;
-      exposure.totalAttempts = Math.max(exposure.totalAttempts, session.attemptNumber);
-      saveExposureHistory(exposure);
-
-      const report = generateDiagnosticReport(session);
-      session.report = report;
-      saveAttemptReport(report);
+      finalizeSession(session);
     } else {
-      saveExposureHistory(exposure);
       session.currentQuestionIndex = session.responses.length;
       session.currentQuestion = selectNextQuestion(session);
+      // If the bank runs out of eligible questions, end the exam instead of leaving it stuck.
+      if (!session.currentQuestion) {
+        finalizeSession(session);
+      }
     }
 
     return session;
+  }
+
+  // Mark a session complete, build its report, and save it to attempt history.
+  // Used for normal completion, time expiry, and "end exam early", so every scored exam is saved.
+  function finalizeSession(session) {
+    if (!session) return null;
+    if (session.report) return session.report;
+    session.isCompleted = true;
+    session.completedAt = session.completedAt || new Date().toISOString();
+    session.currentQuestion = null;
+    if (session.responses.length === 0) return null;
+    const report = generateDiagnosticReport(session);
+    session.report = report;
+    saveAttemptReport(report);
+    return report;
   }
 
   // Generate comprehensive score & study feedback report after 35 questions
@@ -618,8 +634,15 @@
       }
     });
 
+    const sourceCounts = {};
+    allQuestions.forEach((q) => {
+      const src = q.source || "Custom";
+      sourceCounts[src] = (sourceCounts[src] || 0) + 1;
+    });
+
     return {
       totalBankSize: allQuestions.length,
+      sourceCounts,
       unseenCount,
       seenCount: allQuestions.length - unseenCount,
       seenOnceCount,
@@ -641,6 +664,7 @@
     clearAllHistory,
     createExamSession,
     submitAnswer,
+    finalizeSession,
     generateDiagnosticReport,
     getQuestionPoolStats
   };

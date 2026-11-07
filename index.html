@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NREMT EMT Practice Exam</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ===================== TOP HEADER ===================== -->
+  <header class="vue-header">
+    <div class="vue-header-left">
+      <div class="nremt-star-badge" aria-hidden="true">✚</div>
+      <div>
+        <div class="vue-exam-title">EMT Cognitive Exam — Adaptive Practice</div>
+        <div class="vue-candidate-subtitle">Unofficial study tool • 35-question practice exam</div>
+      </div>
+    </div>
+    <div class="vue-header-right">
+      <div id="vue-header-exam-status" class="vue-status-box hidden">
+        <div id="vue-timer-row" class="vue-timer-row">
+          <span id="vue-timer-text">Time Remaining: 42:00</span>
+          <button type="button" id="btn-toggle-timer" class="btn-tiny-link">Hide</button>
+        </div>
+        <div id="vue-question-counter" class="vue-question-counter">Question 1 of 35</div>
+      </div>
+      <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;">
+        <span>Display</span>
+        <select id="select-color-scheme" class="vue-tool-select" aria-label="Color scheme">
+          <option value="default">Standard</option>
+          <option value="high-contrast">High contrast</option>
+          <option value="yellow-black">Yellow on black</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <!-- Exam-only toolbar -->
+  <div id="vue-subbar-exam-tools" class="vue-subbar hidden">
+    <div class="vue-subbar-left">
+      <button type="button" id="btn-toggle-cat-hud" class="vue-tool-btn">Hide Adaptive Monitor</button>
+    </div>
+    <div class="vue-subbar-right">
+      <span style="font-size:0.8rem;">Right-click an answer (or use ✂ Strike) to cross it out</span>
+    </div>
+  </div>
+
+  <main class="main-container">
+    <!-- ===================== VIEW 1: LOBBY ===================== -->
+    <section id="view-lobby">
+      <div class="lobby-hero">
+        <div>
+          <h1>EMT Cognitive Exam Practice</h1>
+          <p>
+            A 35-question computer-adaptive practice exam modeled on the NREMT EMT blueprint. Difficulty
+            adjusts after every answer, unseen questions are prioritized on each new attempt, and you get a
+            domain-by-domain study report at the end.
+          </p>
+          <div class="exam-specs-grid">
+            <div class="spec-item">
+              <div class="spec-label">Question Bank</div>
+              <div class="spec-value" id="lobby-bank-total">— Questions</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Exam Length</div>
+              <div class="spec-value">35 Questions</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Time Limit</div>
+              <div class="spec-value">42 Minutes</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Practice Pass Mark</div>
+              <div class="spec-value">950 (est.)</div>
+            </div>
+          </div>
+        </div>
+        <div class="lobby-cta-card">
+          <h2>Ready to begin?</h2>
+          <ul>
+            <li>Five domains weighted to the EMT blueprint</li>
+            <li>Forward-only: you cannot go back to a question</li>
+            <li>Every question must be answered to continue</li>
+            <li>Full rationale and study tips after the exam</li>
+          </ul>
+          <button type="button" id="btn-start-exam" class="btn-primary-launch">Start Practice Exam ▶</button>
+          <div class="lobby-options-row">
+            <label>
+              <input type="checkbox" id="chk-live-cat-hud" checked />
+              Show adaptive monitor during exam
+            </label>
+            <span id="lobby-unseen-count"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Question Pool &amp; Rotation</h3>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" id="btn-open-custom-modal" class="vue-tool-btn">+ Add Question</button>
+              <button type="button" id="btn-reset-pool" class="vue-tool-btn">Reset Rotation</button>
+            </div>
+          </div>
+          <div class="pool-overview-bar">
+            <div id="pool-bar-unseen" class="pool-bar-unseen"></div>
+            <div id="pool-bar-seen" class="pool-bar-seen"></div>
+          </div>
+          <div id="pool-legend-text" style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.82rem;margin:0.6rem 0 1rem;"></div>
+          <div style="overflow-x:auto;">
+            <table class="domain-table">
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>Exam Weight</th>
+                  <th>Difficulty Mix</th>
+                  <th>Unseen</th>
+                </tr>
+              </thead>
+              <tbody id="domain-pool-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Past Attempts</h3>
+          </div>
+          <div id="past-attempts-container" class="attempts-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VIEW 2: EXAM ===================== -->
+    <section id="view-exam" class="hidden">
+      <div class="exam-workspace">
+        <div class="exam-progress-strip">
+          <div id="exam-progress-fill" class="exam-progress-fill" style="width:0%;"></div>
+        </div>
+        <div class="exam-content-area">
+          <div class="exam-question-meta">
+            <div id="exam-meta-left"></div>
+            <div id="cat-live-hud" class="cat-live-pill"></div>
+          </div>
+          <div id="exam-question-stem" class="exam-stem"></div>
+          <div id="exam-options-container" class="exam-options-list"></div>
+        </div>
+        <div class="vue-footer">
+          <div class="vue-footer-left">
+            <button type="button" id="btn-exam-abort" class="btn-vue-nav btn-vue-secondary">End Exam</button>
+            <button type="button" id="btn-exam-help" class="btn-vue-nav btn-vue-secondary">Help</button>
+          </div>
+          <button type="button" id="btn-exam-next" class="btn-vue-nav">Next &#9654;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VIEW 3: RESULTS ===================== -->
+    <section id="view-results" class="hidden">
+      <div id="report-banner" class="report-banner">
+        <div class="report-top-row">
+          <div style="flex:1;min-width:260px;">
+            <div id="report-status-pill" class="status-pill-large"></div>
+            <h2 id="report-headline" style="margin-top:0.6rem;font-size:1.2rem;"></h2>
+            <div id="report-subheadline" style="font-size:0.85rem;color:var(--vue-text-muted);margin-top:0.3rem;"></div>
+          </div>
+          <div class="scaled-score-box">
+            <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:var(--vue-text-muted);">Estimated Scaled Score</div>
+            <div id="report-scaled-score" class="scaled-score-number">—</div>
+          </div>
+        </div>
+        <div class="nremt-scale-meter">
+          <div class="scale-track">
+            <div class="scale-pass-marker"></div>
+            <div class="scale-pass-label">Pass 950</div>
+            <div id="scale-user-pin" class="scale-user-pin"></div>
+          </div>
+          <div class="scale-labels"><span>100</span><span>1500</span></div>
+        </div>
+      </div>
+
+      <div id="report-kpi-grid" class="kpi-grid"></div>
+
+      <div class="panel-card">
+        <div class="panel-card-header"><h3>Adaptive Difficulty Trajectory</h3></div>
+        <div id="cat-chart-container" class="cat-chart-container"></div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-card-header"><h3>Performance by Domain</h3></div>
+        <div id="report-domain-list" class="domain-perf-list"></div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-card-header"><h3>What to Study Next</h3></div>
+        <p id="study-adaptive-narrative" style="margin-bottom:1rem;"></p>
+        <div id="study-weak-subtopics" class="focus-subtopic-grid"></div>
+        <h4 style="margin:1.2rem 0 0.4rem;">Performance by Patient Population</h4>
+        <div id="study-population-breakdown" class="exam-specs-grid"></div>
+        <h4 style="margin:1.2rem 0 0.4rem;">Study Pearls from Missed Questions</h4>
+        <div id="study-pearls-list" class="pearl-list"></div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-card-header">
+          <h3>Question-by-Question Review</h3>
+          <span id="review-count-label" style="font-size:0.82rem;color:var(--vue-text-muted);"></span>
+        </div>
+        <div class="review-filters">
+          <select id="filter-review-status" class="vue-tool-select" aria-label="Filter by result">
+            <option value="all">All Results</option>
+            <option value="incorrect">Incorrect Only</option>
+            <option value="correct">Correct Only</option>
+          </select>
+          <select id="filter-review-domain" class="vue-tool-select" aria-label="Filter by domain">
+            <option value="all">All Domains (5)</option>
+          </select>
+          <select id="filter-review-difficulty" class="vue-tool-select" aria-label="Filter by difficulty">
+            <option value="all">All Difficulties</option>
+            <option value="1">Easy</option>
+            <option value="2">Medium</option>
+            <option value="3">Hard</option>
+          </select>
+        </div>
+        <div id="review-questions-list" class="review-list"></div>
+      </div>
+
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0;">
+        <button type="button" id="btn-retake-exam" class="btn-primary-launch">Take Another Exam ▶</button>
+        <button type="button" id="btn-back-lobby" class="btn-vue-nav btn-vue-secondary">Back to Dashboard</button>
+      </div>
+    </section>
+  </main>
+
+  <p class="app-disclaimer">
+    Unofficial practice tool. Not affiliated with or endorsed by the National Registry of EMTs (NREMT) or Pearson VUE.
+    The scaled score and pass/fail estimate are approximations, not predictions of your actual result.
+    Always follow your local protocols and current course material.
+  </p>
+
+  <!-- ===================== MODAL ===================== -->
+  <div id="vue-modal-backdrop" class="vue-modal-backdrop hidden">
+    <div class="vue-modal" role="dialog" aria-modal="true" aria-labelledby="vue-modal-title">
+      <div class="vue-modal-header">
+        <strong id="vue-modal-title">Notification</strong>
+      </div>
+      <div id="vue-modal-body" class="vue-modal-body"></div>
+      <div class="vue-modal-footer">
+        <button type="button" id="vue-modal-cancel" class="btn-vue-nav btn-vue-secondary">Cancel</button>
+        <button type="button" id="vue-modal-confirm" class="btn-vue-nav">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Question bank: Gemini-authored originals (reviewed by Claude) -->
+  <script src="data/questions-airway.js"></script>
+  <script src="data/questions-cardiology.js"></script>
+  <script src="data/questions-trauma.js"></script>
+  <script src="data/questions-medical.js"></script>
+  <script src="data/questions-operations.js"></script>
+  <!-- Question bank: Claude-authored expansion -->
+  <script src="data/questions-claude-airway.js"></script>
+  <script src="data/questions-claude-cardiology.js"></script>
+  <script src="data/questions-claude-trauma.js"></script>
+  <script src="data/questions-claude-medical.js"></script>
+  <script src="data/questions-claude-operations.js"></script>
+  <!-- User expansion packs -->
+  <script src="data/questions-custom.js"></script>
+
+  <script src="js/cat-engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

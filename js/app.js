@@ -256,7 +256,10 @@
     if (poolLegendEl) {
       poolLegendEl.innerHTML = `
         <span><strong style="color:#0284c7;">● ${stats.unseenCount} Unseen</strong> (prioritized in your next attempt)</span>
-        <span><strong style="color:#64748b;">● ${stats.seenCount} Previously Seen</strong> across ${stats.totalAttempts} completed attempt${stats.totalAttempts === 1 ? "" : "s"}</span>
+        <span><strong style="color:#64748b;">● ${stats.seenCount} Previously Seen</strong> across ${stats.totalAttempts} attempt${stats.totalAttempts === 1 ? "" : "s"}</span>
+        <span style="color:var(--vue-text-muted);">Question authors: ${Object.entries(stats.sourceCounts || {})
+          .map(([src, n]) => `${escapeHtml(src)} ${n}`)
+          .join(" • ")}</span>
       `;
     }
 
@@ -618,11 +621,15 @@
       confirmText: "View Score & Diagnostic Feedback",
       hideCancel: true,
       onConfirm: () => {
-        state.activeSession.isCompleted = true;
-        const report = engine.generateDiagnosticReport(state.activeSession);
-        state.activeReport = report;
-        renderDiagnosticReport(report);
-        showView("results");
+        const report = engine.finalizeSession(state.activeSession);
+        if (report) {
+          state.activeReport = report;
+          renderDiagnosticReport(report);
+          showView("results");
+        } else {
+          renderLobby();
+          showView("lobby");
+        }
       }
     });
   }
@@ -647,8 +654,7 @@
       onConfirm: () => {
         stopTimer();
         if (answeredCount > 0) {
-          state.activeSession.isCompleted = true;
-          const report = engine.generateDiagnosticReport(state.activeSession);
+          const report = engine.finalizeSession(state.activeSession);
           state.activeReport = report;
           renderDiagnosticReport(report);
           showView("results");
@@ -1061,6 +1067,7 @@
             <div class="review-card-header">
               <div>
                 <strong>Question ${r.questionNumber}</strong> (<code>${escapeHtml(r.questionId)}</code>)
+                <span class="source-badge source-${escapeHtml(String(r.source || "Custom").toLowerCase())}" title="Who wrote this question">Written by ${escapeHtml(r.source || "Custom")}</span>
                 &nbsp;•&nbsp; <strong>${escapeHtml(r.domain)}</strong> — ${escapeHtml(r.subtopic)}
               </div>
               <div style="display:flex;align-items:center;gap:0.5rem;">
@@ -1080,6 +1087,11 @@
                 <div style="color:var(--vue-accent);font-weight:600;white-space:pre-line;">
                   💡 <strong>Study Takeaway:</strong> ${escapeHtml(r.studyTip)}
                 </div>
+                ${
+                  r.reviewNote
+                    ? `<div style="margin-top:0.45rem;font-size:0.78rem;color:var(--vue-text-muted);font-style:italic;">📝 ${escapeHtml(r.reviewNote)}</div>`
+                    : ""
+                }
                 <div style="margin-top:0.45rem;font-size:0.76rem;color:var(--vue-text-muted);">
                   CAT Transition: ${escapeHtml(r.adaptationReason)} (Ability θ: ${r.thetaBefore} → ${
           r.thetaAfter
@@ -1151,7 +1163,9 @@
 
   function openAddCustomQuestionModal() {
     const allQs = engine.getAllQuestions();
-    const nextNum = allQs.length + 1;
+    const existingIds = new Set(allQs.map((q) => q.id));
+    let nextNum = allQs.filter((q) => String(q.id).startsWith("CUST-")).length + 1;
+    while (existingIds.has(`CUST-${String(nextNum).padStart(3, "0")}`)) nextNum++;
     const defaultId = `CUST-${String(nextNum).padStart(3, "0")}`;
 
     showModal({
@@ -1261,6 +1275,7 @@
         const irtBMap = { 1: -0.8, 2: 0.0, 3: 0.9 };
         engine.saveUserCustomQuestion({
           id: defaultId,
+          source: "Custom",
           domain,
           subtopic,
           patientType,
