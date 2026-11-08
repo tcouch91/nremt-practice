@@ -8,6 +8,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="NREMT Prep" />
   <title>Nate's NREMT EMT Practice &amp; Momentum Hub</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body data-view="lobby">
@@ -164,6 +165,7 @@
           </ul>
           <button type="button" id="btn-start-exam" class="btn-primary-launch">Start 35-Question Practice Exam (42m) ▶</button>
           <button type="button" id="btn-start-sprint" class="btn-sprint-launch" title="Low-friction 10-question adaptive round when 35 questions feels like too much">⚡ Quick 10-Question Focus Sprint (~12m)</button>
+          <button type="button" id="btn-start-review" class="btn-review-launch" title="Retake only the questions you missed or flagged as a guess">🔁 Review Missed &amp; Flagged</button>
           <div class="lobby-options-row">
             <label>
               <input type="checkbox" id="chk-live-cat-hud" checked />
@@ -244,7 +246,10 @@
             <button type="button" id="btn-exam-abort" class="btn-vue-nav btn-vue-secondary">End &amp; Score Early</button>
             <button type="button" id="btn-exam-help" class="btn-vue-nav btn-vue-secondary">Help</button>
           </div>
-          <button type="button" id="btn-exam-next" class="btn-vue-nav">Next &#9654;</button>
+          <div class="vue-footer-right">
+            <button type="button" id="btn-exam-flag" class="btn-vue-nav btn-vue-secondary btn-flag" aria-pressed="false" title="Not sure? Flag it so it goes on your review list, even if your guess turns out right (shortcut: F)">🚩 <span id="btn-exam-flag-label">Flag</span></button>
+            <button type="button" id="btn-exam-next" class="btn-vue-nav">Next &#9654;</button>
+          </div>
         </div>
       </div>
     </section>
@@ -308,6 +313,7 @@
             <option value="all">All Results</option>
             <option value="incorrect">Incorrect Only</option>
             <option value="correct">Correct Only</option>
+            <option value="flagged">🚩 Flagged Only</option>
           </select>
           <select id="filter-review-domain" class="vue-tool-select" aria-label="Filter by domain">
             <option value="all">All Domains (5)</option>
@@ -325,6 +331,7 @@
       <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0;">
         <button type="button" id="btn-retake-exam" class="btn-primary-launch">Start 35-Question Exam ▶</button>
         <button type="button" id="btn-retake-sprint" class="btn-sprint-launch" style="width:auto;">⚡ Quick 10-Question Sprint</button>
+        <button type="button" id="btn-retake-review" class="btn-review-launch hidden">🔁 Review Missed &amp; Flagged</button>
         <button type="button" id="btn-back-lobby" class="btn-vue-nav btn-vue-secondary" style="background:var(--vue-navy);color:#fff;">Back to Dashboard</button>
       </div>
     </section>

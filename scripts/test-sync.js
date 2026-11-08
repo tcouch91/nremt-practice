@@ -220,6 +220,28 @@ function runExam(device, mode, answers) {
   server.online = true;
   phone.context.navigator.onLine = true;
 
+  // 10b. Flagged guesses: on the review list even when right, and the newest answer wins across devices.
+  const flagSession = phone.engine.createExamSession({ mode: "sprint", totalQuestions: 10, timeLimitSeconds: 720 });
+  const flaggedId = flagSession.currentQuestion.id;
+  phone.engine.submitAnswer(flagSession, flagSession.currentQuestion.correctIndex, 10, { flagged: true });
+  assert.ok(phone.engine.getReviewQueue().some((q) => q.id === flaggedId), "flagged correct answer needs review");
+  await phone.sync.syncNow();
+  await laptopJoined.sync.syncNow();
+  assert.ok(laptopJoined.engine.getReviewQueue().some((q) => q.id === flaggedId), "flag synced");
+  const review = laptopJoined.engine.createExamSession({ mode: "review" });
+  assert.strictEqual(review.mode, "review");
+  assert.ok(review.reviewPoolIds.includes(flaggedId) && review.reviewPoolIds.includes(review.currentQuestion.id));
+  // Answer every review question correctly without flagging: the list empties on both devices.
+  while (!review.isCompleted && review.currentQuestion) {
+    laptopJoined.engine.submitAnswer(review, review.currentQuestion.correctIndex, 10);
+  }
+  const reviewReport = laptopJoined.engine.finalizeSession(review);
+  assert.strictEqual(reviewReport.passed, false, "review rounds never count as a pass");
+  assert.strictEqual(reviewReport.clearedFromReviewCount, review.responses.length);
+  await laptopJoined.sync.syncNow();
+  await phone.sync.syncNow();
+  assert.ok(!phone.engine.getReviewQueue().some((q) => q.id === flaggedId), "cleared on the other device");
+
   // 11. Bad codes are rejected; the upload is small enough.
   assert.strictEqual(phone.sync.enable("ABC").ok, false);
   assert.strictEqual(phone.sync.getCode(), code);

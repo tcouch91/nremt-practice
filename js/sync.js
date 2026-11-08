@@ -276,6 +276,11 @@
         lastAttempt: Math.max(x.lastAttempt || 0, y.lastAttempt || 0),
         lastCorrect: newer.lastCorrect === undefined ? null : newer.lastCorrect
       };
+      // Review-list status follows whichever device answered the question most recently.
+      ["needsReview", "lastFlagged"].forEach((key) => {
+        if (newer[key] === undefined) delete items[id][key];
+        else items[id][key] = newer[key];
+      });
     });
     return { totalAttempts: Math.max(a.totalAttempts, b.totalAttempts), items };
   }

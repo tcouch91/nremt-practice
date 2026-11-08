@@ -22,6 +22,9 @@ An authentic practice exam application modeled after the **National Registry of 
     - **EMS Operations** (36 questions — 12%)
   - Stratified across **3 Difficulty Tiers** (`1 = Easy` [91], `2 = Medium` [120], `3 = Hard` [89]) with continuous Item Response Theory (`irtB`) parameters.
   - Each question's `source` field records who wrote it (Gemini or Claude); see [`REVIEW.md`](./REVIEW.md).
+- **🚩 Flag a Guess & 🔁 Missed/Flagged Review**:
+  - During an exam, **🚩 Flag** (or the `F` key) marks a question Nate is guessing on. Flagged questions open automatically in the results review, with a "lucky guess" note when the guess was right.
+  - A question goes on the review list when it's missed or flagged, and comes off once it's answered correctly without a flag. **🔁 Review Missed & Flagged** retakes up to 20 of them at a time (90 seconds each), oldest first. Review rounds show what was cleared instead of a scaled score, and don't count toward score trends.
 - **Dynamic Computer Adaptive Testing (CAT) Engine**:
   - Starts at **Medium** difficulty.
   - Answering an **Easy** question correctly steps up to **Medium**; answering **Medium** correctly steps up to **Hard**; answering **Hard** correctly stays at **Hard** with a higher IRT target.

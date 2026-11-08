@@ -15,6 +15,7 @@
     hideTimer: false,
     showLiveCatHud: true,
     focusHighlightStem: false,
+    flagCurrent: false, // Nate flagged the on-screen question as a guess
     nateQuoteIndex: 0,
     reviewFilterStatus: "all", // "all" | "incorrect" | "correct"
     reviewFilterDomain: "all",
@@ -29,6 +30,13 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  // Display names for each exam mode. Reports saved before modes existed were full exams.
+  function modeLabels(mode) {
+    if (mode === "sprint") return { short: "10-Q Sprint", tag: "⚡ 10-Q Sprint", long: "10-Question Focus Sprint" };
+    if (mode === "review") return { short: "Review", tag: "🔁 Missed & Flagged Review", long: "Missed & Flagged Review" };
+    return { short: "35-Q Exam", tag: "35-Q Exam", long: "35-Question Practice Exam" };
   }
 
   function formatDuration(totalSeconds) {
@@ -451,6 +459,16 @@
       });
     }
 
+    // Missed & Flagged review round (lobby and results screen)
+    ["btn-start-review", "btn-retake-review"].forEach((id) => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener("click", () => startNewExam("review"));
+    });
+
+    // Flag the current question as a guess so it lands on the review list
+    const btnFlag = document.getElementById("btn-exam-flag");
+    if (btnFlag) btnFlag.addEventListener("click", toggleFlag);
+
     // Reset Rotation Pool button
     const btnResetPool = document.getElementById("btn-reset-pool");
     if (btnResetPool) {
@@ -553,6 +571,8 @@
         selectOption(2);
       } else if (key === "4" || key === "D") {
         selectOption(3);
+      } else if (key === "F") {
+        toggleFlag();
       } else if (e.key === "Enter") {
         e.preventDefault();
         handleNextQuestion();
@@ -690,6 +710,24 @@
     }
   }
 
+  // Shows how many questions are waiting on the Missed & Flagged review buttons.
+  function refreshReviewButtons() {
+    const count = engine.getReviewQueue().length;
+    const lobbyBtn = document.getElementById("btn-start-review");
+    if (lobbyBtn) {
+      lobbyBtn.innerHTML =
+        count > 0
+          ? `🔁 Review ${count} Missed &amp; Flagged Question${count === 1 ? "" : "s"}${count > 20 ? " (20 at a time)" : ""}`
+          : "🔁 Review Missed &amp; Flagged (none yet)";
+      lobbyBtn.classList.toggle("is-empty", count === 0);
+    }
+    const resultsBtn = document.getElementById("btn-retake-review");
+    if (resultsBtn) {
+      resultsBtn.innerHTML = `🔁 Review ${count} Missed &amp; Flagged`;
+      resultsBtn.classList.toggle("hidden", count === 0);
+    }
+  }
+
   function renderLobby() {
     const stats = engine.getQuestionPoolStats();
     const pastAttempts = engine.getPastAttempts();
@@ -706,7 +744,7 @@
           0,
           savedSession.timeLimitSeconds - savedSession.elapsedSeconds
         );
-        const modeLabel = savedSession.mode === "sprint" ? "10-Q Sprint" : "35-Q Exam";
+        const modeLabel = modeLabels(savedSession.mode).short;
         dutyDesc.innerHTML = `
           <strong>Exam Paused on Question ${qNum} of ${totalQ} (${modeLabel})</strong> with <strong>${formatDuration(
           remaining
@@ -720,6 +758,7 @@
     }
 
     renderNateMomentumHub();
+    refreshReviewButtons();
 
     // Update Hero KPI counts
     const bankTotalEl = document.getElementById("lobby-bank-total");
@@ -787,21 +826,21 @@
       } else {
         attemptsContainer.innerHTML = pastAttempts
           .map((att, idx) => {
-            const isSprint = att.mode === "sprint"; // reports without a mode predate sprints, so they were full exams
-            const modeTag = isSprint ? "⚡ 10-Q Sprint" : "35-Q Exam";
+            const isReview = att.mode === "review";
+            const modeTag = modeLabels(att.mode).tag;
             return `
           <div class="attempt-item">
             <div>
               <div style="font-weight:700;font-size:0.92rem;">
-                #${att.attemptNumber || pastAttempts.length - idx} (${modeTag}) — Score: ${att.scaledScore}
+                #${att.attemptNumber || pastAttempts.length - idx} (${modeTag})${isReview ? "" : ` — Score: ${att.scaledScore}`}
               </div>
               <div style="font-size:0.78rem;color:var(--vue-text-muted);">
                 ${formatDateShort(att.completedAt)} • ${att.totalCorrect}/${att.totalAsked} (${att.rawAccuracy}%) • Avg Diff: ${att.avgDifficultyFaced}
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.6rem;">
-              <span class="attempt-badge ${att.passed ? "attempt-pass" : "attempt-fail"}">
-                ${att.passed ? "950+ PASS PACE" : att.unansweredCount > 0 ? "INCOMPLETE" : "BUILDING REPS"}
+              <span class="attempt-badge ${att.passed ? "attempt-pass" : isReview ? "attempt-review" : "attempt-fail"}">
+                ${isReview ? `${att.clearedFromReviewCount || 0} CLEARED` : att.passed ? "950+ PASS PACE" : att.unansweredCount > 0 ? "INCOMPLETE" : "BUILDING REPS"}
               </span>
               <button class="vue-tool-btn btn-view-past-report" data-report-idx="${idx}">
                 View Report
@@ -831,13 +870,26 @@
   // VIEW 2: ACTIVE EXAM CONTROLLER (PEARSON VUE CAT INTERFACE + NATE FOCUS TOOLS)
   // ============================================================================
   function startNewExam(mode = "full") {
-    stopTimer();
     const isSprint = mode === "sprint";
-    state.activeSession = engine.createExamSession({
-      mode: isSprint ? "sprint" : "full",
-      totalQuestions: isSprint ? 10 : 35,
-      timeLimitSeconds: isSprint ? 12 * 60 : 42 * 60
-    });
+    const session =
+      mode === "review"
+        ? engine.createExamSession({ mode: "review", totalQuestions: 20 })
+        : engine.createExamSession({
+            mode: isSprint ? "sprint" : "full",
+            totalQuestions: isSprint ? 10 : 35,
+            timeLimitSeconds: isSprint ? 12 * 60 : 42 * 60
+          });
+    if (!session) {
+      showModal({
+        title: "Nothing to review yet",
+        bodyHtml: `<p>You don't have any missed or flagged questions right now, Nate. Take a sprint or a full exam, and anything you miss or flag as a guess will show up here.</p>`,
+        confirmText: "Got It",
+        hideCancel: true
+      });
+      return;
+    }
+    stopTimer();
+    state.activeSession = session;
     engine.saveActiveSession(state.activeSession);
     state.selectedOptionIndex = null;
     state.struckOutOptions.clear();
@@ -963,10 +1015,7 @@
       state.activeSession.timeLimitSeconds - state.activeSession.elapsedSeconds
     );
     const answeredCount = state.activeSession.responses.length;
-    const modeTag =
-      state.activeSession.mode === "sprint"
-        ? "10-Question Focus Sprint"
-        : "35-Question Practice Exam";
+    const modeTag = modeLabels(state.activeSession.mode).long;
 
     showModal({
       title: "🚒 Station Call / Duty Pause Active — Stay Safe, Nate!",
@@ -1114,7 +1163,9 @@
     let message = "";
     if (qNum === 1) {
       message =
-        session.mode === "sprint"
+        session.mode === "review"
+          ? "🔁 <strong>Missed &amp; Flagged Review:</strong> These are questions that got you last time. Answer one right without flagging it and it comes off your list. Still unsure? Flag it again."
+          : session.mode === "sprint"
           ? "⚡ <strong>10-Question Focus Sprint:</strong> Quick, low-stress reps, Nate. Just take it one patient at a time!"
           : "🩺 <strong>Shift Started:</strong> One patient at a time, Nate. Tip: Click <em>🎯 Focus Highlighter</em> above if you want vitals and keywords highlighted!";
     } else if (qNum === halfMark) {
@@ -1158,6 +1209,8 @@
     state.selectedOptionIndex = null;
     state.struckOutOptions.clear();
     state.questionStartTime = Date.now();
+    state.flagCurrent = false;
+    refreshFlagButton();
 
     // Header question counter & progress bar
     const counterEl = document.getElementById("vue-question-counter");
@@ -1283,6 +1336,21 @@
     }
   }
 
+  function toggleFlag() {
+    if (!state.activeSession || state.activeSession.isCompleted) return;
+    state.flagCurrent = !state.flagCurrent;
+    refreshFlagButton();
+  }
+
+  function refreshFlagButton() {
+    const btn = document.getElementById("btn-exam-flag");
+    const label = document.getElementById("btn-exam-flag-label");
+    if (!btn || !label) return;
+    btn.classList.toggle("is-flagged", state.flagCurrent);
+    btn.setAttribute("aria-pressed", String(state.flagCurrent));
+    label.textContent = state.flagCurrent ? "Flagged" : "Flag";
+  }
+
   function selectOption(index) {
     state.selectedOptionIndex = index;
     // If the user selects an option that was struck out, un-strike it automatically
@@ -1346,7 +1414,9 @@
       1,
       Math.round((Date.now() - state.questionStartTime) / 1000)
     );
-    engine.submitAnswer(state.activeSession, state.selectedOptionIndex, timeSpentSec);
+    engine.submitAnswer(state.activeSession, state.selectedOptionIndex, timeSpentSec, {
+      flagged: state.flagCurrent
+    });
 
     if (state.activeSession.isCompleted) {
       stopTimer();
@@ -1448,7 +1518,22 @@
     let bodyText = "";
 
     const unanswered = report.unansweredCount || 0;
-    if (unanswered > 0) {
+    const flaggedCorrect = report.flaggedCorrectCount || 0;
+    if (report.mode === "review") {
+      const cleared = report.clearedFromReviewCount || 0;
+      const remaining = report.reviewRemainingCount || 0;
+      headline =
+        cleared > 0
+          ? `🔁 ${cleared} question${cleared === 1 ? "" : "s"} cleared from your review list, Nate!`
+          : "🔁 Review round done. These ones are still sticky, and that's exactly why we review.";
+      bodyText = `You got ${report.totalCorrect} of ${report.totalAsked} right this time${
+        report.flaggedCount ? ` (${report.flaggedCount} flagged as a guess, so ${report.flaggedCount === 1 ? "it stays" : "they stay"} on the list)` : ""
+      }. ${
+        remaining > 0
+          ? `${remaining} question${remaining === 1 ? " is" : "s are"} still on your list. Read the explanations below, then run another review later. Spacing it out is what makes it stick.`
+          : "Your review list is empty. Every question you've missed or flagged, you've now answered correctly. Nice work."
+      }`;
+    } else if (unanswered > 0) {
       const why = report.endReason === "timeout" ? "The clock ran out" : "You ended the exam";
       headline = `⏱️ ${why} with ${unanswered} question${unanswered === 1 ? "" : "s"} unanswered`;
       bodyText = `On the real NREMT, running out of time before finishing means you can't pass, so those ${unanswered} count as missed here too. The good news: you went ${report.totalCorrect} for ${report.totalAsked} on the questions you did answer (${report.rawAccuracy}%), and they're all banked. Next time, aim to finish: about 70 seconds per question keeps you on pace${report.mode === "sprint" ? "" : ", and a 10-Question Sprint is a great way to practice pacing"}.`;
@@ -1465,6 +1550,9 @@
 
     const badgesHtml = [
       `<span class="nate-debrief-chip">✓ +${newlyMastered} Newly Mastered</span>`,
+      report.flaggedCount
+        ? `<span class="nate-debrief-chip">🚩 ${report.flaggedCount} Flagged${flaggedCorrect ? ` (${flaggedCorrect} lucky guess${flaggedCorrect === 1 ? "" : "es"})` : ""}</span>`
+        : "",
       `<span class="nate-debrief-chip">🧭 ${nateStats.uniqueSeenCount}/${nateStats.totalBankSize} Total Bank Explored</span>`,
       hardStat.total > 0
         ? `<span class="nate-debrief-chip">⛰️ Reached ${hardStat.total} Hard-Tier Qs (${hardStat.correct} right)</span>`
@@ -1484,9 +1572,13 @@
       <p class="nate-debrief-body">${escapeHtml(bodyText)}</p>
       <div class="nate-debrief-chips">${badgesHtml}</div>
       <div class="nate-debrief-ActionTip">
-        💡 <strong>Nate's 3-Minute Next Step:</strong> Scroll down to <em>"Study Pearls from Missed Questions"</em> and read just the yellow takeaways for the ${report.totalIncorrect} item${
+        💡 <strong>Nate's 3-Minute Next Step:</strong> Scroll down to <em>"Study Pearls"</em> and read just the yellow takeaways for the ${report.totalIncorrect} item${
       report.totalIncorrect === 1 ? "" : "s"
-    } you missed. Once you see the "why," you own those questions next time!
+    } you missed${
+      flaggedCorrect
+        ? ` and the ${flaggedCorrect} you guessed right (🚩 flagged). A lucky guess isn't knowing it yet`
+        : ""
+    }. Once you see the "why," you own those questions next time!
       </div>
     `;
   }
@@ -1494,20 +1586,23 @@
   function renderDiagnosticReport(report) {
     if (!report) return;
 
-    const isSprint = report.mode === "sprint"; // not inferred from answers: an unfinished exam is still an exam
+    const isReview = report.mode === "review";
+    // Review rounds are all previously missed questions, so a scaled score would mean nothing.
+    document.getElementById("view-results").classList.toggle("is-review-report", isReview);
 
     // 1. Top Banner & Scaled Score
     const bannerEl = document.getElementById("report-banner");
     if (bannerEl) {
       bannerEl.classList.remove("banner-pass", "banner-fail");
-      bannerEl.classList.add(report.passed ? "banner-pass" : "banner-fail");
+      bannerEl.classList.add(report.passed ? "banner-pass" : isReview ? "banner-review" : "banner-fail");
     }
 
     const statusPillEl = document.getElementById("report-status-pill");
     if (statusPillEl) {
-      statusPillEl.className = `status-pill-large ${report.passed ? "pass" : "fail"}`;
-      statusPillEl.innerHTML =
-        report.unansweredCount > 0
+      statusPillEl.className = `status-pill-large ${report.passed ? "pass" : isReview ? "review" : "fail"}`;
+      statusPillEl.innerHTML = isReview
+        ? `🔁 REVIEW ROUND — ${report.clearedFromReviewCount || 0} OF ${report.totalAsked} CLEARED`
+        : report.unansweredCount > 0
           ? `⏱️ INCOMPLETE — ${report.unansweredCount} UNANSWERED, SCORED AS MISSED`
           : report.passed
           ? `✓ ABOVE PASSING STANDARD — PASSED PACE`
@@ -1516,8 +1611,9 @@
 
     const headlineEl = document.getElementById("report-headline");
     if (headlineEl) {
-      headlineEl.textContent =
-        report.unansweredCount > 0
+      headlineEl.textContent = isReview
+        ? `${report.reviewRemainingCount || 0} question${report.reviewRemainingCount === 1 ? "" : "s"} left on your review list.`
+        : report.unansweredCount > 0
           ? `Not a pass yet, Nate. You answered ${report.totalAsked} of ${report.totalQuestions}, and finishing the exam is part of passing.`
           : report.passed
           ? `Great job, Nate! Your adaptive performance exceeded the 950 NREMT passing standard.`
@@ -1528,7 +1624,7 @@
     if (subheadlineEl) {
       const poolStats = engine.getQuestionPoolStats();
       subheadlineEl.textContent = `Session #${report.attemptNumber} (${
-        isSprint ? "10-Question Focus Sprint" : "35-Question Practice Exam"
+        modeLabels(report.mode).long
       }) • Completed ${formatDateShort(report.completedAt)} • ${
         poolStats.unseenCount
       } unseen questions left in pool`;
@@ -1653,6 +1749,7 @@
     state.reviewFilterDomain = "all";
     state.reviewFilterDifficulty = "all";
     renderQuestionReviewList(report);
+    refreshReviewButtons();
   }
 
   function renderCatTrajectoryChart(report) {
@@ -1818,7 +1915,7 @@
     const pearlsContainer = document.getElementById("study-pearls-list");
     if (pearlsContainer) {
       if (!report.targetedStudyPearls || report.targetedStudyPearls.length === 0) {
-        pearlsContainer.innerHTML = `<p style="color:var(--vue-text-muted);font-size:0.9rem;">No missed clinical pearls to review!</p>`;
+        pearlsContainer.innerHTML = `<p style="color:var(--vue-text-muted);font-size:0.9rem;">No missed or flagged questions to review!</p>`;
       } else {
         pearlsContainer.innerHTML = report.targetedStudyPearls
           .map(
@@ -1832,6 +1929,7 @@
                 p.difficultyLabel === "Easy" ? 1 : p.difficultyLabel === "Medium" ? 2 : 3
               }">${escapeHtml(p.difficultyLabel)}</span>
             </div>
+            ${p.flaggedGuess ? `<div class="flag-guess-note">🚩 You flagged this and guessed right. Make sure you know why.</div>` : ""}
             <div style="white-space:pre-line;"><strong>Clinical Pearl:</strong> ${escapeHtml(p.studyTip)}</div>
           </div>
         `
@@ -1849,6 +1947,7 @@
     const filtered = (report.responses || []).filter((r) => {
       if (state.reviewFilterStatus === "incorrect" && r.isCorrect) return false;
       if (state.reviewFilterStatus === "correct" && !r.isCorrect) return false;
+      if (state.reviewFilterStatus === "flagged" && !r.flagged) return false;
       if (state.reviewFilterDomain !== "all" && r.domain !== state.reviewFilterDomain) return false;
       if (
         state.reviewFilterDifficulty !== "all" &&
@@ -1898,16 +1997,17 @@
           .join("");
 
         return `
-          <div class="review-card ${r.isCorrect ? "review-correct" : "review-incorrect is-open"}" id="review-q-${
-          r.questionNumber
-        }">
-            <div class="review-card-header" role="button" tabindex="0" aria-expanded="${!r.isCorrect}">
+          <div class="review-card ${r.isCorrect ? "review-correct" : "review-incorrect"}${
+          !r.isCorrect || r.flagged ? " is-open" : ""
+        }${r.flagged ? " review-flagged" : ""}" id="review-q-${r.questionNumber}">
+            <div class="review-card-header" role="button" tabindex="0" aria-expanded="${!r.isCorrect || Boolean(r.flagged)}">
               <div>
                 <strong>Question ${r.questionNumber}</strong> (<code>${escapeHtml(r.questionId)}</code>)
                 <span class="source-badge source-${escapeHtml(String(r.source || "Custom").toLowerCase())}" title="Who wrote this question">Written by ${escapeHtml(r.source || "Custom")}</span>
                 &nbsp;•&nbsp; <strong>${escapeHtml(r.domain)}</strong> — ${escapeHtml(r.subtopic)}
               </div>
               <div style="display:flex;align-items:center;gap:0.5rem;">
+                ${r.flagged ? `<span class="flag-badge" title="You flagged this question as a guess">🚩 Flagged</span>` : ""}
                 <span class="diff-badge diff-${r.difficulty}">${escapeHtml(r.difficultyLabel)}</span>
                 <span class="comp-badge ${r.isCorrect ? "status-above" : "status-below"}">
                   ${r.isCorrect ? "✓ Correct" : "✕ Incorrect"}
@@ -2008,6 +2108,7 @@
           <p><strong>2. 🎯 Focus Highlighter:</strong> Click <strong>🎯 Focus Highlighter</strong> in the top bar anytime your eyes feel tired—it highlights vital signs, patient ages, and priority words (<em>FIRST, MOST, BEST</em>) so you can scan scenarios quickly.</p>
           <p><strong>3. 🧘 60-Second Breather:</strong> Click <strong>🧘 Take a 60s Breather</strong> to pause the clock whenever you feel distracted or overwhelmed.</p>
           <p><strong>4. ✂ Distractor Strikeout &amp; Shortcuts:</strong> Right-click any answer choice (or click <strong>✂ Strike</strong>) to cross out wrong options. Press <code>A</code>–<code>D</code> or <code>1</code>–<code>4</code> to select an option, and <code>Enter</code> for Next.</p>
+          <p><strong>5. 🚩 Flag a Guess:</strong> Not sure and about to guess? Tap <strong>🚩 Flag</strong> (or press <code>F</code>) before you hit Next. Flagged questions go on your review list even if the guess was right, and you can retake them anytime with <strong>🔁 Review Missed &amp; Flagged</strong>.</p>
         </div>
       `,
       confirmText: "Resume Exam",

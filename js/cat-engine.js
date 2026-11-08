@@ -279,9 +279,16 @@
 
   // Create a new CAT Exam Session (supports both 35-question full practice and 10-question focus sprint)
   function createExamSession(options = {}) {
-    const totalQuestions = options.totalQuestions || 35;
-    const timeLimitSeconds = options.timeLimitSeconds || Math.round((totalQuestions / 35) * 42 * 60);
-    const mode = options.mode || (totalQuestions <= 12 ? "sprint" : "full");
+    const mode = options.mode || ((options.totalQuestions || 35) <= 12 ? "sprint" : "full");
+    // Review mode draws only from questions Nate missed or flagged last time he saw them.
+    const reviewPoolIds = mode === "review" ? getReviewQueue().map((q) => q.id) : null;
+    if (reviewPoolIds && reviewPoolIds.length === 0) return null;
+    const totalQuestions = reviewPoolIds
+      ? Math.min(reviewPoolIds.length, options.totalQuestions || 20)
+      : options.totalQuestions || 35;
+    const timeLimitSeconds = reviewPoolIds
+      ? totalQuestions * 90 // relaxed pace for review rounds
+      : options.timeLimitSeconds || Math.round((totalQuestions / 35) * 42 * 60);
     const exposure = getExposureHistory();
     const attemptNumber = exposure.totalAttempts + 1;
 
@@ -305,6 +312,7 @@
       lastDomain: null,
       askedQuestionIds: [],
       responses: [], // Array of answered question records
+      reviewPoolIds,
       currentQuestion: null,
       isCompleted: false,
       isDutyPaused: false,
@@ -326,7 +334,8 @@
     const targetTheta = session.theta;
 
     // Filter out questions already asked in THIS exam session
-    const available = allQuestions.filter((q) => !askedSet.has(q.id));
+    const reviewSet = session.reviewPoolIds ? new Set(session.reviewPoolIds) : null;
+    const available = allQuestions.filter((q) => !askedSet.has(q.id) && (!reviewSet || reviewSet.has(q.id)));
     if (available.length === 0) {
       return null;
     }
@@ -352,7 +361,8 @@
 
       // Rotation penalty: strictly prefer unseen questions (seenCount === 0) across attempts,
       // and among seen questions, prefer those seen fewest times and in the oldest attempt.
-      const seenPenalty = exp.seenCount * 500000 + exp.lastAttempt * 500;
+      // In review mode every question has been seen, so only "longest since last seen" matters.
+      const seenPenalty = reviewSet ? exp.lastAttempt * 500 : exp.seenCount * 500000 + exp.lastAttempt * 500;
 
       // Adaptive difficulty penalty: within the unseen pool (or same exposure tier),
       // strictly match the target difficulty tier (1=Easy, 2=Medium, 3=Hard).
@@ -395,7 +405,10 @@
   }
 
   // Submit an answer for the current question and advance the CAT state
-  function submitAnswer(session, selectedIndex, timeSpentSeconds = 0) {
+  // options.flagged: Nate marked this question as a guess, so it goes on his review list even if
+  // the guess turns out to be right.
+  function submitAnswer(session, selectedIndex, timeSpentSeconds = 0, options = {}) {
+    const flagged = Boolean(options.flagged);
     if (!session || session.isCompleted || !session.currentQuestion) {
       return session;
     }
@@ -458,6 +471,7 @@
       selectedIndex,
       correctIndex: q.correctIndex,
       isCorrect,
+      flagged,
       explanation: q.explanation,
       studyTip: q.studyTip,
       thetaBefore: Number(prevTheta.toFixed(3)),
@@ -497,6 +511,9 @@
     }
     existingExp.lastAttempt = session.attemptNumber;
     existingExp.lastCorrect = isCorrect;
+    existingExp.lastFlagged = flagged;
+    // Stays on the review list until answered correctly without a flag.
+    existingExp.needsReview = !isCorrect || flagged;
     exposure.items[q.id] = existingExp;
 
     responseRecord.wasFirstTimeSeen = !wasSeenBefore;
@@ -654,7 +671,7 @@
     }
     scaledScore = Math.max(100, Math.min(1500, scaledScore));
     // An unfinished exam can never pass, however well the answered items went.
-    const passed = scaledScore >= 950 && completedAll;
+    const passed = scaledScore >= 950 && completedAll && session.mode !== "review";
 
     // Domain Breakdown (Official 5 NREMT Domains)
     const domainBreakdown = DOMAIN_BLUEPRINT.map((d) => {
@@ -706,8 +723,10 @@
       );
 
     // Collect high-yield study pearls from missed questions
-    const missedResponses = responses.filter((r) => !r.isCorrect);
+    // ...and from flagged guesses that happened to be right, since Nate didn't actually know them.
+    const missedResponses = responses.filter((r) => !r.isCorrect || r.flagged);
     const targetedStudyPearls = missedResponses.map((r) => ({
+      flaggedGuess: Boolean(r.flagged && r.isCorrect),
       questionId: r.questionId,
       questionNumber: r.questionNumber,
       domain: r.domain,
@@ -754,6 +773,10 @@
       newQuestionsSeenCount,
       newlyMasteredCount,
       comebackWinsCount,
+      flaggedCount: responses.filter((r) => r.flagged).length,
+      flaggedCorrectCount: responses.filter((r) => r.flagged && r.isCorrect).length,
+      clearedFromReviewCount: responses.filter((r) => r.isCorrect && !r.flagged).length,
+      reviewRemainingCount: getReviewQueue().length,
       byDifficulty,
       byPatientType: Object.values(byPatientType),
       domainBreakdown,
@@ -820,10 +843,26 @@
   }
 
   // Cumulative Progress & Mastery Statistics for Nate's Momentum Tracker
+  // Questions to revisit: missed, or flagged as a guess, the last time Nate answered them.
+  // (Exposure records saved before flags existed only know whether the last answer was right.)
+  function needsReview(exp) {
+    if (!exp || !exp.seenCount) return false;
+    return exp.needsReview !== undefined ? Boolean(exp.needsReview) : exp.lastCorrect === false;
+  }
+
+  function getReviewQueue() {
+    const exposure = getExposureHistory();
+    return getAllQuestions()
+      .filter((q) => needsReview(exposure.items[q.id]))
+      .sort((a, b) => (exposure.items[a.id].lastAttempt || 0) - (exposure.items[b.id].lastAttempt || 0));
+  }
+
   function getNateProgressStats() {
     const allQuestions = getAllQuestions();
     const exposure = getExposureHistory();
-    const pastAttempts = getPastAttempts();
+    const allAttempts = getPastAttempts();
+    // Review rounds are all previously missed questions, so they'd skew score trends.
+    const pastAttempts = allAttempts.filter((a) => a.mode !== "review");
     const totalBankSize = allQuestions.length;
 
     let uniqueSeenCount = 0;
@@ -928,7 +967,8 @@
       nextRank,
       rankProgressPct,
       masteredToNextRank,
-      completedAttemptsCount: pastAttempts.length,
+      completedAttemptsCount: allAttempts.length,
+      reviewQueueCount: getReviewQueue().length,
       bestScaledScore,
       latestScaledScore,
       firstScaledScore,
@@ -957,6 +997,7 @@
     finalizeSession,
     generateDiagnosticReport,
     getQuestionPoolStats,
-    getNateProgressStats
+    getNateProgressStats,
+    getReviewQueue
   };
 })();

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Rainbow browser-tab icon: six arcs, outermost red to innermost violet -->
+  <g fill="none" stroke-width="4.6" stroke-linecap="butt">
+    <path d="M2.4 46 A29.6 29.6 0 0 1 61.6 46" stroke="#e40303"/>
+    <path d="M6.8 46 A25.2 25.2 0 0 1 57.2 46" stroke="#ff8c00"/>
+    <path d="M11.2 46 A20.8 20.8 0 0 1 52.8 46" stroke="#ffd600"/>
+    <path d="M15.6 46 A16.4 16.4 0 0 1 48.4 46" stroke="#00a03a"/>
+    <path d="M20 46 A12 12 0 0 1 44 46" stroke="#1e5bd8"/>
+    <path d="M24.4 46 A7.6 7.6 0 0 1 39.6 46" stroke="#8e2fb5"/>
+  </g>
+</svg>
