@@ -122,8 +122,183 @@
   // ============================================================================
   function init() {
     bindGlobalEvents();
+    setupSyncCard();
     renderLobby();
     showView("lobby");
+  }
+
+  // ============================================================================
+  // CROSS-DEVICE SYNC CARD (js/sync.js)
+  // ============================================================================
+  const syncUi = { enteringCode: false, error: "", draft: "" };
+
+  function formatTimeAgo(ms) {
+    const sec = Math.max(0, Math.round((Date.now() - ms) / 1000));
+    if (sec < 45) return "just now";
+    const min = Math.round(sec / 60);
+    if (min < 60) return `${min} min ago`;
+    const hr = Math.round(min / 60);
+    if (hr < 24) return `${hr} hr ago`;
+    const days = Math.round(hr / 24);
+    return `${days} day${days === 1 ? "" : "s"} ago`;
+  }
+
+  function setupSyncCard() {
+    const sync = window.NREMTSync;
+    const card = document.getElementById("sync-card");
+    if (!card || !sync || !sync.isConfigured()) return;
+    card.classList.remove("hidden");
+
+    sync.onStatus(renderSyncCard);
+    // Another device's progress just arrived: refresh the dashboard (never mid-exam).
+    window.addEventListener("nremt:progress-synced", () => {
+      if (state.currentView === "lobby") renderLobby();
+    });
+    // Keep "synced 3 min ago" fresh.
+    setInterval(() => {
+      if (state.currentView === "lobby") renderSyncCard();
+    }, 30000);
+
+    document.getElementById("sync-actions").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-sync-action]");
+      if (!btn) return;
+      handleSyncAction(btn.getAttribute("data-sync-action"));
+    });
+    document.getElementById("sync-actions").addEventListener("submit", (e) => {
+      e.preventDefault();
+      handleSyncAction("connect");
+    });
+
+    renderSyncCard();
+  }
+
+  function handleSyncAction(action) {
+    const sync = window.NREMTSync;
+    syncUi.error = "";
+    if (action === "start") {
+      const result = sync.enable();
+      renderSyncCard();
+      if (result.ok) showSyncShareModal(true);
+    } else if (action === "enter") {
+      syncUi.enteringCode = true;
+      renderSyncCard();
+      const input = document.getElementById("sync-code-input");
+      if (input) input.focus();
+    } else if (action === "cancel") {
+      syncUi.enteringCode = false;
+      renderSyncCard();
+    } else if (action === "connect") {
+      const input = document.getElementById("sync-code-input");
+      const result = sync.enable(input ? input.value : "");
+      if (result.ok) {
+        syncUi.enteringCode = false;
+        syncUi.draft = "";
+      } else {
+        syncUi.error = result.error;
+        syncUi.draft = input ? input.value : "";
+      }
+      renderSyncCard();
+    } else if (action === "share") {
+      showSyncShareModal(false);
+    } else if (action === "retry") {
+      sync.syncNow();
+    } else if (action === "off") {
+      showModal({
+        title: "Turn off sync on this device?",
+        bodyHtml: `
+          <p>This device stops syncing. Your progress stays on this device, and your other devices keep their copy.</p>
+          <p style="margin-top:0.5rem;color:var(--vue-text-muted);font-size:0.86rem;">You can reconnect anytime with your sync code: <strong>${escapeHtml(
+            sync.getCode()
+          )}</strong></p>
+        `,
+        confirmText: "Turn Off Sync",
+        cancelText: "Keep Syncing",
+        onConfirm: () => {
+          sync.disable();
+        }
+      });
+    }
+  }
+
+  function showSyncShareModal(justCreated) {
+    const sync = window.NREMTSync;
+    const code = sync.getCode();
+    const link = sync.shareLink();
+    showModal({
+      title: justCreated ? "Sync is on" : "Add another device",
+      bodyHtml: `
+        <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.9rem;">
+          <p>On your other phone, tablet, or computer, open this link:</p>
+          <div class="sync-link-box">
+            <input type="text" id="sync-share-link" readonly value="${escapeHtml(link)}" aria-label="Sync link" />
+            <button type="button" id="btn-copy-sync-link" class="vue-tool-btn">Copy</button>
+          </div>
+          <p>Or tap <strong>“I have a code”</strong> there and enter:</p>
+          <div class="sync-code-display">${escapeHtml(code)}</div>
+          <p style="color:var(--vue-text-muted);font-size:0.84rem;">Keep this code to yourself. Anyone who has it can see and change your practice progress.</p>
+        </div>
+      `,
+      confirmText: "Done",
+      hideCancel: true
+    });
+    const copyBtn = document.getElementById("btn-copy-sync-link");
+    const linkInput = document.getElementById("sync-share-link");
+    if (copyBtn && linkInput) {
+      copyBtn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(link);
+        } catch (e) {
+          linkInput.select();
+          document.execCommand("copy");
+        }
+        copyBtn.textContent = "Copied ✓";
+      };
+    }
+  }
+
+  function renderSyncCard() {
+    const sync = window.NREMTSync;
+    const statusEl = document.getElementById("sync-status");
+    const actionsEl = document.getElementById("sync-actions");
+    if (!sync || !statusEl || !actionsEl) return;
+    const s = sync.getStatus();
+
+    if (!s.code) {
+      if (syncUi.enteringCode) {
+        statusEl.textContent = "Enter the sync code shown on your other device.";
+        actionsEl.innerHTML = `
+          <form class="sync-code-form" novalidate>
+            <input type="text" id="sync-code-input" class="sync-code-input" placeholder="ABCD-EFGH-JKMN-PQRS"
+              autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Sync code"
+              value="${escapeHtml(syncUi.draft)}" />
+            <button type="submit" class="vue-tool-btn sync-btn-primary">Connect</button>
+            <button type="button" class="vue-tool-btn" data-sync-action="cancel">Cancel</button>
+          </form>
+          ${syncUi.error ? `<div class="sync-error">${escapeHtml(syncUi.error)}</div>` : ""}
+        `;
+      } else {
+        statusEl.textContent = "Start on your phone, pick up on your laptop. Your scores and progress follow you.";
+        actionsEl.innerHTML = `
+          <button type="button" class="vue-tool-btn sync-btn-primary" data-sync-action="start">Turn On Sync</button>
+          <button type="button" class="vue-tool-btn" data-sync-action="enter">I have a code</button>
+        `;
+      }
+      return;
+    }
+
+    let text;
+    if (s.state === "syncing") text = "Syncing…";
+    else if (s.state === "offline") text = "Offline. Your progress is saved here and will sync when you're back online.";
+    else if (s.state === "error") text = `Couldn't sync right now${s.message ? ` (${s.message})` : ""}. Your progress is safe on this device.`;
+    else text = s.lastSyncedAt ? `✓ Synced ${formatTimeAgo(s.lastSyncedAt)}` : "✓ Sync is on";
+    statusEl.textContent = text;
+    statusEl.classList.toggle("sync-status-warn", s.state === "error" || s.state === "offline");
+
+    actionsEl.innerHTML = `
+      <button type="button" class="vue-tool-btn sync-btn-primary" data-sync-action="share">Add a Device</button>
+      ${s.state === "error" || s.state === "offline" ? `<button type="button" class="vue-tool-btn" data-sync-action="retry">Try Again</button>` : ""}
+      <button type="button" class="vue-tool-btn" data-sync-action="off">Turn Off</button>
+    `;
   }
 
   function bindGlobalEvents() {

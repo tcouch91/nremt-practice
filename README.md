@@ -36,6 +36,26 @@ An authentic practice exam application modeled after the **National Registry of 
   - Evaluates each of the 5 NREMT domains (*Above Passing Standard*, *Near Passing Standard*, *Below Passing Standard*).
   - Generates a **"What You Should Focus Learning On More"** diagnostic study plan ranking weak subtopics, comparing Adult vs. Pediatric/Obstetric performance, and compiling high-yield clinical pearls from missed questions.
 
+## Syncing Progress Across Devices
+
+Progress is saved in each browser's localStorage. Optional sync through a free [Supabase](https://supabase.com) project keeps a phone and a laptop in step. Devices share a random 16-character sync code, with no accounts or passwords. When sync isn't configured, the dashboard's sync card is hidden and nothing changes.
+
+One-time setup:
+1. Create a free Supabase project.
+2. In the project's **SQL Editor**, paste and run [`supabase/schema.sql`](./supabase/schema.sql). The table stays locked; the browser can only call the two sync functions, so nobody can list other people's codes.
+3. From **Project Settings → API Keys**, copy the **Project URL** and the **publishable** (or legacy `anon`) key into [`js/sync-config.js`](./js/sync-config.js). Both are meant to be public.
+4. Commit and push. On the dashboard, tap **Turn On Sync** on one device, then open the link it shows on the other device (or enter the code there).
+
+How merging works:
+- Score reports, seen-question counts, and custom questions from both devices are combined, so nothing is lost.
+- A paused exam follows Nate to whichever device he opens next. An exam that's finished or discarded on one device disappears from the others.
+- **Reset Rotation** on one device resets it everywhere.
+- Uploads are gzip-compressed, and opening the app when nothing has changed downloads almost nothing.
+
+Run `node scripts/test-sync.js` to simulate two devices syncing through a fake server.
+
+Note: Supabase pauses free projects after about a week with no activity. Regular studying keeps it awake; if it does pause, restore it from the dashboard.
+
 ## Adding More Questions in the Future
 
 Questions are organized in [`data/`](./data/), one file per domain. Add a new question to the end of its domain file, using the next ID in that domain's sequence. Any new file must also be added as a `<script>` tag in `index.html`; `scripts/validate-bank.js` fails if a file in `data/` isn't loaded.

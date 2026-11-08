@@ -5,8 +5,45 @@
     EXPOSURE: "nremt_question_exposure_v1",
     ATTEMPTS: "nremt_exam_attempts_v1",
     CUSTOM_QUESTIONS: "nremt_user_custom_questions_v1",
-    ACTIVE_SESSION: "nremt_active_session_v1"
+    ACTIVE_SESSION: "nremt_active_session_v1",
+    SYNC_META: "nremt_sync_meta_v1"
   };
+
+  // Bookkeeping that lets js/sync.js merge two devices without resurrecting data that one of them
+  // deliberately reset, cleared, or discarded.
+  function getSyncMeta() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.SYNC_META);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        return {
+          exposureResetAt: parsed.exposureResetAt || 0,
+          attemptsClearedAt: parsed.attemptsClearedAt || 0,
+          closedSessionIds: Array.isArray(parsed.closedSessionIds) ? parsed.closedSessionIds : []
+        };
+      }
+    } catch (e) {
+      console.warn("Error reading sync metadata:", e);
+    }
+    return { exposureResetAt: 0, attemptsClearedAt: 0, closedSessionIds: [] };
+  }
+
+  function saveSyncMeta(meta) {
+    try {
+      localStorage.setItem(STORAGE_KEYS.SYNC_META, JSON.stringify(meta));
+    } catch (e) {
+      console.warn("Error saving sync metadata:", e);
+    }
+  }
+
+  // Tells js/sync.js that saved progress changed so it can upload it.
+  function notifyProgressChanged(kind) {
+    try {
+      window.dispatchEvent(new CustomEvent("nremt:progress-changed", { detail: { kind } }));
+    } catch (e) {
+      /* no listener support; sync simply won't auto-upload */
+    }
+  }
 
   // Official NREMT EMT Cognitive Exam Blueprint (proportions for a 35-question half-length exam)
   const DOMAIN_BLUEPRINT = [
@@ -89,6 +126,7 @@
     userCustom.push(questionObj);
     try {
       localStorage.setItem(STORAGE_KEYS.CUSTOM_QUESTIONS, JSON.stringify(userCustom));
+      notifyProgressChanged("custom-question");
     } catch (e) {
       console.warn("Could not save custom question:", e);
     }
@@ -109,12 +147,16 @@
   function saveExposureHistory(history) {
     try {
       localStorage.setItem(STORAGE_KEYS.EXPOSURE, JSON.stringify(history));
+      notifyProgressChanged("exposure");
     } catch (e) {
       console.warn("Error saving exposure history:", e);
     }
   }
 
   function resetExposureHistory() {
+    const meta = getSyncMeta();
+    meta.exposureResetAt = Date.now();
+    saveSyncMeta(meta);
     const empty = { totalAttempts: 0, items: {} };
     saveExposureHistory(empty);
     return empty;
@@ -135,6 +177,7 @@
     attempts.unshift(report); // newest first
     try {
       localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts.slice(0, 50)));
+      notifyProgressChanged("attempt");
     } catch (e) {
       console.warn("Error saving attempt report:", e);
     }
@@ -142,9 +185,14 @@
 
   function clearAllHistory() {
     try {
+      const meta = getSyncMeta();
+      meta.exposureResetAt = Date.now();
+      meta.attemptsClearedAt = Date.now();
+      saveSyncMeta(meta);
       localStorage.removeItem(STORAGE_KEYS.EXPOSURE);
       localStorage.removeItem(STORAGE_KEYS.ATTEMPTS);
       clearActiveSession();
+      notifyProgressChanged("clear");
     } catch (e) {
       console.warn("Error clearing history:", e);
     }
@@ -158,6 +206,7 @@
     }
     try {
       localStorage.setItem(STORAGE_KEYS.ACTIVE_SESSION, JSON.stringify(session));
+      notifyProgressChanged("session");
     } catch (e) {
       console.warn("Error saving active session:", e);
     }
@@ -180,7 +229,19 @@
 
   function clearActiveSession() {
     try {
+      // Remember which exam was closed (finished or discarded) so another device's copy of it
+      // doesn't come back as a "paused exam" after the next sync.
+      const raw = localStorage.getItem(STORAGE_KEYS.ACTIVE_SESSION);
+      const closedId = raw ? (JSON.parse(raw) || {}).sessionId : null;
+      if (closedId) {
+        const meta = getSyncMeta();
+        if (!meta.closedSessionIds.includes(closedId)) {
+          meta.closedSessionIds = [closedId, ...meta.closedSessionIds].slice(0, 30);
+          saveSyncMeta(meta);
+        }
+      }
       localStorage.removeItem(STORAGE_KEYS.ACTIVE_SESSION);
+      if (closedId) notifyProgressChanged("session-closed");
     } catch (e) {
       console.warn("Error clearing active session:", e);
     }
@@ -878,6 +939,7 @@
 
   // Expose public API on window.NREMTCatEngine
   window.NREMTCatEngine = {
+    STORAGE_KEYS,
     DOMAIN_BLUEPRINT,
     DIFFICULTY_LABELS,
     NATE_RANK_LADDER,

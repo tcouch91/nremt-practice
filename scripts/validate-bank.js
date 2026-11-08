@@ -101,7 +101,8 @@ while ((match = idRegex.exec(appJs)) !== null) {
   ) {
     continue;
   }
-  if (!html.includes(`id="${id}"`)) {
+  // IDs rendered by app.js itself (modal bodies, sync card form) are created at runtime.
+  if (!html.includes(`id="${id}"`) && !appJs.includes(`id="${id}"`)) {
     missingIds.push(id);
   }
 }
