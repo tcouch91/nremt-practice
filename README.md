@@ -12,15 +12,16 @@ An authentic practice exam application modeled after the **National Registry of 
 
 ## Key Features
 
-- **100 Realistic Clinical Vignette Questions**:
+- **300 Realistic Clinical Vignette Questions**:
   - Written in authentic NREMT scenario format (patient age/sex, mechanism of injury or nature of illness, clinical presentation, vital signs, and primary/secondary assessment priorities).
   - Weighted across the **5 official NREMT EMT domains**:
-    - **Airway, Respiration & Ventilation** (20 questions — 20%)
-    - **Cardiology & Resuscitation** (22 questions — 22%)
-    - **Trauma** (18 questions — 18%)
-    - **Medical; Obstetrics & Gynecology** (28 questions — 28%)
-    - **EMS Operations** (12 questions — 12%)
-  - Stratified across **3 Difficulty Tiers** (`1 = Easy` [30], `2 = Medium` [40], `3 = Hard` [30]) with continuous Item Response Theory (`irtB`) parameters.
+    - **Airway, Respiration & Ventilation** (60 questions — 20%)
+    - **Cardiology & Resuscitation** (66 questions — 22%)
+    - **Trauma** (53 questions — 18%)
+    - **Medical; Obstetrics & Gynecology** (85 questions — 28%)
+    - **EMS Operations** (36 questions — 12%)
+  - Stratified across **3 Difficulty Tiers** (`1 = Easy` [91], `2 = Medium` [120], `3 = Hard` [89]) with continuous Item Response Theory (`irtB`) parameters.
+  - Each question's `source` field records who wrote it (Gemini or Claude); see [`REVIEW.md`](./REVIEW.md).
 - **Dynamic Computer Adaptive Testing (CAT) Engine**:
   - Starts at **Medium** difficulty.
   - Answering an **Easy** question correctly steps up to **Medium**; answering **Medium** correctly steps up to **Hard**; answering **Hard** correctly stays at **Hard** with a higher IRT target.
@@ -37,7 +38,7 @@ An authentic practice exam application modeled after the **National Registry of 
 
 ## Adding More Questions in the Future
 
-Questions are organized modularly in [`data/`](./data/):
+Questions are organized in [`data/`](./data/), one file per domain. Add a new question to the end of its domain file, using the next ID in that domain's sequence. Any new file must also be added as a `<script>` tag in `index.html`; `scripts/validate-bank.js` fails if a file in `data/` isn't loaded.
 - [`data/questions-airway.js`](./data/questions-airway.js)
 - [`data/questions-cardiology.js`](./data/questions-cardiology.js)
 - [`data/questions-trauma.js`](./data/questions-trauma.js)

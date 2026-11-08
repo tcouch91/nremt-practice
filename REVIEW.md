@@ -1,12 +1,12 @@
 # Review of the Gemini-built NREMT EMT practice app
 
-Reviewed by Claude. This file covers (1) the app code, (2) Gemini's 100 original questions, (3) the 100 new questions Claude added, and (4) a complete list showing who wrote each question.
+Reviewed by Claude. This file covers (1) the app code, (2) Gemini's 100 original questions, (3) the 200 new questions Claude added in two batches, and (4) a complete list showing who wrote each question.
 
 ## How to tell who wrote a question
 
 - **In the data:** every question has a `source` field, either `"Gemini"` or `"Claude"`. Questions you add through the app's "+ Add Question" button are tagged `"Custom"`.
-- **By file:** Gemini's questions are in `data/questions-<domain>.js`. Claude's questions are in `data/questions-claude-<domain>.js`.
-- **By ID:** Gemini's IDs are `AIR-001–020`, `CARD-001–022`, `TRAU-001–018`, `MED-001–028`, and `OPS-001–012`. Claude's continue the same sequences: `AIR-021–040`, `CARD-023–044`, `TRAU-019–035`, `MED-029–057`, and `OPS-013–024`.
+- **By file:** all questions for a domain live in one file, `data/questions-<domain>.js`. (Claude's first batch was briefly kept in separate `questions-claude-<domain>.js` files; those were merged in, because the `source` field already records the author.)
+- **By ID:** Gemini's IDs are `AIR-001–020`, `CARD-001–022`, `TRAU-001–018`, `MED-001–028`, and `OPS-001–012`. Claude's continue the same sequences: batch 1 is `AIR-021–040`, `CARD-023–044`, `TRAU-019–035`, `MED-029–057`, and `OPS-013–024`; batch 2 is `AIR-041–060`, `CARD-045–066`, `TRAU-036–053`, `MED-058–085`, and `OPS-025–036`.
 - **In the app:** after an exam, each question in the review shows a "Written by Gemini" or "Written by Claude" badge. The dashboard shows the count for each author.
 - **Below:** the full list is at the end of this file. A ✎ next to an ID means Claude corrected that Gemini question.
 
@@ -46,9 +46,19 @@ In **77%** of Gemini's questions the correct answer is the longest option. In **
 AIR-019 (alveolar ventilation math), CARD-017 (LVAD), MED-009 (Kussmaul/acid-base physiology), TRAU-010 (phrenic-nerve explanation of Kehr's sign), and TRAU-013 (Cushing's triad mechanism). All appear in mainstream EMT textbooks, but they lean more on mechanism than the NREMT usually does.
 
 ### E. Guideline-change watch item
-The AHA's 2025 guideline update changed adult/child choking care to alternate **back blows and abdominal thrusts**, and dropped the two-finger infant compression technique. AIR-013's study tip still says "Child/Adult: Abdominal Thrusts." Exam item banks and courses adopt new guidelines on different timelines, so check what your course teaches. None of Claude's new questions depend on the parts that changed.
+The AHA's 2025 guideline update changed adult/child choking care to alternate **back blows and abdominal thrusts**, and dropped the two-finger infant compression technique. AIR-013's study tip still says "Child/Adult: Abdominal Thrusts." Exam item banks and courses adopt new guidelines on different timelines, so check what your course teaches. None of Claude's batch 1 questions depend on the parts that changed. In batch 2, AIR-042, AIR-047, and CARD-049 touch them and use the 2025 wording.
 
-## 3. Claude's 100 new questions
+## 3. Claude's new questions
+
+### Batch 2 (100 questions)
+
+- **Spread:** Airway 20, Cardiology 22, Trauma 18, Medical/OB 28, Operations 12. This brings the bank to 300 (60 / 66 / 53 / 85 / 36).
+- **Difficulty:** exactly 30 Easy, 40 Medium, and 30 Hard, with each domain split about 30/40/30. The correct answer's position is balanced (A 25, B 25, C 26, D 24).
+- **Scope:** same EMT limits as batch 1. ALS care appears only as "request ALS."
+- **Coverage gaps filled:** subtopics that had few questions: psychiatric (suicide assessment, delirium from a medical cause), gynecologic (PID, miscarriage), hematologic (hemophilia), infectious (needlestick exposure), heart failure history, hypertensive emergency, acute arterial occlusion, cocaine chest pain, post-ROSC ventilation, newborn 3:1 compressions, puberty and adult CPR, crush syndrome, blast injury, trauma in pregnancy, TBI secondary injury, pediatric Rule of Nines, environmental (HAPE, arterial gas embolism vs. decompression sickness, exertional heat stroke, lightning reverse triage, frostbite, chemical suicide), and operations (ERG placards, helicopter approach, emancipated minors, questioning a medical order, elder abuse reporting, trench rescue).
+- **Quality checks run:** the same as batch 1. A length audit found the correct answer clearly longest in 58 of the first drafts. Those options were rewritten. Now in 0% of these questions is the correct answer 20% longer than every distractor, and it is the longest option at all in 35% (chance is 25%). Choking and infant-CPR wording follows the 2025 AHA changes in section 2E.
+
+### Batch 1 (100 questions)
 
 - **Spread:** Airway 20, Cardiology 22, Trauma 17, Medical/OB 29, Operations 12. This brings the bank to 200 (40 / 44 / 35 / 57 / 24), which is close to the NREMT blueprint weights.
 - **Difficulty:** about 30% Easy, 40% Medium, and 30% Hard in each domain. 21 are pediatric and 6 are obstetric.
@@ -185,9 +195,9 @@ The AHA's 2025 guideline update changed adult/child choking care to alternate **
 | OPS-011 | Hard | Triage & Mass Casualty (MCI) | Deliver 5 rescue breaths (ventilations); if spontaneous breathing resumes, ta… |
 | OPS-012 | Hard | Ambulance Operations & Safety | Come to a complete stop before reaching the school bus, turn off or silence t… |
 
-### Written by Claude (100 questions)
+### Written by Claude (200 questions)
 
-**Airway, Respiration & Ventilation** (20)
+**Airway, Respiration & Ventilation** (40)
 
 | ID | Difficulty | Subtopic | Correct answer |
 |---|---|---|---|
@@ -211,8 +221,28 @@ The AHA's 2025 guideline update changed adult/child choking care to alternate **
 | AIR-038 | Hard | Oxygenation & Delivery Devices | About 19 minutes |
 | AIR-039 | Hard | Positive Pressure Ventilation & BVM | Carefully use a head-tilt, chin-lift, because an open airway takes priority |
 | AIR-040 | Hard | Airway Adjuncts & Suctioning | A nasopharyngeal airway lubricated with a water-soluble lubricant |
+| AIR-041 | Easy | Positive Pressure Ventilation & BVM | Her chest rises and falls visibly with each ventilation |
+| AIR-042 | Easy | Airway Anatomy & Assessment | Encourage him to cough and watch for signs of a severe obstruction |
+| AIR-043 | Easy | Oxygenation & Delivery Devices | 90% |
+| AIR-044 | Easy | Airway Adjuncts & Suctioning | A nasopharyngeal airway |
+| AIR-045 | Easy | Oxygenation & Delivery Devices | Keeping the cylinder secured and away from open flames and heat sources |
+| AIR-046 | Easy | Airway Anatomy & Assessment | The epiglottis |
+| AIR-047 | Medium | Airway Anatomy & Assessment | Perform chest thrusts with your hands on the center of her breastbone |
+| AIR-048 | Medium | Lower Airway & Pulmonary Emergencies | Emphysema |
+| AIR-049 | Medium | Lower Airway & Pulmonary Emergencies | A pleural effusion |
+| AIR-050 | Medium | Lower Airway & Pulmonary Emergencies | Exhale fully, then press the inhaler as she inhales deeply and hold her breath |
+| AIR-051 | Medium | Lower Airway & Pulmonary Emergencies | These are expected side effects of albuterol; continue to monitor and reassess |
+| AIR-052 | Medium | Pathophysiology & Perfusion | Severe respiratory distress that may be progressing to respiratory failure |
+| AIR-053 | Medium | Airway Adjuncts & Suctioning | Turn him onto his side and suction his mouth and throat |
+| AIR-054 | Medium | Lower Airway & Pulmonary Emergencies | Give oxygen, monitor his airway and breathing closely, and transport |
+| AIR-055 | Hard | Lower Airway & Pulmonary Emergencies | He needs transport, because lung injury can worsen over several hours |
+| AIR-056 | Hard | Lower Airway & Pulmonary Emergencies | Give high-flow oxygen and bring him to a lower altitude as soon as possible |
+| AIR-057 | Hard | Pathophysiology & Perfusion | Air reaches her alveoli, but a clot keeps blood from flowing past them |
+| AIR-058 | Hard | Positive Pressure Ventilation & BVM | Ventilate over the stoma with a small, sealed BVM mask; if that fails, seal i… |
+| AIR-059 | Hard | Pathophysiology & Perfusion | His breathing is inadequate; his rate is too slow for his age, and he needs B… |
+| AIR-060 | Hard | Pathophysiology & Perfusion | A neck injury has paralyzed his chest wall; stabilize his spine and assist wi… |
 
-**Cardiology & Resuscitation** (22)
+**Cardiology & Resuscitation** (44)
 
 | ID | Difficulty | Subtopic | Correct answer |
 |---|---|---|---|
@@ -238,8 +268,30 @@ The AHA's 2025 guideline update changed adult/child choking care to alternate **
 | CARD-042 | Hard | Bradycardia & Perfusion Assessment | Suspect high potassium; lay her supine, call ALS, transport, and prepare for … |
 | CARD-043 | Hard | Adult & Pediatric BLS / CPR | Begin high-quality chest compressions and apply the AED as soon as it is ready |
 | CARD-044 | Hard | Adult & Pediatric BLS / CPR | 1 breath every 2 to 3 seconds (20–30/min) |
+| CARD-045 | Easy | Adult & Pediatric BLS / CPR | Every 2 minutes (about 5 cycles of 30:2), during the rhythm analysis |
+| CARD-046 | Easy | Adult & Pediatric BLS / CPR | Over about 1 second, with just enough volume to make the chest rise |
+| CARD-047 | Easy | Acute Coronary Syndrome (ACS) | It is a common side effect of nitroglycerin caused by dilation of blood vessels |
+| CARD-048 | Easy | AED Operations & Special Situations | One below the right collarbone, one on the left chest below the armpit |
+| CARD-049 | Easy | Adult & Pediatric BLS / CPR | Both thumbs on the lower sternum with your hands encircling the chest |
+| CARD-050 | Easy | Adult & Pediatric BLS / CPR | Recognizing the arrest and activating the emergency response system |
+| CARD-051 | Easy | Acute Coronary Syndrome (ACS) | It reduces platelet clumping, which helps keep the clot from getting larger |
+| CARD-052 | Medium | Acute Coronary Syndrome (ACS) | Do not give the wife's nitroglycerin; give aspirin if indicated per protocol |
+| CARD-053 | Medium | Heart Failure & Cardiogenic Shock | She sleeps propped on three pillows and wakes at night gasping for air |
+| CARD-054 | Medium | AED Operations & Special Situations | Ventilate with a BVM every 6 seconds and leave the AED attached |
+| CARD-055 | Medium | Bradycardia & Perfusion Assessment | Begin chest compressions, along with ventilations |
+| CARD-056 | Medium | Vascular & Hypertensive Emergencies | Keep him calm with his head elevated, monitor him closely, and transport |
+| CARD-057 | Medium | AED Operations & Special Situations | Resume high-quality CPR immediately, starting with chest compressions |
+| CARD-058 | Medium | Acute Coronary Syndrome (ACS) | Treat her as possible ACS, because atypical symptoms are common in her group |
+| CARD-059 | Medium | Adult & Pediatric BLS / CPR | Perform about 2 minutes of CPR, then leave briefly to call 9-1-1 and get an AED |
+| CARD-060 | Hard | Acute Coronary Syndrome (ACS) | As ACS, because new angina at rest that nitroglycerin does not relieve is uns… |
+| CARD-061 | Hard | Adult & Pediatric BLS / CPR | Limiting each pause in compressions to less than 10 seconds |
+| CARD-062 | Hard | Acute Coronary Syndrome (ACS) | Cocaine can cause a heart attack at any age; treat him as possible ACS |
+| CARD-063 | Hard | Adult & Pediatric BLS / CPR | Use two thumbs on the lower third of the sternum at a ratio of 3:1 |
+| CARD-064 | Hard | Vascular & Hypertensive Emergencies | Keep the leg level or slightly low, pad and protect it, and transport |
+| CARD-065 | Hard | Bradycardia & Perfusion Assessment | Each breath raises chest pressure, which reduces blood return to the heart |
+| CARD-066 | Hard | Adult & Pediatric BLS / CPR | At least 2 inches (5 cm), but no more than 2.4 inches (6 cm), at 30:2 |
 
-**Trauma** (17)
+**Trauma** (35)
 
 | ID | Difficulty | Subtopic | Correct answer |
 |---|---|---|---|
@@ -260,8 +312,26 @@ The AHA's 2025 guideline update changed adult/child choking care to alternate **
 | TRAU-033 | Hard | Bleeding & Shock | He is probably in shock; metoprolol can block the expected rise in heart rate |
 | TRAU-034 | Hard | Bleeding & Shock | She is in compensated shock; her blood pressure will fall only late |
 | TRAU-035 | Hard | Bleeding & Shock | Apply a tourniquet high and tight on the thigh above the bleeding wound |
+| TRAU-036 | Easy | Musculoskeletal Trauma | Pulse, motor function, and sensation below the injury |
+| TRAU-037 | Easy | Bleeding & Shock | Venous bleeding |
+| TRAU-038 | Easy | Burns & Soft Tissue Trauma | Cool it with cool running water, then apply a dry, sterile dressing |
+| TRAU-039 | Easy | Burns & Soft Tissue Trauma | An avulsion |
+| TRAU-040 | Easy | Musculoskeletal Trauma | Splint it as found, padding the space between his arm and body |
+| TRAU-041 | Medium | Bleeding & Shock | Pack the wound with hemostatic gauze and hold firm pressure |
+| TRAU-042 | Medium | Chest & Abdominal Trauma | Have him splint the ribs with a pillow and encourage deep breaths |
+| TRAU-043 | Medium | Head, Neck & Spine Trauma | Keep him out of play, monitor him, and transport him for evaluation |
+| TRAU-044 | Medium | Musculoskeletal Trauma | Pad the hip, secure her legs together, and move her with a scoop stretcher |
+| TRAU-045 | Medium | Trauma Triage & Assessment | Chest and upper abdominal injuries, such as rib, lung, heart, or liver injury |
+| TRAU-046 | Medium | Musculoskeletal Trauma | Control bleeding, cover with a sterile dressing, and splint as found |
+| TRAU-047 | Medium | Burns & Soft Tissue Trauma | Flush both eyes with water or saline for at least 20 minutes |
+| TRAU-048 | Medium | Head, Neck & Spine Trauma | Apply an occlusive dressing and direct pressure to one side only |
+| TRAU-049 | Hard | Musculoskeletal Trauma | Potassium and toxins from crushed muscle can enter the blood and stop the heart |
+| TRAU-050 | Hard | Trauma Triage & Assessment | Abruption can develop later, and her extra blood volume can hide shock |
+| TRAU-051 | Hard | Head, Neck & Spine Trauma | Low oxygen and low blood pressure |
+| TRAU-052 | Hard | Chest & Abdominal Trauma | Primary blast injury from the pressure wave itself |
+| TRAU-053 | Hard | Burns & Soft Tissue Trauma | 50% |
 
-**Medical; Obstetrics & Gynecology** (29)
+**Medical; Obstetrics & Gynecology** (57)
 
 | ID | Difficulty | Subtopic | Correct answer |
 |---|---|---|---|
@@ -294,8 +364,36 @@ The AHA's 2025 guideline update changed adult/child choking care to alternate **
 | MED-055 | Hard | Infectious Disease | Sepsis with shock from infection; treat for shock and notify the hospital early |
 | MED-056 | Hard | Endocrine & Metabolic Emergencies | Give him oral glucose, reassess, and transport him for medical evaluation |
 | MED-057 | Hard | Toxicology & Environmental Emergencies | Transport her, because this overdose can cause delayed liver failure and she … |
+| MED-058 | Easy | Endocrine & Metabolic Emergencies | Hypoglycemia (low blood sugar) |
+| MED-059 | Easy | Allergic Reactions & Anaphylaxis | 0.15 mg |
+| MED-060 | Easy | Neurologic Emergencies | The postictal phase, a normal period of recovery after a seizure |
+| MED-061 | Easy | Toxicology & Environmental Emergencies | Move him to a cool place to rest and give him an electrolyte drink |
+| MED-062 | Easy | Toxicology & Environmental Emergencies | Protect his hands from cold and do not rewarm them if they could refreeze |
+| MED-063 | Easy | Psychiatric & Behavioral Emergencies | Ask him directly whether he is thinking about killing himself and whether he … |
+| MED-064 | Easy | Obstetrics & Neonatal Care | Full dilation of the cervix |
+| MED-065 | Easy | Infectious Disease | Wash the area with soap and water and report the exposure right away |
+| MED-066 | Medium | Toxicology & Environmental Emergencies | Handle him very gently, remove wet clothing, and rewarm him passively |
+| MED-067 | Medium | Neurologic Emergencies | A blood glucose check |
+| MED-068 | Medium | Abdominal, GI & Renal Emergencies | Gallbladder disease (gallstones) |
+| MED-069 | Medium | Gynecologic Emergencies | Pelvic inflammatory disease |
+| MED-070 | Medium | Hematologic Emergencies | He likely has bleeding into the joint; splint it, apply cold, and transport |
+| MED-071 | Medium | Toxicology & Environmental Emergencies | Anticholinergic toxidrome |
+| MED-072 | Medium | Toxicology & Environmental Emergencies | The unresponsive, pulseless patient, by beginning CPR |
+| MED-073 | Medium | Obstetrics & Neonatal Care | Keep her calm in a dim, quiet setting on her left side and watch for seizures |
+| MED-074 | Medium | Obstetrics & Neonatal Care | Treat for shock, place a pad over the vaginal opening, and save any tissue |
+| MED-075 | Medium | Pediatric Medical Emergencies | Appearance, work of breathing, and circulation to the skin |
+| MED-076 | Medium | Abdominal, GI & Renal Emergencies | Bleeding high in the digestive tract, such as from an ulcer |
+| MED-077 | Hard | Allergic Reactions & Anaphylaxis | Epinephrine wears off quickly, and the reaction can return hours later |
+| MED-078 | Hard | Toxicology & Environmental Emergencies | His altered mental status suggests heat stroke; begin aggressive cooling now |
+| MED-079 | Hard | Toxicology & Environmental Emergencies | Arterial gas embolism, in which air bubbles from damaged lungs travel to the … |
+| MED-080 | Hard | Toxicology & Environmental Emergencies | Retreat upwind, keep others away, and request a hazmat team |
+| MED-081 | Hard | Obstetrics & Neonatal Care | Clamp and cut the first cord, and prepare for a second baby |
+| MED-082 | Hard | Obstetrics & Neonatal Care | Clear the airway only if it is blocked, then start ventilation within 1 minute |
+| MED-083 | Hard | Pediatric Medical Emergencies | Diabetic ketoacidosis (new diabetes) |
+| MED-084 | Hard | Psychiatric & Behavioral Emergencies | It suggests a medical cause, such as infection, that is producing delirium |
+| MED-085 | Hard | Neurologic Emergencies | Treat it as a possible stroke, determine his last known well time, and transport |
 
-**EMS Operations** (12)
+**EMS Operations** (24)
 
 | ID | Difficulty | Subtopic | Correct answer |
 |---|---|---|---|
@@ -311,3 +409,15 @@ The AHA's 2025 guideline update changed adult/child choking care to alternate **
 | OPS-022 | Hard | Triage & Mass Casualty (MCI) | Red (Immediate), because her respiratory rate is above 45 |
 | OPS-023 | Hard | Medical-Legal & Ethical Issues | He takes a long-acting oral diabetes pill that can cause hypoglycemia to recur |
 | OPS-024 | Hard | Medical-Legal & Ethical Issues | Recognize that he lacks capacity, and seek police and medical control help |
+| OPS-025 | Easy | Medical-Legal & Ethical Issues | Expressed consent |
+| OPS-026 | Easy | Communications & Documentation | Repeat the order back to the physician word for word to confirm it |
+| OPS-027 | Easy | Ambulance Operations & Safety | Wearing a high-visibility, reflective safety vest |
+| OPS-028 | Easy | Ambulance Operations & Safety | The patient is in a car with flames spreading toward the passenger area |
+| OPS-029 | Medium | Medical-Legal & Ethical Issues | Treat her, document your findings objectively, and report as the law requires |
+| OPS-030 | Medium | HazMat & Scene Safety | The Emergency Response Guidebook (ERG) |
+| OPS-031 | Medium | Communications & Documentation | Patient states, 'My chest feels heavy and tight.' |
+| OPS-032 | Medium | Triage & Mass Casualty (MCI) | Quickly control the bleeding, such as with a tourniquet, then tag and move on |
+| OPS-033 | Medium | Ambulance Operations & Air Medical | From the front or side, in the pilot's view, once the crew signals |
+| OPS-034 | Hard | Medical-Legal & Ethical Issues | Politely question the order, restate the patient's blood pressure, and ask th… |
+| OPS-035 | Hard | Medical-Legal & Ethical Issues | She may be considered an emancipated minor and can give her own consent for care |
+| OPS-036 | Hard | HazMat & Scene Safety | Stay out, move everyone back from the edge, and call technical rescue |

@@ -1,8 +1,8 @@
 // NREMT EMT Cognitive Exam Practice Question Bank
-// Domain 2: Cardiology & Resuscitation (22 Questions)
+// Domain 2: Cardiology & Resuscitation (66 Questions: CARD-001 to CARD-066)
 // Difficulty Tiers: 1 = Easy, 2 = Medium, 3 = Hard
-// Author: Original questions written by Gemini (each tagged source: "Gemini"); reviewed and corrected by Claude.
-// Claude-authored questions for this domain live in data/questions-claude-cardiology.js
+// Scope: EMT (2019 National EMS Scope of Practice Model / National EMS Education Standards).
+// Authorship is tracked per question by the `source` field ("Gemini" or "Claude").
 
 window.NREMT_QUESTIONS = window.NREMT_QUESTIONS || [];
 
@@ -425,5 +425,841 @@ window.NREMT_QUESTIONS.push(
     correctIndex: 1,
     explanation: "Agonal gasps are primitive brainstem reflexes that frequently occur in the first few minutes following sudden cardiac arrest (typically ventricular fibrillation). They appear as slow, irregular, snoring or gasping movements of the mouth and neck and do NOT provide effective oxygenation or ventilation. Mistaking agonal gasps for normal breathing is the #1 cause of delayed CPR. In an unresponsive, pulseless patient with agonal gasps, begin high-quality chest compressions and apply the AED immediately.",
     studyTip: "Agonal gasps occur in up to 40% of early sudden cardiac arrests (especially V-Fib). Never mistake agonal gasps for normal breathing—if unresponsive with absent or agonal breathing and no pulse, start CPR immediately!"
+  },
+  {
+    id: "CARD-023",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.2,
+    stem: "When performing chest compressions on an adult in cardiac arrest, where should you place your hands?",
+    options: [
+      "On the xiphoid process at the very bottom tip of the sternum",
+      "On the upper third of the sternum, just below the clavicles",
+      "On the lower half of the sternum in the center of the chest",
+      "To the left of the sternum, directly over the apex of the heart"
+    ],
+    correctIndex: 2,
+    explanation: "For adult CPR, place the heel of one hand on the lower half of the sternum (center of the chest, roughly between the nipples) with the other hand on top. Compressing over the xiphoid process can lacerate the liver, and compressing off-center (over the ribs or left chest) is less effective and more likely to fracture ribs.",
+    studyTip: "Adult CPR hand position: lower half of the sternum, center of the chest. Rate 100–120/min, depth 2–2.4 in (5–6 cm), full recoil."
+  },
+  {
+    id: "CARD-024",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "You are performing CPR on a 4-month-old infant in cardiac arrest. How deep should your chest compressions be?",
+    options: [
+      "About 1/2 inch (1 cm), to avoid injuring the ribs",
+      "About 1 1/2 inches (4 cm), or one-third the chest depth",
+      "About 2 to 2.4 inches (5 to 6 cm), the same as an adult",
+      "About 3 inches (7.5 cm), or one-half the chest depth"
+    ],
+    correctIndex: 1,
+    explanation: "Infant chest compressions should be at least one-third the anterior-posterior diameter of the chest, which is about 1 1/2 inches (4 cm). For children, the target is also one-third the chest depth, about 2 inches (5 cm). Shallow compressions do not generate adequate blood flow, and compressing to adult depth can injure an infant.",
+    studyTip: "Compression depth = at least 1/3 of chest depth. Infant ≈ 1.5 in (4 cm). Child ≈ 2 in (5 cm). Adult 2–2.4 in (5–6 cm)."
+  },
+  {
+    id: "CARD-025",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "Five minutes after you assist a 64-year-old woman with her first 0.4 mg dose of prescribed sublingual nitroglycerin, she still has chest pain. Her BP is now 134/82 mmHg and HR is 84 beats/min. According to typical protocols, when may a second dose be given?",
+    options: [
+      "Now, because 5 minutes have passed and her blood pressure is adequate",
+      "After 30 minutes, once the first dose has been completely metabolized",
+      "Only after arrival at the hospital, since one dose is the field maximum",
+      "After 15 minutes, provided her heart rate has dropped below 60/min"
+    ],
+    correctIndex: 0,
+    explanation: "Nitroglycerin may typically be repeated every 5 minutes, up to a total of 3 doses (including any the patient took before EMS arrival), as long as chest pain persists, the systolic BP remains above the protocol threshold (commonly 100 mmHg), and there are no other contraindications. Reassess blood pressure before each dose, and contact medical control as your protocol requires.",
+    studyTip: "Nitroglycerin: 0.4 mg SL, repeat every 5 min, max 3 doses total. Check BP before EVERY dose; hold if SBP is below protocol (90–100 mmHg) or PDE-5 inhibitor use."
+  },
+  {
+    id: "CARD-026",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "Which description is MOST typical of stable angina pectoris?",
+    options: [
+      "Chest pressure lasting over 30 minutes that is not relieved by rest or nitroglycerin",
+      "Sharp chest pain that gets worse when you press directly on the chest wall",
+      "Chest pressure brought on by exertion that resolves within minutes with rest",
+      "Sudden tearing pain in the chest that radiates straight through to the back"
+    ],
+    correctIndex: 2,
+    explanation: "Stable angina is chest discomfort caused by a temporary mismatch between the heart's oxygen demand and supply. It is typically triggered by exertion or stress and resolves within a few minutes with rest or nitroglycerin. Pain lasting longer than about 30 minutes that does not respond to rest or nitroglycerin suggests acute myocardial infarction. Pain reproduced by pressing on the chest suggests a musculoskeletal cause, and tearing pain to the back suggests aortic dissection—though EMTs should treat any chest pain as cardiac until proven otherwise.",
+    studyTip: "Stable angina: exertion-triggered, brief, relieved by rest/nitro. Unstable angina: new, worsening, or at rest. AMI: prolonged and not relieved. Treat all as ACS in the field."
+  },
+  {
+    id: "CARD-027",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.1,
+    stem: "You have applied AED pads to a patient in cardiac arrest, and the AED announces that it is analyzing the heart rhythm. What should you do?",
+    options: [
+      "Continue chest compressions so blood flow is not interrupted",
+      "Stop compressions and make sure no one touches the patient",
+      "Check the carotid pulse while the AED completes its analysis",
+      "Deliver two rescue breaths while the AED completes its analysis"
+    ],
+    correctIndex: 1,
+    explanation: "Movement from compressions, ventilations, or touching the patient can interfere with the AED's rhythm analysis and lead to an incorrect shock decision. Pause compressions, state 'Clear!', and make sure no one is touching the patient during analysis and shock delivery. Keep the pause as short as possible and resume compressions immediately after the shock (or 'no shock advised').",
+    studyTip: "During AED analysis and shock: hands OFF, everyone clear. Then resume compressions immediately, without a pulse check."
+  },
+  {
+    id: "CARD-028",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "For an adult whose sudden cardiac arrest is caused by ventricular fibrillation, which factor has the GREATEST influence on the chance of survival?",
+    options: [
+      "Rapid transport to the closest hospital emergency department",
+      "Early placement of an advanced airway by a paramedic",
+      "Early high-quality CPR and defibrillation as soon as possible",
+      "Early administration of intravenous cardiac medications"
+    ],
+    correctIndex: 2,
+    explanation: "Ventricular fibrillation is treated by defibrillation, and the chance of a successful shock drops significantly with every minute of delay. High-quality CPR keeps the heart and brain perfused until the AED arrives and makes defibrillation more likely to succeed. Advanced airways, medications, and transport have not been shown to improve survival as much as early CPR and early defibrillation.",
+    studyTip: "Chain of survival priorities for VF arrest: early recognition, early high-quality CPR, early DEFIBRILLATION. Minimize interruptions in compressions."
+  },
+  {
+    id: "CARD-029",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.6,
+    stem: "Which of the following patients with suspected acute coronary syndrome should NOT receive aspirin from an EMT?",
+    options: [
+      "A 70-year-old man with diabetes who is on insulin",
+      "A 58-year-old woman who takes a daily blood pressure pill",
+      "A 66-year-old man who quit smoking two years ago",
+      "A 61-year-old woman who reports a true allergy to aspirin"
+    ],
+    correctIndex: 3,
+    explanation: "A true allergy or hypersensitivity to aspirin is a contraindication. Other common contraindications include active gastrointestinal bleeding and inability to chew and swallow safely; follow local protocol about patients who already took aspirin today. Diabetes, hypertension medications, and a smoking history are cardiac risk factors, not contraindications.",
+    studyTip: "Aspirin for ACS: 162–324 mg chewable. Withhold for true aspirin allergy, active GI bleeding, or inability to swallow. Risk factors are NOT contraindications."
+  },
+  {
+    id: "CARD-030",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "You and your partner are performing CPR on a 6-year-old girl. What are the correct compression depth and compression-to-ventilation ratio?",
+    options: [
+      "About 2 inches (5 cm) deep at a ratio of 15:2",
+      "About 1 inch (2.5 cm) deep at a ratio of 30:2",
+      "About 3 inches (7.5 cm) deep at a ratio of 15:2",
+      "About 1 1/2 inches (4 cm) deep at a ratio of 3:1"
+    ],
+    correctIndex: 0,
+    explanation: "For a child (1 year old to puberty), compress at least one-third the anterior-posterior depth of the chest—about 2 inches (5 cm)—at 100 to 120 compressions per minute. With two healthcare providers, use a 15:2 ratio; a single rescuer uses 30:2. The 3:1 ratio is for newborn resuscitation.",
+    studyTip: "Child CPR: depth ≈ 2 in (5 cm). Two rescuers = 15:2, one rescuer = 30:2. Newborn = 3:1."
+  },
+  {
+    id: "CARD-031",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Vascular & Hypertensive Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "A 56-year-old man who stopped taking his blood pressure medications reports a severe headache, nausea, and blurred vision. He is alert and oriented. His BP is 228/128 mmHg, HR 92, RR 18, and SpO2 97%. His Cincinnati stroke scale is normal. What is the MOST appropriate EMT management?",
+    options: [
+      "Assist him with his wife's nitroglycerin to bring his blood pressure down",
+      "Lay him flat with his legs elevated to increase blood flow to his brain",
+      "Position him with his head elevated, monitor closely, and transport promptly",
+      "Have him take a double dose of his blood pressure pills, then reassess"
+    ],
+    correctIndex: 2,
+    explanation: "Severely elevated blood pressure with symptoms such as headache, nausea, and visual changes suggests a hypertensive emergency, which can progress to stroke, seizures, or heart failure. EMT care is supportive: position of comfort with the head elevated, oxygen only if hypoxic, reassessment of neurologic status and vital signs, preparation for vomiting or seizures, and prompt transport. EMTs do not lower blood pressure with medications, and may assist only with medications prescribed to the patient for an indicated condition.",
+    studyTip: "Hypertensive emergency: supportive care, head elevated, monitor neuro status, prepare for seizure/vomiting, transport. EMTs do not try to lower BP."
+  },
+  {
+    id: "CARD-032",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 59-year-old man has had substernal chest pressure for 20 minutes. He is alert, breathing comfortably at 16 breaths/min with clear lungs, and his SpO2 is 98% on room air. What is the MOST appropriate approach to supplemental oxygen?",
+    options: [
+      "Apply a nonrebreather at 15 L/min, since every chest pain patient needs high-flow oxygen",
+      "Ventilate with a bag-valve mask to rest his heart and improve coronary perfusion",
+      "Apply a nasal cannula at 6 L/min to keep his SpO2 at 100% throughout transport",
+      "Withhold oxygen for now, and give it if he becomes hypoxic, short of breath, or shocky"
+    ],
+    correctIndex: 3,
+    explanation: "Current guidelines recommend supplemental oxygen for suspected ACS only when the patient is hypoxic (SpO2 below your protocol's threshold, commonly 90%–94%), short of breath, or showing signs of heart failure or shock. Giving unneeded oxygen to a patient with normal saturation has not been shown to help and may be harmful. Continue to monitor SpO2 and add oxygen if indications develop.",
+    studyTip: "ACS + normal SpO2 + no distress = no routine oxygen. Give O2 for hypoxia (per protocol), dyspnea, heart failure, or shock."
+  },
+  {
+    id: "CARD-033",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Heart Failure & Cardiogenic Shock",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.2,
+    stem: "A 72-year-old woman with a history of congestive heart failure has gained 8 pounds over 3 days. She is short of breath, worse when lying flat, has swollen ankles and crackles at both lung bases, and her BP is 162/94 mmHg. How should you position her?",
+    options: [
+      "Supine with her legs raised to improve blood return to her heart",
+      "Sitting upright with her legs dangling or lowered if possible",
+      "Left lateral recumbent with her knees drawn up toward her chest",
+      "Trendelenburg position with her head lower than her hips"
+    ],
+    correctIndex: 1,
+    explanation: "Patients with CHF and pulmonary edema breathe more easily sitting upright (orthopnea is difficulty breathing when lying flat). Sitting upright with the legs dependent (dangling or lowered) lets gravity pool some blood in the legs, which reduces the volume returning to the congested heart and lungs. Positions that raise the legs or lower the head increase venous return and worsen pulmonary congestion.",
+    studyTip: "CHF/pulmonary edema: sit upright, legs dependent. Consider CPAP if indicated and BP allows. Never lay these patients flat."
+  },
+  {
+    id: "CARD-034",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "A 49-year-old woman reports sudden palpitations and lightheadedness. She is pale, diaphoretic, and confused. Her radial pulse is weak and too fast to count accurately (about 180 beats/min), and her BP is 78/50 mmHg. What is the MOST appropriate action?",
+    options: [
+      "Apply the AED and press analyze, since her heart rate is above 150",
+      "Assist her with aspirin and nitroglycerin for possible cardiac ischemia",
+      "Have her walk to the ambulance so you can reassess her once on board",
+      "Lay her supine, give oxygen if needed, request ALS, and transport promptly"
+    ],
+    correctIndex: 3,
+    explanation: "This patient has an unstable tachycardia: a very fast heart rate that leaves too little time for the ventricles to fill, causing hypotension and altered mental status. EMT care is supportive: place her supine, give oxygen if hypoxic or short of breath, request ALS intercept (paramedics can provide medications or synchronized cardioversion), and transport promptly. An AED is applied only to patients who are unresponsive and pulseless. Nitroglycerin is contraindicated with hypotension, and an unstable patient should not exert herself.",
+    studyTip: "AEDs are ONLY for pulseless, unresponsive patients. Unstable tachycardia or bradycardia with a pulse: supine, O2 as needed, ALS intercept, rapid transport."
+  },
+  {
+    id: "CARD-035",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "Which history of a fainting (syncope) episode is MOST concerning for a dangerous cardiac cause?",
+    options: [
+      "A 19-year-old who felt warm and nauseated, then fainted at the sight of blood",
+      "A 68-year-old who suddenly passed out without warning while climbing stairs",
+      "A 25-year-old who felt dizzy after standing up quickly from a hot bath",
+      "A 30-year-old who fainted while having blood drawn and woke in seconds"
+    ],
+    correctIndex: 1,
+    explanation: "Syncope that occurs suddenly without warning, during exertion, or in an older adult (especially one with heart disease) suggests a cardiac cause such as a dysrhythmia, structural heart disease, or ischemia, and may precede sudden cardiac death. Syncope preceded by warning signs such as warmth and nausea and triggered by pain, blood, or standing quickly is usually vasovagal or orthostatic and generally less dangerous—but every syncope patient deserves a thorough assessment.",
+    studyTip: "Red flags for cardiac syncope: no warning (no prodrome), during exertion, older age, heart disease history, chest pain or palpitations, or family history of sudden death."
+  },
+  {
+    id: "CARD-036",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 63-year-old man with an implanted cardioverter-defibrillator (ICD) says his device has shocked him twice in the past 20 minutes. He is now alert and oriented, with a regular pulse of 88 beats/min and a BP of 128/76 mmHg. Which statement about your care is MOST accurate?",
+    options: [
+      "You should avoid all physical contact, as another shock could seriously injure you",
+      "You should apply the AED and deliver a shock to reset the implanted device",
+      "You can assess him normally, keep the AED ready, and transport for evaluation",
+      "He may refuse transport, because the shocks show that the ICD is working well"
+    ],
+    correctIndex: 2,
+    explanation: "An ICD detects life-threatening rhythms and delivers a shock internally. Multiple shocks mean the patient had (or is having) dangerous dysrhythmias or a device problem, so he needs transport and evaluation. A shock from an ICD delivers very little energy to someone touching the patient and is not dangerous to rescuers, so assess and treat him normally. An AED is used only if he becomes unresponsive and pulseless, placing the pad away from the device.",
+    studyTip: "ICD patients: care for them normally (shocks pose minimal risk to you). Multiple shocks = transport. If the patient arrests, use the AED with pads at least 1 inch from the device."
+  },
+  {
+    id: "CARD-037",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "In which of the following situations should EMTs withhold resuscitation and NOT begin CPR on a pulseless, apneic adult?",
+    options: [
+      "A man found in a cold lake after 20 minutes underwater whose skin is very cold",
+      "A woman whose husband says she has a DNR order but cannot find the document",
+      "A man who has had 10 minutes of bystander CPR and has fixed, dilated pupils",
+      "A woman found in bed with dependent lividity and rigor mortis in her jaw"
+    ],
+    correctIndex: 3,
+    explanation: "Resuscitation is withheld when there are obvious signs of death—dependent lividity, rigor mortis, decomposition, or injuries incompatible with life—or a valid DNR/POLST is presented. Cold-water submersion victims may survive prolonged arrest, so resuscitate. A DNR that cannot be produced is not valid, so begin CPR and contact medical control. Dilated pupils are not a reliable sign of death and may occur within minutes of arrest.",
+    studyTip: "Withhold CPR for obvious death (lividity, rigor mortis, decomposition, decapitation) or a valid DNR. When in doubt, START resuscitation."
+  },
+  {
+    id: "CARD-038",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "Lifeguards pull a 40-year-old man from a swimming pool. He is unresponsive and pulseless, his chest is wet, and he is lying on the wet pool deck. CPR is in progress. What should you do before applying the AED pads?",
+    options: [
+      "Withhold the AED until the patient is completely dry and has been rewarmed",
+      "Quickly wipe the chest dry, then apply the pads and make sure everyone is clear",
+      "Apply the pads directly over the wet skin, since water improves conductivity",
+      "Move the patient into the ambulance first, since AEDs cannot be used outdoors"
+    ],
+    correctIndex: 1,
+    explanation: "Water on the chest can conduct electricity across the skin, reducing the energy that reaches the heart and creating a risk to rescuers. Remove the patient from the water, quickly wipe the chest dry, apply the pads, and ensure no one is touching the patient during analysis and shock. An AED can be used on a damp surface once the patient is out of the water. Delaying defibrillation to fully dry or rewarm the patient reduces the chance of survival.",
+    studyTip: "AED + water: get the patient out of standing water, wipe the chest dry, apply pads, and clear everyone. Do not delay defibrillation."
+  },
+  {
+    id: "CARD-039",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "A 67-year-old man with crushing chest pain tells you he has already taken three of his 0.4 mg nitroglycerin tablets in the past 15 minutes without relief. He has not taken aspirin and has no allergies. His BP is 142/88 mmHg, HR 96, and SpO2 96%. What is the BEST course of action?",
+    options: [
+      "Assist with three more nitroglycerin doses, since his BP is still adequate",
+      "Withhold aspirin, because it should not be combined with nitroglycerin",
+      "Give aspirin per protocol, consult medical control before more nitro, and transport",
+      "Wait on scene for 15 minutes to see whether the nitroglycerin starts working"
+    ],
+    correctIndex: 2,
+    explanation: "Doses the patient took before your arrival count toward the usual maximum of three nitroglycerin doses, so contact medical control before giving any more. Chest pain unrelieved by three nitroglycerin doses is highly suspicious for acute myocardial infarction. Give 162–324 mg of chewable aspirin if there are no contraindications (aspirin and nitroglycerin are routinely given together), monitor vital signs, and transport promptly, ideally to a facility capable of cardiac catheterization. Never delay on scene.",
+    studyTip: "Ask how much nitro the patient took BEFORE you arrived: it counts toward the max of 3. Unrelieved chest pain = treat as AMI: aspirin, rapid transport, pre-notification."
+  },
+  {
+    id: "CARD-040",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Vascular & Hypertensive Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "A 74-year-old man with a history of hypertension and smoking has sudden, severe lower back and abdominal pain. He is pale and diaphoretic, with BP 84/52 mmHg and HR 122 beats/min. You note a pulsating mass near his umbilicus, and his femoral pulses feel unequal. What is the MOST appropriate management?",
+    options: [
+      "Palpate the mass deeply to confirm its size, then assist him in walking to the cot",
+      "Treat for shock, handle him gently, avoid palpating the mass, and transport rapidly",
+      "Give 324 mg of aspirin and assist with nitroglycerin for possible cardiac pain",
+      "Place him in a sitting position and give oral fluids to raise his blood pressure"
+    ],
+    correctIndex: 1,
+    explanation: "Sudden severe back or abdominal pain, a pulsating abdominal mass, unequal femoral pulses, and signs of shock in an older patient with hypertension and a smoking history strongly suggest a leaking or ruptured abdominal aortic aneurysm (AAA). Treat for shock (supine, oxygen as indicated, keep warm), handle the patient gently, avoid palpating the mass (which could worsen the rupture), keep him NPO, request ALS, and transport rapidly to a facility with vascular surgery. Aspirin, nitroglycerin, and exertion are dangerous.",
+    studyTip: "AAA: older, hypertensive, smoker + sudden back/abdominal pain + pulsating mass + shock. Gentle handling, NO palpation of the mass, treat for shock, rapid transport."
+  },
+  {
+    id: "CARD-041",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "You are transporting a 58-year-old man who had return of spontaneous circulation after two AED shocks. Halfway to the hospital, he becomes unresponsive, and you can no longer feel a carotid pulse. The AED pads are still attached. What should you do?",
+    options: [
+      "Begin compressions and ask the driver to stop the ambulance so the AED can analyze",
+      "Press analyze while the ambulance keeps moving, so you do not delay arrival",
+      "Perform CPR only and do not use the AED again until you reach the hospital",
+      "Press the shock button without analyzing, since he was shockable before"
+    ],
+    correctIndex: 0,
+    explanation: "Start CPR immediately. Vehicle motion can interfere with the AED's rhythm analysis, so ask your partner to stop the ambulance before analysis and shock delivery, then resume compressions and transport after the shock is delivered or 'no shock' is advised. Withholding the AED delays possible defibrillation. AEDs will not deliver a shock without first analyzing the rhythm.",
+    studyTip: "Re-arrest during transport: start CPR, STOP the vehicle for AED analysis/shock, then resume transport. Keep pads attached after ROSC."
+  },
+  {
+    id: "CARD-042",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "A 61-year-old woman on hemodialysis missed her last two treatments. She reports profound weakness and nausea. She is alert but pale, with a slow, weak radial pulse of 38 beats/min, BP 82/50 mmHg, and an AV fistula in her left forearm. Which of the following BEST describes the situation and your priorities?",
+    options: [
+      "She is dehydrated from missed dialysis; give oral fluids and take a BP in her left arm",
+      "Her symptoms are expected after missed dialysis; transport non-emergently in a chair",
+      "She is likely hypoglycemic; give oral glucose and arrange a ride to dialysis later",
+      "Suspect high potassium; lay her supine, call ALS, transport, and prepare for arrest"
+    ],
+    correctIndex: 3,
+    explanation: "Missed dialysis allows potassium and fluid to build up. High potassium (hyperkalemia) can cause profound weakness, bradycardia, hypotension, and sudden cardiac arrest. Place her supine, give oxygen as needed, request ALS (they can treat hyperkalemia), keep the AED ready, and transport promptly. Never take a blood pressure on the arm with a dialysis fistula. Dialysis patients are usually fluid-overloaded, so oral fluids are inappropriate, and you should still check her blood glucose.",
+    studyTip: "Dialysis patient who missed treatment + weakness + bradycardia = suspect hyperkalemia → risk of cardiac arrest. ALS, transport, AED ready. No BP on the fistula arm."
+  },
+  {
+    id: "CARD-043",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.2,
+    stem: "You find a 26-year-old man on a bathroom floor with a syringe nearby. He is unresponsive, is not breathing, and has no carotid pulse after a 10-second check. You have naloxone, a BVM, and an AED. What should you do FIRST?",
+    options: [
+      "Give intranasal naloxone and wait 2 to 3 minutes for a response before starting CPR",
+      "Give BVM ventilations only, because opioid arrests are purely respiratory in origin",
+      "Begin high-quality chest compressions and apply the AED as soon as it is ready",
+      "Give intranasal naloxone and recheck his carotid pulse every 30 seconds"
+    ],
+    correctIndex: 2,
+    explanation: "This patient is in cardiac arrest (no pulse), not just respiratory arrest. Begin high-quality CPR immediately and apply the AED. Naloxone may be given per protocol once CPR is under way, but it must never delay or interrupt compressions, ventilations, or defibrillation, because there is no proven benefit of naloxone once the heart has stopped. If the patient had a pulse with absent or inadequate breathing, the priority would be BVM ventilation, followed by naloxone.",
+    studyTip: "Suspected opioid overdose: PULSE → ventilate with BVM, then naloxone. NO PULSE → CPR + AED first; naloxone must not delay CPR."
+  },
+  {
+    id: "CARD-044",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 1.3,
+    stem: "During CPR on a 5-year-old child, a paramedic places an advanced airway. You are now performing continuous chest compressions while your partner ventilates. At what rate should your partner deliver ventilations?",
+    options: [
+      "1 breath every 6 seconds (10 breaths/min)",
+      "2 breaths after every 15 compressions",
+      "1 breath every 2 to 3 seconds (20–30/min)",
+      "1 breath every 10 seconds (6 breaths/min)"
+    ],
+    correctIndex: 2,
+    explanation: "Current pediatric guidelines recommend 1 breath every 2 to 3 seconds (20 to 30 breaths per minute) for infants and children receiving CPR with an advanced airway in place, with continuous compressions. Adults with an advanced airway receive 1 breath every 6 seconds. Without an advanced airway, pause compressions to give 2 breaths after every 15 compressions (two rescuers).",
+    studyTip: "Advanced airway in place: Adult = 1 breath every 6 sec. Infant/Child = 1 breath every 2–3 sec. Continuous compressions, no pauses for breaths."
+  },
+  {
+    id: "CARD-045",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "You and your partner are performing two-rescuer CPR on a 62-year-old man. How often should you switch the person doing chest compressions?",
+    options: [
+      "Every 2 minutes (about 5 cycles of 30:2), during the rhythm analysis",
+      "Only when the compressor says they are too tired to continue",
+      "Every 30 seconds to keep both rescuers fresh",
+      "Every 10 minutes, so that compressions are interrupted as little as possible"
+    ],
+    correctIndex: 0,
+    explanation: "Compression quality declines after about 2 minutes, often before the rescuer notices fatigue. Switch compressors about every 2 minutes (5 cycles of 30:2), ideally during the AED's rhythm analysis, and complete the switch in less than 5 seconds. Waiting for the compressor to feel tired allows shallow, slow compressions, while switching every 30 seconds creates unnecessary pauses.",
+    studyTip: "Switch compressors every 2 minutes (during rhythm analysis), in under 5 seconds. Fatigue reduces compression depth before rescuers notice it."
+  },
+  {
+    id: "CARD-046",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "During two-rescuer CPR on an adult with no advanced airway, you are giving breaths with a bag-valve mask. How should each breath be delivered?",
+    options: [
+      "As fast and forcefully as possible to fully inflate the lungs",
+      "Over 3 to 4 seconds using the entire volume of the bag",
+      "Over about 1 second, with just enough volume to make the chest rise",
+      "Only while compressions continue, without pausing"
+    ],
+    correctIndex: 2,
+    explanation: "Each rescue breath should be delivered over about 1 second with just enough volume to produce visible chest rise. Giving breaths too forcefully or with too much volume causes gastric distension and vomiting and increases pressure in the chest, which reduces blood return to the heart. Without an advanced airway, compressions pause briefly for the two breaths after each set of 30.",
+    studyTip: "Rescue breaths: 1 second each, just enough for chest rise. Without an advanced airway, pause for 2 breaths after every 30 compressions (adult)."
+  },
+  {
+    id: "CARD-047",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.1,
+    stem: "A few minutes after you assist a 65-year-old man with his prescribed sublingual nitroglycerin, his chest pain has decreased. He now reports a throbbing headache. His BP is 128/80 mmHg. How should you interpret the headache?",
+    options: [
+      "It indicates a stroke, so you should withhold all further treatment",
+      "It is a common side effect of nitroglycerin caused by dilation of blood vessels",
+      "It means the nitroglycerin was expired and should be discarded",
+      "It is a sign of an allergic reaction that requires epinephrine"
+    ],
+    correctIndex: 1,
+    explanation: "Nitroglycerin relaxes and dilates blood vessels, including those in the head, so a throbbing headache is a common, expected side effect. Other side effects include hypotension, dizziness, and a burning sensation under the tongue. Reassess his blood pressure before each dose, and follow protocol for repeat doses as long as his BP stays adequate. A headache alone does not indicate a stroke.",
+    studyTip: "Nitroglycerin side effects: headache, hypotension, dizziness, flushing. Recheck BP before every dose (withhold if SBP is below about 100 mmHg or per protocol)."
+  },
+  {
+    id: "CARD-048",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.2,
+    stem: "You are applying AED pads to an adult in cardiac arrest using the standard (anterolateral) placement. Where should the two pads be placed?",
+    options: [
+      "Both pads side by side over the center of the breastbone",
+      "One pad on the upper back and one pad on the lower back",
+      "One pad on each upper arm, on the outside of the arm, just below the shoulder",
+      "One below the right collarbone, one on the left chest below the armpit"
+    ],
+    correctIndex: 3,
+    explanation: "In the anterolateral position, one pad goes on the upper right chest just below the collarbone, and the other goes on the left side of the chest, a few inches below the armpit. This places the heart between the pads so the shock passes through it. Pads placed side by side would send the current across the skin rather than through the heart. An anterior-posterior placement (front and back of the chest) is an alternative, especially for small children.",
+    studyTip: "Adult AED pads: upper right chest below the clavicle + left lateral chest below the armpit. The heart must be between the pads."
+  },
+  {
+    id: "CARD-049",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "You and your partner are performing two-rescuer CPR on a 6-month-old infant. Which compression technique is recommended for the rescuer doing compressions?",
+    options: [
+      "Two fingers on the upper half of the sternum, just below the neck",
+      "Two hands stacked on the lower half of the sternum, as for an adult",
+      "Both thumbs on the lower sternum with your hands encircling the chest",
+      "One finger pressing firmly on the xiphoid process at the base of the sternum"
+    ],
+    correctIndex: 2,
+    explanation: "For two-rescuer infant CPR, encircle the infant's chest with both hands and compress the lower half of the sternum with both thumbs. This technique produces better depth and blood pressure than the two-finger method. Compress about 1 1/2 inches (4 cm), or one-third of the chest depth, at 100–120 per minute, using a 15:2 ratio. Never compress over the xiphoid process.",
+    studyTip: "Infant CPR: two-thumb–encircling hands or the heel of one hand (the 2025 AHA guidelines dropped the two-finger method), on the lower half of the sternum, about 1 1/2 in (4 cm). 30:2 for one rescuer, 15:2 for two."
+  },
+  {
+    id: "CARD-050",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "In the adult out-of-hospital chain of survival, what is the FIRST link?",
+    options: [
+      "Recognizing the arrest and activating the emergency response system",
+      "Rapid defibrillation with an AED as soon as one is brought to the scene",
+      "Advanced life support by paramedics, including medications and airways",
+      "Care after the return of spontaneous circulation at a cardiac center"
+    ],
+    correctIndex: 0,
+    explanation: "The chain of survival begins with recognizing cardiac arrest (unresponsive, not breathing normally) and activating the emergency response system. It continues with early high-quality CPR, rapid defibrillation, advanced resuscitation, post-cardiac arrest care, and recovery. Each link depends on the one before it—an AED cannot help if no one recognizes the arrest and calls for help.",
+    studyTip: "Chain of survival: recognize and call → high-quality CPR → defibrillation → advanced care → post-arrest care → recovery."
+  },
+  {
+    id: "CARD-051",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.6,
+    stem: "Why is aspirin given to patients with suspected acute coronary syndrome?",
+    options: [
+      "It dissolves the clot that is blocking the coronary artery",
+      "It dilates the coronary arteries to improve blood flow",
+      "It is a strong pain reliever that replaces the need for nitroglycerin",
+      "It reduces platelet clumping, which helps keep the clot from getting larger"
+    ],
+    correctIndex: 3,
+    explanation: "Aspirin is an antiplatelet medication. It prevents platelets from clumping together, which helps stop the clot in the coronary artery from growing and reduces damage to the heart muscle. It does not dissolve existing clots (fibrinolytic drugs do that in the hospital), it does not dilate vessels (nitroglycerin does that), and at this dose it is not given for pain relief.",
+    studyTip: "Aspirin = antiplatelet; keeps the clot from growing. Nitroglycerin = vasodilator; reduces cardiac workload and may ease chest pain."
+  },
+  {
+    id: "CARD-052",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "A 59-year-old man has crushing chest pain. He has no prescription for nitroglycerin, but his wife hands you her own nitroglycerin tablets and asks you to give him one. His BP is 146/90 mmHg. What should you do?",
+    options: [
+      "Give one of her tablets now, because his blood pressure is adequate for nitroglycerin",
+      "Do not give the wife's nitroglycerin; give aspirin if indicated per protocol",
+      "Give half of one tablet to reduce the risk of a headache or low blood pressure",
+      "Give a tablet only if the bottle is less than a year past its expiration date"
+    ],
+    correctIndex: 1,
+    explanation: "EMTs may assist a patient only with medication prescribed to that patient, unless their protocols specifically include EMS-carried nitroglycerin. Giving another person's prescription is outside an EMT's scope of practice. Instead, give aspirin if there are no contraindications, oxygen if he is hypoxic, place him in a position of comfort, consider requesting ALS, and transport. Follow local protocol or contact medical control if your service carries its own nitroglycerin.",
+    studyTip: "Assist only with medication prescribed to THAT patient (check the right patient, medication, dose, route, time, and expiration), unless your protocol provides EMS-stocked medication."
+  },
+  {
+    id: "CARD-053",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Heart Failure & Cardiogenic Shock",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "A 74-year-old woman reports shortness of breath that has slowly worsened over a week. Which part of her history MOST strongly suggests congestive heart failure?",
+    options: [
+      "She sleeps propped on three pillows and wakes at night gasping for air",
+      "She has had a fever and a cough with green sputum for the past 2 days",
+      "Her symptoms began suddenly after a long car ride across the country",
+      "She has a sharp pain in her side that gets worse when she twists or bends"
+    ],
+    correctIndex: 0,
+    explanation: "Orthopnea (difficulty breathing when lying flat, so the patient sleeps on extra pillows or in a recliner) and paroxysmal nocturnal dyspnea (waking up suddenly short of breath) are classic signs of left-sided heart failure, in which fluid backs up into the lungs. Other clues include ankle swelling, weight gain, and crackles. Fever with productive cough suggests pneumonia, sudden onset after immobility suggests pulmonary embolism, and pain with movement suggests a musculoskeletal cause.",
+    studyTip: "CHF history clues: orthopnea (extra pillows), paroxysmal nocturnal dyspnea, ankle edema, weight gain, and medications such as furosemide (a diuretic)."
+  },
+  {
+    id: "CARD-054",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "After one AED shock and 2 minutes of CPR on a 57-year-old man, the AED advises no shock. You check and find a strong carotid pulse, but he is still unresponsive and breathing only 4 times per minute. What should you do?",
+    options: [
+      "Remove the AED pads and place him in the recovery position for transport",
+      "Resume chest compressions, because his breathing is not adequate",
+      "Apply a nonrebreather mask at 15 L/min and reassess him in 5 minutes",
+      "Ventilate with a BVM every 6 seconds and leave the AED attached"
+    ],
+    correctIndex: 3,
+    explanation: "He has a return of spontaneous circulation (ROSC) but is not breathing adequately. Give rescue breaths with a BVM and supplemental oxygen at 1 breath every 6 seconds (10 per minute), and avoid hyperventilating. Leave the AED pads in place because he may go back into cardiac arrest, and check his pulse about every 2 minutes. Compressions are not needed while he has a pulse, and a nonrebreather cannot help a patient who is barely breathing.",
+    studyTip: "ROSC but inadequate breathing: ventilate 1 breath every 6 seconds (adult), leave the AED attached, recheck pulse often, and transport."
+  },
+  {
+    id: "CARD-055",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "You have been ventilating a 2-year-old girl with a BVM and high-flow oxygen for 30 seconds because of respiratory failure. Her chest is rising well, but her heart rate remains 50 beats/min, and her skin is pale and mottled. What should you do NEXT?",
+    options: [
+      "Begin chest compressions, along with ventilations",
+      "Continue ventilations alone, because she still has a pulse",
+      "Stop ventilations and apply a nonrebreather mask",
+      "Wait for ALS to arrive before changing your treatment"
+    ],
+    correctIndex: 0,
+    explanation: "In infants and children, a heart rate below 60 beats/min with signs of poor perfusion that continues despite adequate oxygenation and ventilation is treated with chest compressions—even though a pulse is present. Bradycardia in children is usually caused by hypoxia and signals impending cardiac arrest. Begin CPR (15:2 with two rescuers), continue ventilating with oxygen, request ALS, and transport.",
+    studyTip: "Pediatric HR below 60 with poor perfusion despite good ventilation and oxygenation = start CPR. Don't wait for the pulse to disappear."
+  },
+  {
+    id: "CARD-056",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Vascular & Hypertensive Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 52-year-old man who stopped taking his blood pressure medication reports a severe headache, blurred vision, and nausea. His BP is 232/134 mmHg, he is alert, and his neurological exam is otherwise normal. What is the MOST appropriate EMT management?",
+    options: [
+      "Assist him with his leftover blood pressure pills to bring his BP down quickly",
+      "Have him lie flat with his legs elevated to improve blood flow to his brain",
+      "Keep him calm with his head elevated, monitor him closely, and transport",
+      "Assist him with nitroglycerin to lower his blood pressure before transport"
+    ],
+    correctIndex: 2,
+    explanation: "This is a possible hypertensive emergency: severely elevated blood pressure with symptoms such as headache, vision changes, and nausea that suggest organ involvement. EMTs do not lower blood pressure with medication; dropping it too fast can cause a stroke or heart attack. Keep him calm, elevate his head, give oxygen if he is hypoxic, watch for seizures or stroke signs, and transport. Nitroglycerin is not indicated without chest pain, and lying flat may worsen symptoms.",
+    studyTip: "Hypertensive emergency: calm, head up, monitor for stroke/seizure, transport. EMTs do not try to lower blood pressure with medication."
+  },
+  {
+    id: "CARD-057",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.2,
+    stem: "You are performing CPR on a 66-year-old woman. The AED analyzes her rhythm and announces, 'No shock advised.' She remains unresponsive and pulseless. What should you do?",
+    options: [
+      "Turn off the AED, because it has determined that resuscitation is futile",
+      "Press the shock button anyway, because she is in cardiac arrest",
+      "Wait 2 minutes and allow the AED to analyze again without touching her",
+      "Resume high-quality CPR immediately, starting with chest compressions"
+    ],
+    correctIndex: 3,
+    explanation: "A 'no shock advised' message means the AED did not detect a shockable rhythm (ventricular fibrillation or pulseless ventricular tachycardia). The patient may be in asystole or pulseless electrical activity, which do not respond to shocks but still require CPR. Resume compressions immediately, continue for 2 minutes, and let the AED reanalyze. Leave the AED on—her rhythm may become shockable.",
+    studyTip: "'No shock advised' + no pulse = resume CPR immediately (asystole/PEA). AEDs shock only VF and pulseless VT."
+  },
+  {
+    id: "CARD-058",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.4,
+    stem: "A 71-year-old woman with diabetes has felt unusually tired and short of breath for 2 hours. She also has nausea and an aching discomfort in her jaw and upper back, but no chest pain. Her skin is pale and sweaty. How should you approach her care?",
+    options: [
+      "Treat her as possible ACS, because atypical symptoms are common in her group",
+      "Rule out a cardiac cause, because a heart attack nearly always causes chest pain",
+      "Treat her for a possible dental infection, because her jaw is aching",
+      "Assume she has the flu and recommend that she see her doctor tomorrow"
+    ],
+    correctIndex: 0,
+    explanation: "Women, older adults, and people with diabetes frequently have acute coronary syndrome without classic chest pain. They may have fatigue, shortness of breath, nausea, or discomfort in the jaw, neck, back, or arms instead. Pale, diaphoretic skin increases concern. Treat her as a possible ACS patient: oxygen if hypoxic, aspirin per protocol, position of comfort, consider ALS for a 12-lead ECG, and prompt transport.",
+    studyTip: "Atypical ACS is common in women, older adults, and people with diabetes: fatigue, dyspnea, nausea, jaw/back pain, or weakness without chest pain."
+  },
+  {
+    id: "CARD-059",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "While off duty and alone at a park, you find a 5-year-old boy unresponsive and not breathing. No one saw him collapse, and you do not have a phone. What should you do?",
+    options: [
+      "Leave him immediately to find a phone and call 9-1-1, then return to begin CPR",
+      "Perform about 2 minutes of CPR, then leave briefly to call 9-1-1 and get an AED",
+      "Give rescue breaths only, because children's hearts rarely stop",
+      "Wait with the child until another bystander arrives"
+    ],
+    correctIndex: 1,
+    explanation: "Cardiac arrest in children is usually caused by a breathing problem (asphyxia) rather than a primary heart problem, so immediate CPR with breaths is especially important. If you are alone without a phone and the collapse was unwitnessed, perform about 2 minutes (5 cycles) of CPR before leaving to activate EMS and get an AED. If the arrest was witnessed and sudden, a heart rhythm problem is more likely, so call and get the AED first.",
+    studyTip: "Lone rescuer, unwitnessed pediatric arrest, no phone: 2 minutes of CPR first, then call. Sudden witnessed collapse: call/get the AED first."
+  },
+  {
+    id: "CARD-060",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.7,
+    stem: "A 63-year-old man has had stable angina for years, with chest pressure only when he climbs stairs that goes away with rest and one nitroglycerin tablet. Today, the same pressure started while he was watching television, has lasted 25 minutes, and was not relieved by two of his nitroglycerin tablets. How should you regard this episode?",
+    options: [
+      "As stable angina, because the pressure feels the same as his usual episodes",
+      "As anxiety, because the pain started while he was resting, not exerting",
+      "As ACS, because new angina at rest that nitroglycerin does not relieve is unstable",
+      "As a reaction to nitroglycerin, because the tablets did not relieve the pain"
+    ],
+    correctIndex: 2,
+    explanation: "Stable angina follows a predictable pattern: brought on by exertion and relieved by rest or nitroglycerin within minutes. A change in that pattern—pain at rest, pain lasting longer, or pain not relieved by nitroglycerin—indicates unstable angina or myocardial infarction, both forms of acute coronary syndrome. Treat him as a potential AMI: aspirin per protocol, oxygen if hypoxic, further nitroglycerin per protocol if BP permits, request ALS for a 12-lead ECG, and transport promptly.",
+    studyTip: "Any change in an angina pattern—at rest, longer, more frequent, or not relieved by nitro—is unstable and treated as ACS."
+  },
+  {
+    id: "CARD-061",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "Your crew is reviewing a recorded cardiac arrest. Compressions were the right depth and rate, but they were paused for 30 seconds while the patient was moved to the stretcher and for 20 seconds during each pulse check. Which CPR quality goal did the crew MOST clearly fail to meet?",
+    options: [
+      "Allowing the chest to recoil fully after every compression",
+      "Ventilating at a rate of 1 breath every 6 seconds during CPR",
+      "Attaching and using the AED within 1 minute of arriving at the patient",
+      "Limiting each pause in compressions to less than 10 seconds"
+    ],
+    correctIndex: 3,
+    explanation: "Blood flow to the heart and brain stops within seconds of a pause in compressions and takes many compressions to build back up. High-quality CPR keeps the chest compression fraction (the portion of the resuscitation during which compressions are performed) as high as possible—at least 60% and ideally above 80%—by limiting each interruption to less than 10 seconds. Pulse checks should take no more than 10 seconds, and moves should be planned so compressions continue.",
+    studyTip: "Minimize interruptions: pulse checks 10 seconds or less, switch compressors during analysis, and aim for a compression fraction above 80%."
+  },
+  {
+    id: "CARD-062",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "A 34-year-old man reports crushing chest pain that began 30 minutes after he used cocaine. He is sweaty and anxious, with HR 128 beats/min, BP 178/104 mmHg, and SpO2 97%. He has no allergies and has not taken any PDE-5 inhibitors. Which statement about his care is MOST accurate?",
+    options: [
+      "Cocaine can cause a heart attack at any age; treat him as possible ACS",
+      "His pain is caused by anxiety alone, so reassure him and suggest he see his doctor",
+      "Cocaine use is a contraindication to every cardiac medication, so give nothing",
+      "Have him walk around to burn off the cocaine and slow down his heart rate"
+    ],
+    correctIndex: 0,
+    explanation: "Cocaine causes coronary artery spasm, increases heart rate and blood pressure, and promotes clot formation, so it can cause myocardial infarction even in young people without heart disease. Treat chest pain after cocaine use as possible ACS: keep him calm, give oxygen if hypoxic, give aspirin per protocol, consider nitroglycerin per protocol or medical control, request ALS, and transport. Watch closely for dysrhythmias, seizures, and hyperthermia.",
+    studyTip: "Cocaine + chest pain = possible AMI at any age. Calm, oxygen if hypoxic, aspirin per protocol, ALS, transport; monitor for dysrhythmias and seizures."
+  },
+  {
+    id: "CARD-063",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "You have just delivered a newborn. After 30 seconds of effective positive pressure ventilation with chest rise, the newborn's heart rate is 50 beats/min. How should you perform chest compressions?",
+    options: [
+      "Use the heel of one hand on the sternum at a ratio of 30 compressions to 2 breaths",
+      "Use two thumbs on the lower third of the sternum at a ratio of 3:1",
+      "Use two fingers on the sternum at a ratio of 15:2 at 100 compressions per minute",
+      "Give continuous compressions without pausing for any ventilations"
+    ],
+    correctIndex: 1,
+    explanation: "Newborns who remain below 60 beats/min after 30 seconds of effective ventilation need chest compressions. Use the two-thumb–encircling hands technique on the lower third of the sternum to a depth of about one-third of the chest, coordinated at 3 compressions to 1 ventilation (90 compressions and 30 breaths per minute, about 120 events per minute). Because newborn arrest is almost always caused by respiratory problems, ventilation is emphasized more than in older infants and children.",
+    studyTip: "Newborn: PPV first. HR below 60 after 30 seconds of effective PPV = compressions at 3:1 with two thumbs. Older infants and children: 30:2 (one rescuer) or 15:2 (two rescuers)."
+  },
+  {
+    id: "CARD-064",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Vascular & Hypertensive Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A 76-year-old man with atrial fibrillation has sudden, severe pain in his right lower leg. The leg is pale and cool, he cannot feel you touch his foot, and you cannot find a pulse on top of his foot. The left leg is warm with good pulses. There was no injury. What is the MOST appropriate care?",
+    options: [
+      "Elevate the right leg above the level of his heart and apply a cold pack",
+      "Massage his calf firmly to break up the clot and restore circulation",
+      "Keep the leg level or slightly low, pad and protect it, and transport",
+      "Apply a tourniquet above the knee to keep the clot from moving upward"
+    ],
+    correctIndex: 2,
+    explanation: "Sudden pain, pallor, pulselessness, numbness, and coldness in one limb suggest an acute arterial occlusion. In a patient with atrial fibrillation, a clot from the heart often lodges in a leg artery. The limb is losing its blood supply and can be lost within hours. Keep the leg level or slightly dependent (elevation reduces arterial flow further), keep it warm and padded—never apply cold or massage it—and transport promptly to a facility that can restore blood flow.",
+    studyTip: "Acute arterial occlusion: pain, pallor, pulselessness, paresthesia, paralysis, poikilothermia (cold). Keep the limb level/dependent and padded; transport promptly."
+  },
+  {
+    id: "CARD-065",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.2,
+    stem: "A 64-year-old man regained a pulse after cardiac arrest. He remains unresponsive. Your partner is ventilating with a BVM at about 24 breaths/min with large breaths, and the man's blood pressure is dropping. Why should your partner slow the ventilations to about 10 per minute?",
+    options: [
+      "Fast ventilation raises carbon dioxide levels, which weakens the heart muscle",
+      "Each breath raises chest pressure, which reduces blood return to the heart",
+      "Fast ventilation uses up the portable oxygen supply too quickly",
+      "Fast ventilation can wake the patient, causing him to fight the BVM"
+    ],
+    correctIndex: 1,
+    explanation: "Overventilation is common and harmful. Each positive pressure breath raises the pressure in the chest, which reduces venous return to the heart and lowers cardiac output and blood pressure—especially in a fragile post-arrest patient. Rapid ventilation also blows off too much carbon dioxide, which constricts the blood vessels in the brain and reduces cerebral blood flow. Ventilate an adult with a pulse at 1 breath every 6 seconds with just enough volume for chest rise, and titrate oxygen to an SpO2 of about 92–98%.",
+    studyTip: "Post-ROSC: avoid hyperventilation (10/min adult), avoid hypoxia and hypotension, keep the AED attached, and transport to an appropriate center."
+  },
+  {
+    id: "CARD-066",
+    source: "Claude",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 0.6,
+    stem: "You are the only rescuer performing CPR on a 13-year-old girl who has visible breast development and is about adult size. Which compression depth and ratio should you use?",
+    options: [
+      "About 1 1/2 inches (4 cm) at 15:2",
+      "About 2 inches (5 cm) at 15:2",
+      "One-third of the chest depth using the two-thumb technique at 3:1",
+      "At least 2 inches (5 cm), but no more than 2.4 inches (6 cm), at 30:2"
+    ],
+    correctIndex: 3,
+    explanation: "For CPR purposes, the child guidelines apply from 1 year of age until the onset of puberty (breast development in girls; underarm, chest, or facial hair in boys). Once a patient shows signs of puberty, use adult guidelines: compress at least 2 inches (5 cm) but no more than 2.4 inches (6 cm) at 100–120 per minute with a 30:2 ratio, whether there are one or two rescuers. Use adult AED pads as well.",
+    studyTip: "Adult CPR guidelines begin at puberty, not at a specific age. Adult = 2–2.4 in, 30:2 for one or two rescuers. Child (1 year to puberty) = about 2 in, 30:2 (one rescuer) or 15:2 (two rescuers)."
   }
 );

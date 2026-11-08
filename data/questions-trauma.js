@@ -1,8 +1,8 @@
 // NREMT EMT Cognitive Exam Practice Question Bank
-// Domain 3: Trauma (18 Questions)
+// Domain 3: Trauma (53 Questions: TRAU-001 to TRAU-053)
 // Difficulty Tiers: 1 = Easy, 2 = Medium, 3 = Hard
-// Author: Original questions written by Gemini (each tagged source: "Gemini"); reviewed and corrected by Claude.
-// Claude-authored questions for this domain live in data/questions-claude-trauma.js
+// Scope: EMT (2019 National EMS Scope of Practice Model / National EMS Education Standards).
+// Authorship is tracked per question by the `source` field ("Gemini" or "Claude").
 
 window.NREMT_QUESTIONS = window.NREMT_QUESTIONS || [];
 
@@ -349,5 +349,670 @@ window.NREMT_QUESTIONS.push(
     correctIndex: 1,
     explanation: "Commotio cordis occurs when a low-to-moderate energy blunt blow to the precordium (such as a baseball, hockey puck, or lacrosse ball in children/adolescents with compliant chest walls) strikes during a narrow 10- to 30-millisecond window on the upstroke of the T-wave (ventricular repolarization), immediately triggering ventricular fibrillation (V-Fib) without structural cardiac damage. Survival depends on immediate high-quality CPR and rapid AED defibrillation.",
     studyTip: "Commotio Cordis = Sudden blunt blow to the chest (baseball/puck) during the T-wave repolarization window -> Instantaneous V-Fib cardiac arrest. Treat with immediate CPR + AED defibrillation!"
+  },
+  {
+    id: "TRAU-019",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.1,
+    stem: "A patient has several scattered burns on his legs that are difficult to estimate with the Rule of Nines. Using the 'rule of palms,' approximately what percentage of body surface area does the patient's own palm (including fingers) represent?",
+    options: [
+      "About 1%",
+      "About 5%",
+      "About 9%",
+      "About 18%"
+    ],
+    correctIndex: 0,
+    explanation: "The patient's palm (including the fingers) represents roughly 1% of their total body surface area, regardless of age. This 'rule of palms' is useful for estimating small or scattered (irregular) burns. The Rule of Nines is better suited to large burns covering entire body regions.",
+    studyTip: "Rule of palms: patient's palm ≈ 1% TBSA (any age). Use it for small or scattered burns; use the Rule of Nines for large areas."
+  },
+  {
+    id: "TRAU-020",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "A cook spilled boiling water on her forearm. The skin is red, moist, and very painful, and several fluid-filled blisters have formed. How should you classify this burn?",
+    options: [
+      "Superficial (first-degree) burn",
+      "Partial-thickness (second-degree) burn",
+      "Full-thickness (third-degree) burn",
+      "Subdermal (fourth-degree) burn"
+    ],
+    correctIndex: 1,
+    explanation: "Partial-thickness (second-degree) burns involve the epidermis and part of the dermis. They are red, moist, intensely painful, and characterized by blisters. Superficial burns involve only the epidermis and are red and painful without blisters (like a sunburn). Full-thickness burns extend through the dermis and appear white, leathery, or charred, with little or no pain in the burned area because the nerve endings are destroyed.",
+    studyTip: "Superficial = red, painful, no blisters. Partial-thickness = BLISTERS, red, moist, very painful. Full-thickness = white/leathery/charred, painless center."
+  },
+  {
+    id: "TRAU-021",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.2,
+    stem: "You are splinting a suspected closed fracture of the middle of a patient's forearm (radius and ulna). To properly immobilize this injury, the splint should immobilize which structures?",
+    options: [
+      "The fracture site only, so the patient can still bend the wrist and elbow",
+      "The shoulder and the elbow, since the forearm hangs from the upper arm",
+      "The wrist and the elbow, the joints above and below the injury",
+      "The fingers and the wrist, since the hand moves the forearm bones"
+    ],
+    correctIndex: 2,
+    explanation: "When splinting a long-bone fracture, immobilize the joint above and the joint below the injury so that the bone ends cannot move. For a mid-forearm fracture, that means the elbow and wrist. Assess pulse, motor function, and sensation (PMS) distal to the injury before and after splinting.",
+    studyTip: "Long-bone fracture: immobilize the joint ABOVE and BELOW. Joint injury: immobilize the bone above and below. Check distal PMS before and after splinting."
+  },
+  {
+    id: "TRAU-022",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "A factory worker's index finger was completely amputated by a machine. Bleeding from the hand is controlled. How should you care for the amputated finger?",
+    options: [
+      "Place it directly on ice in a cooler so the tissue freezes and is preserved",
+      "Rinse it with hydrogen peroxide and let it air dry before transporting it",
+      "Wrap it in a moist sterile dressing, seal it in a bag, and keep it cool",
+      "Leave it at the scene, since reattachment is not attempted for fingers"
+    ],
+    correctIndex: 2,
+    explanation: "Wrap the amputated part in a sterile dressing moistened with sterile saline (per local protocol), place it in a sealed plastic bag, and keep the bag cool by placing it on or in a container of ice or cold packs—never in direct contact with ice, which causes frostbite and tissue damage. Transport the part with the patient. Fingers are frequently reattached.",
+    studyTip: "Amputated part: moist sterile dressing → sealed plastic bag → keep cool (NOT directly on ice, never frozen) → transport with the patient."
+  },
+  {
+    id: "TRAU-023",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Bleeding & Shock",
+    patientType: "Pediatric",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "A 10-year-old boy was hit in the nose by a soccer ball and has a steady nosebleed. He is alert with no other injuries. How should you position him and control the bleeding?",
+    options: [
+      "Lay him flat on his back and pack both nostrils tightly with gauze",
+      "Tilt his head back and apply an ice pack to the back of his neck",
+      "Have him lie on his side and let the blood drain freely from his nose",
+      "Have him sit, lean forward, and pinch the fleshy part of the nostrils"
+    ],
+    correctIndex: 3,
+    explanation: "For epistaxis, have the patient sit and lean forward, then pinch the soft, fleshy part of the nostrils together firmly for several minutes. Leaning forward keeps blood from running down the throat, where it can be swallowed (causing vomiting) or aspirated. Tilting the head back or lying flat increases these risks. If there is a possible spinal injury, follow spinal precautions and be ready to suction.",
+    studyTip: "Nosebleed: sit up, lean FORWARD, pinch the fleshy part of the nose. Never tilt the head back."
+  },
+  {
+    id: "TRAU-024",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Trauma Triage & Assessment",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "According to the national field triage guidelines for injured patients, which of the following findings by itself indicates the need for transport to the highest-level trauma center available?",
+    options: [
+      "A stab wound to the abdomen in an alert patient with normal vital signs",
+      "An isolated wrist deformity in a 40-year-old who tripped on a curb",
+      "A 2-inch scalp laceration in a 25-year-old who is alert and oriented",
+      "Neck soreness after a low-speed rear-end collision with normal vitals"
+    ],
+    correctIndex: 0,
+    explanation: "Penetrating injury to the head, neck, torso, or proximal extremities is a high-risk ('red') injury pattern that warrants transport to the highest-level trauma center, even when the patient initially looks stable. Penetrating torso wounds can cause severe internal bleeding before vital signs change. Other red criteria include SBP < 90 mmHg (adult), inability to follow commands, abnormal respiratory rate or respiratory distress, chest wall instability, suspected pelvic fracture, two or more proximal long-bone fractures, amputation proximal to the wrist or ankle, and active bleeding requiring a tourniquet.",
+    studyTip: "Field triage 'red' criteria include penetrating injury to the head/neck/torso/proximal extremities, SBP < 90, unable to follow commands, RR < 10 or > 29/respiratory distress, flail chest, pelvic fracture, and amputation above the wrist/ankle."
+  },
+  {
+    id: "TRAU-025",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 33-year-old motorcyclist struck a guardrail. He has severe pelvic pain, his legs are unequal in length, and the pelvis shifts when you gently press on it once. His BP is 88/56 mmHg and HR is 128 beats/min. What is the MOST appropriate management of his pelvis?",
+    options: [
+      "Rock the pelvis repeatedly to confirm the fracture before splinting it",
+      "Apply a traction splint to the shorter leg to realign the pelvic bones",
+      "Apply a pelvic binder centered over the greater trochanters",
+      "Elevate his legs 12 inches and keep his knees flexed during transport"
+    ],
+    correctIndex: 2,
+    explanation: "An unstable pelvic fracture can cause massive internal bleeding into the pelvis and retroperitoneum. A pelvic binder (or sheet) wrapped snugly around the pelvis at the level of the greater trochanters reduces pelvic volume, stabilizes bone fragments, and helps control bleeding. Assess the pelvis only once with gentle pressure—repeated rocking can dislodge clots. Traction splints are contraindicated with pelvic fractures. Treat for shock and transport rapidly to a trauma center.",
+    studyTip: "Unstable pelvis + shock: pelvic binder at the GREATER TROCHANTERS, assess the pelvis only once (no rocking), no traction splint, rapid transport."
+  },
+  {
+    id: "TRAU-026",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "Which of the following patients MOST clearly requires spinal motion restriction?",
+    options: [
+      "An alert, sober 30-year-old who twisted an ankle stepping off a curb",
+      "An alert, sober 25-year-old with no neck pain after a minor fender-bender",
+      "An alert, sober 45-year-old with an isolated finger laceration from a knife",
+      "An intoxicated 52-year-old with neck pain after falling down 8 stairs"
+    ],
+    correctIndex: 3,
+    explanation: "Spinal motion restriction is indicated for patients with a concerning mechanism plus any of the following: midline spinal pain or tenderness, neurologic deficits, altered mental status, intoxication, a distracting injury, or inability to communicate reliably. This patient fell down stairs, is intoxicated (making the exam unreliable), and has neck pain. Alert, sober patients without spinal pain, tenderness, deficits, or distracting injuries generally do not need spinal motion restriction.",
+    studyTip: "Spinal motion restriction indications: midline pain/tenderness, neuro deficit, altered mental status, intoxication, distracting injury, or unreliable exam after a concerning mechanism."
+  },
+  {
+    id: "TRAU-027",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "A 16-year-old football player is lying supine on the field after a hard tackle and complains of neck pain and tingling in his hands. He is breathing adequately and is wearing a well-fitting helmet and shoulder pads. How should you manage his airway access?",
+    options: [
+      "Remove the helmet immediately so you can assess the back of his head",
+      "Leave the helmet on and remove the face mask to gain airway access",
+      "Remove the shoulder pads first, then remove the helmet together with them",
+      "Have him sit up and remove the helmet himself so the neck is not twisted"
+    ],
+    correctIndex: 1,
+    explanation: "When a helmet fits well, the patient's airway is accessible, and he is breathing adequately, leave the helmet in place and remove the face mask (cut or unclip it) to provide airway access. The helmet and shoulder pads together keep the head and spine in neutral alignment; removing only one creates a gap that can flex or extend the neck. Remove the helmet only if it prevents airway management or adequate immobilization, or is loose, and then only with trained personnel, with the shoulder pads per protocol.",
+    studyTip: "Athletic helmet + shoulder pads: leave both on and remove the face mask for airway access. Remove the helmet only if it blocks airway care or is loose."
+  },
+  {
+    id: "TRAU-028",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "The power company confirms that a downed line has been de-energized. A 34-year-old lineman who contacted the line has a small charred wound on his right palm and another on his left heel. He is alert with normal vital signs. Which concern is MOST important?",
+    options: [
+      "Hidden internal tissue damage and cardiac dysrhythmias despite the small wounds",
+      "Infection of the small entrance and exit wounds over the next several days",
+      "Hypothermia from heat loss through the burned skin on the palm and heel",
+      "Inhalation injury to the upper airway from smoke produced by the burns"
+    ],
+    correctIndex: 0,
+    explanation: "Electrical current travels through the body between the entrance and exit wounds and can cause severe damage to muscles, nerves, blood vessels, and organs that is not visible on the skin. Current passing through the chest can cause dysrhythmias and cardiac arrest, even after a delay. Ensure scene safety first, then monitor closely, be prepared to use the AED, care for the wounds, and transport every electrical injury patient for evaluation.",
+    studyTip: "Electrical burns: scene safety first. Small skin wounds can hide massive internal damage. Biggest early threat = cardiac dysrhythmia/arrest. Always transport."
+  },
+  {
+    id: "TRAU-029",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A metal fragment from a grinder has penetrated a worker's right eye and is still embedded in it. How should you manage this injury?",
+    options: [
+      "Carefully remove the fragment, then irrigate the eye with sterile saline",
+      "Apply firm direct pressure over the eye to control any internal bleeding",
+      "Stabilize the object with gauze and a protective cup, and cover both eyes",
+      "Leave both eyes uncovered so the patient can keep watching his surroundings"
+    ],
+    correctIndex: 2,
+    explanation: "Never remove an object impaled in the eye or apply pressure to the globe. Stabilize the object with rolled gauze or dressings and place a protective cup (or similar shield) over it without touching the object. Cover the uninjured eye as well, because the eyes move together (consensual movement); moving the uninjured eye would move the injured one too. Keep the patient calm, and transport with the head elevated.",
+    studyTip: "Impaled object in the eye: stabilize + protective cup, cover BOTH eyes (they move together), no pressure on the globe, never remove it."
+  },
+  {
+    id: "TRAU-030",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.4,
+    stem: "A 79-year-old woman who takes warfarin (a blood thinner) tripped and struck her forehead on a table. She has a small hematoma, is alert and oriented, and has a GCS of 15 and normal vital signs. Why is she considered high risk despite her reassuring exam?",
+    options: [
+      "Elderly patients cannot feel pain, so a serious injury may go unnoticed",
+      "Warfarin causes seizures in elderly patients after any minor head trauma",
+      "Her normal vital signs indicate that she is already in decompensated shock",
+      "Anticoagulants increase the risk of delayed bleeding inside the skull"
+    ],
+    correctIndex: 3,
+    explanation: "Anticoagulants such as warfarin (and newer agents like apixaban or rivaroxaban) impair clotting, so even minor head trauma can cause intracranial bleeding that worsens gradually over hours. Older adults also have brain atrophy that stretches the bridging veins, making subdural hematomas more likely. These patients should be transported for evaluation even with a normal initial exam, and reassessed frequently for changes in mental status.",
+    studyTip: "Older adult on anticoagulants + any head strike = high risk for delayed intracranial bleeding. Transport and reassess mental status frequently."
+  },
+  {
+    id: "TRAU-031",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "Firefighters rescue a 44-year-old man from a burning apartment. He has burns to his face, singed nasal hairs, and soot around his mouth. His voice is becoming hoarse, and he has a brassy cough. He is alert, with RR 24 and SpO2 96%. What is the MOST important concern?",
+    options: [
+      "His SpO2 is reassuring, so his airway can be reassessed at the hospital",
+      "Hoarseness is expected after a fire and will resolve once he is calmed",
+      "Airway swelling from inhalation injury may cause sudden obstruction",
+      "Cool the facial burns with ice for 20 minutes before any airway care"
+    ],
+    correctIndex: 2,
+    explanation: "Facial burns, singed nasal hairs, soot in the mouth, hoarseness, stridor, and a brassy cough are signs of inhalation injury. Heat and toxic smoke cause airway swelling that can progress quickly to complete obstruction. Give high-flow oxygen (which also treats possible carbon monoxide poisoning—SpO2 may be falsely normal), monitor the airway continuously, request ALS early for advanced airway management, and transport rapidly. Never apply ice to burns.",
+    studyTip: "Inhalation injury clues: facial burns, singed hair, soot, hoarseness, stridor, enclosed-space fire. Airway can close rapidly—high-flow O2, early ALS, rapid transport. SpO2 may be falsely normal (CO)."
+  },
+  {
+    id: "TRAU-032",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Chest & Abdominal Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "You sealed a stab wound to a patient's left chest with an occlusive dressing taped on all four sides. Several minutes later, he becomes increasingly short of breath and anxious. Breath sounds are absent on the left, his neck veins are distended, and his BP is falling. What should you do FIRST?",
+    options: [
+      "Lift one corner of the dressing to let trapped air escape",
+      "Apply a second occlusive dressing over the first one",
+      "Place him supine and elevate his legs 12 inches",
+      "Pack the wound tightly with gauze under the dressing"
+    ],
+    correctIndex: 0,
+    explanation: "This patient is developing a tension pneumothorax: air is entering the pleural space but cannot escape, compressing the lung and eventually the heart and great vessels (absent breath sounds, JVD, hypotension, worsening distress). Briefly lift (burp) one corner of the occlusive dressing to release the trapped air, or replace it with a vented chest seal. Then provide high-flow oxygen or BVM ventilations as needed, request ALS for needle decompression, and transport rapidly.",
+    studyTip: "Worsening distress + absent breath sounds + JVD + hypotension after sealing a chest wound = tension pneumothorax → BURP the dressing (lift one corner)."
+  },
+  {
+    id: "TRAU-033",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Bleeding & Shock",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "An 80-year-old man fell down a flight of stairs. He has an obvious deformed femur fracture and pelvic pain. He is anxious and pale with cool, clammy skin, his HR is 74 beats/min, and his BP is 96/70 mmHg. His medications include metoprolol. How should you interpret his presentation?",
+    options: [
+      "His normal heart rate shows that he has not lost a significant amount of blood",
+      "He is probably in shock; metoprolol can block the expected rise in heart rate",
+      "His pale, cool skin is an expected side effect of metoprolol, not a sign of shock",
+      "His blood pressure is normal for his age, so non-emergent transport is reasonable"
+    ],
+    correctIndex: 1,
+    explanation: "Beta blockers such as metoprolol prevent the heart rate from rising in response to blood loss, so an older patient can be in significant shock with a 'normal' heart rate. Pale, cool, clammy skin, anxiety, a narrowed pulse pressure, and a mechanism with two major sources of blood loss (femur and pelvis) indicate shock. In addition, many older adults normally have higher blood pressures, so 96/70 may represent hypotension for him. Treat for shock and transport rapidly to a trauma center.",
+    studyTip: "Beta blockers mask tachycardia in shock. Older patients may be in shock with a 'normal' HR and BP. Trust the skin signs, mental status, and mechanism."
+  },
+  {
+    id: "TRAU-034",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Bleeding & Shock",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A 4-year-old girl fell onto her bicycle handlebars 30 minutes ago. She is quiet and anxious, with pale, cool skin, a capillary refill of 4 seconds, HR 162 beats/min, RR 34 breaths/min, and BP 94/62 mmHg. Her abdomen is tender. What is the BEST interpretation?",
+    options: [
+      "She is stable, because her blood pressure is normal for a 4-year-old",
+      "She is in irreversible shock, so resuscitation efforts are unlikely to help",
+      "Her fast heart rate is from fear and pain and should not cause concern",
+      "She is in compensated shock; her blood pressure will fall only late"
+    ],
+    correctIndex: 3,
+    explanation: "Children compensate for blood loss very effectively by increasing their heart rate and constricting peripheral blood vessels, so blood pressure stays normal until about 25%–30% or more of their blood volume is lost. Tachycardia, delayed capillary refill, cool and pale skin, and anxiety are early signs of compensated shock. Hypotension in a child (below about 70 + [2 × age in years] mmHg systolic—78 mmHg for this child) is a late, ominous sign of decompensation. Treat for shock, keep her warm, and transport rapidly to a pediatric-capable trauma center.",
+    studyTip: "Pediatric shock: tachycardia + delayed cap refill + cool skin come FIRST. Hypotension is LATE. Minimum SBP (1–10 yrs) ≈ 70 + (2 × age)."
+  },
+  {
+    id: "TRAU-035",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Bleeding & Shock",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.2,
+    stem: "You are the first to reach a 27-year-old man who crashed his motorcycle. Bright red blood is spurting from a deep wound on his upper thigh and pooling rapidly. He is unresponsive with snoring respirations. Your partner is still retrieving equipment. What should you do FIRST?",
+    options: [
+      "Open his airway with a jaw-thrust and hold it until your partner returns",
+      "Apply a tourniquet high and tight on the thigh above the bleeding wound",
+      "Check for a carotid pulse for up to 10 seconds before any intervention",
+      "Apply a cervical collar, then begin assisting his ventilations with a BVM"
+    ],
+    correctIndex: 1,
+    explanation: "Massive external hemorrhage can cause death within minutes, faster than a partially obstructed airway. Current trauma care places control of life-threatening external bleeding first ('X' in XABCDE) before airway and breathing. Apply a tourniquet high and tight on the thigh (or direct pressure if a tourniquet is not immediately available), then immediately open the airway with a jaw-thrust and manage breathing. With adequate help, these steps are performed simultaneously.",
+    studyTip: "Trauma primary survey: X-A-B-C-D-E. Life-threatening eXternal hemorrhage first, then Airway, Breathing, Circulation. Spurting bleeding kills in minutes."
+  },
+  {
+    id: "TRAU-036",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.1,
+    stem: "You are about to splint a painful, deformed lower leg on a 35-year-old woman who fell while hiking. What should you assess both BEFORE and AFTER applying the splint?",
+    options: [
+      "Pulse, motor function, and sensation below the injury",
+      "Blood pressure in both arms",
+      "Range of motion by asking her to bend the knee and ankle",
+      "Pupil size and reaction to light"
+    ],
+    correctIndex: 0,
+    explanation: "Check distal pulse, motor function, and sensation (PMS, sometimes called CMS—circulation, motor, sensation) before and after splinting, and document both. A splint applied too tightly, or movement of bone ends, can compress nerves and blood vessels. If PMS worsens after splinting, loosen or adjust the splint. Never ask the patient to move an injured joint to test range of motion.",
+    studyTip: "Splinting: check distal PMS before and after, immobilize the joints above and below a bone injury (or the bones above and below a joint injury), and pad voids."
+  },
+  {
+    id: "TRAU-037",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Bleeding & Shock",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.2,
+    stem: "A 27-year-old man cut his thigh on a piece of sheet metal. Dark red blood is flowing steadily from the wound, but it is not spurting. Which type of bleeding is this MOST likely to be?",
+    options: [
+      "Arterial bleeding",
+      "Capillary bleeding",
+      "Venous bleeding",
+      "Internal bleeding"
+    ],
+    correctIndex: 2,
+    explanation: "Venous bleeding is dark red (low in oxygen) and flows steadily, because veins are under lower pressure than arteries. Arterial bleeding is bright red and spurts with each heartbeat, and it is the hardest to control. Capillary bleeding is a slow ooze, as in an abrasion. Most venous bleeding can be controlled with firm direct pressure, although large veins can bleed heavily.",
+    studyTip: "Arterial = bright red, spurting. Venous = dark red, steady flow. Capillary = slow ooze. Control with direct pressure first; tourniquet for life-threatening extremity bleeding."
+  },
+  {
+    id: "TRAU-038",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "A 30-year-old man spilled boiling water on his forearm 2 minutes ago. The skin is red and painful, with a few small blisters. What is the BEST initial treatment?",
+    options: [
+      "Apply ice directly to the burn until the pain has completely stopped",
+      "Cover the burn with butter or ointment to seal in moisture",
+      "Pop the blisters with a sterile needle to relieve the pressure",
+      "Cool it with cool running water, then apply a dry, sterile dressing"
+    ],
+    correctIndex: 3,
+    explanation: "The first step in burn care is to stop the burning process. For a small burn, cool the area with cool or room-temperature water for several minutes, then cover it with a dry, sterile dressing. Ice causes further tissue damage (frostbite) and can cause hypothermia. Butter and ointments trap heat and increase the risk of infection. Blisters protect the underlying tissue, so leave them intact. Large burns should not be cooled for long, because the patient can become hypothermic.",
+    studyTip: "Burns: stop the burning, remove jewelry, cool small burns briefly (no ice), cover with dry sterile dressings, keep the patient warm, and do not pop blisters."
+  },
+  {
+    id: "TRAU-039",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "A 22-year-old woman caught her hand in a machine. A flap of skin on the back of her hand has been torn loose but is still attached at one side. What type of soft-tissue injury is this?",
+    options: [
+      "An abrasion",
+      "An avulsion",
+      "A contusion",
+      "A puncture"
+    ],
+    correctIndex: 1,
+    explanation: "An avulsion is an injury in which a flap of skin or tissue is torn loose or pulled off completely. If the flap is still attached, gently fold it back into its normal position if possible, control bleeding, and cover it with a moist or dry sterile dressing per protocol. An abrasion is a scrape of the outer skin layer, a contusion is a bruise under intact skin, and a puncture is a deep, narrow wound from a pointed object.",
+    studyTip: "Abrasion = scrape. Laceration = cut. Avulsion = flap torn loose. Puncture = deep, narrow hole. Contusion = bruise (closed injury)."
+  },
+  {
+    id: "TRAU-040",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.6,
+    stem: "A 19-year-old football player is holding his right arm away from his body after a hard tackle. His shoulder looks squared off and deformed, and he cannot move it. He has a good radial pulse and normal sensation in his hand. How should you splint this injury?",
+    options: [
+      "Pull firmly on the arm to put the shoulder back in place, then apply a sling",
+      "Straighten his arm down against his side and secure it there with tape",
+      "Splint it as found, padding the space between his arm and body",
+      "Leave it unsplinted so the hospital staff can see the deformity"
+    ],
+    correctIndex: 2,
+    explanation: "This is most likely an anterior shoulder dislocation. EMTs should not try to reduce (relocate) a dislocation; doing so can damage nerves and blood vessels. Splint the shoulder in the position of comfort or the position found, filling the gap between the arm and chest with a pillow or blanket, then secure it with a sling and swathe. Recheck distal pulse, motor function, and sensation before and after splinting.",
+    studyTip: "Joint injuries (dislocations): splint in the position found, immobilize the bones above and below the joint, and do not attempt reduction."
+  },
+  {
+    id: "TRAU-041",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Bleeding & Shock",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "A 31-year-old man has a deep stab wound in his left groin with heavy bleeding that continues despite firm direct pressure. The wound is too close to the body for a tourniquet. What should you do NEXT?",
+    options: [
+      "Pack the wound with hemostatic gauze and hold firm pressure",
+      "Elevate the leg and place a cold pack over the groin wound",
+      "Apply a tourniquet on the lower leg, just below the knee",
+      "Remove the blood-soaked dressing and apply a fresh, thinner dressing"
+    ],
+    correctIndex: 0,
+    explanation: "Junctional areas such as the groin, armpit, and neck cannot be controlled with a standard limb tourniquet. For heavy bleeding in these areas, pack the wound cavity tightly with hemostatic (or plain) gauze, directly on the source of bleeding, and hold firm direct pressure for at least 3 minutes (or per product instructions). A tourniquet below the wound will not help. Never remove a blood-soaked dressing, because doing so disrupts clots; add more dressings and continue pressure.",
+    studyTip: "Junctional bleeding (groin, axilla, neck): wound packing with hemostatic gauze + firm pressure for at least 3 minutes. Tourniquets work only on limbs."
+  },
+  {
+    id: "TRAU-042",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Chest & Abdominal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "A 58-year-old man fell against a table and has painful, tender ribs on his right side. He is taking shallow breaths because of the pain. Breath sounds are equal, and his SpO2 is 95%. Which care is MOST appropriate?",
+    options: [
+      "Wrap tape tightly around his whole chest to keep the ribs from moving",
+      "Have him splint the ribs with a pillow and encourage deep breaths",
+      "Apply an occlusive dressing over the injured ribs and transport",
+      "Lay him flat on the injured side and have him hold his breath when it hurts"
+    ],
+    correctIndex: 1,
+    explanation: "Rib fractures are painful, and patients often take shallow breaths, which can lead to collapsed areas of lung and pneumonia. Supporting the area with a pillow or a sling and swathe can reduce pain while still allowing the chest to expand. Avoid wrapping tape or straps tightly around the chest, because that restricts breathing. Give oxygen as needed, monitor for signs of pneumothorax, and transport. An occlusive dressing is used for open chest wounds, not closed rib fractures.",
+    studyTip: "Rib fractures: support with a pillow or sling and swathe, never tape circumferentially, encourage deep breaths, and watch for pneumothorax or flail chest."
+  },
+  {
+    id: "TRAU-043",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "A 15-year-old soccer player collided head-to-head with another player and was 'out' for a few seconds. He is now alert but keeps asking, 'What happened? Did we win?' every few minutes, and he has a headache and nausea. His vital signs are normal. What is the MOST appropriate action?",
+    options: [
+      "Let him return to the game if he can jog on the sideline without dizziness",
+      "Give him a sports drink and have him rest on the bench for the half",
+      "Release him to his parents, because his vital signs are within normal limits",
+      "Keep him out of play, monitor him, and transport him for evaluation"
+    ],
+    correctIndex: 3,
+    explanation: "Brief loss of consciousness, repeated questioning (amnesia), headache, and nausea are signs of a concussion, a traumatic brain injury. These findings can also be early signs of bleeding in the skull. He must not return to play the same day. Maintain spinal precautions as indicated by your protocol, monitor his mental status for any decline, watch for vomiting, and transport for evaluation.",
+    studyTip: "Concussion signs: confusion, amnesia, repeated questions, headache, nausea, dizziness. No same-day return to play; monitor for worsening mental status."
+  },
+  {
+    id: "TRAU-044",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "An 84-year-old woman slipped on her bathroom floor and cannot get up. Her left leg is shortened and rotated outward, and she has severe pain in her left groin. Distal pulses are present. What is the MOST appropriate way to immobilize this injury?",
+    options: [
+      "Apply a traction splint to the left leg to reduce pain and bleeding",
+      "Straighten and rotate the leg back to normal, then apply a board splint",
+      "Pad the hip, secure her legs together, and move her with a scoop stretcher",
+      "Have her stand and pivot to the stretcher to limit movement of the hip"
+    ],
+    correctIndex: 2,
+    explanation: "A shortened, externally rotated leg after a fall in an older adult suggests a hip (proximal femur) fracture. Traction splints are not used for hip fractures, because the hip joint is involved. Immobilize the patient by padding around the hip, placing pillows between the legs and securing them together, and moving her with a scoop stretcher or long board onto a padded stretcher. Do not try to straighten the leg. Also consider why she fell—syncope, stroke, or dehydration may be the underlying cause.",
+    studyTip: "Hip fracture: shortened, externally rotated leg. Pad and immobilize with a scoop stretcher or long board—no traction splint. Ask why the patient fell."
+  },
+  {
+    id: "TRAU-045",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Trauma Triage & Assessment",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "An unrestrained driver struck a tree head-on at moderate speed. He is alert and reports only mild chest soreness. You notice the steering wheel is bent and the windshield is intact. Which injuries should you MOST strongly suspect based on this mechanism?",
+    options: [
+      "Chest and upper abdominal injuries, such as rib, lung, heart, or liver injury",
+      "Isolated lower leg injuries from his feet striking the brake pedal",
+      "Only minor injuries, because the windshield is not cracked or starred",
+      "Burns and abrasions to his hands and face from the airbag deploying"
+    ],
+    correctIndex: 0,
+    explanation: "A bent steering wheel indicates that the driver's chest or upper abdomen struck it with significant force (the 'up-and-over' or 'down-and-under' pathway). Suspect rib fractures, pulmonary and cardiac contusions, pneumothorax, aortic injury, and liver or spleen injury, even if the patient feels fine at first. An intact windshield makes head strike less likely but does not rule out serious chest or abdominal trauma. Reassess often, and consider a trauma center.",
+    studyTip: "Read the vehicle: bent steering wheel = chest/abdominal injury; starred windshield = head/neck injury; dashboard knee imprints = knee, femur, hip injury."
+  },
+  {
+    id: "TRAU-046",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.2,
+    stem: "A 40-year-old construction worker fell from a ladder. The end of a broken bone is protruding through the skin of his lower leg, and there is moderate bleeding. What is the MOST appropriate care for this injury?",
+    options: [
+      "Push the bone back under the skin, then dress the wound and splint",
+      "Leave the wound uncovered so the hospital staff can see the bone",
+      "Apply a tourniquet above the wound first, regardless of the bleeding",
+      "Control bleeding, cover with a sterile dressing, and splint as found"
+    ],
+    correctIndex: 3,
+    explanation: "This is an open fracture. Control bleeding with gentle pressure around (not on) the bone end, cover the wound and bone with a sterile dressing to reduce contamination, and splint the extremity without trying to push the bone back in—doing so drags contamination into the wound. If the bone end slips back in during splinting, report it to the receiving facility. A tourniquet is used only if bleeding is life-threatening and not controlled by pressure.",
+    studyTip: "Open fracture: control bleeding, cover with a sterile dressing, never push bone ends back, splint, and check distal PMS before and after."
+  },
+  {
+    id: "TRAU-047",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "A 36-year-old worker was splashed in both eyes with a liquid cleaning chemical. He is in severe pain and cannot open his eyes. After ensuring scene safety, what is the MOST important treatment?",
+    options: [
+      "Patch both eyes tightly to keep him from rubbing them, then transport",
+      "Flush both eyes with water or saline for at least 20 minutes",
+      "Flush the eyes for about 1 minute, then stop once the pain improves",
+      "Rinse the eyes with a mild neutralizing solution such as vinegar"
+    ],
+    correctIndex: 1,
+    explanation: "A chemical splash to the eye can cause permanent damage within minutes. Begin irrigating immediately with large amounts of clean water or normal saline, holding the eyelids open and flowing from the inside corner (near the nose) toward the outside so the chemical does not run into the other eye. Continue for at least 20 minutes—longer for alkalis—and continue during transport. Do not use neutralizing agents, which cause additional chemical reactions and heat.",
+    studyTip: "Chemical in the eye: irrigate immediately and continuously for at least 20 minutes (longer for alkalis), from the inner corner outward. No neutralizers."
+  },
+  {
+    id: "TRAU-048",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.4,
+    stem: "A 26-year-old man was slashed across the side of his neck with a knife. Dark red blood is flowing steadily from the wound, and you hear a faint sucking sound. What is the BEST way to dress this wound?",
+    options: [
+      "Wrap a pressure bandage tightly around the neck to control the bleeding",
+      "Apply a tourniquet loosely around the neck, then pad it with gauze",
+      "Pack the wound with dry gauze and leave it otherwise uncovered",
+      "Apply an occlusive dressing and direct pressure to one side only"
+    ],
+    correctIndex: 3,
+    explanation: "An open wound to a large neck vein can draw air into the vessel when the patient inhales, causing an air embolism that can travel to the heart and lungs and be fatal. Cover the wound immediately with a gloved hand, then an occlusive dressing, and apply direct pressure to control bleeding. Never wrap a bandage around the neck or compress both carotid arteries, because doing so can cut off blood flow to the brain or obstruct the airway.",
+    studyTip: "Open neck wound: occlusive dressing + direct pressure (one side only) to prevent air embolism and control bleeding. Never wrap circumferentially."
+  },
+  {
+    id: "TRAU-049",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "A 45-year-old man has been pinned under a collapsed concrete wall by both legs for about 4 hours. He is alert, with HR 108 beats/min and BP 112/70 mmHg. Rescuers are preparing to lift the wall. What is the MOST important concern as the weight is removed?",
+    options: [
+      "Potassium and toxins from crushed muscle can enter the blood and stop the heart",
+      "His legs may swell quickly, so he should be walked to the ambulance right away",
+      "There is no special concern, because his vital signs are currently stable",
+      "The main danger is hypothermia from lying on the cold concrete for hours"
+    ],
+    correctIndex: 0,
+    explanation: "When muscle is crushed for a prolonged period (generally more than an hour or two), damaged cells release potassium, acids, and myoglobin into the trapped tissue. When the pressure is released, these substances rush into the circulation (crush syndrome), which can cause sudden cardiac dysrhythmias or cardiac arrest, shock, and kidney failure. Request ALS before the weight is removed if possible, give oxygen, keep the patient warm, apply AED pads per protocol, and be prepared for cardiac arrest.",
+    studyTip: "Crush syndrome: prolonged entrapment → release of potassium and toxins when freed → dysrhythmias and kidney failure. Get ALS on scene before release when possible."
+  },
+  {
+    id: "TRAU-050",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Trauma Triage & Assessment",
+    patientType: "Obstetric",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "A 29-year-old woman who is 34 weeks pregnant was a restrained driver in a moderate-speed collision. She has only a seat belt abrasion across her lower abdomen and mild cramping. Her HR is 96 beats/min and BP is 116/72 mmHg. She wants to go home. Why is transport especially important?",
+    options: [
+      "Pregnant women are not legally allowed to refuse EMS care or transport",
+      "Seat belts do not injure the abdomen, so the abrasion suggests abuse",
+      "Her normal vital signs prove the fetus is fine, but the law requires transport",
+      "Abruption can develop later, and her extra blood volume can hide shock"
+    ],
+    correctIndex: 3,
+    explanation: "In late pregnancy, a woman's blood volume increases by up to about 50% and her resting heart rate rises, so she can lose a large amount of blood before her vital signs change. The body also protects the mother by reducing blood flow to the uterus, so the fetus may be in distress while she appears stable. Blunt abdominal trauma can cause placental abruption, sometimes hours later. Transport her on her left side (or with the backboard tilted left) and monitor closely. A competent adult can refuse care, but explain these risks clearly.",
+    studyTip: "Pregnant trauma: the fetus is in trouble before the mother shows shock. Transport, tilt or position to the left after 20 weeks, and watch for abruption (pain, cramping, bleeding)."
+  },
+  {
+    id: "TRAU-051",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.2,
+    stem: "A 33-year-old man has a severe head injury after a fall from a roof. He has a GCS of 7. Besides keeping his airway open, which TWO problems have the GREATEST impact on worsening his brain injury during your care?",
+    options: [
+      "Mild pain and anxiety from the fall",
+      "Low oxygen and low blood pressure",
+      "High blood sugar and a mild fever",
+      "A slow heart rate and high blood pressure"
+    ],
+    correctIndex: 1,
+    explanation: "After a traumatic brain injury, the injured brain is very sensitive to low oxygen and low blood flow. Even a single episode of hypoxia (SpO2 below 90%) or hypotension (systolic BP below 90 mmHg in adults) is associated with a much higher risk of death and disability. Keep SpO2 at 94% or above, ventilate at a normal rate (avoid routine hyperventilation), treat shock, and transport rapidly to a trauma center. A slow heart rate with high blood pressure suggests rising pressure in the skull, but it is a sign rather than a cause of secondary injury.",
+    studyTip: "Traumatic brain injury: prevent hypoxia (keep SpO2 at 94% or higher) and hypotension (SBP at 90 or higher, adult). Avoid hyperventilation unless your protocol directs it for herniation."
+  },
+  {
+    id: "TRAU-052",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Chest & Abdominal Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A 42-year-old factory worker was about 30 feet from an industrial explosion. He has ringing in his ears, is coughing up a small amount of blood, and is short of breath, although he has no visible wounds. Which type of blast injury BEST explains these findings?",
+    options: [
+      "Secondary blast injury from flying debris and shrapnel",
+      "Tertiary blast injury from being thrown against a wall",
+      "Primary blast injury from the pressure wave itself",
+      "Quaternary blast injury from heat and toxic smoke"
+    ],
+    correctIndex: 2,
+    explanation: "Primary blast injuries are caused by the pressure wave itself, which damages hollow, air-filled organs: the ears (ruptured eardrums, ringing), lungs (blast lung, which can cause coughing up blood, shortness of breath, and pneumothorax), and intestines. These injuries may have no visible external signs. Secondary injuries come from flying debris, tertiary injuries from the body being thrown, and quaternary injuries include burns and inhalation. Give oxygen, monitor his breathing closely, and transport.",
+    studyTip: "Blast injuries: primary = pressure wave (ears, lungs, bowel); secondary = shrapnel/debris; tertiary = body thrown; quaternary = burns, crush, inhalation."
+  },
+  {
+    id: "TRAU-053",
+    source: "Claude",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "A 2-year-old boy pulled a pot of boiling water off the stove. He has partial-thickness burns covering his entire head, his entire front torso (chest and abdomen), and his entire right leg (front and back). Using the pediatric Rule of Nines, approximately what percentage of his body surface area is burned?",
+    options: [
+      "36%",
+      "41%",
+      "50%",
+      "59%"
+    ],
+    correctIndex: 2,
+    explanation: "In the pediatric Rule of Nines, a small child's head is proportionally larger and each leg is proportionally smaller than an adult's. The head and neck count for 18%, the front of the torso 18%, the back of the torso 18%, each arm 9%, and each leg 14%. This child's burns cover the head (18%) + front torso (18%) + entire right leg (14%) = 50%. A burn of this size in a child is critical and requires transport to a burn center, along with careful prevention of hypothermia.",
+    studyTip: "Pediatric Rule of Nines: head 18%, each arm 9%, front torso 18%, back torso 18%, each leg 14%. Adult: head 9%, each leg 18%."
   }
 );

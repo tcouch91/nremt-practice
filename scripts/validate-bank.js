@@ -19,12 +19,16 @@ global.localStorage = {
   }
 };
 
-require(path.join(rootDir, "data/questions-airway.js"));
-require(path.join(rootDir, "data/questions-cardiology.js"));
-require(path.join(rootDir, "data/questions-trauma.js"));
-require(path.join(rootDir, "data/questions-medical.js"));
-require(path.join(rootDir, "data/questions-operations.js"));
-require(path.join(rootDir, "data/questions-custom.js"));
+// Load exactly the question files index.html loads, so the two can never drift apart.
+const indexHtml = fs.readFileSync(path.join(rootDir, "index.html"), "utf8");
+const dataFiles = [...indexHtml.matchAll(/<script src="(data\/[^"]+\.js)"/g)].map((m) => m[1]);
+const unloaded = fs
+  .readdirSync(path.join(rootDir, "data"))
+  .filter((f) => f.endsWith(".js") && !dataFiles.includes(`data/${f}`));
+if (unloaded.length > 0) {
+  throw new Error(`Question files not loaded by index.html: ${unloaded.join(", ")}`);
+}
+dataFiles.forEach((f) => require(path.join(rootDir, f)));
 require(path.join(rootDir, "js/cat-engine.js"));
 
 const questions = window.NREMT_QUESTIONS;
