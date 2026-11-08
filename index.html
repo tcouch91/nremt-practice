@@ -2,18 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NREMT EMT Practice Exam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#003366" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="NREMT Prep" />
+  <title>Nate's NREMT EMT Practice &amp; Momentum Hub</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body data-view="lobby">
   <!-- ===================== TOP HEADER ===================== -->
   <header class="vue-header">
     <div class="vue-header-left">
       <div class="nremt-star-badge" aria-hidden="true">✚</div>
       <div>
-        <div class="vue-exam-title">EMT Cognitive Exam — Adaptive Practice</div>
-        <div class="vue-candidate-subtitle">Unofficial study tool • 35-question practice exam</div>
+        <div class="vue-exam-title">EMT Cognitive Exam — Adaptive Practice for Nate</div>
+        <div class="vue-candidate-subtitle">400-question adaptive study bank • Built for Nate's NREMT prep</div>
       </div>
     </div>
     <div class="vue-header-right">
@@ -24,8 +28,8 @@
         </div>
         <div id="vue-question-counter" class="vue-question-counter">Question 1 of 35</div>
       </div>
-      <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;">
-        <span>Display</span>
+      <label class="vue-display-picker" style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;">
+        <span class="lbl-long">Display</span>
         <select id="select-color-scheme" class="vue-tool-select" aria-label="Color scheme">
           <option value="default">Standard</option>
           <option value="high-contrast">High contrast</option>
@@ -38,21 +42,96 @@
   <!-- Exam-only toolbar -->
   <div id="vue-subbar-exam-tools" class="vue-subbar hidden">
     <div class="vue-subbar-left">
+      <button type="button" id="btn-toggle-focus-stem" class="vue-tool-btn" title="Highlight vital signs, ages, and key question words to make reading easier">🎯 <span class="lbl-long">Focus Highlighter:</span><span class="lbl-short">Highlight</span> <span id="focus-stem-state">Off</span></button>
+      <button type="button" id="btn-exam-breather" class="vue-tool-btn vue-tool-btn-calm" title="Pause the clock for a quick breather if your focus starts drifting">🧘 <span class="lbl-long">Take a 60s Breather (Pause)</span><span class="lbl-short">Breather</span></button>
+      <button type="button" id="btn-exam-duty-pause" class="vue-tool-btn vue-tool-btn-fire" title="Station tones or emergency call? Freeze the clock and safely save your exam until you return from your run">🚨 <span class="lbl-long">Duty Call (Extended Pause)</span><span class="lbl-short">Duty Pause</span></button>
       <button type="button" id="btn-toggle-cat-hud" class="vue-tool-btn">Hide Adaptive Monitor</button>
     </div>
     <div class="vue-subbar-right">
-      <span style="font-size:0.8rem;">Right-click an answer (or use ✂ Strike) to cross it out</span>
+      <span class="hint-pointer" style="font-size:0.8rem;">Right-click an answer (or use ✂ Strike) to cross it out</span>
+      <span class="hint-touch" style="font-size:0.8rem;">Tap ✂ (or long-press an answer) to cross it out</span>
     </div>
   </div>
 
   <main class="main-container">
     <!-- ===================== VIEW 1: LOBBY ===================== -->
     <section id="view-lobby">
+      <!-- IN-PROGRESS / DUTY PAUSED SESSION RECOVERY BANNER (Shown if Nate paused or closed the tab during a call) -->
+      <div id="nate-duty-paused-banner" class="nate-duty-paused-banner hidden">
+        <div class="nate-duty-banner-left">
+          <div class="nate-duty-icon">🚒</div>
+          <div>
+            <div class="nate-duty-title">In-Progress Exam Paused (Duty Call Active)</div>
+            <div id="nate-duty-desc" class="nate-duty-desc">
+              Exam paused with questions saved. Your progress is locked in and waiting for you!
+            </div>
+          </div>
+        </div>
+        <div class="nate-duty-banner-actions">
+          <button type="button" id="btn-duty-resume" class="btn-duty-resume">Resume Exam Now ▶</button>
+          <button type="button" id="btn-duty-finish-early" class="btn-vue-nav btn-vue-secondary">Score What You Finished</button>
+          <button type="button" id="btn-duty-discard" class="btn-tiny-link" style="color:var(--vue-text-muted);">Discard</button>
+        </div>
+      </div>
+
+      <!-- NATE'S PERSONAL ENCOURAGEMENT & CUMULATIVE PROGRESS HUB -->
+      <div id="nate-coach-card" class="nate-coach-card">
+        <div class="nate-coach-top">
+          <div class="nate-coach-message-col">
+            <div class="nate-coach-eyebrow">
+              <span class="nate-for-badge">FOR NATE • PROGRESS OVER PERFECTION</span>
+              <span id="nate-rank-badge" class="nate-rank-pill">🩺 EMT Candidate</span>
+              <button type="button" id="btn-nate-new-quote" class="btn-nate-quote" title="Get another encouraging reminder">New Pep Talk ↻</button>
+            </div>
+            <div id="nate-coach-message" class="nate-coach-quote"></div>
+          </div>
+          <div class="nate-rank-ladder-box">
+            <div class="nate-rank-header">
+              <span>Cumulative Mastery Rank</span>
+              <span id="nate-rank-next-label">15 mastered to First Responder</span>
+            </div>
+            <div class="nate-rank-bar-track">
+              <div id="nate-rank-progress-fill" class="nate-rank-bar-fill" style="width:0%;"></div>
+            </div>
+            <div class="nate-kpi-mini-grid">
+              <div class="nate-kpi-mini">
+                <div class="nate-kpi-mini-val" id="nate-stat-total-reps">0</div>
+                <div class="nate-kpi-mini-lbl">Total Reps Done</div>
+              </div>
+              <div class="nate-kpi-mini">
+                <div class="nate-kpi-mini-val" id="nate-stat-explored">0 / 400</div>
+                <div class="nate-kpi-mini-lbl">Bank Unlocked</div>
+              </div>
+              <div class="nate-kpi-mini">
+                <div class="nate-kpi-mini-val" id="nate-stat-mastered">0</div>
+                <div class="nate-kpi-mini-lbl">Mastered (✓)</div>
+              </div>
+              <div class="nate-kpi-mini">
+                <div class="nate-kpi-mini-val" id="nate-stat-best">—</div>
+                <div class="nate-kpi-mini-lbl">Personal Best</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nate-mastery-section">
+          <div class="nate-mastery-header">
+            <strong>Your Permanent 400-Question Mastery Bank (Only Goes Up!)</strong>
+            <span id="nate-mastery-caption" class="nate-mastery-caption">Every question you answer moves this bar forward — even a 10-question sprint.</span>
+          </div>
+          <div class="nate-mastery-bar-outer" title="Green = Answered Correctly (Mastered) • Blue = Explored &amp; Learning">
+            <div id="nate-mastery-bar-mastered" class="nate-mastery-bar-mastered" style="width:0%;"></div>
+            <div id="nate-mastery-bar-learning" class="nate-mastery-bar-learning" style="width:0%;"></div>
+          </div>
+          <div id="nate-domain-mastery-strip" class="nate-domain-mastery-strip"></div>
+        </div>
+      </div>
+
       <div class="lobby-hero">
         <div>
           <h1>EMT Cognitive Exam Practice</h1>
           <p>
-            A 35-question computer-adaptive practice exam modeled on the NREMT EMT blueprint. Difficulty
+            A computer-adaptive practice exam modeled on the NREMT EMT blueprint. Difficulty
             adjusts after every answer, unseen questions are prioritized on each new attempt, and you get a
             domain-by-domain study report at the end.
           </p>
@@ -62,12 +141,12 @@
               <div class="spec-value" id="lobby-bank-total">— Questions</div>
             </div>
             <div class="spec-item">
-              <div class="spec-label">Exam Length</div>
-              <div class="spec-value">35 Questions</div>
+              <div class="spec-label">Exam Modes</div>
+              <div class="spec-value">35 Qs or 10-Q Sprint</div>
             </div>
             <div class="spec-item">
               <div class="spec-label">Time Limit</div>
-              <div class="spec-value">42 Minutes</div>
+              <div class="spec-value">42 Min / 12 Min</div>
             </div>
             <div class="spec-item">
               <div class="spec-label">Practice Pass Mark</div>
@@ -76,14 +155,15 @@
           </div>
         </div>
         <div class="lobby-cta-card">
-          <h2>Ready to begin?</h2>
+          <h2>Choose Your Pace Today, Nate</h2>
           <ul>
             <li>Five domains weighted to the EMT blueprint</li>
-            <li>Forward-only: you cannot go back to a question</li>
-            <li>Every question must be answered to continue</li>
-            <li>Full rationale and study tips after the exam</li>
+            <li>No penalty for learning — missed items become study pearls</li>
+            <li>Pause anytime with the 60-second Breather tool</li>
+            <li>Every single question counts toward your 400-bank mastery</li>
           </ul>
-          <button type="button" id="btn-start-exam" class="btn-primary-launch">Start Practice Exam ▶</button>
+          <button type="button" id="btn-start-exam" class="btn-primary-launch">Start 35-Question Practice Exam (42m) ▶</button>
+          <button type="button" id="btn-start-sprint" class="btn-sprint-launch" title="Low-friction 10-question adaptive round when 35 questions feels like too much">⚡ Quick 10-Question Focus Sprint (~12m)</button>
           <div class="lobby-options-row">
             <label>
               <input type="checkbox" id="chk-live-cat-hud" checked />
@@ -125,7 +205,7 @@
 
         <div class="panel-card">
           <div class="panel-card-header">
-            <h3>Past Attempts</h3>
+            <h3>Past Attempts &amp; Sprints</h3>
           </div>
           <div id="past-attempts-container" class="attempts-list"></div>
         </div>
@@ -139,6 +219,7 @@
           <div id="exam-progress-fill" class="exam-progress-fill" style="width:0%;"></div>
         </div>
         <div class="exam-content-area">
+          <div id="nate-exam-checkin" class="nate-exam-checkin"></div>
           <div class="exam-question-meta">
             <div id="exam-meta-left"></div>
             <div id="cat-live-hud" class="cat-live-pill"></div>
@@ -148,7 +229,7 @@
         </div>
         <div class="vue-footer">
           <div class="vue-footer-left">
-            <button type="button" id="btn-exam-abort" class="btn-vue-nav btn-vue-secondary">End Exam</button>
+            <button type="button" id="btn-exam-abort" class="btn-vue-nav btn-vue-secondary">End &amp; Score Early</button>
             <button type="button" id="btn-exam-help" class="btn-vue-nav btn-vue-secondary">Help</button>
           </div>
           <button type="button" id="btn-exam-next" class="btn-vue-nav">Next &#9654;</button>
@@ -179,6 +260,9 @@
           <div class="scale-labels"><span>100</span><span>1500</span></div>
         </div>
       </div>
+
+      <!-- NATE'S PERSONAL POST-SHIFT DEBRIEF & GROWTH CARD -->
+      <div id="nate-results-coaching" class="nate-results-coaching"></div>
 
       <div id="report-kpi-grid" class="kpi-grid"></div>
 
@@ -227,14 +311,15 @@
       </div>
 
       <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0;">
-        <button type="button" id="btn-retake-exam" class="btn-primary-launch">Take Another Exam ▶</button>
-        <button type="button" id="btn-back-lobby" class="btn-vue-nav btn-vue-secondary">Back to Dashboard</button>
+        <button type="button" id="btn-retake-exam" class="btn-primary-launch">Start 35-Question Exam ▶</button>
+        <button type="button" id="btn-retake-sprint" class="btn-sprint-launch" style="width:auto;">⚡ Quick 10-Question Sprint</button>
+        <button type="button" id="btn-back-lobby" class="btn-vue-nav btn-vue-secondary" style="background:var(--vue-navy);color:#fff;">Back to Dashboard</button>
       </div>
     </section>
   </main>
 
   <p class="app-disclaimer">
-    Unofficial practice tool. Not affiliated with or endorsed by the National Registry of EMTs (NREMT) or Pearson VUE.
+    Unofficial practice tool built for Nate. Not affiliated with or endorsed by the National Registry of EMTs (NREMT) or Pearson VUE.
     The scaled score and pass/fail estimate are approximations, not predictions of your actual result.
     Always follow your local protocols and current course material.
   </p>

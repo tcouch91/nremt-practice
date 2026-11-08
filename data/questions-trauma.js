@@ -1016,3 +1016,371 @@ window.NREMT_QUESTIONS.push(
     studyTip: "Pediatric Rule of Nines: head 18%, each arm 9%, front torso 18%, back torso 18%, each leg 14%. Adult: head 9%, each leg 18%."
   }
 );
+
+
+// ============================================================================
+// Batch 3: Additional 19 Trauma Questions (TRAU-054 to TRAU-072)
+// ============================================================================
+window.NREMT_QUESTIONS.push(
+  {
+    id: "TRAU-054",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Bleeding & Shock",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "A 14-year-old skateboarder scraped both knees across rough asphalt. Blood is oozing slowly and evenly from the raw skin surface without spurting or dark pooling. Which type of bleeding is this?",
+    options: [
+      "Arterial hemorrhage",
+      "Venous hemorrhage",
+      "Capillary bleeding",
+      "Junctional hemorrhage"
+    ],
+    correctIndex: 2,
+    explanation: "Capillary bleeding is characterized by slow, even oozing of bright-to-medium red blood from damaged superficial capillary beds (typical of abrasions and minor scrapes). It generally clots spontaneously or with gentle direct pressure and a sterile dressing. Arterial bleeding spurts bright red with each heartbeat, while venous bleeding flows steadily and is dark red.",
+    studyTip: "Bleeding types: Arterial = bright red, spurting with pulse. Venous = dark red, steady flow. Capillary = slow, even oozing from abrasions."
+  },
+  {
+    id: "TRAU-055",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "You are assessing a foundry worker whose forearm was splashed with molten metal. The center of the burn is dry, leathery, and pearly white, and the patient states he feels no pain when you touch the center of the lesion, though the red edges hurt intensely. What depth of burn is at the center?",
+    options: [
+      "Superficial (first-degree) burn",
+      "Superficial partial-thickness burn",
+      "Deep partial-thickness burn",
+      "Full-thickness (third-degree) burn"
+    ],
+    correctIndex: 3,
+    explanation: "Full-thickness (third-degree) burns extend through the entire epidermis and dermis into the subcutaneous tissue. Because cutaneous nerve endings in the dermis are destroyed, the center of a full-thickness burn is insensate (painless to touch) and appears dry, leathery, charred, brown, or waxy white. The surrounding partial-thickness border still has intact nerve endings and remains very painful.",
+    studyTip: "Burn depths: Superficial (1st) = red, dry, painful (sunburn). Partial-thickness (2nd) = red/mottled, blisters, intensely painful. Full-thickness (3rd) = dry, leathery/charred/waxy white, painless at the center."
+  },
+  {
+    id: "TRAU-056",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "A 17-year-old hockey player had an intact upper permanent incisor knocked completely out of its socket. After controlling bleeding from the gum socket with a gauze pad, how should you handle and transport the avulsed tooth?",
+    options: [
+      "Hold it by the crown only, never scrub the root, and place it in milk or sterile saline",
+      "Scrub the root clean with an alcohol prep pad and wrap the dry tooth in sterile gauze",
+      "Place the tooth in a cup of hydrogen peroxide to sterilize the root ligament fibers",
+      "Pack the tooth directly into crushed ice so the root freezes before hospital arrival"
+    ],
+    correctIndex: 0,
+    explanation: "An avulsed permanent tooth can often be successfully reimplanted if the delicate periodontal ligament cells on the root remain viable. Always pick up the tooth by the crown (chewing edge), never touch or scrub the root, rinse gently with saline or milk only if covered in dirt, and transport it immersed in cold milk, balanced salt solution, or sterile saline.",
+    studyTip: "Avulsed tooth care: Handle by the CROWN only, never scrub the root, and transport in milk or sterile saline (never dry gauze or water/peroxide)."
+  },
+  {
+    id: "TRAU-057",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "How does a closed hematoma differ from a simple contusion (bruise)?",
+    options: [
+      "A hematoma involves open tearing of the epidermis, whereas a contusion is intact skin",
+      "A hematoma is a pocket of blood pooled in tissue from damage to a larger vessel",
+      "A hematoma only occurs inside the skull, whereas a contusion only occurs on limbs",
+      "A hematoma is caused by thermal heat, whereas a contusion is caused by blunt force"
+    ],
+    correctIndex: 1,
+    explanation: "Both contusions and hematomas are closed soft-tissue injuries caused by blunt force. A contusion (bruise/ecchymosis) involves small amounts of blood leaking from damaged capillaries into the dermis. A hematoma involves damage to a larger blood vessel, creating a palpable, swollen mass or pocket of pooled blood beneath the tissue (a large thigh or pelvic hematoma can hold over a liter of blood).",
+    studyTip: "Contusion = superficial capillary bleeding/bruising (ecchymosis). Hematoma = larger vessel bleeding creating a distinct, swollen collection of pooled blood under the skin."
+  },
+  {
+    id: "TRAU-058",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.6,
+    stem: "When splinting a closed forearm fracture, at what points must you assess distal pulse, motor function, and sensation (PMS)?",
+    options: [
+      "Only before applying the splint, so you do not have to unwrap the bandage later",
+      "Only after arriving at the hospital triage desk during your handoff report",
+      "Both before applying the splint and immediately after securing the splint",
+      "Only if the patient complains that their fingers have turned completely blue"
+    ],
+    correctIndex: 2,
+    explanation: "Distal neurovascular status—Pulse, Motor function, and Sensation (PMS / CMS)—must be checked and documented BEFORE applying any splint and RECHECKED immediately after securing the splint (as well as periodically during transport) to ensure the splint or bone movement did not compress an artery or nerve.",
+    studyTip: "Splinting golden rule: Always check and document distal PMS (Pulse, Motor, Sensation) BEFORE and AFTER applying any splint."
+  },
+  {
+    id: "TRAU-059",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "A 35-year-old woman burned her left hand with boiling soup. She is wearing two tight gold rings and a metal wristwatch on that extremity. Why is it important to remove her rings and watch immediately?",
+    options: [
+      "Gold reacts chemically with burn blisters and releases toxic metallic fumes",
+      "Metal jewelry interferes with the pulse oximeter placed on the opposite hand",
+      "Rapid swelling will soon trap the rings, acting like a tourniquet on her fingers",
+      "Watches retain cold air and cause frostbite in partial-thickness thermal burns"
+    ],
+    correctIndex: 2,
+    explanation: "Burns and crush/fracture injuries to the hand or wrist trigger rapid, severe soft-tissue swelling (edema). Removing rings, bracelets, and watches early—before swelling sets in—prevents the jewelry from acting as a constricting tourniquet that cuts off arterial blood flow and causes ischemic necrosis of the fingers.",
+    studyTip: "Always remove rings, watches, and constricting jewelry from burned or injured extremities IMMEDIATELY before swelling turns them into tourniquets."
+  },
+  {
+    id: "TRAU-060",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "You respond to a 48-year-old man who struck his head on a metal beam and has a 3-inch scalp laceration that is bleeding heavily. Upon gentle palpation around the wound edges, you feel spongy, unstable bone fragments and a visible depression in the skull. How should you control the bleeding?",
+    options: [
+      "Apply a loose bulky dressing and gentle pressure only around the firm intact edges",
+      "Press down firmly with the heel of your hand directly over the depressed bone fragments",
+      "Pack hemostatic gauze tightly down into the depressed skull fracture until bleeding stops",
+      "Wrap an elastic pressure bandage tightly over the center of the depressed fracture site"
+    ],
+    correctIndex: 0,
+    explanation: "Although the scalp is rich in blood vessels and bleeds profusely, applying firm direct pressure directly over an open or depressed skull fracture can drive bone fragments inward into the brain parenchyma and meninges. Instead, cover the wound with a bulky, loose sterile dressing and apply gentle pressure only along the intact bony perimeter around the fracture.",
+    studyTip: "Depressed/open skull fracture with bleeding: Never push directly on unstable skull bone! Apply a loose bulky sterile dressing and press gently only around the intact edges."
+  },
+  {
+    id: "TRAU-061",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Chest & Abdominal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "While palpating the neck and upper chest of a patient who was involved in a rollover motor vehicle crash, you feel a distinct crackling, popping sensation beneath your fingertips—similar to pressing on puffed rice cereal. What is this finding called, and what does it indicate?",
+    options: [
+      "Bony crepitus; multiple fractures of the cervical spinous processes",
+      "Subcutaneous emphysema; air leaking from a torn lung or airway under the skin",
+      "Jugular venous distension; blood backing up into the superior vena cava",
+      "Urticarial wheals; an acute allergic reaction to airbag deployment powder"
+    ],
+    correctIndex: 1,
+    explanation: "Subcutaneous emphysema is a crackling sensation felt when air escapes from a lacerated lung, bronchus, trachea, or esophagus and dissects into the subcutaneous fat layer of the chest wall, neck, and face. Its presence in blunt or penetrating chest trauma is a strong warning sign of an underlying pneumothorax or tracheobronchial tree injury.",
+    studyTip: "Subcutaneous emphysema ('Rice Krispies' crackling under the skin of the chest/neck) = air leaking from a damaged lung or airway -> watch closely for tension pneumothorax!"
+  },
+  {
+    id: "TRAU-062",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Chest & Abdominal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 33-year-old mechanic was pinned across the sternum for 2 minutes when a car slipped off a floor jack. His skin from the mid-chest upward (neck, face, and shoulders) is deep purple-blue, his eyes are bulging with bright red subconjunctival hemorrhages, and his neck veins are distended, while his lower body is pale. What condition do these findings describe?",
+    options: [
+      "Neurogenic shock",
+      "Commotio cordis",
+      "Traumatic asphyxia",
+      "Aortic coarctation"
+    ],
+    correctIndex: 2,
+    explanation: "Traumatic asphyxia results from a sudden, severe crushing compression of the thorax (such as being pinned under a vehicle or heavy machinery). The abrupt spike in intrathoracic pressure forces venous blood backward out of the right side of the heart into the valveless superior vena cava and head/neck veins, rupturing tiny capillaries and causing classic cervicofacial cyanosis (purple head/neck), petechiae, bulging bloodshot eyes, and swollen tongue/lips.",
+    studyTip: "Traumatic Asphyxia = severe chest crush injury -> sudden backward venous surge -> purple/blue head and neck, bulging bloodshot eyes, JVD, and swollen lips/tongue."
+  },
+  {
+    id: "TRAU-063",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Musculoskeletal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "A hiker fell onto a rock ledge and has a severely angulated closed mid-shaft tibia/fibula fracture. His foot is cold, pale, and bluish, and you cannot palpate a dorsalis pedis or posterior tibial pulse. Your transport time from the trailhead is 45 minutes. Under standard EMS guidelines, how should you manage the angulated limb?",
+    options: [
+      "Splint the leg in the exact twisted position found and pack the foot in crushed ice",
+      "Flex the ankle 90 degrees and apply an arterial tourniquet tightly above the knee",
+      "Have the patient stand on the foot briefly to pop the bone ends back into alignment",
+      "Apply gentle inline traction once to realign the limb and restore the distal pulse"
+    ],
+    correctIndex: 3,
+    explanation: "When a long-bone shaft fracture is severely angulated and the distal extremity is pulseless/cyanotic, the bent bone ends are kinking or compressing the artery. Making ONE gentle attempt at manual inline traction to bring the limb back into anatomical alignment often unkinks the vessel and restores distal blood flow before splinting. Stop immediately if you feel strong bony resistance or a sharp increase in pain, and splint in that position.",
+    studyTip: "Angulated long-bone fracture + ABSENT distal pulse: Perform ONE gentle attempt at inline realignment to restore circulation (stop if resistance is met), then splint and recheck PMS."
+  },
+  {
+    id: "TRAU-064",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Chest & Abdominal Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "In abdominal trauma, how does the primary threat of a lacerated solid organ (such as the liver or spleen) differ from the primary threat of a ruptured hollow organ (such as the stomach or small intestine)?",
+    options: [
+      "Solid organs cause severe internal hemorrhage, whereas hollow organs spill contents and cause peritonitis",
+      "Solid organs spill bile and acid into the belly, whereas hollow organs cause massive arterial bleeding",
+      "Solid organ injuries are always completely painless, whereas hollow organ injuries only cause bruising",
+      "Solid organs only bleed from penetrating wounds, whereas hollow organs only rupture from blunt trauma"
+    ],
+    correctIndex: 0,
+    explanation: "Solid abdominal organs (spleen, liver, kidneys, pancreas) are richly vascular; when fractured or lacerated, they bleed profusely into the peritoneal or retroperitoneal space, leading to life-threatening hypovolemic shock. Hollow organs (stomach, gallbladder, small and large intestines, urinary bladder) contain digestive enzymes, stomach acid, bile, or bacteria; when ruptured, they spill these contents into the abdominal cavity, causing intense chemical and bacterial peritonitis (board-like rigidity, guarding, and rebound tenderness).",
+    studyTip: "Abdominal trauma: Solid organs (Spleen, Liver, Kidneys) = Bleed (hemorrhagic shock). Hollow organs (Stomach, Bowel, Gallbladder, Bladder) = Spill contents (chemical/bacterial peritonitis, rigid abdomen)."
+  },
+  {
+    id: "TRAU-065",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "A 24-year-old amateur boxer was struck squarely in the left eye by a punch. He complains of double vision (diplopia), numbness of his left upper cheek and upper lip, and when you ask him to look up toward the ceiling, his right eye moves upward normally while his left eye stays fixed straight ahead. What injury do you suspect?",
+    options: [
+      "Acute retinal detachment of the right eye with optic nerve compression",
+      "Orbital floor (blow-out) fracture with inferior eye muscle entrapment",
+      "Isolated comminuted fracture of the anterior cartilaginous nasal septum",
+      "Posterior dislocation of the left temporomandibular jaw joint capsule"
+    ],
+    correctIndex: 1,
+    explanation: "Blunt impact to the globe compresses orbital contents downward, fracturing the thin bony floor of the orbit (an orbital blow-out fracture). The inferior rectus eye muscle and infraorbital nerve often become pinched in the fracture line, preventing the affected eye from looking upward (causing double vision/diplopia) and causing numbness of the ipsilateral cheek and upper lip.",
+    studyTip: "Blunt eye trauma + inability to gaze upward + double vision (diplopia) + numb upper cheek = Orbital Floor ('Blow-Out') Fracture."
+  },
+  {
+    id: "TRAU-066",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "During the secondary assessment of an unresponsive 27-year-old male who was thrown from an all-terrain vehicle (ATV), you note priapism (a persistent, involuntary erection of the penis). What does this physical finding strongly indicate?",
+    options: [
+      "Severe pelvic ring fracture with complete urethral transection",
+      "Acute synthetic opioid overdose taken shortly before the crash",
+      "Severe spinal cord injury disrupting sympathetic nerve pathways",
+      "Isolated blunt contusion to the anterior urinary bladder wall"
+    ],
+    correctIndex: 2,
+    explanation: "Priapism in a male trauma patient is a classic neurological sign of an acute spinal cord injury (typically cervical or thoracic). Interruption of descending sympathetic nervous system fibers leaves parasympathetic pathways unopposed, causing engorgement of the corpus cavernosum. Maintain strict spinal motion restriction and monitor for neurogenic shock.",
+    studyTip: "Priapism in a trauma patient = classic sign of acute spinal cord injury (unopposed parasympathetic tone due to loss of sympathetic outflow)."
+  },
+  {
+    id: "TRAU-067",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Chest & Abdominal Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "A 30-year-old man was shot in the right lateral chest. He is pale, diaphoretic, and tachypneic at 32 breaths/min, with a BP of 74/48 mmHg and HR of 136 beats/min. Breath sounds are absent on the right side and clear on the left. Unlike a tension pneumothorax, his neck veins are completely FLAT and the right chest is dull to percussion. What is the most likely injury?",
+    options: [
+      "Simple closed pneumothorax",
+      "Pericardial tamponade",
+      "Myocardial contusion",
+      "Massive hemothorax"
+    ],
+    correctIndex: 3,
+    explanation: "Both tension pneumothorax and massive hemothorax cause unilateral absent or diminished breath sounds and shock. However, in a massive hemothorax, a lacerated intercostal, pulmonary, or great vessel pours 1,500+ mL of blood into the pleural cavity. Because the patient is losing a huge volume of blood out of the vascular system into the chest, the neck veins are usually FLAT (hypovolemic shock) and the chest sounds dull (fluid-filled) to percussion—whereas tension pneumothorax traps air under pressure, causing distended neck veins (JVD) and hyperresonance.",
+    studyTip: "Absent unilateral breath sounds + Shock:\n• With JVD + hyperresonance = Tension Pneumothorax (air trapping).\n• With FLAT neck veins + dullness to percussion = Massive Hemothorax (blood loss into chest)."
+  },
+  {
+    id: "TRAU-068",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.7,
+    stem: "You are caring for an unresponsive head-injured patient who initially pulled his arms tightly inward against his chest with clenched fists when stimulated (decorticate posturing). Ten minutes into transport, when you apply a noxious stimulus, he now stiffly extends and rotates both arms outward at his sides with his wrists flexed and legs rigidly extended (decerebrate posturing). How should you interpret this change?",
+    options: [
+      "His brain injury is worsening, with deeper brainstem compression and herniation",
+      "His intracranial pressure is falling as he wakes up from his cerebral concussion",
+      "He has developed hypocalcemia from hyperventilation, causing benign hand cramps",
+      "He is transitioning from a generalized seizure into a normal postictal recovery"
+    ],
+    correctIndex: 0,
+    explanation: "Decorticate posturing (abnormal flexion: arms pulled inward toward the 'core' of the chest, legs extended; GCS Motor = 3) indicates damage to the cerebral hemispheres or internal capsule above the red nucleus. Progression from decorticate (flexion) to decerebrate posturing (abnormal extension: arms and legs rigidly extended and pronated; GCS Motor = 2) is an ominous sign that rising intracranial pressure and uncal/brainstem herniation are compressing deeper into the midbrain and pons.",
+    studyTip: "Posturing progression: Decorticate (Flexion toward the CORE, M=3) -> Decerebrate (Extension, M=2) -> Flaccid (No response, M=1) indicates worsening brainstem herniation."
+  },
+  {
+    id: "TRAU-069",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A 29-year-old painter accidentally triggered an airless high-pressure paint sprayer (3,000 psi) against the tip of his index finger. On exam, you see only a tiny 1-mm pinpoint puncture mark with no external bleeding, and he reports only mild stinging. He asks to stay at work and put a bandage on it. What should you tell him and do?",
+    options: [
+      "Reassure him that a tiny puncture without bleeding is minor and let him stay at work",
+      "Splint at heart level without ice and transport urgently, as deep tissue necrosis develops rapidly",
+      "Squeeze the finger firmly from the palm toward the tip to push the injected paint out of the hole",
+      "Pack the hand in crushed ice and elevate it high above his shoulder to slow paint absorption"
+    ],
+    correctIndex: 1,
+    explanation: "High-pressure injection injuries (from paint guns, grease guns, diesel fuel injectors, or hydraulic lines operating at 2,000–10,000 psi) are notorious 'wolf in sheep's clothing' surgical emergencies. Initially, they look like a tiny, harmless pinhole with minimal pain. However, the pressurized liquid blasts deep along fascial planes and tendon sheaths into the hand and forearm, causing chemical necrosis, vascular thrombosis, and severe compartment syndrome that frequently results in finger or hand amputation if surgical debridement is delayed. Never apply ice (worsens ischemia) and transport immediately.",
+    studyTip: "High-pressure injection injury (paint sprayer/grease gun/hydraulic line): Tiny pinhole wound hides limb-threatening deep tissue necrosis and compartment syndrome! Never apply ice; transport emergently for surgery."
+  },
+  {
+    id: "TRAU-070",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Burns & Soft Tissue Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "You are transporting a 44-year-old man who suffered a circumferential full-thickness (third-degree) burn completely encircling his chest and upper torso in an industrial flash fire. Twenty minutes after the burn, his breathing becomes shallow and rapid, his SpO2 drops to 85%, and you notice his chest wall barely expands even when you assist him with a bag-valve mask, though his upper airway is patent and clear. What is the cause of his ventilatory failure?",
+    options: [
+      "Carbon monoxide has paralyzed his phrenic nerve at the level of the lower brainstem",
+      "Inhaled steam has caused bilateral spontaneous pneumothoraces inside both lung apices",
+      "Tight, leathery burn eschar encircling his chest is restricting chest wall expansion",
+      "Fluid loss through the burned skin has caused immediate hypovolemic cardiac arrest"
+    ],
+    correctIndex: 2,
+    explanation: "Full-thickness burn tissue (eschar) is dead, dry, leathery, and completely inelastic. When a full-thickness burn encircles the entire circumference of the chest wall (circumferential torso burn), underlying tissue edema tightens the rigid eschar like a steel band around the rib cage, physically preventing the chest wall from expanding during inspiration or BVM ventilation. Support ventilations with a BVM and 100% oxygen and transport emergently to a burn/trauma center where physicians can perform an emergency surgical escharotomy (incising the eschar to allow the chest to expand).",
+    studyTip: "Circumferential full-thickness burns: On an extremity = acts like a tourniquet (cuts off distal pulse). Around the chest/thorax = acts like a vise (restricts chest expansion and ventilation, requiring surgical escharotomy)."
+  },
+  {
+    id: "TRAU-071",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A 31-year-old man was struck in the jaw with a metal pipe (isolated facial blow with no fall or neck pain). He has an unstable bilateral mandible fracture, missing teeth, and heavy bleeding inside his mouth. He is alert, sitting upright, leaning forward, and spitting blood into a towel. Whenever you try to lay him flat on the cot, he panics, gags, and develops loud stridor and gurgling. How should you position and transport him?",
+    options: [
+      "Force him flat onto a long spine board with straps so you can apply a rigid collar",
+      "Place him in the Trendelenburg position so blood pools away from his vocal cords",
+      "Insert an oropharyngeal airway while he sits upright to splint his fractured jaw",
+      "Let him sit upright leaning forward, provide suction and oxygen, and transport"
+    ],
+    correctIndex: 3,
+    explanation: "The tongue is attached anteriorly to the mandible (lower jaw). A bilateral mandibular fracture detaches the bony support of the tongue, allowing the tongue and soft tissues to fall backward into the hypopharynx when the patient is placed supine—while blood and broken teeth simultaneously pool over the glottis. When an alert patient with severe maxillofacial trauma cannot tolerate lying supine without losing their airway, allow them to sit upright leaning forward so gravity pulls the tongue forward and drains blood out of the mouth, provide suction and oxygen, and transport promptly.",
+    studyTip: "Severe facial/mandible fracture in an alert patient who chokes when laid flat: Never force them supine! Transport sitting upright/leaning forward (or lateral if spinal restriction is needed) with suction in hand."
+  },
+  {
+    id: "TRAU-072",
+    source: "Gemini",
+    domain: "Trauma",
+    subtopic: "Head, Neck & Spine Trauma",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "You are assessing a 5-month-old infant who fell from a high changing table onto a tile floor. The infant has a high-pitched, inconsolable cry, projectile vomiting, and a tense, bulging anterior fontanelle (soft spot) even when held upright. What does the bulging fontanelle indicate, and how should you manage the infant?",
+    options: [
+      "Increased intracranial pressure; protect the spine, prevent hypoxia, and transport rapidly",
+      "Severe dehydration from vomiting; lay the infant flat and give oral electrolyte solution",
+      "Normal venous pressure from crying; reassure the parents that open sutures prevent swelling",
+      "Depressed skull fracture under the soft spot; apply firm direct pressure over the fontanelle"
+    ],
+    correctIndex: 0,
+    explanation: "In infants up to 12–18 months of age, the anterior fontanelle ('soft spot') between the frontal and parietal skull bones has not yet fused. While a sunken fontanelle indicates dehydration, a tense, firm, bulging fontanelle (especially when not actively crying or when upright) is a classic pediatric sign of elevated intracranial pressure (ICP) from intracranial hemorrhage, cerebral edema, or meningitis. Protect the cervical spine (with shoulder padding to maintain neutral alignment), administer oxygen to prevent hypoxia, keep suction ready for vomiting, and transport rapidly.",
+    studyTip: "Infant anterior fontanelle clues: Sunken fontanelle = Dehydration. Tense/Bulging fontanelle = Increased Intracranial Pressure (TBI, intracranial bleed, or meningitis)."
+  }
+);

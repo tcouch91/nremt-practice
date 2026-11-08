@@ -1263,3 +1263,428 @@ window.NREMT_QUESTIONS.push(
     studyTip: "Adult CPR guidelines begin at puberty, not at a specific age. Adult = 2–2.4 in, 30:2 for one or two rescuers. Child (1 year to puberty) = about 2 in, 30:2 (one rescuer) or 15:2 (two rescuers)."
   }
 );
+
+
+// ============================================================================
+// Batch 3: Additional 22 Cardiology & Resuscitation Questions (CARD-067 to CARD-088)
+// ============================================================================
+window.NREMT_QUESTIONS.push(
+  {
+    id: "CARD-067",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.1,
+    stem: "When assessing an unresponsive, apneic adult for a carotid pulse, how long should you palpate before deciding to start chest compressions?",
+    options: [
+      "At least 5 seconds, but no more than 10 seconds",
+      "At least 15 seconds, but no more than 30 seconds",
+      "No more than 2 seconds before starting compressions",
+      "At least 30 seconds to rule out severe bradycardia"
+    ],
+    correctIndex: 0,
+    explanation: "Check for a central pulse (carotid in adults and children; brachial in infants) for at least 5 seconds, but no more than 10 seconds. If you do not definitely feel a pulse within 10 seconds, begin high-quality chest compressions immediately (except in severe hypothermia, where a longer check of 30–60 seconds may be used).",
+    studyTip: "Standard pulse check duration: At least 5 seconds, no more than 10 seconds. If unsure after 10 seconds, start CPR!"
+  },
+  {
+    id: "CARD-068",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "You find a 68-year-old man in cardiac arrest lying on a soft, plush bedroom mattress. Why should you move him to the floor or slide a rigid backboard beneath him before performing CPR?",
+    options: [
+      "A soft mattress conducts static electricity that interferes with AED analysis",
+      "A soft mattress compresses under the patient's back, reducing effective chest compression depth",
+      "Performing compressions on a bed forces blood into the lower extremities instead of the brain",
+      "Mattress springs amplify chest recoil and cause excessive negative intrathoracic pressure"
+    ],
+    correctIndex: 1,
+    explanation: "Effective chest compressions require squeezing the heart between the sternum and the thoracic spine. On a soft mattress, much of your downward push simply pushes the whole patient into the mattress rather than compressing the sternum 2 inches. Always perform CPR on a firm, flat surface such as the floor or with a rigid CPR board underneath the thorax.",
+    studyTip: "Always perform chest compressions on a firm, flat surface (floor or rigid CPR board), never directly on a soft mattress."
+  },
+  {
+    id: "CARD-069",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "Under most standard EMS protocols, what is the maximum total number of sublingual nitroglycerin doses a patient may receive for chest pain (including any doses taken just prior to EMS arrival), and how far apart are doses spaced?",
+    options: [
+      "Up to 2 doses spaced 15 minutes apart, without rechecking blood pressure",
+      "Up to 5 doses spaced 2 minutes apart, as long as heart rate stays below 100",
+      "Up to 3 doses spaced 5 minutes apart, rechecking blood pressure before each dose",
+      "Only 1 dose total per 24-hour period, regardless of blood pressure or pain relief"
+    ],
+    correctIndex: 2,
+    explanation: "Standard EMT protocols allow assisting a patient with up to 3 total doses of their prescribed sublingual nitroglycerin (0.4 mg tablet or spray), spaced 5 minutes apart, provided the systolic blood pressure remains above 90 to 100 mmHg (and no contraindications exist). Always reassess vital signs—especially blood pressure—before and after every dose.",
+    studyTip: "Nitroglycerin dosing rule: 0.4 mg SL every 5 minutes up to 3 total doses maximum; always recheck blood pressure before and after each dose."
+  },
+  {
+    id: "CARD-070",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "You are applying AED pads to a 54-year-old man in cardiac arrest whose chest is covered with thick, dense hair that keeps the pads from sticking to his skin. The AED keeps repeating 'Check electrode pads.' What should you do?",
+    options: [
+      "Pour sterile saline under the pads to create a bridge through the chest hair",
+      "Tape both pads firmly to the patient's shirt and press the analyze button",
+      "Stop CPR and wait for ALS to arrive with conductive defibrillation gel",
+      "Quickly shave the pad areas with the AED razor and apply fresh pads to bare skin"
+    ],
+    correctIndex: 3,
+    explanation: "Dense chest hair traps air between the AED pad gel and the skin, preventing pad contact and increasing transthoracic impedance. If the pads do not stick firmly, quickly shave the two pad placement areas with the disposable razor in the AED kit (or press down and forcefully peel off the first set of pads to wax the hair if spare pads are available) and apply pads directly to bare skin.",
+    studyTip: "Hairy chest + poor AED pad contact: Quickly shave the pad sites (or use spare pads to pull the hair off) and apply fresh pads firmly to bare skin."
+  },
+  {
+    id: "CARD-071",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.6,
+    stem: "A patient has a blood pressure of 124/82 mmHg. What is this patient's pulse pressure, and what does pulse pressure reflect?",
+    options: [
+      "42 mmHg; the difference between systolic and diastolic pressure, reflecting stroke volume",
+      "206 mmHg; the sum of systolic and diastolic pressure, reflecting total blood volume",
+      "82 mmHg; the resting pressure in the arteries during ventricular relaxation",
+      "96 mmHg; the average arterial pressure throughout one complete cardiac cycle"
+    ],
+    correctIndex: 0,
+    explanation: "Pulse pressure is calculated by subtracting the diastolic blood pressure from the systolic blood pressure (124 - 82 = 42 mmHg; normal is roughly 30 to 50 mmHg). A narrowing pulse pressure (< 25% of systolic, or < 30 mmHg) is an early indicator of falling stroke volume and vasoconstriction in compensated shock or cardiac tamponade, while a widening pulse pressure is seen in increased intracranial pressure (Cushing's triad).",
+    studyTip: "Pulse Pressure = Systolic BP minus Diastolic BP. Narrowing pulse pressure = early shock or cardiac tamponade. Widening pulse pressure = increased ICP (Cushing's triad)."
+  },
+  {
+    id: "CARD-072",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "While transporting a pale, diaphoretic patient over a bumpy road, your automated blood pressure cuff (NIBP) repeatedly fails to display a reading or shows an erratic number. What should you do?",
+    options: [
+      "Document the patient's baseline blood pressure from 20 minutes ago as unchanged",
+      "Obtain a manual blood pressure by auscultation (or palpation) using a stethoscope and cuff",
+      "Move the automated cuff to the patient's ankle and inflate it to 300 mmHg",
+      "Ask the driver to pull over and turn off the engine every 5 minutes for the monitor"
+    ],
+    correctIndex: 1,
+    explanation: "Automated oscillometric blood pressure monitors sense tiny arterial wall vibrations and are notoriously unreliable in moving ambulances, shivering patients, severe hypotension/shock, or irregular rhythms like atrial fibrillation. Always verify suspicious or failed automated readings by taking a manual auscultated (or palpated) blood pressure.",
+    studyTip: "Never trust an automated NIBP cuff alone in a moving ambulance, shock, or irregular pulse—always confirm with a manual blood pressure!"
+  },
+  {
+    id: "CARD-073",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "Which structure in the heart's electrical conduction system normally initiates each heartbeat and serves as the heart's primary natural pacemaker?",
+    options: [
+      "Atrioventricular (AV) node",
+      "Purkinje fiber network",
+      "Sinoatrial (SA) node",
+      "Bundle of His"
+    ],
+    correctIndex: 2,
+    explanation: "The sinoatrial (SA) node, located in the upper wall of the right atrium, has the fastest intrinsic firing rate (60 to 100 impulses per minute at rest) and serves as the heart's primary natural pacemaker. Impulses travel from the SA node through the atria to the AV node, down the Bundle of His and right/left bundle branches, and finally to the Purkinje fibers in the ventricles.",
+    studyTip: "Cardiac conduction pathway: SA Node (primary pacemaker, 60–100 bpm) -> AV Node (40–60 bpm) -> Bundle of His -> Bundle Branches -> Purkinje Fibers (20–40 bpm)."
+  },
+  {
+    id: "CARD-074",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.2,
+    stem: "An ALS paramedic has just placed an endotracheal tube (advanced airway) in a 60-year-old adult in cardiac arrest. How should you and your partner coordinate chest compressions and ventilations now that the advanced airway is in place?",
+    options: [
+      "Pause compressions every 30 compressions to deliver 2 rapid breaths",
+      "Pause compressions every 15 compressions to deliver 2 slow breaths",
+      "Deliver 1 breath every 3 seconds while pausing compressions for each breath",
+      "Perform continuous compressions at 100–120/min and give 1 breath every 6 seconds"
+    ],
+    correctIndex: 3,
+    explanation: "Once an advanced airway (endotracheal tube or supraglottic airway like an i-gel, King LT, or LMA) is in place during adult CPR, rescuers no longer cycle at 30:2. Instead, one rescuer delivers continuous chest compressions at 100 to 120/min without pausing for breaths, while the second rescuer delivers 1 ventilation every 6 seconds (10 breaths/min).",
+    studyTip: "CPR with an Advanced Airway in place: Continuous compressions at 100–120/min (no pauses for breaths). Ventilation rate: Adult = 1 breath every 6 sec (10/min); Infant/Child = 1 breath every 2–3 sec (20–30/min)."
+  },
+  {
+    id: "CARD-075",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "You are performing two-rescuer CPR on a 5-year-old child after an ALS provider inserts a supraglottic advanced airway. At what rate should you deliver ventilations while continuous chest compressions are performed?",
+    options: [
+      "1 breath every 2 to 3 seconds (20–30 breaths/min)",
+      "1 breath every 6 seconds (about 10 breaths/min)",
+      "2 breaths after every 15 chest compressions given",
+      "1 breath every 10 seconds (about 6 breaths/min)"
+    ],
+    correctIndex: 0,
+    explanation: "In an infant or child receiving CPR with an advanced airway in place, perform continuous chest compressions at 100 to 120/min without pauses and deliver 1 ventilation every 2 to 3 seconds (20 to 30 breaths/min).",
+    studyTip: "Pediatric advanced-airway ventilation rate during CPR (and rescue breathing rate with a pulse): 1 breath every 2 to 3 seconds (20–30 breaths/min)."
+  },
+  {
+    id: "CARD-076",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "A 64-year-old man with chest pain tells you he took three of his sublingual nitroglycerin tablets at home before calling 9-1-1, but got no relief, no headache, and no tingling sensation under his tongue. You inspect the bottle and notice it is an unsealed clear plastic pill organizer from two years ago. What is the MOST likely explanation?",
+    options: [
+      "He has developed complete genetic immunity to all nitrate medications",
+      "The tablets lost their potency from exposure to light, heat, and air",
+      "Absence of a headache proves his chest pain is gastrointestinal in origin",
+      "Nitroglycerin only works when chewed and swallowed with a full glass of water"
+    ],
+    correctIndex: 1,
+    explanation: "Sublingual nitroglycerin tablets are chemically volatile and rapidly lose potency when exposed to light, heat, moisture, or air outside their original dark amber glass bottle (typically expiring 3 to 6 months after opening). Potent nitroglycerin usually causes a slight burning/tingling sensation under the tongue and a mild vasodilation headache; expired tablets may have had no pharmacologic effect at all.",
+    studyTip: "Nitroglycerin tablets degrade rapidly when exposed to light/air outside their dark glass bottle. Lack of sublingual tingling/headache + no relief often means the tablets are expired!"
+  },
+  {
+    id: "CARD-077",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 38-year-old woman who recovered from a viral illness last week complains of sharp central chest pain that worsens sharply whenever she lies flat, coughs, or takes a deep breath, and feels noticeably better when she sits upright and leans forward. Her vitals are BP 122/76 mmHg, HR 96 beats/min, RR 18 breaths/min, and SpO2 98%. Which condition classically presents this way?",
+    options: [
+      "Stable exertional angina pectoris",
+      "Ruptured abdominal aortic aneurysm",
+      "Acute viral pericarditis",
+      "Chronic right-sided heart failure"
+    ],
+    correctIndex: 2,
+    explanation: "Acute pericarditis (inflammation of the pericardial sac surrounding the heart, often following a viral infection) causes sharp, pleuritic retrosternal chest pain that worsens when lying supine (as the heart presses against the inflamed pericardium) or during deep inspiration, and improves when sitting up and leaning forward. In the field, still treat and transport as a potential cardiac emergency.",
+    studyTip: "Positional sharp chest pain worse when lying flat/inhaling and relieved by sitting upright and leaning forward = Acute Pericarditis."
+  },
+  {
+    id: "CARD-078",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "Which two cardiac arrest rhythms are considered 'shockable' by an Automated External Defibrillator (AED)?",
+    options: [
+      "Asystole and pulseless electrical activity (PEA) rhythms",
+      "Sinus bradycardia and third-degree atrioventricular heart block",
+      "Atrial fibrillation and supraventricular tachycardia rhythms",
+      "Ventricular fibrillation and pulseless ventricular tachycardia"
+    ],
+    correctIndex: 3,
+    explanation: "An AED delivers a shock only for two chaotic/rapid lethal rhythms: ventricular fibrillation (V-Fib) and pulseless ventricular tachycardia (pVT). Defibrillation briefly depolarizes the myocardium so the SA node can resume organized pacing. Asystole ('flatline') and pulseless electrical activity (PEA) are NON-shockable rhythms managed with uninterrupted high-quality CPR and treating reversible causes.",
+    studyTip: "Shockable rhythms = V-Fib and Pulseless V-Tach. Non-shockable rhythms = Asystole and PEA (never shock asystole!)."
+  },
+  {
+    id: "CARD-079",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Vascular & Hypertensive Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "Why do patients with chronic atrial fibrillation frequently take daily blood thinners (anticoagulants such as apixaban, rivaroxaban, or warfarin)?",
+    options: [
+      "Quivering atria allow clots to form that can travel to the brain and cause a stroke",
+      "Anticoagulants increase the electrical firing voltage of the sinoatrial node",
+      "Blood thinners dilate the coronary arteries to prevent exertional angina attacks",
+      "Atrial fibrillation causes excessive platelet destruction inside the patient's spleen"
+    ],
+    correctIndex: 0,
+    explanation: "In atrial fibrillation, the atria quiver chaotically rather than contracting smoothly. Blood stagnates and pools inside the left atrial appendage, allowing thrombi (clots) to form. If a clot breaks loose, it travels out the left ventricle and up the carotid arteries to the brain, causing an acute embolic ischemic stroke (or acute limb ischemia).",
+    studyTip: "Atrial fibrillation causes blood stasis in the atria -> high risk of mural thrombus embolizing to the brain (ischemic stroke) or extremities (acute arterial occlusion)."
+  },
+  {
+    id: "CARD-080",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Heart Failure & Cardiogenic Shock",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "You are assessing an 82-year-old man with chronic right-sided heart failure who is completely bedbound and lies supine all day. Where should you look for dependent pitting edema in this patient?",
+    options: [
+      "Only around his upper eyelids and forehead",
+      "Over his sacrum (lower back) and buttocks",
+      "Exclusively in the fingertips of both hands",
+      "Over the anterior sternum and both clavicles"
+    ],
+    correctIndex: 1,
+    explanation: "Peripheral edema in right-sided heart failure is gravity-dependent ('dependent edema'). While ambulatory patients who sit or stand develop pitting edema in their feet, ankles, and lower legs (pedal/pretibial edema), a bedbound patient who lies supine accumulates dependent fluid in the lowest part of their body—the sacral area (lower back) and buttocks.",
+    studyTip: "Dependent edema follows gravity: Ambulatory patients = ankles/feet (pedal edema). Bedbound supine patients = lower back/buttocks (sacral edema)."
+  },
+  {
+    id: "CARD-081",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "When applying a mechanical CPR device (such as a piston or load-distributing band device) to a patient in cardiac arrest, what is the most critical safety and quality priority for the crew?",
+    options: [
+      "Pause manual compressions for 45 seconds so the device can be calibrated carefully",
+      "Disconnect all BVM airway adjuncts while the backplate is positioned under the torso",
+      "Coordinate deployment so that any pause in chest compressions stays under 10 seconds",
+      "Deliver three manual precordial thumps before turning on the mechanical piston"
+    ],
+    correctIndex: 2,
+    explanation: "Long pauses in chest compressions while applying a mechanical CPR device drastically drop coronary perfusion pressure and reduce survival. If a mechanical CPR device is used (such as prior to ambulance transport), the team must split deployment into coordinated steps (e.g., sliding the backplate during a rhythm check, then clipping the upper arm in a separate < 10-second pause) to keep all interruptions under 10 seconds.",
+    studyTip: "Any pause in CPR—whether for rhythm analysis, ventilator setup, or mechanical CPR device placement—must be kept strictly under 10 seconds."
+  },
+  {
+    id: "CARD-082",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "A 29-year-old woman fainted while having blood drawn at a clinic. She had 30 seconds of lightheadedness, warmth, tunnel vision, and sweating beforehand, and regained full alertness within 20 seconds of lying flat on the floor. Her vitals are now BP 116/72 mmHg, HR 68 beats/min, and blood glucose 98 mg/dL. What type of syncope is this, and should she still be evaluated?",
+    options: [
+      "Cardiogenic ventricular arrhythmia syncope; begin chest compressions immediately",
+      "Hemorrhagic hypovolemic syncope; apply a tourniquet above the venipuncture site",
+      "Ischemic brainstem stroke; activate a stroke alert and give 324 mg of aspirin",
+      "Vasovagal syncope; keep her supine and recommend transport for medical evaluation"
+    ],
+    correctIndex: 3,
+    explanation: "Vasovagal (neurocardiogenic) syncope is triggered by emotional stress, pain, fear (such as seeing blood/needles), or prolonged standing, causing a brief surge in vagal tone that slows the heart rate and dilates blood vessels. Unlike cardiogenic syncope (which occurs abruptly without prodrome or during exertion), vasovagal syncope has a classic prodrome of warmth, nausea, diaphoresis, and tunnel vision, and resolves rapidly once supine. Even so, EMS should perform a full assessment and recommend medical evaluation.",
+    studyTip: "Vasovagal syncope = classic prodrome (warmth, sweating, nausea, tunnel vision) + emotional/pain trigger + rapid recovery when supine. Sudden syncope WITHOUT warning or DURING exertion = suspect life-threatening cardiac arrhythmia!"
+  },
+  {
+    id: "CARD-083",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.7,
+    stem: "During CPR on a 57-year-old woman, inline waveform capnography has shown a steady end-tidal CO2 (ETCO2) of 16 mmHg. Halfway through a 2-minute compression cycle, the ETCO2 abruptly jumps to 44 mmHg. What does this sudden rise in ETCO2 indicate, and what should you do?",
+    options: [
+      "Probable return of spontaneous circulation (ROSC); check for a pulse at the rhythm check",
+      "The airway adjunct has slipped into the esophagus; remove the airway adjunct immediately",
+      "The compressor is pushing too deeply; reduce chest compression depth to about 1 inch",
+      "A massive pulmonary embolism has formed and is trapping carbon dioxide in the trachea"
+    ],
+    correctIndex: 0,
+    explanation: "End-tidal carbon dioxide (ETCO2) during CPR directly reflects cardiac output—how much blood is being pumped through the lungs to offload CO2 into the alveoli. During manual CPR, ETCO2 typically ranges from 10 to 20 mmHg. A sudden, sustained jump in ETCO2 to normal or near-normal levels (35 to 45+ mmHg) is the earliest physiological indicator of Return of Spontaneous Circulation (ROSC), because the patient's own beating heart just restored full pulmonary blood flow.",
+    studyTip: "Waveform capnography during CPR: ETCO2 < 10 mmHg = improve compression quality. Sudden jump in ETCO2 (e.g., 15 -> 40+ mmHg) = earliest sign of ROSC!"
+  },
+  {
+    id: "CARD-084",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Adult & Pediatric BLS / CPR",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "You are monitoring waveform capnography during two-rescuer CPR on an adult with a supraglottic airway confirmed to be in the correct position. After 90 seconds of compressions by your partner, the ETCO2 waveform remains present, but the numeric value has drifted down from 18 mmHg to 7 mmHg. What is the MOST appropriate action?",
+    options: [
+      "Double the BVM ventilation rate to 20 breaths/min to raise the ETCO2 reading",
+      "Coach deeper compressions with full recoil or switch out the fatigued compressor",
+      "Turn off the oxygen cylinder so the patient exhales a higher percentage of CO2",
+      "Stop CPR immediately because an ETCO2 below 10 mmHg confirms irreversible death"
+    ],
+    correctIndex: 1,
+    explanation: "When an airway is properly positioned, a falling ETCO2 (< 10 mmHg) during ongoing CPR indicates declining cardiac output—most commonly because the rescuer performing chest compressions has become fatigued and is compressing too shallowly or leaning on the chest. (Note: hyperventilating the patient also washes out CO2 and lowers ETCO2). Coach high-quality compressions (2–2.4 inches deep, full recoil, 100–120/min) and rotate compressors at the 2-minute mark.",
+    studyTip: "If ETCO2 drops below 10 mmHg during CPR (with a confirmed airway): Check compression depth/recoil, avoid hyperventilation, and switch out a fatigued compressor!"
+  },
+  {
+    id: "CARD-085",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "AED Operations & Special Situations",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "You respond to a 61-year-old man with a history of heart failure who is wearing an external wearable cardioverter-defibrillator vest (LifeVest) under his shirt. He is unresponsive, apneic, and pulseless, and the vest is silent and not delivering any shocks. How should you proceed with resuscitation?",
+    options: [
+      "Leave the vest buckled around his chest and place your EMS AED pads over the fabric",
+      "Withhold chest compressions for 5 minutes in case the vest is charging its capacitors",
+      "Remove the battery and vest, begin CPR, and apply your EMS AED pads to his bare chest",
+      "Pour water over the vest's sensing electrodes to help the vest detect the rhythm"
+    ],
+    correctIndex: 2,
+    explanation: "If a patient wearing an external wearable defibrillator vest (LifeVest) is in cardiac arrest and the vest is NOT actively alarming/preparing to shock, or when you need to apply your EMS AED, remove the vest from the patient's chest (removing the battery pack first disables the vest) so you can perform effective chest compressions on the bare sternum and apply your own AED pads. (If the vest IS sounding a siren/voice warning that a shock is imminent, stay clear during the shock).",
+    studyTip: "Wearable defibrillator vest (LifeVest) in cardiac arrest: If it's alarming 'bystanders do not touch,' stay clear until it shocks; otherwise remove the battery/vest, perform CPR, and apply your EMS AED pads to bare skin."
+  },
+  {
+    id: "CARD-086",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Bradycardia & Perfusion Assessment",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "A 4-month-old infant is irritable, pale, sweating during feedings, and breathing at 52 breaths/min. She has no fever, no vomiting, and wet diapers are normal, so dehydration is unlikely. Your pulse oximeter and auscultation reveal a steady, unvarying heart rate of 240 beats/min that does not change when she calms down. What should you suspect and do?",
+    options: [
+      "Normal infant sinus tachycardia from crying; reassure the parents and obtain a refusal",
+      "Pediatric bradycardia; begin immediate chest compressions at a ratio of 15:2",
+      "Simple febrile response; remove her clothing and sponge her skin with tepid water",
+      "Supraventricular tachycardia; give oxygen, request ALS, and transport rapidly"
+    ],
+    correctIndex: 3,
+    explanation: "In an infant, sinus tachycardia (from fever, crying, pain, or dehydration) rarely exceeds 220 beats/min and varies in rate as the infant's activity changes. An abrupt, unremitting, fixed heart rate >= 220 beats/min in an infant (or >= 180 beats/min in a child) without a clear physiological trigger indicates Supraventricular Tachycardia (SVT). At 240 bpm, the ventricles have almost no time to fill during diastole, leading to cardiogenic shock and heart failure. Support oxygenation, request immediate ALS intercept, and transport urgently.",
+    studyTip: "Sinus Tachycardia vs. SVT in Pediatrics: Infant HR >= 220 bpm (or Child HR >= 180 bpm) that is fixed/unvarying with no fever or dehydration = Supraventricular Tachycardia (SVT) -> urgent ALS intercept!"
+  },
+  {
+    id: "CARD-087",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Heart Failure & Cardiogenic Shock",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "You have placed CPAP at 10 cmH2O on a 71-year-old man with severe pulmonary edema. Initially his BP was 148/90 mmHg and SpO2 rose from 84% to 94%. Ten minutes later, he becomes pale, confused, and lethargic, and his repeat blood pressure has dropped to 78/50 mmHg. Why did his blood pressure drop, and what should you do?",
+    options: [
+      "CPAP pressure reduced venous return to his heart; remove CPAP and assist with a BVM",
+      "CPAP forced fluid out of his lungs too fast; increase the CPAP pressure to 15 cmH2O",
+      "Oxygen toxicity caused systemic vasodilation; disconnect oxygen from the CPAP mask",
+      "He is sleeping comfortably now that hypoxia resolved; leave CPAP strapped in place"
+    ],
+    correctIndex: 0,
+    explanation: "Continuous positive airway pressure (CPAP) increases positive pressure inside the thorax. While that helps push fluid out of alveoli, excessive intrathoracic pressure can compress the vena cavae and right atrium, reducing venous return (preload) to the heart and causing hypotension. Furthermore, a patient who becomes lethargic/confused with a systolic BP < 90 mmHg now has two absolute contraindications to CPAP. Remove CPAP immediately and assist ventilations carefully with a BVM if breathing is inadequate.",
+    studyTip: "Always monitor blood pressure and mental status on CPAP! Positive intrathoracic pressure decreases venous return (preload)—if SBP drops < 90 mmHg or mental status deteriorates, remove CPAP and switch to BVM."
+  },
+  {
+    id: "CARD-088",
+    source: "Gemini",
+    domain: "Cardiology & Resuscitation",
+    subtopic: "Acute Coronary Syndrome (ACS)",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "A 56-year-old man complains of epigastric burning, nausea, belching, and a cold sweat that began 40 minutes ago while shoveling snow. He insists it is just severe heartburn and asks you to wait while he drinks antacid liquid. His skin is pale and cool, BP is 134/86 mmHg, and HR is 98 beats/min. What is the safest clinical approach?",
+    options: [
+      "Agree that belching and epigastric pain rule out a cardiac cause, and obtain a refusal",
+      "Treat as suspected ACS with aspirin, request ALS for a 12-lead ECG, and transport promptly",
+      "Have him walk briskly up and down stairs to see whether exertion worsens the burning pain",
+      "Administer oral glucose gel to coat his stomach lining before transporting non-emergently"
+    ],
+    correctIndex: 1,
+    explanation: "Because the inferior wall of the left ventricle rests directly on the diaphragm right above the stomach and shares vagal nerve pathways with the upper GI tract, an inferior wall acute myocardial infarction (AMI) very commonly presents as 'indigestion,' epigastric burning, belching, nausea, and diaphoresis. Exertional onset (shoveling snow) with pale, diaphoretic skin is a major red flag. Never dismiss epigastric discomfort as simple heartburn—treat for suspected ACS (chewable aspirin, ALS 12-lead ECG, and prompt transport).",
+    studyTip: "Inferior wall MI rests on the diaphragm and frequently mimics 'indigestion/heartburn' with epigastric pain, belching, and nausea. Treat unexplained exertional epigastric pain + diaphoresis as ACS until proven otherwise!"
+  }
+);

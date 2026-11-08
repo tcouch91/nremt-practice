@@ -693,3 +693,238 @@ window.NREMT_QUESTIONS.push(
     studyTip: "Trench or confined space: never enter without proper training, shoring, and equipment. Secure the perimeter, eliminate vibration, and call technical rescue."
   }
 );
+
+
+// ============================================================================
+// Batch 3: Additional 12 EMS Operations Questions (OPS-037 to OPS-048)
+// ============================================================================
+window.NREMT_QUESTIONS.push(
+  {
+    id: "OPS-037",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Medical-Legal & Ethical Issues",
+    patientType: "Operations",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "When an EMT administers chewable aspirin to a patient with chest pain by following written standing orders in the agency's protocol manual without calling a physician first, what type of medical direction is the EMT using?",
+    options: [
+      "Off-line (indirect) medical direction",
+      "On-line (direct) medical direction",
+      "Retrospective judicial direction",
+      "Autonomous independent practice"
+    ],
+    correctIndex: 0,
+    explanation: "Off-line (indirect) medical direction consists of written standing orders, clinical protocols, training, and policies pre-authorized by the EMS agency's Medical Director that allow EMTs to perform specified interventions without first contacting a physician by radio or phone. On-line (direct) medical direction occurs when the EMT speaks directly with a physician or base station via radio or telephone for real-time orders.",
+    studyTip: "Medical Direction: Off-line (Indirect) = written standing orders/protocols. On-line (Direct) = live radio or phone contact with a physician."
+  },
+  {
+    id: "OPS-038",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Medical-Legal & Ethical Issues",
+    patientType: "Operations",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "In medical-legal terms, what is the distinction between 'assault' and 'battery'?",
+    options: [
+      "Assault is accidental negligence, whereas battery is failing to complete a patient care report on time",
+      "Assault is instilling fear of immediate bodily harm, whereas battery is unlawful touching without consent",
+      "Assault is touching a patient without consent, whereas battery is speaking rudely to a family member",
+      "Assault only applies to law enforcement officers, whereas battery only applies to hospital physicians"
+    ],
+    correctIndex: 1,
+    explanation: "Assault is unlawfully placing a person in reasonable fear or apprehension of immediate bodily harm without their consent (even without physical contact—for example, threatening to restrain or inject a competent patient who refuses care). Battery is the unlawful, non-consensual physical touching of another person (such as forcing treatment or transport on a patient who has decision-making capacity and refuses care).",
+    studyTip: "Assault vs. Battery: Assault = instilling fear/threat of physical harm (no touch required). Battery = unlawful physical touching/treatment without valid consent."
+  },
+  {
+    id: "OPS-039",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Ambulance Operations & Safety",
+    patientType: "Operations",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "When lifting a backboard or stretcher handle, how should you position your hands to achieve a safe 'power grip'?",
+    options: [
+      "Hook only your fingertips under the bar with your palms facing downward toward the floor",
+      "Cross your wrists at the center of the bar with both thumbs pointing straight downward",
+      "Place your palms and fingers in complete contact under the handle with hands 10 inches apart",
+      "Grip the handle with one hand in the center while using your other hand to brace your lower back"
+    ],
+    correctIndex: 2,
+    explanation: "A proper power grip maximizes lifting strength and prevents the handle from slipping out of your hands: position your palms up with your palms and all fingers in full contact around the underside of the handle, all fingers bent at the same angle, and your hands spaced at least 10 inches apart.",
+    studyTip: "Power Grip + Power Lift: Palms up, full palm and finger contact on the handle, hands >= 10 inches apart, back straight/locked, lift with your legs."
+  },
+  {
+    id: "OPS-040",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Ambulance Operations & Infection Control",
+    patientType: "Operations",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "You have just completed transporting a nursing home patient with severe watery diarrhea caused by a confirmed Clostridioides difficile (C. diff) infection. How should you clean your hands and disinfect the stretcher?",
+    options: [
+      "Use a waterless alcohol-based hand sanitizer gel and wipe down the stretcher mattress with plain tap water",
+      "Rinse your exam gloves in rubbing alcohol and spray the stretcher rails with standard household glass cleaner",
+      "Brush your hands briskly with dry paper towels and air out the rear ambulance compartment for 10 minutes",
+      "Wash your hands with soap and running water, and disinfect surfaces with an EPA-approved sporicidal/bleach cleaner"
+    ],
+    correctIndex: 3,
+    explanation: "Clostridioides difficile (C. diff) forms hardy bacterial spores that are completely resistant to standard alcohol-based hand sanitizers and quaternary ammonium wipes. After caring for a patient with known or suspected C. diff (or norovirus), you must physically wash your hands with soap and running water to remove spores, and disinfect the stretcher and ambulance surfaces using an EPA-approved sporicidal disinfectant (such as a 1:10 diluted household bleach solution).",
+    studyTip: "C. diff & Norovirus rule: Alcohol hand sanitizer does NOT kill C. diff spores! Always wash hands with soap and running water and clean equipment with a bleach/sporicidal solution."
+  },
+  {
+    id: "OPS-041",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "HazMat & Scene Safety",
+    patientType: "Operations",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "You respond to a warehouse fire and observe an NFPA 704 fixed-facility hazard diamond sign on the building wall with four colored quadrants: Blue, Red, Yellow, and White. What type of hazard does each color represent?",
+    options: [
+      "Blue = Health, Red = Flammability, Yellow = Reactivity/Instability, White = Special hazards",
+      "Blue = Water-reactive, Red = Health hazard, Yellow = Radioactivity, White = Non-toxic gas",
+      "Blue = Oxygen oxidizer, Red = Corrosive acid, Yellow = Biohazard, White = Explosive material",
+      "Blue = Reactivity/Instability, Red = Special hazards, Yellow = Health, White = Flammability"
+    ],
+    correctIndex: 0,
+    explanation: "The NFPA 704 Hazard Identification System is used on fixed buildings and storage tanks. The four colored diamonds indicate:\n• Blue (left) = Health hazard (rated 0 to 4, with 4 being lethal)\n• Red (top) = Fire / Flammability hazard (rated 0 to 4)\n• Yellow (right) = Instability / Reactivity hazard (rated 0 to 4)\n• White (bottom) = Special hazard symbols (such as 'OX' for oxidizer or a 'W' with a slash through it meaning 'do not use water').",
+    studyTip: "NFPA 704 Diamond (Fixed Facilities): Blue = Health, Red = Fire/Flammability, Yellow = Reactivity/Instability, White = Special Hazards (0 = minimal hazard, 4 = severe hazard)."
+  },
+  {
+    id: "OPS-042",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Communications & Documentation",
+    patientType: "Operations",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "In an EMS radio communication system, what is the primary function of a 'repeater'?",
+    options: [
+      "It automatically records and transcribes voice reports into the receiving hospital's electronic medical chart",
+      "It receives a low-power signal on one frequency and retransmits it at higher power on another frequency",
+      "It scrambles patient names using military encryption so civilian radio scanners cannot hear the dispatch channel",
+      "It converts digital cellular phone calls into analog warning siren tones inside the front ambulance cab"
+    ],
+    correctIndex: 1,
+    explanation: "Handheld portable radios have limited wattage and small antennas, so their signals can easily be blocked by hills, valleys, or tall buildings. A repeater (located in the ambulance or on a high tower/mountain top) receives a weak signal on an input frequency and simultaneously amplifies and rebroadcasts it at much higher wattage on an output frequency, allowing EMTs inside a building or rural valley to reach dispatch and base hospitals.",
+    studyTip: "Radio Repeater: Receives a low-power signal (e.g., from a handheld portable radio) on one frequency and retransmits it at high power on another frequency to extend range."
+  },
+  {
+    id: "OPS-043",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Ambulance Operations & Safety",
+    patientType: "Operations",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "While caring for a patient pinned inside a crashed sedan, you notice that the driver's front steering-wheel airbag did NOT deploy during the collision. What safety precaution should you take while working around the undeployed airbag?",
+    options: [
+      "Cut open the center of the steering wheel with trauma shears to deflate the pressurized airbag canister before extrication",
+      "Lean your chest firmly against the steering wheel hub to shield the patient's face in case the airbag suddenly deploys",
+      "Keep at least 10 inches clear of the driver airbag (and 18 inches from a passenger airbag) while crews disconnect the battery",
+      "Spray water from a fire extinguisher into the steering column to short-circuit the electronic airbag crash sensor"
+    ],
+    correctIndex: 2,
+    explanation: "An undeployed airbag can accidentally fire during vehicle stabilization or extrication at speeds over 150–200 mph, causing fatal head or chest trauma to an EMT leaning between the airbag and the patient. Follow the '10-18-5' rule (stay at least 10 inches away from a driver steering-wheel airbag, 18 inches from a passenger-side dashboard airbag, and 5 inches from side-curtain airbags), avoid placing rigid objects in front of the cover, and have rescue personnel disconnect the vehicle's battery.",
+    studyTip: "Undeployed airbag safety ('5-10-18 rule'): Keep at least 5 inches from side airbags, 10 inches from driver steering-wheel airbags, and 18 inches from passenger dashboard airbags."
+  },
+  {
+    id: "OPS-044",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Ambulance Operations & Safety",
+    patientType: "Operations",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "Which statement BEST describes the goal of a Continuous Quality Improvement (CQI) program in an EMS agency?",
+    options: [
+      "To identify and terminate EMTs who make minor documentation spelling errors on their electronic patient care reports",
+      "To reduce municipal ambulance fuel and maintenance costs by prohibiting the use of emergency warning lights and sirens",
+      "To defend the EMS agency against civil malpractice lawsuits by automatically deleting incomplete patient charts",
+      "To review care delivery, identify system-wide educational needs, and improve patient outcomes through feedback"
+    ],
+    correctIndex: 3,
+    explanation: "Continuous Quality Improvement (CQI, or Quality Assurance) is a proactive, non-punitive system overseen by the Medical Director that audits patient care reports, run times, and high-risk procedures to spot trends, refine clinical protocols, provide targeted continuing education, and improve overall patient care quality.",
+    studyTip: "CQI (Continuous Quality Improvement) is proactive and educational—designed to improve system-wide patient care and protocols rather than punish individuals."
+  },
+  {
+    id: "OPS-045",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Ambulance Operations & Safety",
+    patientType: "Operations",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "You are called to a second-floor bedroom for a 480-pound (218-kg) patient with shortness of breath who cannot walk. What is the safest way for you and your partner to prepare for moving this patient down to the ambulance?",
+    options: [
+      "Request additional lifting personnel and bariatric-rated equipment early, before attempting to lift the patient",
+      "Attempt to carry the patient down the stairs between just the two of you using a standard wheeled ambulance cot",
+      "Have the patient slide down the staircase on his buttocks while you hold onto his belt from behind to slow him",
+      "Place the patient prone on a standard canvas folding litter and drag it down the wooden staircase to the foyer"
+    ],
+    correctIndex: 0,
+    explanation: "Back injuries are the #1 career-ending occupational injury in EMS. Never attempt to lift a bariatric patient down stairs with just two rescuers or exceed the weight rating of your stretcher/stair chair. Call for additional lifting personnel and specialized bariatric equipment (bariatric cot, mega-mover transfer sheet with multiple handles, winch/ramps) early during your scene size-up.",
+    studyTip: "Bariatric patient safety: Never exceed equipment weight ratings or attempt a 2-person lift on a heavy load—request extra lifting personnel and bariatric equipment early!"
+  },
+  {
+    id: "OPS-046",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "HazMat & Scene Safety",
+    patientType: "Operations",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "You arrive at a dairy farm where a farmhand climbed down into an underground manure storage pit to clear a clogged pipe and collapsed at the bottom. The farmer climbed down the ladder to pull him out and also collapsed within 30 seconds. You can see both men lying motionless 12 feet below the open hatch. What must you do?",
+    options: [
+      "Hold your breath, climb rapidly down the ladder, tie a rope around the closest victim, and climb back out within 20 seconds",
+      "Do NOT enter the pit; keep bystanders back, stage upwind, and request a confined-space rescue team with SCBA",
+      "Put on an N95 particulate respirator and double nitrile gloves, then descend into the pit to check for carotid pulses",
+      "Lower a portable oxygen cylinder with a nonrebreather mask into the pit on a rope and climb down the ladder behind it"
+    ],
+    correctIndex: 1,
+    explanation: "Manure pits, grain silos, underground utility vaults, and sewer tanks are classic lethal confined spaces that accumulate toxic gases—such as hydrogen sulfide ('sewer gas,' a rapid chemical asphyxiant that paralyzes the sense of smell and causes 'knockdown' unconsciousness in 1–2 breaths), methane, and carbon dioxide—while displacing oxygen (creating an oxygen-deficient atmosphere < 19.5%). An N95 mask filters particles only and provides zero oxygen or protection against toxic gases. More than half of confined-space fatalities are would-be rescuers! Never enter a confined space without specialized confined-space training, gas monitoring, harness/retrieval lines, and SCBA.",
+    studyTip: "Confined Space Rescue (manure pits, silos, tanks, vaults, trenches): NEVER enter without SCBA and technical rescue training—even if the patient is right below you! N95 masks do NOT supply oxygen or filter toxic gases."
+  },
+  {
+    id: "OPS-047",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "Incident Management & MCI",
+    patientType: "Operations",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "You are assigned to the Incident Command Rehabilitation (Rehab) sector at a working structure fire. A 39-year-old firefighter exits the building, removes his SCBA, and sits down for cooling and hydration. After 15 minutes of rest, he complains of a persistent throbbing headache, dizziness, and mild chest tightness, and his heart rate remains 126 beats/min with an SpO2 of 99%. The Fire Captain asks if the firefighter can return to interior firefighting. How should you respond?",
+    options: [
+      "Clear him to return to interior duty because his SpO2 is 99% and his symptoms are normal after heavy physical work",
+      "Have him drink two bottles of cold water and return to the interior fire line if he feels better in 5 minutes",
+      "Do NOT release him to duty; move him to the treatment area and evaluate for ACS, heat illness, and CO/cyanide exposure",
+      "Administer 324 mg of chewable aspirin and send him back into the structure with a fresh full SCBA air cylinder"
+    ],
+    correctIndex: 2,
+    explanation: "Sudden cardiac events are the leading cause of on-duty firefighter fatalities, and fire smoke contains lethal levels of both carbon monoxide (CO) and hydrogen cyanide (HCN). Remember that a standard pulse oximeter reads 99%–100% even in severe carbon monoxide poisoning! In the EMS Rehab sector, any firefighter who exhibits chest pain/tightness, shortness of breath, altered mental status, dizziness/syncope, or persistently abnormal vital signs after rest MUST be held out of service, moved to the medical treatment sector, given high-flow oxygen as indicated, and transported for medical evaluation.",
+    studyTip: "Fireground Rehab Sector rule: Never clear a firefighter back to duty if they have chest pain, dyspnea, dizziness, headache/CO signs, or persistently abnormal vitals after rest—transfer them to medical treatment/transport!"
+  },
+  {
+    id: "OPS-048",
+    source: "Gemini",
+    domain: "EMS Operations",
+    subtopic: "HazMat & Scene Safety",
+    patientType: "Operations",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "You arrive at a single-car crash where a sedan sheared off a utility pole. A high-voltage overhead power line is draped directly across the metal trunk of the car and sparking on the wet pavement. The driver inside is awake, alert, and waving at you to open his door; there is no fire or smoke in the vehicle. What is the safest instruction to give the driver while you await the electric utility company?",
+    options: [
+      "Tell him to slowly open the door and step out with one foot on the pavement while holding the metal door frame",
+      "Approach the front bumper cautiously and use a dry wooden broomstick to push the live wire off the metal trunk",
+      "Have your partner wear thick leather firefighting gloves and open the driver's door to pull him out onto the road",
+      "Park outside the hazard zone, instruct the driver over the PA to stay inside the car, and wait for the utility crew"
+    ],
+    correctIndex: 3,
+    explanation: "As long as the occupant remains inside the vehicle without touching the outside ground, the car's metal body acts as a Faraday cage and the rubber tires/car body keep the occupant at the same electrical potential. However, if the driver opens the door and steps one foot onto the ground while touching the car, their body completes the circuit between the energized vehicle and the earth—resulting in instant electrocution. Unless the vehicle is actively on fire (requiring the occupant to jump clear with both feet together without touching the car and ground at the same time, then shuffle/hop away), always instruct occupants to remain inside the vehicle until utility crews confirm the power is off.",
+    studyTip: "Car under a downed power line: Stay back in a safe zone, call the power company, and tell occupants over the PA to STAY INSIDE the vehicle (never step out touching the car and ground at the same time!)."
+  }
+);

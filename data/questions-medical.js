@@ -1625,3 +1625,523 @@ window.NREMT_QUESTIONS.push(
     studyTip: "New facial droop = possible stroke until proven otherwise. Symptoms found on waking: last known well = when the patient went to sleep. No aspirin for stroke."
   }
 );
+
+
+// ============================================================================
+// Batch 3: Additional 27 Medical; Obstetrics & Gynecology Questions (MED-086 to MED-112)
+// ============================================================================
+window.NREMT_QUESTIONS.push(
+  {
+    id: "MED-086",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Endocrine & Metabolic Emergencies",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "What is considered the normal fasting blood glucose range in an adult, and below what threshold do symptoms of acute hypoglycemia typically begin?",
+    options: [
+      "Normal is 200 to 300 mg/dL; hypoglycemia begins below 150 mg/dL",
+      "Normal is 70 to 110 mg/dL; hypoglycemia typically begins below 60 mg/dL",
+      "Normal is 30 to 50 mg/dL; hypoglycemia typically begins below 20 mg/dL",
+      "Normal is 140 to 220 mg/dL; hypoglycemia begins below 100 mg/dL"
+    ],
+    correctIndex: 1,
+    explanation: "Normal fasting blood glucose in an adult is roughly 70 to 110 mg/dL (up to 140 mg/dL post-meal). Clinical hypoglycemia is generally defined as a blood glucose below 60 mg/dL (or < 70 mg/dL with adrenergic/neuroglycopenic symptoms such as diaphoresis, tremor, confusion, or altered mental status).",
+    studyTip: "Blood glucose numbers: Normal = ~70–110 mg/dL. Hypoglycemia = < 60 mg/dL (treat if symptomatic/altered). DKA typically > 250–350 mg/dL; HHS typically > 600 mg/dL."
+  },
+  {
+    id: "MED-087",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Allergic Reactions & Anaphylaxis",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "When administering an adult epinephrine auto-injector into the anterolateral mid-thigh for anaphylaxis, how should you deliver the injection?",
+    options: [
+      "Insert the needle at a 15-degree angle into a superficial vein on the inner thigh",
+      "Push the injector against the thigh at a 90-degree angle and hold for 3 to 10 seconds",
+      "Flick the injector rapidly against the buttock for less than half a second",
+      "Unscrew the cap, draw the liquid into a cup, and place it under the patient's tongue"
+    ],
+    correctIndex: 1,
+    explanation: "An epinephrine auto-injector is pushed firmly at a 90-degree angle against the outer mid-thigh (vastus lateralis—halfway between the hip and knee, through clothing if necessary, avoiding pockets/seams) until it clicks, and held firmly in place for 3 to 10 seconds (depending on manufacturer guidelines) so the entire spring-loaded dose is injected into the muscle.",
+    studyTip: "Epinephrine auto-injector technique: 90-degree angle into the anterolateral mid-thigh, hold in place for 3–10 seconds, then place directly into a sharps container."
+  },
+  {
+    id: "MED-088",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Neurologic Emergencies",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "A 26-year-old woman with epilepsy tells you that right before her seizures start, she always smells burnt rubber and sees flashing zigzag lights for 20 seconds. What is this pre-seizure warning phenomenon called?",
+    options: [
+      "A postictal deficit",
+      "Clonic activity",
+      "An aura",
+      "Automatism"
+    ],
+    correctIndex: 2,
+    explanation: "An aura is a subjective sensory warning—such as smelling an unusual odor (olfactory hallucination), seeing flashing lights or spots, hearing a buzzing sound, feeling a 'rising' sensation in the epigastrium, or experiencing sudden deja vu—that precedes a generalized seizure. It actually represents a focal seizure beginning in one small area of the cerebral cortex before spreading.",
+    studyTip: "An aura (unusual smell, visual flash, or epigastric rising feeling) is an early focal seizure warning; if a patient reports their aura, help them lie down safely on the floor away from hazards immediately!"
+  },
+  {
+    id: "MED-089",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "What are the four routes by which a poison or toxin can enter the body, and which route accounts for the vast majority (roughly 80%) of all poisoning calls?",
+    options: [
+      "Ingestion, inhalation, injection, and absorption; ingestion is the most common",
+      "Ingestion, radiation, osmosis, and diffusion; inhalation is the most common",
+      "Injection, aspiration, perspiration, and digestion; injection is the most common",
+      "Absorption, insufflation, filtration, and excretion; absorption is the most common"
+    ],
+    correctIndex: 0,
+    explanation: "Poisons enter the human body by four routes: (1) Ingestion (swallowing pills, liquids, plants, or contaminated food—accounting for roughly 80% of all poisonings), (2) Inhalation (gases, vapors, smoke, carbon monoxide), (3) Injection (bites, stings, needles), and (4) Absorption (surface contact through the skin or mucous membranes/eyes, such as dry lime or organophosphates).",
+    studyTip: "4 Routes of Poisoning: Ingestion (~80% of cases), Inhalation, Injection, and Absorption (surface contact)."
+  },
+  {
+    id: "MED-090",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Obstetrics & Neonatal Care",
+    patientType: "Obstetric",
+    difficulty: 1,
+    irtB: -0.6,
+    stem: "A 30-year-old woman at 33 weeks gestation calls 9-1-1 because of intermittent abdominal tightening. How can you distinguish Braxton-Hicks ('false labor') contractions from true labor contractions?",
+    options: [
+      "Braxton-Hicks contractions grow steadily stronger and closer together every 2 minutes",
+      "Braxton-Hicks contractions are irregular in timing and intensity and often ease with walking or rest",
+      "Braxton-Hicks contractions are always accompanied by bloody show and rupture of membranes",
+      "Braxton-Hicks contractions begin in the lower back and sweep around to the pelvis at regular intervals"
+    ],
+    correctIndex: 1,
+    explanation: "Braxton-Hicks contractions ('false labor') are irregular uterine tightenings that do not progressively shorten in interval or increase in duration/intensity, are felt mainly in the anterior abdomen, and frequently subside when the mother walks, rests, or hydrates. True labor contractions occur at regular, progressively shorter intervals, last longer (30–70 seconds), increase in intensity regardless of position, and radiate from the lower back to the lower abdomen.",
+    studyTip: "True Labor vs. Braxton-Hicks: True labor contractions get regularly closer together, last longer, and grow stronger regardless of activity; Braxton-Hicks remain irregular and often fade with position change."
+  },
+  {
+    id: "MED-091",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Obstetrics & Neonatal Care",
+    patientType: "Obstetric",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "After an uncomplicated field delivery of a vigorous, crying full-term newborn, where should you place the two umbilical cord clamps before cutting the cord?",
+    options: [
+      "First clamp 1 inch from the baby's navel, second clamp 1 inch further out",
+      "First clamp flush against the mother's perineum, second clamp 2 inches closer to the baby",
+      "First clamp about 6 inches from the baby's abdomen, second clamp 2 to 3 inches closer to the mother",
+      "Both clamps side by side touching each other, and cut on the baby's side of both clamps"
+    ],
+    correctIndex: 2,
+    explanation: "Once the newborn is breathing/crying and cord pulsations have slowed or stopped (typically 30 to 60 seconds after birth), place the first umbilical clamp approximately 6 inches (about a hand's width) away from the infant's abdominal wall, place the second clamp 2 to 3 inches further toward the mother, and cut the cord between the two clamps with sterile scissors. Leaving a 6-inch umbilical stump preserves access for neonatal umbilical vein catheterization at the hospital if needed.",
+    studyTip: "Umbilical cord clamping: Wait ~30–60 sec (if baby is vigorous), place 1st clamp ~6 inches from the baby, 2nd clamp 2–3 inches further toward the mother, and cut between them."
+  },
+  {
+    id: "MED-092",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.5,
+    stem: "A 25-year-old soccer player who has been sweating heavily during a summer tournament complains of painful, involuntary muscle spasms in both calves. He is alert and oriented, his skin is warm and moist, and his vital signs are BP 122/78 mmHg, HR 96 beats/min, and temperature 99.1°F (37.3°C). What is he experiencing, and how is it treated?",
+    options: [
+      "Exertional heat stroke; immerse him in an ice water bath and request an ALS unit immediately",
+      "Deep vein thrombosis; splint both lower legs rigidly and withhold all oral fluids in the field",
+      "Acute rhabdomyolysis; apply arterial tourniquets above both knees to block toxin release",
+      "Heat cramps; move him to a cool shaded area, gently stretch the muscle, and give oral fluids"
+    ],
+    correctIndex: 3,
+    explanation: "Heat cramps are painful skeletal muscle spasms (most commonly in the calves, thighs, or abdominal wall) that occur during or after vigorous exercise in hot weather due to loss of water and electrolytes (especially sodium and chloride) in sweat. Move the patient to a cool environment, gently stretch the cramped muscle, and have the alert patient drink an electrolyte solution or lightly salted water.",
+    studyTip: "Heat Cramps = painful muscle spasms (calves/abdomen) with normal mental status and normal core temp -> move to cool area, gentle stretching, and oral electrolyte replacement."
+  },
+  {
+    id: "MED-093",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Neurologic Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.2,
+    stem: "A 71-year-old man developed sudden slurred speech and left arm weakness while reading the newspaper 25 minutes ago. By the time you arrive, his speech is completely clear and his grip strength is equal and strong in both hands. His blood glucose is 104 mg/dL and his BP is 162/92 mmHg. He says he feels back to normal and wants to stay home. What should you advise him?",
+    options: [
+      "He likely had a transient ischemic attack (TIA), which carries a high risk of stroke and needs ED evaluation",
+      "Because his symptoms resolved within 30 minutes, he had a harmless muscle spasm and does not need to see a doctor",
+      "Give him 324 mg of chewable aspirin and tell him to schedule an appointment with his family doctor next month",
+      "His normal physical exam proves he was experiencing low blood sugar rather than an acute neurological event"
+    ],
+    correctIndex: 0,
+    explanation: "A Transient Ischemic Attack (TIA) occurs when a small clot or spasm temporarily blocks blood flow to part of the brain, producing classic stroke symptoms (facial droop, arm drift, slurred speech) that resolve completely—often within 15 to 60 minutes—as the clot breaks up on its own. A TIA is a critical warning sign ('mini-stroke'): roughly 10% to 15% of TIA patients suffer a major, permanent stroke within the next days to weeks (with the highest risk in the first 48 hours). Always strongly encourage immediate hospital transport.",
+    studyTip: "TIA (Transient Ischemic Attack) = Stroke symptoms that resolve completely on their own (usually within 1 hour, always < 24 hours). Never let a TIA patient brush it off—it is the #1 warning sign of an imminent major stroke!"
+  },
+  {
+    id: "MED-094",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Abdominal, GI & Renal Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "A 47-year-old man with a history of heavy alcohol use complains of severe, constant mid-epigastric abdominal pain that bores straight through to his middle back, accompanied by persistent retching and vomiting. The pain worsens when he lies flat and eases slightly when he leans forward with his knees drawn up. His abdomen is tender in the upper quadrants, HR is 114 beats/min, and BP is 106/70 mmHg. What condition is MOST likely?",
+    options: [
+      "Acute appendicitis",
+      "Acute pancreatitis",
+      "Inguinal hernia incarceration",
+      "Lower urinary tract infection"
+    ],
+    correctIndex: 1,
+    explanation: "Acute pancreatitis is an acute inflammation of the pancreas—most commonly triggered by gallstones obstructing the common bile duct or heavy alcohol consumption—in which powerful pancreatic digestive enzymes auto-digest the organ. It classically presents with severe, constant, boring epigastric/left upper quadrant pain that radiates straight through to the mid-back, accompanied by nausea, vomiting, fever, and third-space fluid loss leading to hypovolemic shock.",
+    studyTip: "Acute Pancreatitis = History of gallstones or heavy alcohol use + severe constant boring epigastric pain radiating straight through to the back + nausea/vomiting."
+  },
+  {
+    id: "MED-095",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Abdominal, GI & Renal Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "How does the physical behavior of a patient with acute peritonitis (such as from a perforated ulcer or ruptured appendix) typically contrast with the behavior of a patient with renal colic (a kidney stone)?",
+    options: [
+      "Peritonitis patients pace the room restlessly, whereas kidney stone patients sleep quietly flat on their backs",
+      "Both patients prefer to jump up and down because jarring movements relieve acute visceral smooth-muscle spasms",
+      "Peritonitis patients lie very still with knees flexed, whereas kidney stone patients writhe and pace constantly",
+      "Peritonitis patients only feel pain when standing upright, whereas kidney stone patients only hurt while sitting"
+    ],
+    correctIndex: 2,
+    explanation: "Inflammation of the parietal peritoneum (peritonitis) makes the abdominal lining exquisitely sensitive to stretching or vibration; patients lie completely motionless, often with their knees drawn up to relax the abdominal wall, and wince at every bump in the road (positive Markle/heel-drop sign). In contrast, visceral smooth-muscle colic from a ureteral stone (renal colic) causes intense, wave-like flank-to-groin pain that makes the patient pace, toss, and writhe constantly trying to find relief.",
+    studyTip: "Abdominal pain behavior clue: Lying dead still with knees drawn up (every bump hurts) = Peritonitis (somatic parietal pain). Pacing/writhing constantly unable to get comfortable = Renal or Biliary Colic (visceral pain)."
+  },
+  {
+    id: "MED-096",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "A 36-year-old man was cleaning out a dark woodpile in his shed an hour ago when he felt a sharp pinprick on his hand. He now has agonizing, cramping muscle spasms across his shoulders, back, and abdominal wall, making his abdomen feel board-like, along with profuse sweating, nausea, and a blood pressure of 176/104 mmHg. Which bite or sting causes this presentation?",
+    options: [
+      "Brown recluse spider bite",
+      "Honeybee sting without allergy",
+      "Scorpion tail laceration",
+      "Black widow spider bite"
+    ],
+    correctIndex: 3,
+    explanation: "The female black widow spider (shiny black with a red-orange hourglass marking on its abdomen) injects a potent neurotoxin (alpha-latrotoxin) that causes massive release of acetylcholine and norepinephrine at nerve endings. Within 30 to 90 minutes, the patient develops severe, painful muscle spasms of the large muscle groups—classic board-like abdominal rigidity (mimicking an acute surgical abdomen), back/shoulder cramps, diaphoresis, nausea, and severe hypertension.",
+    studyTip: "Spider bite comparison:\n• Black Widow = Neurotoxin -> fast onset (within 1 hr) severe muscle spasms, rigid board-like abdomen, sweating, hypertension.\n• Brown Recluse = Cytotoxin/hemotoxin -> local tissue necrosis ('bullseye' sunken blue ulcer) developing over hours to days."
+  },
+  {
+    id: "MED-097",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 22-year-old swimmer stepped on a stingray in shallow ocean water and sustained a jagged puncture wound to his ankle with intense, radiating pain. After ensuring no barb fragments are obstructing circulation, what is the recommended field treatment to relieve the pain of marine spine venoms (such as stingray, lionfish, or sea urchin)?",
+    options: [
+      "Immerse the foot in hot, non-scalding water (~110°F–113°F) to inactivate the heat-sensitive venom",
+      "Pack the ankle tightly in crushed ice and snow for 30 minutes to freeze the marine toxin in place",
+      "Apply an arterial tourniquet above the knee and make a cross-shaped incision over the puncture site",
+      "Rub wet beach sand vigorously into the puncture wound for 10 minutes to absorb the marine venom"
+    ],
+    correctIndex: 0,
+    explanation: "Venoms from marine spine punctures (stingrays, stonefish, lionfish, catfish, sea urchins) are heat-labile protein toxins—meaning heat breaks down and inactivates the venom molecules. Immersing the injured extremity in hot, non-scalding water (about 110°F to 113°F / 43°C to 45°C, tested on your own skin first so you do not burn the patient) for 20 to 30 minutes provides dramatic pain relief.",
+    studyTip: "Marine envenomations:\n• Stingray / Sea Urchin / Lionfish spines = Immerse in HOT (non-scalding) water to denature heat-labile venom.\n• Jellyfish tentacles = Rinse with vinegar (or saltwater, NEVER fresh water!) and scrape off nematocysts."
+  },
+  {
+    id: "MED-098",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "A 24-year-old man at a nightclub is agitated, paranoid, and grinding his teeth. His skin is hot and drenched in sweat, his pupils are widely dilated (mydriasis), his heart rate is 144 beats/min, his blood pressure is 184/106 mmHg, and his temperature is 102.8°F (39.3°C). Which toxidrome does this presentation match?",
+    options: [
+      "Opioid toxidrome",
+      "Sympathomimetic toxidrome",
+      "Cholinergic toxidrome",
+      "Sedative-hypnotic toxidrome"
+    ],
+    correctIndex: 1,
+    explanation: "The sympathomimetic toxidrome (caused by stimulants such as cocaine, methamphetamine, amphetamines, MDMA/ecstasy, or synthetic cathinones) mimics a massive fight-or-flight surge of epinephrine and norepinephrine. Patients present with agitation, paranoia/psychosis, widely dilated pupils (mydriasis), tachycardia, hypertension, hyperthermia, and profuse diaphoresis (sweating). Note: Anticholinergic toxicity also causes tachycardia, hyperthermia, and dilated pupils, but anticholinergic skin is bone-DRY ('dry as a bone'), whereas sympathomimetic skin is WET/diaphoretic!",
+    studyTip: "Sympathomimetic vs. Anticholinergic toxidrome (both have Tachycardia + Dilated Pupils + Hyperthermia + Agitation):\n• Sympathomimetic (cocaine/meth) = WET, sweaty skin (diaphoresis).\n• Anticholinergic (atropine/diphenhydramine) = Bone-DRY, flushed skin."
+  },
+  {
+    id: "MED-099",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "You are called for a 42-year-old woman who ingested an entire bottle of her prescribed alprazolam (Xanax) along with two glasses of wine. She is unresponsive to verbal stimuli, has slurred groaning to pain, mid-size sluggish pupils, a BP of 90/56 mmHg, HR of 68 beats/min, and shallow respirations at 6 breaths/min with an SpO2 of 84%. What is the MOST important treatment?",
+    options: [
+      "Administer 4 mg of intranasal naloxone and wait 5 full minutes before touching her airway",
+      "Administer 50 g of activated charcoal suspension by mouth using a large plastic syringe",
+      "Open the airway, insert an adjunct as tolerated, and assist ventilations with a BVM and oxygen",
+      "Walk the patient briskly around the room and place cold wet towels on her face to wake her up"
+    ],
+    correctIndex: 2,
+    explanation: "Benzodiazepines (such as alprazolam, lorazepam, diazepam, or clonazepam) are sedative-hypnotics. Taken alone, oral benzodiazepines rarely cause fatal respiratory arrest, but when combined with alcohol or opioids, their synergistic GABA effect produces profound CNS depression, airway loss, and respiratory failure. Naloxone does NOT reverse benzodiazepines or alcohol, and activated charcoal is contraindicated in an obtunded patient. Immediate airway management and positive pressure BVM ventilation are life-saving.",
+    studyTip: "Sedative-hypnotic (benzodiazepine + alcohol) overdose causes severe respiratory depression that does NOT respond to naloxone. Always prioritize opening the airway and ventilating with a BVM!"
+  },
+  {
+    id: "MED-100",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Abdominal, GI & Renal Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 38-year-old man who has been binge drinking for 3 days had 6 episodes of violent, dry retching and non-bloody vomiting this morning, followed suddenly by vomiting two cups of bright red blood alongside sharp substernal/epigastric pain. What is the classical cause of this upper GI bleed?",
+    options: [
+      "A Mallory-Weiss mucosal tear at the gastroesophageal junction from forceful retching",
+      "Lower colonic diverticulitis with retrograde bowel peristalsis into the upper stomach",
+      "Acute calculous cholecystitis caused by a large gallstone blocking the cystic bile duct",
+      "Ischemic mucosal colitis of the descending colon triggered by severe alcohol dehydration"
+    ],
+    correctIndex: 0,
+    explanation: "A Mallory-Weiss tear is a longitudinal laceration of the mucous membrane where the esophagus meets the stomach (the gastroesophageal junction), caused by sudden, severe increases in intra-abdominal and intragastric pressure during violent retching, vomiting, or coughing. It classically presents with episodes of non-bloody vomiting followed abruptly by bright red hematemesis. Monitor the airway closely, keep suction ready, treat for shock, and transport.",
+    studyTip: "Forceful, repeated vomiting/retching followed suddenly by bright red hematemesis = Mallory-Weiss tear at the gastroesophageal junction."
+  },
+  {
+    id: "MED-101",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "Four hours after completing three deep scuba dives and ascending rapidly on the final dive, a 34-year-old diver develops deep, throbbing pain in his right shoulder and both knees, mottled itching skin on his torso, and tingling numbness in both legs. His lungs are clear. What condition is he experiencing, and how should you manage him?",
+    options: [
+      "Simple muscle fatigue from swimming; apply warm heating pads to his shoulder and both knees during transport",
+      "Decompression sickness; give high-flow 100% oxygen via NRB, keep him supine, and transport for hyperbaric care",
+      "Saltwater aspiration pneumonia; place him on CPAP at 15 cmH2O so dissolved nitrogen stays in his joint tissues",
+      "Nitrogen narcosis ('rapture of the deep'); have him re-descend 20 feet underwater in the lake with a spare tank"
+    ],
+    correctIndex: 1,
+    explanation: "Decompression sickness (DCS, 'the bends') occurs when a diver breathes compressed air at depth—causing nitrogen to dissolve into body tissues—and ascends too rapidly for the nitrogen to be safely exhaled through the lungs. Nitrogen comes out of solution and forms gas bubbles in joints (causing deep aching shoulder/elbow/knee pain where the diver bends the joint for relief), skin ('cutis marmorata' mottling), and the spinal cord (numbness/paralysis), typically 15 minutes to 24 hours after surfacing. Administer 100% oxygen via NRB (which accelerates nitrogen washout) and transport for hyperbaric recompression.",
+    studyTip: "Dive emergencies comparison:\n• Arterial Gas Embolism (AGE) = Immediate onset (< 10 min, often right upon surfacing) stroke-like symptoms/LOC from pulmonary barotrauma.\n• Decompression Sickness ('the bends') = Delayed onset (15 min to 24 hrs after surfacing) deep joint pain, mottled skin, and numbness from nitrogen bubbles."
+  },
+  {
+    id: "MED-102",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Infectious Disease",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "A 19-year-old college freshman living in a dormitory develops a sudden high fever of 103.4°F (39.7°C), a severe throbbing headache, painful stiffness when trying to flex his chin to his chest (nuchal rigidity), extreme sensitivity to bright light (photophobia), lethargy, and tiny purplish-red spots (petechiae) across his trunk and legs that do not fade when you press on them. What should you suspect and do?",
+    options: [
+      "Viral gastroenteritis; wear standard exam gloves only, give oral electrolyte solution, and transport routinely",
+      "Allergic contact dermatitis from laundry detergent; administer an adult epinephrine auto-injector in the thigh",
+      "Bacterial meningitis; use droplet precautions (masks), give oxygen as needed, and transport with ED notification",
+      "Heat exhaustion from a warm dorm room; sponge him down with cool tap water and allow him to rest in his dorm bed"
+    ],
+    correctIndex: 2,
+    explanation: "The classic triad of fever, severe headache, and stiff neck (nuchal rigidity)—accompanied by photophobia, altered mental status, and a non-blanching petechial or purpuric rash in a young adult or child—points to acute meningococcal meningitis (Neisseria meningitidis). Meningococcemia can progress to septic shock and death within hours. Because it spreads via respiratory droplets, immediately don a surgical mask (and place a surgical/oxygen mask on the patient), treat for shock/hypoxia, and notify the receiving ED early.",
+    studyTip: "Fever + Headache + Stiff Neck (nuchal rigidity) + Photophobia + Non-blanching petechial rash = Bacterial Meningitis! Use Droplet Precautions (surgical mask) and transport urgently."
+  },
+  {
+    id: "MED-103",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Gynecologic Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "A 23-year-old woman complains of sudden, sharp, one-sided right lower quadrant pelvic pain that started immediately after a workout class. Her last normal menstrual period was 2 weeks ago, and she has no fever, no vaginal discharge, and no urinary burning. However, she feels dizzy when standing, and her heart rate rises from 84 beats/min supine to 112 beats/min standing. How should you manage her?",
+    options: [
+      "Tell her that mid-cycle ovulation pain is always harmless and she does not need ambulance transport to the ED",
+      "Have her perform 20 jumping jacks on scene so you can differentiate acute appendicitis from a muscle strain",
+      "Administer one tube of oral glucose gel and have her walk around the room to treat her orthostatic dizziness",
+      "Keep her supine in a comfortable position, monitor closely for hypovolemic shock, and transport for evaluation"
+    ],
+    correctIndex: 3,
+    explanation: "Sudden unilateral lower quadrant pelvic pain in a female of reproductive age—especially following exercise or intercourse—can be caused by a ruptured ovarian cyst, ovarian torsion, or a ruptured ectopic pregnancy. Significant intraperitoneal bleeding from a ruptured hemorrhagic cyst or ectopic pregnancy causes orthostatic tachycardia and dizziness before supine blood pressure drops. Keep the patient supine/comfortable, treat for potential shock, and transport.",
+    studyTip: "In any biological female of childbearing age (roughly ages 12–50) with acute lower abdominal/pelvic pain and dizziness or shock, always suspect ruptured ectopic pregnancy or ruptured hemorrhagic ovarian cyst!"
+  },
+  {
+    id: "MED-104",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Endocrine & Metabolic Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "A 44-year-old woman with a history of Addison's disease (chronic adrenal insufficiency) has had the flu with fever and vomiting for 2 days. Her husband finds her severely weak, confused, and dizzy. She wears a medical alert bracelet stating 'Adrenal Insufficiency—Steroid Dependent.' Her skin has bronze hyperpigmentation, her blood glucose is 54 mg/dL, HR is 126 beats/min, and BP is 72/44 mmHg. What life-threatening condition is she experiencing, and what is your priority?",
+    options: [
+      "Addisonian crisis; support ABCs, give high-flow oxygen, request ALS for IV fluids/steroids, and transport rapidly",
+      "Cushing's syndrome from excess cortisol; sit her upright on the cot and withhold all supplemental oxygen and glucose",
+      "Hyperosmolar hyperglycemic state; coach her to breathe more slowly and transport non-emergently without ALS intercept",
+      "Simple viral dehydration; let her rest at home and take her morning prednisone tablet once she stops vomiting"
+    ],
+    correctIndex: 0,
+    explanation: "Patients with Addison's disease (or patients who take chronic daily corticosteroids and abruptly stop or become ill) cannot produce adequate cortisol and aldosterone from their adrenal cortex in response to physical stress such as infection, trauma, or surgery. This triggers an acute Addisonian crisis—characterized by profound, life-threatening vasopressor-resistant hypotension/shock, severe vomiting/abdominal pain, hypoglycemia (due to lack of cortisol), and hyperkalemia/hyponatremia. Support airway/oxygenation, request immediate ALS intercept (for IV normal saline, dextrose, and hydrocortisone), and transport emergently.",
+    studyTip: "Addisonian Crisis (Acute Adrenal Insufficiency): Triggered by illness/trauma or stopping steroids -> Refractory Shock (severe hypotension) + Hypoglycemia + Vomiting/Weakness. Request ALS early!"
+  },
+  {
+    id: "MED-105",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Endocrine & Metabolic Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A 32-year-old woman with untreated Graves' disease (hyperthyroidism) presents with extreme agitation, delirium, prominent bulging eyes (exophthalmos), a fine hand tremor, and profuse sweating. Her temperature is 104.6°F (40.3°C), her heart rate is 166 beats/min and irregular, and her blood pressure is 168/94 mmHg. What is this life-threatening endocrine emergency, and why must aspirin be avoided for her fever?",
+    options: [
+      "Myxedema coma; aspirin lowers core body temperature too rapidly and triggers ventricular fibrillation in cold hearts",
+      "Thyroid storm; support ABCs, cool passively, and avoid aspirin because it increases free circulating thyroid hormone",
+      "Pheochromocytoma crisis; administer 324 mg of chewable aspirin immediately to prevent an acute embolic brain stroke",
+      "Acute hypoparathyroidism; have her rebreathe into a paper bag and avoid aspirin because it chelates serum calcium"
+    ],
+    correctIndex: 1,
+    explanation: "Thyroid storm (thyrotoxic crisis) is a rare, life-threatening surge of thyroid hormones (T3/T4) causing a hypermetabolic state with extreme tachycardia (often 140–180+ bpm or atrial fibrillation leading to high-output heart failure), dangerous hyperthermia (> 104°F), delirium/agitation, and vomiting. EMT care focuses on calming the patient, administering supplemental oxygen, passive cooling, and rapid transport with ALS intercept. Never give aspirin to a patient in thyroid storm—salicylates displace thyroid hormone from carrier proteins in the blood, increasing free hormone levels!",
+    studyTip: "Thyroid Storm (extreme hyperthyroidism) vs. Myxedema Coma (extreme hypothyroidism):\n• Thyroid Storm = Hot (high fever), Fast (extreme tachycardia/A-Fib), Agitated/Delirious.\n• Myxedema Coma = Cold (hypothermia), Slow (bradycardia/hypoventilation), Lethargic/Comatose, puffy non-pitting facial edema."
+  },
+  {
+    id: "MED-106",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Toxicology & Environmental Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "A 31-year-old man swallowed a handful of his prescribed amitriptyline (a tricyclic antidepressant) 35 minutes ago. When you arrive, he is drowsy with dry mucous membranes, flushed skin, and a heart rate of 134 beats/min. Five minutes into transport, he has a generalized seizure and then becomes unresponsive with a weak, irregular pulse and a BP of 68/40 mmHg. Why are tricyclic antidepressant (TCA) overdoses particularly lethal?",
+    options: [
+      "They cause delayed hepatic necrosis that only appears 72 hours after ingestion without early warning signs",
+      "They bind irreversibly to red blood cell hemoglobin and prevent oxygen transport across the alveolar membrane",
+      "They block cardiac sodium channels, rapidly causing seizures, coma, fatal dysrhythmias, and severe hypotension",
+      "They trigger severe acute bronchospasm that can only be reversed with a patient's prescribed albuterol inhaler"
+    ],
+    correctIndex: 2,
+    explanation: "Tricyclic antidepressants (TCAs—drugs ending in '-triptyline' or '-pramine' such as amitriptyline, nortriptyline, imipramine, and doxepin) have a very narrow therapeutic index. In overdose, patients deteriorate with alarming speed—often going from alert/mildly anticholinergic (dry mouth, tachycardia) to status epilepticus, coma, profound alpha-blockade hypotension, and fatal cardiac sodium-channel blockade (wide-complex ventricular tachycardia/fibrillation) within 30 to 60 minutes. Support airway/ventilation with a BVM, avoid activated charcoal (due to rapid seizure/aspiration risk), request immediate ALS intercept (for IV sodium bicarbonate), and transport emergently.",
+    studyTip: "Tricyclic Antidepressant (TCA, e.g., amitriptyline) overdose: Rapid deterioration within 30–60 minutes -> Seizures, Coma, Hypotension, and Lethal Ventricular Arrhythmias! Request ALS immediately and be ready with BVM + AED."
+  },
+  {
+    id: "MED-107",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Neurologic Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "You are called for a 35-year-old man who has paraplegia from a T4 spinal cord injury sustained 3 years ago. He complains of a sudden, pounding headache, blurred vision, and nasal stuffiness. Above his chest, his face and neck are bright red and drenched in sweat; below his chest, his legs are pale, cool, and covered in goosebumps. His blood pressure is 218/116 mmHg and his heart rate is 48 beats/min. You notice his urinary drainage bag is completely empty and the Foley tubing is kinked under his leg. What is occurring, and what should you do FIRST?",
+    options: [
+      "He is having an ischemic stroke; lay him flat on his back on the stretcher and elevate both legs 12 inches",
+      "He is in neurogenic shock; apply a pneumatic antishock garment and wrap his lower extremities in warm blankets",
+      "He has a urinary tract infection causing septic shock; place him in Trendelenburg and clamp the Foley tube",
+      "He has autonomic dysreflexia from a distended bladder; sit him upright immediately and unkink his catheter"
+    ],
+    correctIndex: 3,
+    explanation: "Autonomic dysreflexia is a life-threatening emergency in patients with a chronic spinal cord injury at or above T6. Anoxious stimulus below the level of injury—most commonly a full, distended urinary bladder (kinked Foley catheter) or fecal impaction—sends sensory signals up the lower spinal cord, triggering massive, uninhibited sympathetic vasoconstriction below the injury (causing extreme hypertension up to 220–300 mmHg that can cause a fatal hemorrhagic stroke or seizure). The brain detects the high BP via carotid baroreceptors and slows the heart via the vagus nerve (bradycardia) while dilating vessels above the injury (flushed, sweaty head/neck). Immediately sit the patient upright (orthostatic pooling lowers BP) and loosen tight clothing/unkink the catheter tubing!",
+    studyTip: "Autonomic Dysreflexia (chronic spinal injury at/above T6): Triggered by distended bladder (kinked catheter) or bowel -> Severe Hypertension + Bradycardia + Pounding Headache + Flushed/Sweaty skin above injury. Sit patient UPRIGHT immediately and unkink catheter!"
+  },
+  {
+    id: "MED-108",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Obstetrics & Neonatal Care",
+    patientType: "Obstetric",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "During the delivery of the placenta after an otherwise rapid childbirth, a 28-year-old mother suddenly gasps, clutches her chest, and develops severe respiratory distress, deep cyanosis of her face and chest, hypotension (BP 64/36 mmHg), and rapid loss of consciousness. Her lungs have diffuse crackles and her SpO2 plummets to 72%. What rare, catastrophic obstetric emergency should you suspect?",
+    options: [
+      "Amniotic fluid embolism; immediately assist ventilations with a BVM and 100% oxygen and transport emergently",
+      "Supine hypotensive syndrome; assist the mother to stand up and walk around the room to restore venous return",
+      "Simple postpartum anxiety and hyperventilation; coach her to breathe slowly into a paper bag for 10 minutes",
+      "Braxton-Hicks uterine contraction; perform vigorous two-handed fundal massage for 15 minutes before moving her"
+    ],
+    correctIndex: 0,
+    explanation: "Amniotic fluid embolism (also called anaphylactoid syndrome of pregnancy) occurs during labor, delivery, or immediately postpartum when amniotic fluid, fetal cells, or debris enter the maternal venous circulation and travel to the lungs. It triggers an abrupt, catastrophic pulmonary vascular obstruction and anaphylactoid inflammatory cascade, presenting with sudden severe dyspnea, hypoxia/cyanosis, hypotension/cardiovascular collapse, seizures, disseminated intravascular coagulation (DIC), and cardiac arrest. Provide immediate aggressive airway and BVM ventilation with 100% oxygen, perform high-quality CPR if arrest occurs, and transport emergently.",
+    studyTip: "Sudden catastrophic dyspnea, cyanosis, hypoxia, and cardiovascular collapse during or right after delivery = Amniotic Fluid Embolism (Pulmonary Embolism). Immediately ventilate with 100% O2 via BVM and transport emergently!"
+  },
+  {
+    id: "MED-109",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Obstetrics & Neonatal Care",
+    patientType: "Obstetric",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "Minutes after delivering a baby at home, an untrained bystander pulled hard on the umbilical cord to speed up delivery of the placenta. When you arrive, the mother is pale, diaphoretic, and in severe shock (BP 70/40 mmHg, HR 138 beats/min), and you see a large, smooth, dark-red bleeding mass protruding out of the vaginal opening with the placenta still attached to it. What has happened, and how must you manage it?",
+    options: [
+      "A second twin is crowning in breech position; instruct the mother to push forcefully with the next contraction",
+      "Uterine inversion; do NOT push it back in or peel the placenta off—cover with moist sterile dressings and transport",
+      "Normal placental expulsion; twist and pull the protruding mass completely free from the birth canal and massage",
+      "Postpartum uterine atony; pack dry gauze tightly into the vaginal canal and perform forceful fundal massage"
+    ],
+    correctIndex: 1,
+    explanation: "Uterine inversion is a rare, life-threatening obstetric emergency (often caused by pulling on the umbilical cord before the placenta separates, or pressing on an uncontracted fundus) in which the uterus turns inside-out and prolapses through the cervix and vagina. Stretching of the broad ligament and peritoneal nerves combined with hemorrhage causes profound neurogenic and hypovolemic shock. NEVER attempt to detach the placenta or forcefully push the uterus back in in the field; keep the mother supine, cover the protruding uterus generously with sterile dressings moistened with warm sterile saline, administer high-flow oxygen, and transport emergently.",
+    studyTip: "Uterine Inversion (protruding dark-red mass after delivery + profound shock): NEVER pull on the umbilical cord and NEVER try to push an inverted uterus back in or peel off an attached placenta! Cover with moist sterile dressings and transport emergently."
+  },
+  {
+    id: "MED-110",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Pediatric Medical Emergencies",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A previously healthy 11-month-old boy has had sudden, recurring bouts of screaming every 20 minutes over the past 4 hours during which he pulls both knees tightly up against his abdomen and turns pale. Between these paroxysms, he is unusually lethargic and quiet. He just vomited bilious (greenish-yellow) fluid and passed a stool containing dark red blood mixed with mucus ('currant-jelly' stool). What surgical emergency does this child have?",
+    options: [
+      "Simple infant colic from formula intolerance",
+      "Viral rotavirus gastroenteritis with dehydration",
+      "Intussusception (telescoping segment of bowel)",
+      "Congenital hypertrophic pyloric stenosis"
+    ],
+    correctIndex: 2,
+    explanation: "Intussusception is the most common cause of intestinal obstruction in children aged 3 months to 3 years. One segment of the intestine (typically the ileum) telescopes inside the adjacent segment, compressing the mesenteric blood vessels and causing bowel ischemia. It presents with sudden, episodic, colicky abdominal pain (screaming and drawing the legs up to the chest every 15–20 minutes) alternating with marked lethargy, bilious vomiting, and late 'currant-jelly' stools (blood and sloughed mucosal mucus). Keep the child NPO, support ABCs, and transport promptly to a pediatric-capable hospital.",
+    studyTip: "Infant/Toddler (3 mos–3 yrs) + sudden episodic colicky pain (drawing knees to chest) + lethargy between spells + 'currant-jelly' (blood/mucus) stool = Intussusception."
+  },
+  {
+    id: "MED-111",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Neurologic Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.7,
+    stem: "A 58-year-old man with a history of chronic severe alcoholism and poor nutrition is brought from an alley. He is confused and disoriented, has a wide-based, staggering gait (ataxia), and when you check his pupils, both eyes show rapid involuntary jerking movements and inability to gaze outward (nystagmus and ophthalmoplegia). His blood glucose is 92 mg/dL, and he has no head trauma. What nutritional/metabolic brain disorder causes this classic triad?",
+    options: [
+      "Wernicke encephalopathy from severe thiamine (vitamin B1) deficiency",
+      "Hepatic portal hypertension caused by excessive dietary protein intake",
+      "Acute salicylate toxicity from daily over-the-counter pain relievers",
+      "Simple transient ischemic attack confined to the right occipital lobe"
+    ],
+    correctIndex: 0,
+    explanation: "Wernicke encephalopathy is an acute, life-threatening neurological emergency caused by severe deficiency of thiamine (Vitamin B1)—most commonly seen in chronic alcoholism, chronic malnutrition, or severe hyperemesis gravidarum. Without thiamine, brain cells cannot metabolize glucose properly, producing the classic triad of (1) acute confusion/encephalopathy, (2) ataxia (staggering gait/loss of coordination), and (3) ocular abnormalities (nystagmus and gaze palsies). Protect the airway, monitor blood glucose, and transport to the ED for IV thiamine therapy.",
+    studyTip: "Chronic alcoholism/malnutrition + Confusion + Ataxia (staggering gait) + Eye movement abnormalities (nystagmus/gaze palsy) = Wernicke Encephalopathy (Vitamin B1 / Thiamine deficiency)."
+  },
+  {
+    id: "MED-112",
+    source: "Gemini",
+    domain: "Medical; Obstetrics & Gynecology",
+    subtopic: "Abdominal, GI & Renal Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "After forceful, violent vomiting following a large meal and heavy drinking, a 51-year-old man suddenly develops excruciating, tearing retrosternal chest and upper abdominal pain. He is pale, diaphoretic, and tachypneic at 30 breaths/min, with a BP of 86/54 mmHg and HR of 132 beats/min. When you palpate his neck and suprasternal notch, you feel distinct subcutaneous emphysema (crackling under the skin). What surgical emergency has occurred?",
+    options: [
+      "Simple gastroesophageal reflux (heartburn) with severe panic and hyperventilation",
+      "Acute calculous cholecystitis with referred phrenic nerve pain to the right neck",
+      "Bleeding peptic ulcer confined to the first part of the duodenum with melena",
+      "Boerhaave syndrome (full-thickness esophageal rupture into the mediastinum)"
+    ],
+    correctIndex: 3,
+    explanation: "While a Mallory-Weiss tear is a partial-thickness mucosal tear causing hematemesis, Boerhaave syndrome is a full-thickness transmural rupture of the lower esophageal wall caused by a sudden spike in intraluminal pressure during forceful vomiting. Air, saliva, and corrosive gastric contents leak directly into the mediastinum and pleural space, causing Mackler's triad: (1) forceful vomiting, (2) sudden severe retrosternal chest/epigastric pain, and (3) subcutaneous emphysema in the neck/chest—rapidly leading to mediastinitis and septic/hypovolemic shock. Administer high-flow oxygen, keep the patient NPO, and transport emergently.",
+    studyTip: "Forceful vomiting + sudden tearing chest/epigastric pain + subcutaneous emphysema in the neck + shock = Boerhaave Syndrome (esophageal rupture)—a life-threatening surgical emergency!"
+  }
+);

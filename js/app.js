@@ -11,8 +11,11 @@
     struckOutOptions: new Set(),
     questionStartTime: 0,
     timerInterval: null,
+    isPaused: false,
     hideTimer: false,
     showLiveCatHud: true,
+    focusHighlightStem: false,
+    nateQuoteIndex: 0,
     reviewFilterStatus: "all", // "all" | "incorrect" | "correct"
     reviewFilterDomain: "all",
     reviewFilterDifficulty: "all"
@@ -47,6 +50,71 @@
     } catch (e) {
       return isoStr;
     }
+  }
+
+  // Highlight vital signs, ages, and priority prompt words when Focus Highlighter is toggled on
+  function formatStemWithFocusHighlights(rawStem) {
+    let html = escapeHtml(rawStem);
+    // 1. Highlight key uppercase exam prompt words (FIRST, MOST, BEST, INITIAL, IMMEDIATELY, NOT, EXCEPT, NEXT)
+    html = html.replace(
+      /\b(FIRST|MOST|BEST|INITIAL|IMMEDIATELY|NOT|EXCEPT|NEXT|PRIORITY)\b/g,
+      '<mark class="stem-focus-priority">$1</mark>'
+    );
+    // 2. Highlight clinical vital signs and measurements (BP, HR, RR, SpO2, GCS, mg/dL, mmHg, breaths/min, beats/min, temperatures, ages)
+    // Labeled vitals ("HR 104", "SpO2 is 93%") come first so the label is highlighted with its value.
+    // The trailing (?!\w) replaces \b, which never matches after "%" or "°F" followed by a space or comma.
+    html = html.replace(
+      /\b((?:SpO2|HR|RR|BP|GCS)\s*(?:of\s*|is\s*)?\d{1,3}(?:\/\d{2,3})?(?:\s*(?:%|beats\/min|breaths\/min|bpm|mmHg))?|\d{1,3}\/\d{2,3}\s*mmHg|\d{1,3}(?:\.\d)?\s*(?:beats\/min|breaths\/min|bpm|mg\/dL|mmHg|L\/min|%|°F|°C)|\d{1,2}-year-old|\d{1,2}-month-old|\d{1,2}\s*weeks?\s*(?:pregnant|gestation))(?!\w)/gi,
+      '<span class="stem-focus-vital">$1</span>'
+    );
+    return html;
+  }
+
+  // Build context-aware, grounded encouraging messages for Nate
+  function getNateCoachingQuotes(nateStats) {
+    const quotes = [];
+
+    if (nateStats.totalRepsAllTime === 0) {
+      quotes.push(
+        "Hey Nate — welcome to your personal NREMT training ground. Zero judgment here: nobody sees these scores but you, and a practice question is just a rep in the gym, not a verdict on you. If 35 questions feels heavy right now, click the 10-Question Focus Sprint just to break the ice!"
+      );
+    } else {
+      quotes.push(
+        `Hey Nate — look at your numbers on the right: you've already put in ${nateStats.totalRepsAllTime} question reps, unlocked ${nateStats.uniqueSeenCount} of ${nateStats.totalBankSize} scenarios, and permanently mastered ${nateStats.uniqueMasteredCount} of them. Procrastination lies and says you're starting from zero—you're already moving forward.`
+      );
+    }
+
+    quotes.push(
+      "Real talk on the fear of failing, Nate: missing a question on this app is the best thing that can happen to you today. Every missed question hands you a 2-sentence 'Clinical Pearl' at the end so that exact trap never catches you on the real NREMT."
+    );
+
+    quotes.push(
+      "Having a hard time focusing today, Nate? Don't force a marathon. Run a Quick 10-Question Focus Sprint (~10 minutes), turn on the 🎯 Focus Highlighter in the top bar so vitals pop out, and call it a win. Small consistent reps beat cramming every single time."
+    );
+
+    quotes.push(
+      "Remember how the adaptive test works, Nate: when the questions suddenly feel weird and brutal, DO NOT PANIC. That literally means you answered the easier ones right and forced the computer to give you Hard-tier questions!"
+    );
+
+    quotes.push(
+      "Whenever a long paragraph makes your eyes glaze over, use the EMT trick: read the VERY LAST sentence of the question stem first so your brain knows what it's hunting for, then scan the vitals and ask: 'What will kill my patient first — Airway, Breathing, or Circulation?'"
+    );
+
+    if (nateStats.comebackWinsAllTime > 0) {
+      quotes.push(
+        `Proof that you're learning, Nate: you have ${nateStats.comebackWinsAllTime} Comeback Win${
+          nateStats.comebackWinsAllTime === 1 ? "" : "s"
+        } — questions you missed on an earlier run and came back to nail later. Mistakes aren't failures; they're just future correct answers in disguise.`
+      );
+    }
+
+    if (nateStats.scoreDeltaFromFirst !== null && nateStats.scoreDeltaFromFirst > 0) {
+      quotes.push(
+        `Your Personal Best scaled score (${nateStats.bestScaledScore}) is up +${nateStats.scoreDeltaFromFirst} points from your first attempt (${nateStats.firstScaledScore}). That's not luck, Nate — that's your clinical instinct getting sharper.`
+      );
+    }
+
+    return quotes;
   }
 
   // ============================================================================
@@ -92,13 +160,119 @@
       });
     }
 
-    // Launch Exam button in Lobby
+    // Toggle Focus Stem Highlighter (helps Nate focus on vitals & key prompt words)
+    const btnToggleFocusStem = document.getElementById("btn-toggle-focus-stem");
+    if (btnToggleFocusStem) {
+      btnToggleFocusStem.addEventListener("click", () => {
+        state.focusHighlightStem = !state.focusHighlightStem;
+        const focusStateEl = document.getElementById("focus-stem-state");
+        if (focusStateEl) focusStateEl.textContent = state.focusHighlightStem ? "ON" : "Off";
+        btnToggleFocusStem.classList.toggle("vue-tool-btn-active", state.focusHighlightStem);
+        renderQuestionStemText();
+      });
+    }
+
+    // 60-Second Breather / Pause Button during Exam
+    const btnExamBreather = document.getElementById("btn-exam-breather");
+    if (btnExamBreather) {
+      btnExamBreather.addEventListener("click", openBreatherPauseModal);
+    }
+
+    // Firefighter Extended Duty Call Pause Button during Exam
+    const btnExamDutyPause = document.getElementById("btn-exam-duty-pause");
+    if (btnExamDutyPause) {
+      btnExamDutyPause.addEventListener("click", openDutyPauseModal);
+    }
+
+    // In-Progress / Duty Paused Session recovery buttons in Lobby
+    const btnDutyResume = document.getElementById("btn-duty-resume");
+    if (btnDutyResume) {
+      btnDutyResume.addEventListener("click", () => {
+        const saved = engine.getActiveSession();
+        if (saved) {
+          resumeSavedExamSession(saved);
+        }
+      });
+    }
+
+    const btnDutyFinishEarly = document.getElementById("btn-duty-finish-early");
+    if (btnDutyFinishEarly) {
+      btnDutyFinishEarly.addEventListener("click", () => {
+        const saved = engine.getActiveSession();
+        if (saved) {
+          if (saved.responses.length === 0) {
+            showModal({
+              title: "No Questions Answered Yet",
+              bodyHtml: `<p>You haven't answered any questions in this session yet, Nate. Click <strong>Resume Exam Now</strong> to dive in, or <strong>Discard</strong> to start fresh!</p>`,
+              confirmText: "Resume Exam Now ▶",
+              cancelText: "Discard Session",
+              onConfirm: () => resumeSavedExamSession(saved),
+              onCancel: () => {
+                engine.clearActiveSession();
+                state.activeSession = null;
+                renderLobby();
+              }
+            });
+            return;
+          }
+          stopTimer();
+          const report = engine.finalizeSession(saved);
+          state.activeSession = null;
+          state.activeReport = report;
+          renderDiagnosticReport(report);
+          showView("results");
+        }
+      });
+    }
+
+    const btnDutyDiscard = document.getElementById("btn-duty-discard");
+    if (btnDutyDiscard) {
+      btnDutyDiscard.addEventListener("click", () => {
+        showModal({
+          title: "Discard Paused Session?",
+          bodyHtml: `<p>Are you sure you want to discard this in-progress session, Nate?</p><p style="margin-top:0.4rem;color:var(--vue-text-muted);font-size:0.86rem;">Any questions already answered will still count toward question exposure, but this attempt won't be scored.</p>`,
+          confirmText: "Discard Session",
+          cancelText: "Keep Session",
+          onConfirm: () => {
+            engine.clearActiveSession();
+            state.activeSession = null;
+            renderLobby();
+          }
+        });
+      });
+    }
+
+    // Cycle Nate's Pep Talk Quote in Lobby
+    const btnNateNewQuote = document.getElementById("btn-nate-new-quote");
+    if (btnNateNewQuote) {
+      btnNateNewQuote.addEventListener("click", () => {
+        const nateStats = engine.getNateProgressStats();
+        const quotes = getNateCoachingQuotes(nateStats);
+        state.nateQuoteIndex = (state.nateQuoteIndex + 1) % quotes.length;
+        const msgEl = document.getElementById("nate-coach-message");
+        if (msgEl) {
+          msgEl.textContent = quotes[state.nateQuoteIndex];
+        }
+      });
+    }
+
+    // Launch Full 35-Question Exam button in Lobby
     const btnStartExam = document.getElementById("btn-start-exam");
     if (btnStartExam) {
       btnStartExam.addEventListener("click", () => {
         const hudCheckbox = document.getElementById("chk-live-cat-hud");
         if (hudCheckbox) state.showLiveCatHud = hudCheckbox.checked;
-        startNewExam();
+        startNewExam("full");
+      });
+    }
+
+    // Launch Quick 10-Question Focus Sprint button in Lobby
+    const btnStartSprint = document.getElementById("btn-start-sprint");
+    if (btnStartSprint) {
+      btnStartSprint.addEventListener("click", () => {
+        const hudCheckbox = document.getElementById("chk-live-cat-hud");
+        if (hudCheckbox) state.showLiveCatHud = hudCheckbox.checked;
+        startNewExam("sprint");
       });
     }
 
@@ -152,7 +326,14 @@
     const btnRetakeExam = document.getElementById("btn-retake-exam");
     if (btnRetakeExam) {
       btnRetakeExam.addEventListener("click", () => {
-        startNewExam();
+        startNewExam("full");
+      });
+    }
+
+    const btnRetakeSprint = document.getElementById("btn-retake-sprint");
+    if (btnRetakeSprint) {
+      btnRetakeSprint.addEventListener("click", () => {
+        startNewExam("sprint");
       });
     }
 
@@ -206,6 +387,7 @@
 
   function showView(viewName) {
     state.currentView = viewName;
+    document.body.setAttribute("data-view", viewName); // lets the phone layout restyle per view
     const lobbyEl = document.getElementById("view-lobby");
     const examEl = document.getElementById("view-exam");
     const resultsEl = document.getElementById("view-results");
@@ -227,11 +409,142 @@
   }
 
   // ============================================================================
-  // VIEW 1: LOBBY / CANDIDATE PORTAL RENDERER
+  // VIEW 1: LOBBY / CANDIDATE PORTAL & NATE'S MOMENTUM HUB RENDERER
   // ============================================================================
+  function renderNateMomentumHub() {
+    const nateStats = engine.getNateProgressStats();
+    const quotes = getNateCoachingQuotes(nateStats);
+    if (state.nateQuoteIndex >= quotes.length) {
+      state.nateQuoteIndex = 0;
+    }
+
+    const rankBadgeEl = document.getElementById("nate-rank-badge");
+    if (rankBadgeEl) {
+      rankBadgeEl.textContent = nateStats.currentRank.badge;
+      rankBadgeEl.title = nateStats.currentRank.subtitle;
+    }
+
+    const msgEl = document.getElementById("nate-coach-message");
+    if (msgEl) {
+      msgEl.textContent = quotes[state.nateQuoteIndex];
+    }
+
+    const nextRankLbl = document.getElementById("nate-rank-next-label");
+    if (nextRankLbl) {
+      if (nateStats.nextRank) {
+        nextRankLbl.textContent = `${nateStats.masteredToNextRank} more mastered to reach ${nateStats.nextRank.title}`;
+      } else {
+        nextRankLbl.textContent = "Top Rank Achieved: NREMT Registry Ready!";
+      }
+    }
+
+    const rankFillEl = document.getElementById("nate-rank-progress-fill");
+    if (rankFillEl) {
+      rankFillEl.style.width = `${nateStats.rankProgressPct}%`;
+    }
+
+    const totalRepsEl = document.getElementById("nate-stat-total-reps");
+    if (totalRepsEl) {
+      totalRepsEl.textContent = String(nateStats.totalRepsAllTime);
+    }
+
+    const exploredEl = document.getElementById("nate-stat-explored");
+    if (exploredEl) {
+      exploredEl.textContent = `${nateStats.uniqueSeenCount} / ${nateStats.totalBankSize}`;
+    }
+
+    const masteredEl = document.getElementById("nate-stat-mastered");
+    if (masteredEl) {
+      masteredEl.textContent = `${nateStats.uniqueMasteredCount} (${nateStats.masteredPct}%)`;
+    }
+
+    const bestEl = document.getElementById("nate-stat-best");
+    if (bestEl) {
+      if (nateStats.bestScaledScore !== null) {
+        bestEl.textContent =
+          nateStats.comebackWinsAllTime > 0
+            ? `${nateStats.bestScaledScore} (${nateStats.comebackWinsAllTime} ★)`
+            : String(nateStats.bestScaledScore);
+      } else {
+        bestEl.textContent = "Ready!";
+      }
+    }
+
+    // 400-question mastery bar
+    const barMasteredEl = document.getElementById("nate-mastery-bar-mastered");
+    const barLearningEl = document.getElementById("nate-mastery-bar-learning");
+    if (barMasteredEl) {
+      barMasteredEl.style.width = `${nateStats.masteredPct}%`;
+    }
+    if (barLearningEl) {
+      barLearningEl.style.width = `${nateStats.learningPct}%`;
+    }
+
+    const masteryCaptionEl = document.getElementById("nate-mastery-caption");
+    if (masteryCaptionEl) {
+      if (nateStats.uniqueSeenCount === 0) {
+        masteryCaptionEl.textContent =
+          "0 of 400 unlocked so far — start a 10-question sprint or 35-question exam to light up this bar!";
+      } else {
+        masteryCaptionEl.innerHTML = `<strong style="color:#15803d;">✓ ${nateStats.uniqueMasteredCount} Mastered</strong> &nbsp;•&nbsp; <strong style="color:#0284c7;">● ${nateStats.learningInProgressCount} In Review</strong> &nbsp;•&nbsp; ${
+          nateStats.totalBankSize - nateStats.uniqueSeenCount
+        } Unseen remaining`;
+      }
+    }
+
+    // 5-Domain cumulative mastery strip
+    const domainStripEl = document.getElementById("nate-domain-mastery-strip");
+    if (domainStripEl) {
+      domainStripEl.innerHTML = nateStats.domainMastery
+        .map(
+          (d) => `
+          <div class="nate-domain-pill">
+            <div class="nate-domain-pill-top">
+              <span><span class="domain-dot" style="background:${d.color};"></span><strong>${escapeHtml(
+            d.shortName
+          )}</strong></span>
+              <span class="nate-domain-pill-count">${d.mastered}/${d.total} ✓</span>
+            </div>
+            <div class="nate-domain-mini-track" title="${d.mastered} mastered, ${d.seen} seen of ${d.total}">
+              <div class="nate-domain-mini-fill" style="width:${d.masteredPct}%;background:${d.color};"></div>
+            </div>
+          </div>
+        `
+        )
+        .join("");
+    }
+  }
+
   function renderLobby() {
     const stats = engine.getQuestionPoolStats();
     const pastAttempts = engine.getPastAttempts();
+
+    // Check for saved in-progress / duty paused session
+    const savedSession = engine.getActiveSession();
+    const dutyBanner = document.getElementById("nate-duty-paused-banner");
+    const dutyDesc = document.getElementById("nate-duty-desc");
+    if (dutyBanner && dutyDesc) {
+      if (savedSession && !savedSession.isCompleted && savedSession.currentQuestion) {
+        const qNum = savedSession.responses.length + 1;
+        const totalQ = savedSession.totalQuestions;
+        const remaining = Math.max(
+          0,
+          savedSession.timeLimitSeconds - savedSession.elapsedSeconds
+        );
+        const modeLabel = savedSession.mode === "sprint" ? "10-Q Sprint" : "35-Q Exam";
+        dutyDesc.innerHTML = `
+          <strong>Exam Paused on Question ${qNum} of ${totalQ} (${modeLabel})</strong> with <strong>${formatDuration(
+          remaining
+        )}</strong> left.<br/>
+          You have <strong>${savedSession.responses.length} questions already banked</strong>. Stay safe on shift, Nate — your patient is right here whenever you're ready!
+        `;
+        dutyBanner.classList.remove("hidden");
+      } else {
+        dutyBanner.classList.add("hidden");
+      }
+    }
+
+    renderNateMomentumHub();
 
     // Update Hero KPI counts
     const bankTotalEl = document.getElementById("lobby-bank-total");
@@ -256,7 +569,7 @@
     if (poolLegendEl) {
       poolLegendEl.innerHTML = `
         <span><strong style="color:#0284c7;">● ${stats.unseenCount} Unseen</strong> (prioritized in your next attempt)</span>
-        <span><strong style="color:#64748b;">● ${stats.seenCount} Previously Seen</strong> across ${stats.totalAttempts} attempt${stats.totalAttempts === 1 ? "" : "s"}</span>
+        <span><strong style="color:#64748b;">● ${stats.seenCount} Previously Seen</strong> across ${stats.totalAttempts} session${stats.totalAttempts === 1 ? "" : "s"}</span>
         <span style="color:var(--vue-text-muted);">Question authors: ${Object.entries(stats.sourceCounts || {})
           .map(([src, n]) => `${escapeHtml(src)} ${n}`)
           .join(" • ")}</span>
@@ -293,17 +606,19 @@
       if (pastAttempts.length === 0) {
         attemptsContainer.innerHTML = `
           <div style="text-align:center;padding:2rem 1rem;color:var(--vue-text-muted);font-size:0.9rem;">
-            No completed attempts yet. Launch your first 35-question adaptive exam to receive a scaled score and personalized study plan!
+            No completed sessions yet, Nate! Try a <strong>Quick 10-Question Focus Sprint</strong> or a <strong>35-Question Practice Exam</strong> to log your first reps.
           </div>
         `;
       } else {
         attemptsContainer.innerHTML = pastAttempts
-          .map(
-            (att, idx) => `
+          .map((att, idx) => {
+            const isSprint = att.mode === "sprint"; // reports without a mode predate sprints, so they were full exams
+            const modeTag = isSprint ? "⚡ 10-Q Sprint" : "35-Q Exam";
+            return `
           <div class="attempt-item">
             <div>
               <div style="font-weight:700;font-size:0.92rem;">
-                Attempt #${att.attemptNumber || pastAttempts.length - idx} — Scaled Score: ${att.scaledScore}
+                #${att.attemptNumber || pastAttempts.length - idx} (${modeTag}) — Score: ${att.scaledScore}
               </div>
               <div style="font-size:0.78rem;color:var(--vue-text-muted);">
                 ${formatDateShort(att.completedAt)} • ${att.totalCorrect}/${att.totalAsked} (${att.rawAccuracy}%) • Avg Diff: ${att.avgDifficultyFaced}
@@ -311,15 +626,15 @@
             </div>
             <div style="display:flex;align-items:center;gap:0.6rem;">
               <span class="attempt-badge ${att.passed ? "attempt-pass" : "attempt-fail"}">
-                ${att.passed ? "PASSED" : "BELOW STD"}
+                ${att.passed ? "950+ PASS PACE" : att.unansweredCount > 0 ? "INCOMPLETE" : "BUILDING REPS"}
               </span>
               <button class="vue-tool-btn btn-view-past-report" data-report-idx="${idx}">
                 View Report
               </button>
             </div>
           </div>
-        `
-          )
+        `;
+          })
           .join("");
 
         attemptsContainer.querySelectorAll(".btn-view-past-report").forEach((btn) => {
@@ -338,17 +653,37 @@
   }
 
   // ============================================================================
-  // VIEW 2: ACTIVE EXAM CONTROLLER (PEARSON VUE CAT INTERFACE)
+  // VIEW 2: ACTIVE EXAM CONTROLLER (PEARSON VUE CAT INTERFACE + NATE FOCUS TOOLS)
   // ============================================================================
-  function startNewExam() {
+  function startNewExam(mode = "full") {
     stopTimer();
+    const isSprint = mode === "sprint";
     state.activeSession = engine.createExamSession({
-      totalQuestions: 35,
-      timeLimitSeconds: 42 * 60 // 42 minutes for 35 questions
+      mode: isSprint ? "sprint" : "full",
+      totalQuestions: isSprint ? 10 : 35,
+      timeLimitSeconds: isSprint ? 12 * 60 : 42 * 60
     });
+    engine.saveActiveSession(state.activeSession);
     state.selectedOptionIndex = null;
     state.struckOutOptions.clear();
+    state.isPaused = false;
     state.questionStartTime = Date.now();
+
+    startTimer();
+    renderCurrentExamQuestion();
+    showView("exam");
+  }
+
+  function resumeSavedExamSession(savedSession) {
+    stopTimer();
+    state.activeSession = savedSession;
+    state.selectedOptionIndex = null;
+    state.struckOutOptions.clear();
+    state.isPaused = false;
+    state.activeSession.isDutyPaused = false;
+    state.activeSession.dutyPauseAt = null;
+    state.questionStartTime = Date.now();
+    engine.saveActiveSession(state.activeSession);
 
     startTimer();
     renderCurrentExamQuestion();
@@ -359,8 +694,7 @@
     stopTimer();
     updateHeaderTimerDisplay();
     state.timerInterval = setInterval(() => {
-      if (!state.activeSession || state.activeSession.isCompleted) {
-        stopTimer();
+      if (!state.activeSession || state.activeSession.isCompleted || state.isPaused) {
         return;
       }
       state.activeSession.elapsedSeconds += 1;
@@ -382,6 +716,147 @@
     }
   }
 
+  function openBreatherPauseModal() {
+    if (!state.activeSession || state.activeSession.isCompleted) return;
+    state.isPaused = true;
+    const pausedAt = Date.now();
+    updateHeaderTimerDisplay();
+
+    const qNum = state.activeSession.responses.length + 1;
+    const totalQ = state.activeSession.totalQuestions;
+
+    showModal({
+      title: "🧘 Timer Paused — 60-Second Focus Reset for Nate",
+      bodyHtml: `
+        <div style="display:flex;flex-direction:column;gap:0.85rem;font-size:0.93rem;">
+          <div class="breather-calm-box">
+            <div style="font-weight:700;font-size:1rem;margin-bottom:0.35rem;color:#0369a1;">
+              ⏱️ Your exam clock is completely paused on Question ${qNum} of ${totalQ}.
+            </div>
+            <p style="color:var(--vue-text);">
+              Unclench your jaw, drop your shoulders away from your ears, and take one slow breath in for 4 seconds… hold for 2… and let it out slow.
+            </p>
+          </div>
+          <p>
+            <strong>Quick Reset Checklist when your focus drifts:</strong>
+          </p>
+          <ul style="padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;color:var(--vue-text-muted);">
+            <li><strong>Don't grade yourself mid-test:</strong> Whether you missed the last question or nailed it doesn't matter right now. Only <em>this</em> patient is in front of you.</li>
+            <li><strong>Read the last sentence first:</strong> Ask yourself what the question is actually asking (e.g., <em>"What should you do FIRST?"</em>), then look at the vitals.</li>
+            <li><strong>XABC + Scene Safety:</strong> Scene safe &amp; PPE → Exsanguinating hemorrhage → Airway → Breathing (NRB vs. BVM) → Circulation/Shock.</li>
+          </ul>
+          <div style="margin-top:0.35rem;padding:0.75rem 0.9rem;background:#fef2f2;border:1px solid #fecaca;border-radius:6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem;">
+            <div>
+              <strong style="color:#991b1b;font-size:0.88rem;">🚨 Tones dropping or need an extended pause?</strong>
+              <div style="font-size:0.8rem;color:#7f1d1d;">Freeze your exam clock and save progress so you can respond safely.</div>
+            </div>
+            <button type="button" class="btn-duty-resume btn-breather-to-duty" style="padding:0.4rem 0.9rem;font-size:0.82rem;">Switch to Duty Pause 🚒</button>
+          </div>
+        </div>
+      `,
+      confirmText: "I'm Reset — Resume Clock ▶",
+      hideCancel: true,
+      onConfirm: () => {
+        const pausedDurationMs = Date.now() - pausedAt;
+        state.questionStartTime += pausedDurationMs;
+        state.isPaused = false;
+        updateHeaderTimerDisplay();
+      }
+    });
+
+    const dutySwitchBtn = document.querySelector(".btn-breather-to-duty");
+    if (dutySwitchBtn) {
+      dutySwitchBtn.addEventListener("click", () => {
+        openDutyPauseModal();
+      });
+    }
+  }
+
+  function openDutyPauseModal() {
+    if (!state.activeSession || state.activeSession.isCompleted) return;
+    state.isPaused = true;
+    state.activeSession.isDutyPaused = true;
+    state.activeSession.dutyPauseAt = new Date().toISOString();
+    engine.saveActiveSession(state.activeSession);
+    const pausedAt = Date.now();
+    updateHeaderTimerDisplay();
+
+    const qNum = state.activeSession.responses.length + 1;
+    const totalQ = state.activeSession.totalQuestions;
+    const remaining = Math.max(
+      0,
+      state.activeSession.timeLimitSeconds - state.activeSession.elapsedSeconds
+    );
+    const answeredCount = state.activeSession.responses.length;
+    const modeTag =
+      state.activeSession.mode === "sprint"
+        ? "10-Question Focus Sprint"
+        : "35-Question Practice Exam";
+
+    showModal({
+      title: "🚒 Station Call / Duty Pause Active — Stay Safe, Nate!",
+      bodyHtml: `
+        <div style="display:flex;flex-direction:column;gap:0.85rem;font-size:0.93rem;">
+          <div class="duty-pause-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-bottom:0.4rem;">
+              <span style="font-weight:800;color:#991b1b;font-size:1.02rem;">⏱️ Exam Timer Completely Frozen</span>
+              <span class="nate-for-badge" style="background:#fee2e2;color:#991b1b;border-color:#fca5a5;">FIREFIGHTER DUTY PAUSE</span>
+            </div>
+            <p style="color:#7f1d1d;line-height:1.5;">
+              Station tones or emergency call? Your test is <strong>100% paused and safely saved</strong> to your device. Go gear up, take care of business, and watch your crew's back out there.
+            </p>
+          </div>
+
+          <div class="duty-pause-stat-grid">
+            <div class="duty-pause-stat-item">
+              <div class="duty-pause-stat-val">Item ${qNum}</div>
+              <div class="duty-pause-stat-lbl">Current Question</div>
+            </div>
+            <div class="duty-pause-stat-item">
+              <div class="duty-pause-stat-val">${formatDuration(remaining)}</div>
+              <div class="duty-pause-stat-lbl">Time Left</div>
+            </div>
+            <div class="duty-pause-stat-item">
+              <div class="duty-pause-stat-val">${answeredCount} / ${totalQ}</div>
+              <div class="duty-pause-stat-lbl">Questions Done</div>
+            </div>
+            <div class="duty-pause-stat-item">
+              <div class="duty-pause-stat-val">Saved ✓</div>
+              <div class="duty-pause-stat-lbl">Device Storage</div>
+            </div>
+          </div>
+
+          <div style="background:var(--vue-bg);border:1px solid var(--vue-border);border-radius:6px;padding:0.75rem 0.9rem;font-size:0.86rem;color:var(--vue-text-muted);">
+            <strong style="color:var(--vue-text);">No rush at all, Nate:</strong>
+            Even if you close this browser tab, shut your laptop, or get held on scene for 3 hours, your test will be waiting right here when you return to quarters.
+          </div>
+        </div>
+      `,
+      confirmText: "I'm Back from the Call — Resume Exam ▶",
+      cancelText: "Save & Exit to Dashboard",
+      onConfirm: () => {
+        const pausedDurationMs = Date.now() - pausedAt;
+        state.questionStartTime += pausedDurationMs;
+        state.isPaused = false;
+        if (state.activeSession) {
+          state.activeSession.isDutyPaused = false;
+          state.activeSession.dutyPauseAt = null;
+          engine.saveActiveSession(state.activeSession);
+        }
+        updateHeaderTimerDisplay();
+      },
+      onCancel: () => {
+        state.isPaused = true;
+        if (state.activeSession) {
+          state.activeSession.isDutyPaused = true;
+          engine.saveActiveSession(state.activeSession);
+        }
+        renderLobby();
+        showView("lobby");
+      }
+    });
+  }
+
   function updateHeaderTimerDisplay() {
     const timerTextEl = document.getElementById("vue-timer-text");
     const timerRowEl = document.getElementById("vue-timer-row");
@@ -393,7 +868,11 @@
       state.activeSession.timeLimitSeconds - state.activeSession.elapsedSeconds
     );
 
-    if (state.hideTimer) {
+    if (state.activeSession && state.activeSession.isDutyPaused) {
+      timerTextEl.textContent = `🚒 DUTY PAUSED (${formatDuration(remaining)})`;
+    } else if (state.isPaused) {
+      timerTextEl.textContent = `⏸ PAUSED (${formatDuration(remaining)})`;
+    } else if (state.hideTimer) {
       timerTextEl.textContent = "Timer Hidden";
       if (btnToggle) btnToggle.textContent = "Show";
     } else {
@@ -446,6 +925,53 @@
     `;
   }
 
+  function updateNateExamCheckin() {
+    const checkinEl = document.getElementById("nate-exam-checkin");
+    if (!checkinEl || !state.activeSession || !state.activeSession.currentQuestion) return;
+
+    const session = state.activeSession;
+    const q = session.currentQuestion;
+    const qNum = session.responses.length + 1;
+    const totalQ = session.totalQuestions;
+    const lastResp = session.responses.length > 0 ? session.responses[session.responses.length - 1] : null;
+    const halfMark = Math.ceil(totalQ / 2);
+
+    let message = "";
+    if (qNum === 1) {
+      message =
+        session.mode === "sprint"
+          ? "⚡ <strong>10-Question Focus Sprint:</strong> Quick, low-stress reps, Nate. Just take it one patient at a time!"
+          : "🩺 <strong>Shift Started:</strong> One patient at a time, Nate. Tip: Click <em>🎯 Focus Highlighter</em> above if you want vitals and keywords highlighted!";
+    } else if (qNum === halfMark) {
+      message = `🙌 <strong>Halfway mark (${qNum} of ${totalQ})!</strong> Unclench your jaw, take a breath, and keep rolling, Nate — you're building real momentum.`;
+    } else if (qNum === totalQ) {
+      message = `🏁 <strong>Final question of this set (${totalQ} of ${totalQ})!</strong> Finish strong, Nate — let's see what clinical pearls you unlocked!`;
+    } else if (lastResp && lastResp.isCorrect && q.difficulty === 3) {
+      message =
+        "🔥 <strong>Nice work!</strong> You stepped up into a <strong>Hard-tier</strong> question. Even if this one feels tricky, earning a Hard question means you're doing great.";
+    } else if (qNum % 7 === 0) {
+      message = `💪 <strong>${qNum - 1} questions banked!</strong> Every single scenario you read locks in your NREMT pattern recognition. Need a quick reset? Hit <em>🧘 Take a 60s Breather</em> anytime.`;
+    } else if (lastResp && !lastResp.isCorrect) {
+      message =
+        "🔄 <strong>Shake the last one off, Nate:</strong> The adaptive engine stepped the difficulty down so you can grab your footing right back. Focus on XABC for this patient.";
+    } else {
+      message = `🎯 <strong>Patient ${qNum} of ${totalQ}:</strong> Read the last sentence of the prompt first, rule out 2 distractors with right-click ✂ Strike, and trust your gut.`;
+    }
+
+    checkinEl.innerHTML = message;
+  }
+
+  function renderQuestionStemText() {
+    const stemEl = document.getElementById("exam-question-stem");
+    if (!stemEl || !state.activeSession || !state.activeSession.currentQuestion) return;
+    const rawStem = state.activeSession.currentQuestion.stem;
+    if (state.focusHighlightStem) {
+      stemEl.innerHTML = formatStemWithFocusHighlights(rawStem);
+    } else {
+      stemEl.textContent = rawStem;
+    }
+  }
+
   function renderCurrentExamQuestion() {
     const session = state.activeSession;
     if (!session || !session.currentQuestion) return;
@@ -476,13 +1002,9 @@
       metaLeftEl.innerHTML = `<strong>Item ${qNum} of ${totalQ}</strong> &nbsp;•&nbsp; ID: <code>${escapeHtml(q.id)}</code>`;
     }
 
+    updateNateExamCheckin();
     updateLiveCatHud();
-
-    // Stem
-    const stemEl = document.getElementById("exam-question-stem");
-    if (stemEl) {
-      stemEl.textContent = q.stem;
-    }
+    renderQuestionStemText();
 
     // Options A, B, C, D
     const letters = ["A", "B", "C", "D"];
@@ -498,8 +1020,8 @@
               <span class="option-letter">${letters[idx]}.</span> ${escapeHtml(optText)}
             </div>
           </div>
-          <button type="button" class="btn-strikeout" data-strike-idx="${idx}" id="btn-strike-${idx}" title="Cross out eliminated answer choice (or right-click option)">
-            ✂ Strike
+          <button type="button" class="btn-strikeout" data-strike-idx="${idx}" id="btn-strike-${idx}" title="Cross out eliminated answer choice (or right-click / long-press the option)" aria-label="Cross out answer ${letters[idx]}">
+            ✂<span class="lbl-long">&nbsp;Strike</span>
           </button>
         </div>
       `
@@ -509,9 +1031,62 @@
       // Bind click and right-click (contextmenu) events on options
       optionsContainer.querySelectorAll(".exam-option-card").forEach((card) => {
         const idx = Number(card.getAttribute("data-opt-idx"));
-        card.addEventListener("click", () => selectOption(idx));
+        // Long-press (about half a second) crosses out an answer on phones. iOS Safari never fires
+        // "contextmenu" for a long-press, so it is handled with touch events, and the click that
+        // follows the press is swallowed so the struck answer is not immediately selected.
+        let pressTimer = null;
+        let pressStart = null;
+        let suppressClick = false;
+        const cancelPress = () => {
+          clearTimeout(pressTimer);
+          pressTimer = null;
+        };
+        card.addEventListener(
+          "touchstart",
+          (e) => {
+            const t = e.touches[0];
+            pressStart = { x: t.clientX, y: t.clientY };
+            suppressClick = false;
+            cancelPress();
+            pressTimer = setTimeout(() => {
+              pressTimer = null;
+              suppressClick = true;
+              toggleStrikeout(idx);
+              if (navigator.vibrate) navigator.vibrate(15);
+            }, 500);
+          },
+          { passive: true }
+        );
+        card.addEventListener(
+          "touchmove",
+          (e) => {
+            const t = e.touches[0];
+            if (pressStart && Math.hypot(t.clientX - pressStart.x, t.clientY - pressStart.y) > 10) {
+              cancelPress(); // the finger is scrolling, not pressing
+            }
+          },
+          { passive: true }
+        );
+        card.addEventListener("touchend", cancelPress);
+        card.addEventListener("touchcancel", cancelPress);
+        card.addEventListener("click", () => {
+          if (suppressClick) {
+            suppressClick = false;
+            return;
+          }
+          selectOption(idx);
+        });
         card.addEventListener("contextmenu", (e) => {
           e.preventDefault();
+          // Android also fires contextmenu on long-press; the touch timer already handled it.
+          if (suppressClick || pressTimer) {
+            cancelPress();
+            if (!suppressClick) {
+              suppressClick = true;
+              toggleStrikeout(idx);
+            }
+            return;
+          }
           toggleStrikeout(idx);
         });
       });
@@ -529,7 +1104,7 @@
     const btnNext = document.getElementById("btn-exam-next");
     if (btnNext) {
       btnNext.innerHTML =
-        qNum === totalQ ? `Submit Exam (${totalQ}/${totalQ}) &#9654;` : `Next &#9654;`;
+        qNum === totalQ ? `Finish &amp; See Progress (${totalQ}/${totalQ}) &#9654;` : `Next &#9654;`;
     }
   }
 
@@ -574,19 +1149,19 @@
     // Authentic Pearson VUE validation: cannot leave a CAT question blank!
     if (state.selectedOptionIndex === null) {
       showModal({
-        title: "Pearson VUE Exam Notification",
+        title: "Select an Answer Choice",
         bodyHtml: `
           <div style="display:flex;align-items:flex-start;gap:0.85rem;">
-            <div style="font-size:1.6rem;line-height:1;">⚠️</div>
+            <div style="font-size:1.6rem;line-height:1;">💡</div>
             <div>
-              <p style="font-weight:700;margin-bottom:0.4rem;">You cannot leave this question blank.</p>
+              <p style="font-weight:700;margin-bottom:0.4rem;">Take your best clinical shot before advancing, Nate!</p>
               <p style="color:var(--vue-text-muted);font-size:0.9rem;">
-                On the National Registry Computer Adaptive Test (CAT), each response dynamically determines the difficulty of your next question. Please select an answer choice before clicking <strong>Next</strong>.
+                On the NREMT Computer Adaptive Test (CAT), every question requires an answer so the engine can adapt the next item. Cross out choices you know are wrong with <strong>✂ Strike</strong> and pick your best answer!
               </p>
             </div>
           </div>
         `,
-        confirmText: "OK",
+        confirmText: "Got It",
         hideCancel: true
       });
       return;
@@ -601,6 +1176,7 @@
     if (state.activeSession.isCompleted) {
       stopTimer();
       state.activeReport = state.activeSession.report;
+      state.activeSession = null;
       renderDiagnosticReport(state.activeReport);
       showView("results");
     } else {
@@ -613,15 +1189,21 @@
     showModal({
       title: "Time Expired",
       bodyHtml: `
-        <p><strong>Your exam time limit has expired.</strong></p>
+        <p><strong>Your session timer has finished, Nate.</strong></p>
         <p style="margin-top:0.5rem;color:var(--vue-text-muted);">
-          Your completed responses have been scored to generate your diagnostic performance report.
+          ${
+            state.activeSession.totalQuestions - state.activeSession.responses.length > 0
+              ? `You answered ${state.activeSession.responses.length} of ${state.activeSession.totalQuestions}. Just like the real NREMT, unanswered questions count as missed, so this attempt can't pass. Everything you did answer is still saved to your mastery bank.`
+              : "Every question you answered has been saved to your mastery bank and scored for your study report!"
+          }
         </p>
       `,
-      confirmText: "View Score & Diagnostic Feedback",
+      confirmText: "View Progress & Diagnostic Report",
       hideCancel: true,
       onConfirm: () => {
+        state.activeSession.endReason = "timeout";
         const report = engine.finalizeSession(state.activeSession);
+        state.activeSession = null;
         if (report) {
           state.activeReport = report;
           renderDiagnosticReport(report);
@@ -638,27 +1220,35 @@
     if (!state.activeSession) return;
     const answeredCount = state.activeSession.responses.length;
     showModal({
-      title: "End Exam Session Early?",
+      title: "End Session Early?",
       bodyHtml: `
-        <p>You have completed <strong>${answeredCount} of ${state.activeSession.totalQuestions}</strong> questions.</p>
+        <p>You have answered <strong>${answeredCount} of ${state.activeSession.totalQuestions}</strong> questions so far, Nate.</p>
         <p style="margin-top:0.5rem;color:var(--vue-text-muted);font-size:0.88rem;">
           ${
             answeredCount > 0
-              ? "Would you like to score the questions you have answered so far, or return to the lobby without saving a report?"
-              : "Return to the candidate dashboard?"
+              ? "All " +
+                answeredCount +
+                " questions you answered are already saved to your mastery progress. Heads up: like the real NREMT, the " +
+                (state.activeSession.totalQuestions - answeredCount) +
+                " unanswered questions will count as missed, so an unfinished exam can't pass. Want to see your breakdown anyway?"
+              : "Return to your main dashboard?"
           }
         </p>
       `,
       confirmText: answeredCount > 0 ? `Score ${answeredCount} Answered Items` : "Exit to Lobby",
-      cancelText: "Continue Exam",
+      cancelText: "Keep Going",
       onConfirm: () => {
         stopTimer();
         if (answeredCount > 0) {
+          state.activeSession.endReason = "ended-early";
           const report = engine.finalizeSession(state.activeSession);
+          state.activeSession = null;
           state.activeReport = report;
           renderDiagnosticReport(report);
           showView("results");
         } else {
+          engine.clearActiveSession();
+          state.activeSession = null;
           renderLobby();
           showView("lobby");
         }
@@ -667,10 +1257,69 @@
   }
 
   // ============================================================================
-  // VIEW 3: DIAGNOSTIC SCORE REPORT & STUDY PLAN RENDERER
+  // VIEW 3: DIAGNOSTIC SCORE REPORT, NATE DEBRIEF & STUDY PLAN RENDERER
   // ============================================================================
+  function renderNatePostExamCoaching(report) {
+    const coachEl = document.getElementById("nate-results-coaching");
+    if (!coachEl || !report) return;
+
+    const nateStats = engine.getNateProgressStats();
+    const hardStat = report.byDifficulty[3] || { correct: 0, total: 0, accuracy: 0 };
+    const newlyMastered = report.newlyMasteredCount || 0;
+    const comebacks = report.comebackWinsCount || 0;
+    const newSeen = report.newQuestionsSeenCount || 0;
+
+    let headline = "";
+    let bodyText = "";
+
+    const unanswered = report.unansweredCount || 0;
+    if (unanswered > 0) {
+      const why = report.endReason === "timeout" ? "The clock ran out" : "You ended the exam";
+      headline = `⏱️ ${why} with ${unanswered} question${unanswered === 1 ? "" : "s"} unanswered`;
+      bodyText = `On the real NREMT, running out of time before finishing means you can't pass, so those ${unanswered} count as missed here too. The good news: you went ${report.totalCorrect} for ${report.totalAsked} on the questions you did answer (${report.rawAccuracy}%), and they're all banked. Next time, aim to finish: about 70 seconds per question keeps you on pace${report.mode === "sprint" ? "" : ", and a 10-Question Sprint is a great way to practice pacing"}.`;
+    } else if (report.passed) {
+      headline = `🔥 Huge run, Nate! You hit ${report.scaledScore} (Above the 950 Passing Standard)!`;
+      bodyText = `You answered ${report.totalCorrect} of ${report.totalAsked} correctly (${report.rawAccuracy}%) and forced the adaptive engine into ${hardStat.total} Hard-tier clinical scenarios (nailing ${hardStat.correct} of them). That's real NREMT readiness showing up.`;
+    } else if (report.scaledScore >= 850) {
+      headline = `💪 Knocking right on the door, Nate (${report.scaledScore} / 950)!`;
+      bodyText = `You are super close to the 950 passing line—just 2 or 3 clinical traps away! Even better, you added +${newlyMastered} newly mastered questions to your permanent bank today (now ${nateStats.uniqueMasteredCount} / ${nateStats.totalBankSize} mastered overall).`;
+    } else {
+      headline = `🧱 Solid reps banked, Nate! (+${newlyMastered} New Questions Mastered)`;
+      bodyText = `Don't let the scaled number stress you out for a second: the whole point of practice is finding the sneaky traps NOW so they don't get you on test day. You unlocked ${newSeen} brand-new scenarios and permanently mastered ${newlyMastered} more items (bringing your total mastered bank to ${nateStats.uniqueMasteredCount} of ${nateStats.totalBankSize}).`;
+    }
+
+    const badgesHtml = [
+      `<span class="nate-debrief-chip">✓ +${newlyMastered} Newly Mastered</span>`,
+      `<span class="nate-debrief-chip">🧭 ${nateStats.uniqueSeenCount}/${nateStats.totalBankSize} Total Bank Explored</span>`,
+      hardStat.total > 0
+        ? `<span class="nate-debrief-chip">⛰️ Reached ${hardStat.total} Hard-Tier Qs (${hardStat.correct} right)</span>`
+        : "",
+      comebacks > 0
+        ? `<span class="nate-debrief-chip">★ ${comebacks} Comeback Win${comebacks === 1 ? "" : "s"}!</span>`
+        : "",
+      `<span class="nate-debrief-chip">${nateStats.currentRank.badge}</span>`
+    ]
+      .filter(Boolean)
+      .join("");
+
+    coachEl.innerHTML = `
+      <div class="nate-debrief-header">
+        <strong>${headline}</strong>
+      </div>
+      <p class="nate-debrief-body">${escapeHtml(bodyText)}</p>
+      <div class="nate-debrief-chips">${badgesHtml}</div>
+      <div class="nate-debrief-ActionTip">
+        💡 <strong>Nate's 3-Minute Next Step:</strong> Scroll down to <em>"Study Pearls from Missed Questions"</em> and read just the yellow takeaways for the ${report.totalIncorrect} item${
+      report.totalIncorrect === 1 ? "" : "s"
+    } you missed. Once you see the "why," you own those questions next time!
+      </div>
+    `;
+  }
+
   function renderDiagnosticReport(report) {
     if (!report) return;
+
+    const isSprint = report.mode === "sprint"; // not inferred from answers: an unfinished exam is still an exam
 
     // 1. Top Banner & Scaled Score
     const bannerEl = document.getElementById("report-banner");
@@ -682,24 +1331,32 @@
     const statusPillEl = document.getElementById("report-status-pill");
     if (statusPillEl) {
       statusPillEl.className = `status-pill-large ${report.passed ? "pass" : "fail"}`;
-      statusPillEl.innerHTML = report.passed
-        ? `✓ ABOVE PASSING STANDARD — PASSED`
-        : `✕ BELOW PASSING STANDARD — FOCUS REVIEW NEEDED`;
+      statusPillEl.innerHTML =
+        report.unansweredCount > 0
+          ? `⏱️ INCOMPLETE — ${report.unansweredCount} UNANSWERED, SCORED AS MISSED`
+          : report.passed
+          ? `✓ ABOVE PASSING STANDARD — PASSED PACE`
+          : `📈 BUILDING MASTERY — FOCUS REVIEW BELOW`;
     }
 
     const headlineEl = document.getElementById("report-headline");
     if (headlineEl) {
-      headlineEl.textContent = report.passed
-        ? "Congratulations! Your adaptive ability estimate exceeded the NREMT EMT passing standard."
-        : "Your adaptive score fell below the 950 passing threshold. Review your personalized study priorities below.";
+      headlineEl.textContent =
+        report.unansweredCount > 0
+          ? `Not a pass yet, Nate. You answered ${report.totalAsked} of ${report.totalQuestions}, and finishing the exam is part of passing.`
+          : report.passed
+          ? `Great job, Nate! Your adaptive performance exceeded the 950 NREMT passing standard.`
+          : `Good reps, Nate! Every question you just saw moved your mastery bank forward.`;
     }
 
     const subheadlineEl = document.getElementById("report-subheadline");
     if (subheadlineEl) {
       const poolStats = engine.getQuestionPoolStats();
-      subheadlineEl.textContent = `Attempt #${report.attemptNumber} • Completed ${formatDateShort(
-        report.completedAt
-      )} • ${poolStats.unseenCount} unseen questions remaining in pool for your next attempt`;
+      subheadlineEl.textContent = `Session #${report.attemptNumber} (${
+        isSprint ? "10-Question Focus Sprint" : "35-Question Practice Exam"
+      }) • Completed ${formatDateShort(report.completedAt)} • ${
+        poolStats.unseenCount
+      } unseen questions left in pool`;
     }
 
     const scaledNumEl = document.getElementById("report-scaled-score");
@@ -715,6 +1372,9 @@
       userPinEl.title = `Your Scaled Score: ${report.scaledScore} (Passing: 950)`;
     }
 
+    // Render Nate's Personalized Post-Exam Coaching Card
+    renderNatePostExamCoaching(report);
+
     // 2. KPI Summary Cards
     const kpiGridEl = document.getElementById("report-kpi-grid");
     if (kpiGridEl) {
@@ -728,7 +1388,11 @@
         <div class="kpi-card">
           <div class="kpi-title">Raw Accuracy</div>
           <div class="kpi-val">${report.totalCorrect} / ${report.totalAsked} (${report.rawAccuracy}%)</div>
-          <div class="kpi-sub">Final IRT Ability θ = ${report.finalTheta >= 0 ? "+" : ""}${report.finalTheta}</div>
+          <div class="kpi-sub">${
+            report.unansweredCount > 0
+              ? `On answered questions • ${report.unansweredCount} unanswered (scored as missed)`
+              : `Final IRT Ability θ = ${report.finalTheta >= 0 ? "+" : ""}${report.finalTheta}`
+          }</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-title">Easy Tier Performance</div>
@@ -789,7 +1453,7 @@
             ${
               d.missedSubtopics.length > 0
                 ? `<strong>Focus Subtopics to Review:</strong> ${d.missedSubtopics.map(escapeHtml).join(" • ")}`
-                : `✓ 100% mastery across all questions tested in this domain on this attempt.`
+                : `✓ 100% mastery across all questions tested in this domain on this session.`
             }
           </div>
         </div>
@@ -801,7 +1465,7 @@
     // 5. Render "What You Should Focus Learning On More" Diagnostic Study Coach
     renderStudyFocusSection(report);
 
-    // 6. Populate Domain Filter dropdown and Render 35-Question Review
+    // 6. Populate Domain Filter dropdown and Render Question Review
     const filterDomainEl = document.getElementById("filter-review-domain");
     if (filterDomainEl) {
       filterDomainEl.innerHTML =
@@ -837,9 +1501,6 @@
 
     // Y-axis maps difficulty 1 (Easy) at bottom, 2 (Medium) at middle, 3 (Hard) at top
     const yForTier = (tier) => {
-      // tier 1 -> padTop + plotH * 0.85
-      // tier 2 -> padTop + plotH * 0.50
-      // tier 3 -> padTop + plotH * 0.15
       const norm = (tier - 1) / 2; // 0 to 1
       return padTop + plotH * (0.85 - norm * 0.7);
     };
@@ -914,6 +1575,7 @@
         const qnum = node.getAttribute("data-qnum");
         const targetCard = document.getElementById(`review-q-${qnum}`);
         if (targetCard) {
+          targetCard.classList.add("is-open"); // expand it if it was collapsed on a phone
           targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       });
@@ -932,7 +1594,7 @@
       if (!report.weakSubtopics || report.weakSubtopics.length === 0) {
         subtopicsContainer.innerHTML = `
           <div style="padding:1rem;background:var(--pass-bg);color:var(--pass-green);border-radius:6px;font-weight:600;">
-            Perfect Score! You did not miss any subtopics on this exam attempt.
+            Perfect Run, Nate! You didn't miss a single subtopic on this session.
           </div>
         `;
       } else {
@@ -1061,10 +1723,10 @@
           .join("");
 
         return `
-          <div class="review-card ${r.isCorrect ? "review-correct" : "review-incorrect"}" id="review-q-${
+          <div class="review-card ${r.isCorrect ? "review-correct" : "review-incorrect is-open"}" id="review-q-${
           r.questionNumber
         }">
-            <div class="review-card-header">
+            <div class="review-card-header" role="button" tabindex="0" aria-expanded="${!r.isCorrect}">
               <div>
                 <strong>Question ${r.questionNumber}</strong> (<code>${escapeHtml(r.questionId)}</code>)
                 <span class="source-badge source-${escapeHtml(String(r.source || "Custom").toLowerCase())}" title="Who wrote this question">Written by ${escapeHtml(r.source || "Custom")}</span>
@@ -1103,6 +1765,23 @@
         `;
       })
       .join("");
+
+    // On phones, review cards collapse to their header (missed questions start open).
+    // Tapping a header toggles its card; on wider screens every card is always fully shown.
+    listEl.querySelectorAll(".review-card-header").forEach((header) => {
+      const toggle = () => {
+        const card = header.closest(".review-card");
+        const open = card.classList.toggle("is-open");
+        header.setAttribute("aria-expanded", String(open));
+      };
+      header.addEventListener("click", toggle);
+      header.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
   }
 
   // ============================================================================
@@ -1147,13 +1826,13 @@
 
   function showExamInstructionsModal() {
     showModal({
-      title: "NREMT Pearson VUE Computer Adaptive Exam — Instructions",
+      title: "NREMT Adaptive Practice & Focus Tools — Guide for Nate",
       bodyHtml: `
         <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.9rem;">
-          <p><strong>1. Dynamic Computer Adaptive Testing (CAT):</strong> Just like the official NREMT Cognitive Exam, question difficulty adapts dynamically after every answer. Answering an <em>Easy</em> question correctly steps up to <em>Medium</em>; answering <em>Medium</em> correctly steps up to <em>Hard</em>. Answering a <em>Hard</em> question incorrectly steps down to <em>Medium</em>.</p>
-          <p><strong>2. Forward-Only Navigation:</strong> You must select an answer before advancing, and you cannot return to previous questions once submitted.</p>
-          <p><strong>3. Distractor Strikeout Tool:</strong> Right-click any answer choice (or click its <strong>✂ Strike</strong> button) to cross out options you have ruled out.</p>
-          <p><strong>4. Keyboard Shortcuts:</strong> Press <code>A</code>–<code>D</code> or <code>1</code>–<code>4</code> to select an option, and press <code>Enter</code> to advance to the next item.</p>
+          <p><strong>1. Dynamic Computer Adaptive Testing (CAT):</strong> Just like the official NREMT Cognitive Exam, question difficulty adapts after every answer. Answering an <em>Easy</em> question correctly steps up to <em>Medium</em>; answering <em>Medium</em> correctly steps up to <em>Hard</em>. If questions start feeling super tough, that's a GOOD sign—it means you're climbing!</p>
+          <p><strong>2. 🎯 Focus Highlighter:</strong> Click <strong>🎯 Focus Highlighter</strong> in the top bar anytime your eyes feel tired—it highlights vital signs, patient ages, and priority words (<em>FIRST, MOST, BEST</em>) so you can scan scenarios quickly.</p>
+          <p><strong>3. 🧘 60-Second Breather:</strong> Click <strong>🧘 Take a 60s Breather</strong> to pause the clock whenever you feel distracted or overwhelmed.</p>
+          <p><strong>4. ✂ Distractor Strikeout &amp; Shortcuts:</strong> Right-click any answer choice (or click <strong>✂ Strike</strong>) to cross out wrong options. Press <code>A</code>–<code>D</code> or <code>1</code>–<code>4</code> to select an option, and <code>Enter</code> for Next.</p>
         </div>
       `,
       confirmText: "Resume Exam",

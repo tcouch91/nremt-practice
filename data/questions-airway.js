@@ -1149,3 +1149,390 @@ window.NREMT_QUESTIONS.push(
     studyTip: "'C3, 4, 5 keeps the diaphragm alive.' Abdominal-only breathing after a neck injury = cervical cord injury; ventilations will probably need support."
   }
 );
+
+
+// ============================================================================
+// Batch 3: Additional 20 Airway, Respiration & Ventilation Questions (AIR-061 to AIR-080)
+// ============================================================================
+window.NREMT_QUESTIONS.push(
+  {
+    id: "AIR-061",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Adjuncts & Suctioning",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -1.0,
+    stem: "You are inserting an oropharyngeal airway (OPA) into an unresponsive 50-year-old adult with no gag reflex. Using the standard adult insertion technique, how should you advance the device?",
+    options: [
+      "Insert with the tip toward the roof of the mouth, then rotate it 180 degrees",
+      "Insert with the tip toward the tongue, then push straight down into the throat",
+      "Lubricate the flange with petroleum jelly and twist it 90 degrees into the cheek",
+      "Advance the device along the side of the teeth until the flange passes the lips"
+    ],
+    correctIndex: 0,
+    explanation: "In an adult, the standard method for inserting an OPA is to hold the airway upside down with the tip pointing toward the hard palate (roof of the mouth), advance it past the crest of the tongue until you meet the soft palate, and then rotate it 180 degrees so the curve rests over the tongue and the flange sits against the lips. (Using a tongue blade to insert it right-side up is also acceptable and is required in infants and children).",
+    studyTip: "Adult OPA insertion: Tip toward the roof of the mouth, advance past the tongue, then rotate 180 degrees until the flange rests on the lips."
+  },
+  {
+    id: "AIR-062",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Oxygenation & Delivery Devices",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.9,
+    stem: "When administering supplemental oxygen to an adult through a standard nasal cannula, what is the appropriate flow rate range and approximate oxygen concentration delivered?",
+    options: [
+      "10 to 15 L/min, delivering roughly 80% to 95% inspired oxygen concentration",
+      "1 to 6 L/min, delivering roughly 24% to 44% inspired oxygen concentration",
+      "6 to 10 L/min, delivering roughly 40% to 60% inspired oxygen concentration",
+      "0.5 to 2 L/min, delivering roughly 60% to 75% inspired oxygen concentration"
+    ],
+    correctIndex: 1,
+    explanation: "A standard nasal cannula is used at flow rates of 1 to 6 L/min and delivers an inspired oxygen concentration (FiO2) of roughly 24% to 44% (increasing by about 4% per liter of flow above 21% room air). Flow rates above 6 L/min through a standard nasal cannula dry and irritate the nasal mucosa without meaningfully increasing oxygenation.",
+    studyTip: "Nasal cannula: 1–6 L/min = ~24%–44% O2. Simple face mask: 6–10 L/min = ~40%–60% O2. Nonrebreather: 10–15 L/min = ~80%–95% O2."
+  },
+  {
+    id: "AIR-063",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Adjuncts & Suctioning",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.8,
+    stem: "You have sized and lubricated a nasopharyngeal airway (NPA) for a semiconscious patient with an intact gag reflex. When inserting the NPA into the right nostril, how should the beveled tip be oriented?",
+    options: [
+      "Pointed straight upward toward the bridge of the nose and frontal sinus",
+      "Turned outward against the lateral wall of the nostril and nasal turbinates",
+      "Facing inward toward the nasal septum and advanced along the nasal floor",
+      "Rotated in full 360-degree circles while pushing upward toward the cheekbone"
+    ],
+    correctIndex: 2,
+    explanation: "Most NPAs are designed to be placed in the right nostril first. The beveled (angled) tip must face the nasal septum (the center wall of the nose) so the smooth, rounded edge slides past the vascular nasal turbinates without tearing them and causing epistaxis. Advance it gently straight back along the floor of the nasal cavity, not upward toward the eyes.",
+    studyTip: "NPA insertion: Right nostril preferred, bevel facing the septum, advance straight back along the floor of the nose."
+  },
+  {
+    id: "AIR-064",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Anatomy & Assessment",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "Which of the following patients should be placed in the recovery position (lateral recumbent position) to help maintain a patent airway?",
+    options: [
+      "An apneic 40-year-old male who was ejected from a pickup truck",
+      "An alert 65-year-old female with severe pulmonary edema and crackles",
+      "A 28-year-old male with neck pain after diving into a shallow pool",
+      "An unresponsive 32-year-old female breathing adequately with no trauma"
+    ],
+    correctIndex: 3,
+    explanation: "The recovery (left lateral recumbent) position uses gravity to keep the tongue forward and allow saliva, blood, or vomitus to drain out of the mouth in an unresponsive or semiconscious patient who is breathing adequately and has no suspected spinal, hip, or pelvic injury. Patients who are apneic need supine BVM ventilation, and trauma patients require spinal motion restriction.",
+    studyTip: "Recovery position indication: Unresponsive or postictal patient with adequate spontaneous breathing and NO suspected spinal trauma."
+  },
+  {
+    id: "AIR-065",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Anatomy & Assessment",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.6,
+    stem: "What is the approximate normal tidal volume and resting respiratory rate for a healthy average-sized adult?",
+    options: [
+      "About 500 mL per breath at a rate of 12 to 20 breaths/min",
+      "About 150 mL per breath at a rate of 24 to 36 breaths/min",
+      "About 1,200 mL per breath at a rate of 6 to 10 breaths/min",
+      "About 250 mL per breath at a rate of 8 to 12 breaths/min"
+    ],
+    correctIndex: 0,
+    explanation: "In an average healthy adult at rest, tidal volume (the volume of air moved in or out during a single normal breath) is approximately 500 mL (5 to 7 mL/kg), and the normal resting respiratory rate is 12 to 20 breaths/min, yielding a minute volume of roughly 6 to 8 L/min.",
+    studyTip: "Normal adult breathing: Rate = 12–20 breaths/min, Tidal Volume = ~500 mL (5–7 mL/kg), Anatomic Dead Space = ~150 mL."
+  },
+  {
+    id: "AIR-066",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Oxygenation & Delivery Devices",
+    patientType: "Adult",
+    difficulty: 1,
+    irtB: -0.7,
+    stem: "Why should a simple face mask NEVER be set to an oxygen flow rate below 6 L/min?",
+    options: [
+      "Low flow causes the mask's one-way flutter valves to freeze shut",
+      "Exhaled carbon dioxide accumulates inside the mask and is rebreathed",
+      "Flow below 6 L/min creates excessive positive airway pressure in the lungs",
+      "The humidifier bottle will rupture if oxygen flow is set below 6 L/min"
+    ],
+    correctIndex: 1,
+    explanation: "A simple face mask has open side ports and no reservoir bag, holding roughly 100 to 200 mL of dead space over the patient's face. An oxygen flow rate of at least 6 L/min (typically 6 to 10 L/min) is required to flush the patient's exhaled carbon dioxide out of the mask between breaths so the patient does not rebreathe CO2.",
+    studyTip: "Never run a simple face mask below 6 L/min (or a nonrebreather below 10 L/min), or the patient will rebreathe exhaled carbon dioxide."
+  },
+  {
+    id: "AIR-067",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Oxygenation & Delivery Devices",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.2,
+    stem: "You have placed a nonrebreather mask at 10 L/min on a tachypneic 49-year-old man who is breathing deeply at 28 breaths/min. You notice that the reservoir bag flattens completely every time he inhales. What should you do?",
+    options: [
+      "Switch him immediately to a nasal cannula at 4 L/min so he can breathe room air",
+      "Peel off both rubber one-way valves from the sides of the plastic face mask",
+      "Increase the oxygen flow rate to 15 L/min so the bag stays at least two-thirds full",
+      "Instruct the patient to hold his breath for 5 seconds between each inhalation"
+    ],
+    correctIndex: 2,
+    explanation: "The reservoir bag on a nonrebreather mask should deflate by no more than one-third during a deep inhalation. If a patient with a high minute volume completely collapses the reservoir bag on inspiration, they will feel suffocated and draw in less oxygen. Increase the oxygen regulator flow to 15 L/min (or higher if needed) and verify there are no kinks in the tubing.",
+    studyTip: "Nonrebreather reservoir bag must remain at least two-thirds inflated during inspiration; if it collapses, increase the O2 flow rate to 15 L/min."
+  },
+  {
+    id: "AIR-068",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Adjuncts & Suctioning",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.0,
+    stem: "While suctioning an unresponsive patient who just vomited, thick chunks of undigested food repeatedly clog the tip of your rigid Yankauer catheter, and loud gurgling continues. What is the BEST way to clear the airway?",
+    options: [
+      "Pour 100 mL of sterile saline into the mouth to dissolve the solid food particles",
+      "Stop suctioning and force air past the vomit using a bag-valve mask at 15 L/min",
+      "Switch to a narrow soft French whistle-tip catheter and advance it down the nose",
+      "Roll the patient onto his side and sweep out large debris or suction with open tubing"
+    ],
+    correctIndex: 3,
+    explanation: "When thick vomitus or large food chunks overwhelm or clog a rigid Yankauer tip, immediately log-roll the patient onto their side so gravity helps drain the mouth, wipe out visible solid chunks with a gloved finger wrapped in gauze, or remove the Yankauer tip and use the wide-bore suction tubing directly.",
+    studyTip: "When thick vomit clogs a Yankauer tip: Roll the patient onto their side, clear visible solid chunks with a gloved finger, or remove the catheter tip and suction with the wide-bore tubing."
+  },
+  {
+    id: "AIR-069",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Anatomy & Assessment",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "Why does simple nasal congestion from a common viral cold frequently cause significant respiratory distress and poor feeding in a 2-month-old infant?",
+    options: [
+      "Young infants are obligate nose breathers and do not readily switch to mouth breathing",
+      "Nasal mucus drains directly into the alveoli and deactivates pulmonary surfactant",
+      "Viral colds cause the infant's cricoid cartilage to collapse during exhalation",
+      "Infants under 6 months lack intercostal muscles and rely entirely on nasal pressure"
+    ],
+    correctIndex: 0,
+    explanation: "Infants under 4 to 6 months of age have a large tongue relative to their oropharynx and a high-riding epiglottis, making them primarily obligate nose breathers. Even mild nasal secretions can substantially increase their work of breathing and prevent feeding; gentle suctioning of the nostrils with a bulb syringe (compressing the bulb BEFORE placing the tip in the nostril) often dramatically relieves their distress.",
+    studyTip: "Infants < 6 months are obligate nose breathers! Simple nasal mucus can cause severe respiratory distress—clear the nostrils gently with a bulb syringe (squeeze bulb BEFORE inserting)."
+  },
+  {
+    id: "AIR-070",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Positive Pressure Ventilation & BVM",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.1,
+    stem: "You are ventilating an apneic patient with a bag-valve mask when your portable oxygen cylinder runs completely empty. While your partner retrieves a fresh oxygen cylinder from the ambulance, what should you do?",
+    options: [
+      "Stop ventilating the patient until the new oxygen tank is connected to the BVM",
+      "Continue BVM ventilations without oxygen, as room air still provides 21% oxygen",
+      "Switch to mouth-to-mask breathing without a barrier device to deliver higher oxygen",
+      "Perform chest compressions instead of ventilations until the oxygen tank arrives"
+    ],
+    correctIndex: 1,
+    explanation: "A self-inflating bag-valve mask refills with ambient room air (21% oxygen) even when disconnected from an oxygen cylinder. Never stop ventilating an apneic patient while waiting for a fresh oxygen cylinder—continuing BVM ventilations with room air maintains alveolar ventilation, eliminates carbon dioxide, and delivers 21% oxygen.",
+    studyTip: "Never pause BVM ventilations if an oxygen tank runs dry! A self-inflating BVM still delivers 21% room air and removes CO2."
+  },
+  {
+    id: "AIR-071",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Lower Airway & Pulmonary Emergencies",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: 0.2,
+    stem: "A 66-year-old man with a 45-pack-year smoking history complains of worsening shortness of breath. He is overweight, has dusky cyanotic lips, ankle edema, and a daily productive cough that he says has lasted for the past several winters. Auscultation reveals coarse rhonchi and wheezes. Which condition best fits this presentation?",
+    options: [
+      "Acute spontaneous pneumothorax",
+      "Massive pulmonary thromboembolism",
+      "Chronic obstructive bronchitis",
+      "Psychogenic hyperventilation syndrome"
+    ],
+    correctIndex: 2,
+    explanation: "Chronic bronchitis (one of the two main phenotypes of COPD, alongside emphysema) is defined clinically by a chronic productive cough lasting at least 3 months per year for 2 consecutive years. Excessive mucus production and airway inflammation obstruct airflow, leading to hypoxemia, cyanosis, hypercapnia, right-sided heart strain (cor pulmonale with ankle edema), and coarse rhonchi/wheezes.",
+    studyTip: "COPD phenotypes: Chronic Bronchitis = chronic productive cough, mucus plugging, cyanosis, rhonchi, peripheral edema ('blue bloater'). Emphysema = alveolar destruction, barrel chest, thin build, pursed-lip breathing, quiet breath sounds ('pink puffer')."
+  },
+  {
+    id: "AIR-072",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Lower Airway & Pulmonary Emergencies",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: 0.3,
+    stem: "You respond to a 10-month-old infant who has had severe, rapid-fire coughing fits over the past week. During an episode in front of you, the infant coughs repeatedly on a single exhalation, turns red, and then takes a loud, high-pitched 'whooping' inhalation before vomiting thick mucus. What should you suspect and do?",
+    options: [
+      "Croup; insert an oropharyngeal airway and begin chest thrusts immediately",
+      "Asthma; assist with an adult metered-dose inhaler and lay the infant flat",
+      "Epiglottitis; withhold all oxygen and avoid suctioning the infant's mouth",
+      "Pertussis; don droplet precautions, suction secretions, and give oxygen"
+    ],
+    correctIndex: 3,
+    explanation: "Pertussis (whooping cough, caused by Bordetella pertussis) causes violent paroxysms of coughing followed by a forceful inspiratory 'whoop' and post-tussive vomiting. In infants, these spells can cause severe hypoxia, exhaustion, or apnea. Wear a surgical mask (droplet precautions), gently suction thick secretions from the mouth/nose, provide humidified or blow-by oxygen, and transport.",
+    studyTip: "Paroxysmal coughing spells + inspiratory 'whoop' + post-tussive vomiting in an infant/child = Pertussis (whooping cough). Use droplet precautions, suction secretions, and watch closely for apnea in infants."
+  },
+  {
+    id: "AIR-073",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Positive Pressure Ventilation & BVM",
+    patientType: "Adult",
+    difficulty: 2,
+    irtB: -0.1,
+    stem: "You are preparing to ventilate an unresponsive 78-year-old edentulous male with a bag-valve mask and notice that he wears upper and lower dentures. How should you manage his dentures?",
+    options: [
+      "Leave secure dentures in place for a better mask seal, but remove them if loose",
+      "Always pry out all dentures immediately before applying the BVM face mask",
+      "Push loose dentures deeper into the pharynx to hold the base of the tongue forward",
+      "Tape the dentures to the outside of the BVM mask so the cheeks do not sink in"
+    ],
+    correctIndex: 0,
+    explanation: "Without teeth, an elderly patient's cheeks often sink inward, making it very difficult to achieve an airtight BVM face mask seal. If dentures are firm and secure, leave them in place to support the structure of the mouth and improve your mask seal. However, if dentures are loose or dislodged, remove them immediately so they do not block the airway.",
+    studyTip: "Dentures during BVM ventilation: Leave secure dentures IN to support a tight mask seal; remove LOOSE dentures so they don't obstruct the airway."
+  },
+  {
+    id: "AIR-074",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Pathophysiology & Perfusion",
+    patientType: "Pediatric",
+    difficulty: 2,
+    irtB: 0.4,
+    stem: "While assessing a 2-year-old toddler with severe bronchiolitis, you observe 'seesaw' (paradoxical) breathing in which the chest pulls inward while the abdomen pushes outward on every inspiration, accompanied by head bobbing and grunting. What do these signs indicate?",
+    options: [
+      "Mild upper airway congestion that can be managed at home with cool mist",
+      "Severe work of breathing and impending respiratory failure needing BVM support",
+      "Normal diaphragmatic breathing pattern expected in healthy toddlers under age 3",
+      "Complete foreign body airway obstruction requiring immediate back blows"
+    ],
+    correctIndex: 1,
+    explanation: "In infants and young children with compliant chest walls, 'seesaw' breathing (chest retracting inward while the abdomen expands outward), head bobbing (neck extension on inhalation, falling forward on exhalation), and expiratory grunting (glottic closure to generate auto-PEEP and keep alveoli open) are ominous signs of severe respiratory distress progressing to respiratory muscle exhaustion and failure. Prepare to assist ventilations with a BVM and transport urgently.",
+    studyTip: "Pediatric late warning signs of impending respiratory failure: Seesaw (chest/abdominal) breathing, head bobbing, expiratory grunting, lethargy, and bradypnea."
+  },
+  {
+    id: "AIR-075",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Positive Pressure Ventilation & BVM",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.7,
+    stem: "You are ventilating an unresponsive head-injured adult using a BVM fitted with an inline waveform capnography (ETCO2) sensor. The monitor displays a regular rectangular waveform with an ETCO2 reading of 58 mmHg, and the patient's SpO2 is 97%. How should you adjust your ventilations?",
+    options: [
+      "Decrease your ventilation rate to 6 breaths/min so he retains more carbon dioxide",
+      "Disconnect the oxygen tubing because an SpO2 of 97% indicates dangerous hyperoxia",
+      "Slightly increase your ventilation rate or tidal volume toward an ETCO2 of 35–45 mmHg",
+      "Keep ventilating at the exact same rate, because 58 mmHg is within normal limits"
+    ],
+    correctIndex: 2,
+    explanation: "Normal end-tidal carbon dioxide (ETCO2) is 35 to 45 mmHg. An ETCO2 of 58 mmHg indicates hypercapnia (hypoventilation—carbon dioxide is building up because minute ventilation is too low). Particularly in a patient with a traumatic brain injury, elevated CO2 causes cerebral vasodilation and worsens intracranial pressure. Modestly increase the ventilation rate (toward 10–12 breaths/min) or ensure adequate chest rise to return ETCO2 to the normal 35–45 mmHg range.",
+    studyTip: "Normal ETCO2 = 35–45 mmHg. High ETCO2 (> 45 mmHg) = Hypoventilation (breathe slightly faster/deeper). Low ETCO2 (< 35 mmHg) in a well-perfused patient = Hyperventilation (slow down)."
+  },
+  {
+    id: "AIR-076",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Lower Airway & Pulmonary Emergencies",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 0.8,
+    stem: "A 20-year-old male with cystic fibrosis has been coughing up thick, greenish sputum for 3 days. He is now pale, exhausted, and too weak to cough effectively. His RR is 10 breaths/min and shallow, HR is 128 beats/min, and SpO2 is 81% on his home nasal cannula. What is your priority action?",
+    options: [
+      "Increase his nasal cannula flow to 6 L/min and have him drink warm water to thin mucus",
+      "Place him on CPAP at 10 cmH2O and transport him in a flat supine position",
+      "Have him use a metered-dose inhaler and withhold positive pressure ventilation",
+      "Suction visible oral secretions and assist ventilations with a BVM and high-flow oxygen"
+    ],
+    correctIndex: 3,
+    explanation: "Cystic fibrosis is a genetic disorder that produces abnormally thick, sticky mucus in the lungs, leading to chronic airway obstruction and recurrent pulmonary infections. This patient has exhausted his respiratory muscles and progressed into hypoventilatory respiratory failure (shallow RR of 10, inability to clear secretions, SpO2 81%). CPAP is contraindicated in hypoventilation/exhaustion with thick secretions; instead, suction the upper airway as needed and immediately assist his breathing with a BVM and high-flow oxygen.",
+    studyTip: "When a patient with chronic lung disease (CF, COPD, asthma) becomes exhausted with slow, shallow respirations, CPAP is no longer sufficient—switch immediately to BVM assisted ventilations!"
+  },
+  {
+    id: "AIR-077",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Pathophysiology & Perfusion",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "A 6-year-old girl is pulled from a neighborhood swimming pool after a brief submersion. She has a strong carotid pulse of 110 beats/min but is unresponsive, cyanotic, and making no respiratory effort. When you squeeze the BVM on your first breath, you feel high resistance and see minimal chest rise despite a good jaw-thrust and mask seal. What should you do?",
+    options: [
+      "Reposition the airway, suction the mouth, and give steady BVM breaths to expand the lungs",
+      "Perform five abdominal thrusts to force the swallowed pool water out of her lungs first",
+      "Hold the child upside down by her ankles for 15 seconds so gravity drains her lower airways",
+      "Stop attempting ventilations and begin chest compressions until the water is absorbed"
+    ],
+    correctIndex: 0,
+    explanation: "In drowning/submersion victims, even a small amount of water entering the larynx can trigger severe vocal cord spasm (laryngospasm) and wash out pulmonary surfactant, causing stiff, noncompliant lungs (atelectasis). Never perform abdominal thrusts or try to 'drain water' from the lungs—doing so delays oxygenation and causes gastric regurgitation and aspiration. Reposition the airway, suction visible water/vomitus from the oropharynx, and deliver deliberate, effective positive pressure ventilations with a BVM and 100% oxygen.",
+    studyTip: "Drowning resuscitation: NEVER perform abdominal thrusts to drain water from the lungs! Open the airway, suction the mouth, and deliver positive pressure BVM ventilations."
+  },
+  {
+    id: "AIR-078",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Anatomy & Assessment",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.0,
+    stem: "A 63-year-old man who started taking lisinopril for high blood pressure last month wakes up with massive, painless swelling of his lips and tongue, a muffled voice, and drooling. He has no hives, no itching, normal blood pressure (146/88 mmHg), and clear lung sounds without wheezing. What is the greatest immediate threat to this patient?",
+    options: [
+      "Distributive shock from widespread capillary leakage in the lower extremities",
+      "Complete upper airway obstruction from progressive ACE-inhibitor angioedema",
+      "Lower airway bronchospasm requiring nebulized albuterol as the primary therapy",
+      "Acute cardiogenic pulmonary edema caused by sudden left ventricular pump failure"
+    ],
+    correctIndex: 1,
+    explanation: "ACE inhibitors (medications ending in '-pril', such as lisinopril or enalapril) can cause isolated, severe angioedema of the lips, tongue, floor of the mouth, and larynx weeks or even years after starting the drug. Even without hives or wheezing, the rapidly swelling tongue and glottis can completely occlude the upper airway. Keep the patient upright in a position of comfort, administer high-flow oxygen, prepare for difficult BVM ventilation (NPA may be needed before swelling closes the pharynx), and request immediate ALS intercept for definitive airway management.",
+    studyTip: "ACE-inhibitor ('-pril') angioedema presents with massive lip/tongue swelling, drooling, and voice changes (often without hives). Request ALS early—the tongue can rapidly occlude the entire oral airway!"
+  },
+  {
+    id: "AIR-079",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Positive Pressure Ventilation & BVM",
+    patientType: "Pediatric",
+    difficulty: 3,
+    irtB: 0.9,
+    stem: "You have been ventilating an apneic 4-year-old boy with a BVM for 4 minutes during transport. His abdomen has become visibly distended and tympanic, his SpO2 is dropping from 95% to 86%, and it takes much more pressure on the bag to produce even slight chest rise. His airway is clear of secretions and his head is in a neutral sniffing position. What is causing his deterioration, and how should you respond?",
+    options: [
+      "He has developed acute asthma; squeeze the bag twice as fast to force air past his bronchioles",
+      "His trachea has collapsed from neutral positioning; hyperextend his neck as far back as possible",
+      "Gastric distension is restricting lung expansion; use gentle 1-second breaths and call ALS",
+      "The BVM pressure valve is stuck; press firmly on his stomach to push the trapped air out"
+    ],
+    correctIndex: 2,
+    explanation: "Children are especially prone to gastric inflation during BVM ventilation because their lower esophageal sphincter opens easily and their lungs rely heavily on diaphragm excursion. When the stomach fills with air, it pushes the diaphragm upward into the chest, dramatically reducing lung compliance and tidal volume. Never press manually on the stomach to expel air (causes massive regurgitation and fatal aspiration!). Instead, slow down and deliver smooth 1-second breaths using only enough volume to make the chest rise, keep suction ready, and have ALS decompress the stomach with an orogastric/nasogastric tube.",
+    studyTip: "Never press on a distended abdomen to relieve gastric inflation—it causes vomiting and aspiration! Use gentle 1-second squeezes just until chest rise and have ALS place a gastric tube."
+  },
+  {
+    id: "AIR-080",
+    source: "Gemini",
+    domain: "Airway, Respiration & Ventilation",
+    subtopic: "Airway Anatomy & Assessment",
+    patientType: "Adult",
+    difficulty: 3,
+    irtB: 1.1,
+    stem: "A 41-year-old woman was rescued from a bedroom fire. She is alert and speaking in full sentences with a brassy, hoarse voice. You note singed nasal hairs, soot around her mouth, and carbonaceous (black-flecked) sputum when she coughs. Her SpO2 reads 98% on room air and her lungs are currently clear. How should you manage her?",
+    options: [
+      "Allow her to sign a refusal if she feels fine, since her lungs are clear and SpO2 is 98%",
+      "Insert an oropharyngeal airway right away to stent her vocal cords open before swelling",
+      "Administer room air only and transport non-emergently to the closest urgent care clinic",
+      "Give high-flow oxygen, request ALS early, and transport rapidly for impending airway edema"
+    ],
+    correctIndex: 3,
+    explanation: "Facial burns, singed nasal hairs, soot in the mouth/sputum, brassy cough, and hoarseness after an enclosed-space fire are classic warning signs of upper airway thermal injury and carbon monoxide inhalation. Superheated air causes progressive mucosal edema of the supraglottic airway that can turn a hoarse voice into complete, un-intubatable airway obstruction within minutes. In addition, an SpO2 of 98% can be falsely reassuring due to carboxyhemoglobin. Administer high-flow 100% oxygen, request ALS intercept early, and transport rapidly.",
+    studyTip: "Enclosed fire + hoarseness, stridor, singed nasal hairs, or carbonaceous sputum = impending upper airway thermal closure! Give high-flow O2, call ALS early, and transport emergently."
+  }
+);

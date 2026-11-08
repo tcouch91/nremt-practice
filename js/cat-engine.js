@@ -53,6 +53,16 @@
     3: "Hard"
   };
 
+  // Milestone rank ladder for Nate's cumulative mastery progression
+  const NATE_RANK_LADDER = [
+    { minMastered: 0, title: "EMT Candidate", badge: "🩺 EMT Candidate", subtitle: "Every scenario you read builds pattern recognition." },
+    { minMastered: 15, title: "First Responder", badge: "🚑 First Responder", subtitle: "You broke the inertia and started banking real clinical reps!" },
+    { minMastered: 50, title: "BLS Crew Member", badge: "⚡ BLS Crew Member", subtitle: "50+ scenarios mastered — your XABC instincts are locking in." },
+    { minMastered: 120, title: "Lead EMT Tech", badge: "🛡️ Lead EMT Tech", subtitle: "Over a quarter of the entire 400-question bank conquered!" },
+    { minMastered: 220, title: "Field Preceptor", badge: "🌟 Field Preceptor", subtitle: "More than half the bank mastered — you can spot the NREMT traps." },
+    { minMastered: 320, title: "NREMT Registry Ready", badge: "🏆 NREMT Registry Ready", subtitle: "Elite command of the EMT blueprint. Go crush that exam, Nate!" }
+  ];
+
   // Load all built-in + custom user questions
   function getAllQuestions() {
     const base = Array.isArray(window.NREMT_QUESTIONS) ? window.NREMT_QUESTIONS : [];
@@ -134,9 +144,45 @@
     try {
       localStorage.removeItem(STORAGE_KEYS.EXPOSURE);
       localStorage.removeItem(STORAGE_KEYS.ATTEMPTS);
-      localStorage.removeItem(STORAGE_KEYS.ACTIVE_SESSION);
+      clearActiveSession();
     } catch (e) {
       console.warn("Error clearing history:", e);
+    }
+  }
+
+  // Active in-progress session persistence (for duty call extended pause / browser recovery)
+  function saveActiveSession(session) {
+    if (!session || session.isCompleted) {
+      clearActiveSession();
+      return;
+    }
+    try {
+      localStorage.setItem(STORAGE_KEYS.ACTIVE_SESSION, JSON.stringify(session));
+    } catch (e) {
+      console.warn("Error saving active session:", e);
+    }
+  }
+
+  function getActiveSession() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.ACTIVE_SESSION);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && !parsed.isCompleted && parsed.currentQuestion) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn("Error loading active session:", e);
+    }
+    return null;
+  }
+
+  function clearActiveSession() {
+    try {
+      localStorage.removeItem(STORAGE_KEYS.ACTIVE_SESSION);
+    } catch (e) {
+      console.warn("Error clearing active session:", e);
     }
   }
 
@@ -170,10 +216,11 @@
     return 1 / (1 + Math.exp(exponent));
   }
 
-  // Create a new 35-question CAT Exam Session
+  // Create a new CAT Exam Session (supports both 35-question full practice and 10-question focus sprint)
   function createExamSession(options = {}) {
     const totalQuestions = options.totalQuestions || 35;
-    const timeLimitSeconds = options.timeLimitSeconds || 42 * 60; // 42 minutes for 35 questions (proportional to 70–100 Qs in 120 mins)
+    const timeLimitSeconds = options.timeLimitSeconds || Math.round((totalQuestions / 35) * 42 * 60);
+    const mode = options.mode || (totalQuestions <= 12 ? "sprint" : "full");
     const exposure = getExposureHistory();
     const attemptNumber = exposure.totalAttempts + 1;
 
@@ -185,11 +232,12 @@
     const session = {
       sessionId: "EXAM-" + Date.now(),
       attemptNumber,
+      mode,
       startedAt: new Date().toISOString(),
       totalQuestions,
       timeLimitSeconds,
       elapsedSeconds: 0,
-      currentQuestionIndex: 0, // 0-based (0 to 34)
+      currentQuestionIndex: 0, // 0-based
       currentDifficultyTier: 2, // Start at Medium (Tier 2), just like standard CAT
       theta: 0.0, // Initial IRT ability estimate
       domainCounts,
@@ -197,11 +245,14 @@
       askedQuestionIds: [],
       responses: [], // Array of answered question records
       currentQuestion: null,
-      isCompleted: false
+      isCompleted: false,
+      isDutyPaused: false,
+      dutyPauseAt: null
     };
 
     // Select the first question
     session.currentQuestion = selectNextQuestion(session);
+    saveActiveSession(session);
     return session;
   }
 
@@ -223,7 +274,7 @@
     const domainDeficits = {};
     DOMAIN_BLUEPRINT.forEach((d) => {
       const askedInDomain = session.domainCounts[d.name] || 0;
-      const scaledTarget = Math.round((d.targetCount35 / 35) * session.totalQuestions);
+      const scaledTarget = Math.max(1, Math.round((d.targetCount35 / 35) * session.totalQuestions));
       domainDeficits[d.name] = scaledTarget - askedInDomain;
     });
 
@@ -367,20 +418,36 @@
     const existingExp = exposure.items[q.id] || {
       seenCount: 0,
       correctCount: 0,
+      everMissed: false,
       lastAttempt: 0,
       lastCorrect: null
     };
+    const wasSeenBefore = existingExp.seenCount > 0;
+    const hadMissedBefore = Boolean(
+      existingExp.everMissed || existingExp.seenCount > (existingExp.correctCount || 0)
+    );
+    const wasMasteredBefore = (existingExp.correctCount || 0) > 0;
+
     existingExp.seenCount += 1;
-    if (isCorrect) existingExp.correctCount += 1;
+    if (isCorrect) {
+      existingExp.correctCount = (existingExp.correctCount || 0) + 1;
+    } else {
+      existingExp.everMissed = true;
+    }
     existingExp.lastAttempt = session.attemptNumber;
     existingExp.lastCorrect = isCorrect;
     exposure.items[q.id] = existingExp;
+
+    responseRecord.wasFirstTimeSeen = !wasSeenBefore;
+    responseRecord.wasNewlyMastered = isCorrect && !wasMasteredBefore;
+    responseRecord.wasComebackWin = isCorrect && hadMissedBefore;
+
     // Count the attempt as soon as any question is answered, so an exam that is ended early,
     // times out, or is abandoned (tab closed) does not reuse the same attempt number next time.
     exposure.totalAttempts = Math.max(exposure.totalAttempts || 0, session.attemptNumber);
     saveExposureHistory(exposure);
 
-    // Check if exam has reached 35 questions
+    // Check if exam has reached target question count
     if (session.responses.length >= session.totalQuestions) {
       finalizeSession(session);
     } else {
@@ -388,7 +455,10 @@
       session.currentQuestion = selectNextQuestion(session);
       // If the bank runs out of eligible questions, end the exam instead of leaving it stuck.
       if (!session.currentQuestion) {
+        session.poolExhausted = true; // not the candidate's fault, so unanswered items aren't penalized
         finalizeSession(session);
+      } else {
+        saveActiveSession(session);
       }
     }
 
@@ -399,6 +469,7 @@
   // Used for normal completion, time expiry, and "end exam early", so every scored exam is saved.
   function finalizeSession(session) {
     if (!session) return null;
+    clearActiveSession();
     if (session.report) return session.report;
     session.isCompleted = true;
     session.completedAt = session.completedAt || new Date().toISOString();
@@ -410,12 +481,16 @@
     return report;
   }
 
-  // Generate comprehensive score & study feedback report after 35 questions
+  // Generate comprehensive score & study feedback report
   function generateDiagnosticReport(session) {
     const responses = session.responses;
     const totalAsked = responses.length;
     const totalCorrect = responses.filter((r) => r.isCorrect).length;
     const rawAccuracy = totalAsked > 0 ? (totalCorrect / totalAsked) * 100 : 0;
+
+    const newQuestionsSeenCount = responses.filter((r) => r.wasFirstTimeSeen).length;
+    const newlyMasteredCount = responses.filter((r) => r.wasNewlyMastered).length;
+    const comebackWinsCount = responses.filter((r) => r.wasComebackWin).length;
 
     // Difficulty-weighted score & IRT Scaled Score (NREMT scale: 100 to 1500, passing = 950)
     // Weights: Easy = 1.0, Medium = 1.35, Hard = 1.75
@@ -480,12 +555,34 @@
       p.accuracy = p.total > 0 ? Math.round((p.correct / p.total) * 100) : 0;
     });
 
+    // Unanswered questions (timer ran out, or the exam was ended early) count as incorrect,
+    // as on the real NREMT, where you cannot pass without answering the minimum number of items.
+    // Without this, answering 3 of 35 correctly and letting the clock run out scored as a pass.
+    const unansweredCount = session.poolExhausted
+      ? 0
+      : Math.max(0, (session.totalQuestions || totalAsked) - totalAsked);
+    const completedAll = unansweredCount === 0;
+
+    // Replay each unanswered item as a wrong answer through the same ability update the exam uses:
+    // a miss at the current tier, then a step down a tier, as if the candidate had answered it wrong.
+    const TIER_CENTER_B = { 1: -0.85, 2: 0.1, 3: 0.95 };
+    let scoringTheta = session.theta;
+    let scoringTier = session.currentDifficultyTier || 2;
+    for (let i = 0; i < unansweredCount; i++) {
+      const p = irtProbability(scoringTheta, TIER_CENTER_B[scoringTier]);
+      const progressRatio = (totalAsked + i) / Math.max(1, session.totalQuestions - 1);
+      const K = 0.48 - 0.22 * Math.min(1, progressRatio);
+      scoringTheta = Math.max(-2.5, Math.min(2.5, scoringTheta - K * p));
+      maxPossibleWeighted += diffWeights[scoringTier];
+      scoringTier = Math.max(1, scoringTier - 1);
+    }
+
     const weightedRatio = maxPossibleWeighted > 0 ? earnedWeighted / maxPossibleWeighted : 0;
     const avgDifficultyFaced = totalAsked > 0 ? totalDifficultySum / totalAsked : 2.0;
 
     // Compute NREMT Scaled Score (100 to 1500, Passing Standard = 950)
     // Combine final IRT theta and weighted accuracy so both difficulty level reached and accuracy matter
-    const thetaNormalized = (session.theta + 2.5) / 5.0; // 0 to 1 (theta = 0.20 is ~0.54)
+    const thetaNormalized = (scoringTheta + 2.5) / 5.0; // 0 to 1 (theta = 0.20 is ~0.54)
     const compositeAbility = thetaNormalized * 0.55 + weightedRatio * 0.45;
     // Map compositeAbility = 0.62 to 950 (Passing Standard)
     let scaledScore;
@@ -495,7 +592,8 @@
       scaledScore = Math.round(100 + (compositeAbility / 0.62) * 850);
     }
     scaledScore = Math.max(100, Math.min(1500, scaledScore));
-    const passed = scaledScore >= 950;
+    // An unfinished exam can never pass, however well the answered items went.
+    const passed = scaledScore >= 950 && completedAll;
 
     // Domain Breakdown (Official 5 NREMT Domains)
     const domainBreakdown = DOMAIN_BLUEPRINT.map((d) => {
@@ -562,20 +660,21 @@
     if (byDifficulty[1].total > 0 && byDifficulty[1].accuracy < 75) {
       adaptiveAnalysis =
         "You missed several foundational (Easy) questions, which caused the adaptive algorithm to step down in difficulty and prevented you from reaching higher-value Hard questions. Prioritize mastering core Primary Assessment (XABC), basic airway adjuncts, and BLS medication contraindications first.";
-    } else if (byDifficulty[3].total >= 12 && byDifficulty[3].accuracy >= 65) {
+    } else if (byDifficulty[3].total >= Math.max(3, Math.round(totalAsked * 0.34)) && byDifficulty[3].accuracy >= 65) {
       adaptiveAnalysis =
-        "Strong adaptive trajectory! By consistently answering Easy and Medium questions correctly, you forced the CAT engine into Hard clinical vignettes for much of the exam and performed well under high-acuity clinical judgment scenarios.";
+        "Strong adaptive trajectory! By consistently answering Easy and Medium questions correctly, you forced the CAT engine into Hard clinical vignettes for much of the session and performed well under high-acuity clinical judgment scenarios.";
     } else if (byDifficulty[2].total > 0 && byDifficulty[3].total > 0 && byDifficulty[3].accuracy < 50) {
       adaptiveAnalysis =
         "Your foundational knowledge on Easy and Medium questions is solid—you repeatedly climbed into the Hard tier—but struggled when questions required differentiating subtle look-alike pathologies (such as Cushing's triad vs. shock, RVMI, or third-trimester bleeding differentials). Focus on pathophysiology and competing clinical priorities.";
     } else {
       adaptiveAnalysis =
-        "Your difficulty curve fluctuated between Medium and Easy/Hard tiers across the exam. Review the missed subtopics below to build consistency across all five NREMT domains.";
+        "Your difficulty curve fluctuated between Medium and Easy/Hard tiers across the session. Review the missed subtopics below to build consistency across all five NREMT domains.";
     }
 
     return {
       sessionId: session.sessionId,
       attemptNumber: session.attemptNumber,
+      mode: session.mode || "full",
       completedAt: session.completedAt || new Date().toISOString(),
       elapsedSeconds: session.elapsedSeconds,
       totalAsked,
@@ -585,8 +684,15 @@
       scaledScore,
       passingScore: 950,
       passed,
-      finalTheta: Number(session.theta.toFixed(2)),
+      totalQuestions: session.totalQuestions || totalAsked,
+      unansweredCount,
+      completedAll,
+      endReason: session.endReason || (completedAll ? "completed" : "ended-early"),
+      finalTheta: Number(scoringTheta.toFixed(2)),
       avgDifficultyFaced: Number(avgDifficultyFaced.toFixed(2)),
+      newQuestionsSeenCount,
+      newlyMasteredCount,
+      comebackWinsCount,
       byDifficulty,
       byPatientType: Object.values(byPatientType),
       domainBreakdown,
@@ -652,20 +758,143 @@
     };
   }
 
+  // Cumulative Progress & Mastery Statistics for Nate's Momentum Tracker
+  function getNateProgressStats() {
+    const allQuestions = getAllQuestions();
+    const exposure = getExposureHistory();
+    const pastAttempts = getPastAttempts();
+    const totalBankSize = allQuestions.length;
+
+    let uniqueSeenCount = 0;
+    let uniqueMasteredCount = 0;
+    let comebackWinsAllTime = 0;
+    let totalRepsAllTime = 0;
+
+    allQuestions.forEach((q) => {
+      const exp = exposure.items[q.id];
+      if (exp && exp.seenCount > 0) {
+        uniqueSeenCount += 1;
+        totalRepsAllTime += exp.seenCount;
+        const correctCount = exp.correctCount || 0;
+        if (correctCount > 0) {
+          uniqueMasteredCount += 1;
+          if (exp.everMissed || exp.seenCount > correctCount) {
+            comebackWinsAllTime += 1;
+          }
+        }
+      }
+    });
+
+    const exploredPct = totalBankSize > 0 ? Math.round((uniqueSeenCount / totalBankSize) * 100) : 0;
+    const masteredPct = totalBankSize > 0 ? Math.round((uniqueMasteredCount / totalBankSize) * 100) : 0;
+    const learningInProgressCount = Math.max(0, uniqueSeenCount - uniqueMasteredCount);
+    const learningPct = totalBankSize > 0 ? Math.round((learningInProgressCount / totalBankSize) * 100) : 0;
+
+    // Determine current rank and next rank on the ladder
+    let currentRankIdx = 0;
+    for (let i = 0; i < NATE_RANK_LADDER.length; i++) {
+      if (uniqueMasteredCount >= NATE_RANK_LADDER[i].minMastered) {
+        currentRankIdx = i;
+      }
+    }
+    const currentRank = NATE_RANK_LADDER[currentRankIdx];
+    const nextRank =
+      currentRankIdx < NATE_RANK_LADDER.length - 1
+        ? NATE_RANK_LADDER[currentRankIdx + 1]
+        : null;
+
+    let rankProgressPct = 100;
+    let masteredToNextRank = 0;
+    if (nextRank) {
+      const span = Math.max(1, nextRank.minMastered - currentRank.minMastered);
+      const earnedInRank = Math.max(0, uniqueMasteredCount - currentRank.minMastered);
+      rankProgressPct = Math.min(100, Math.round((earnedInRank / span) * 100));
+      masteredToNextRank = Math.max(0, nextRank.minMastered - uniqueMasteredCount);
+    }
+
+    // Score progression across attempts
+    let bestScaledScore = null;
+    let latestScaledScore = null;
+    let firstScaledScore = null;
+    let scoreDeltaFromFirst = null;
+    if (pastAttempts.length > 0) {
+      latestScaledScore = pastAttempts[0].scaledScore;
+      firstScaledScore = pastAttempts[pastAttempts.length - 1].scaledScore;
+      bestScaledScore = Math.max(...pastAttempts.map((a) => a.scaledScore || 0));
+      if (pastAttempts.length >= 2) {
+        scoreDeltaFromFirst = bestScaledScore - firstScaledScore;
+      }
+    }
+
+    // Per-domain cumulative mastery
+    const domainMastery = DOMAIN_BLUEPRINT.map((d) => {
+      const qs = allQuestions.filter((q) => q.domain === d.name);
+      const total = qs.length;
+      let seen = 0;
+      let mastered = 0;
+      qs.forEach((q) => {
+        const exp = exposure.items[q.id];
+        if (exp && exp.seenCount > 0) {
+          seen += 1;
+          if ((exp.correctCount || 0) > 0) {
+            mastered += 1;
+          }
+        }
+      });
+      return {
+        name: d.name,
+        shortName: d.shortName,
+        color: d.color,
+        total,
+        seen,
+        mastered,
+        masteredPct: total > 0 ? Math.round((mastered / total) * 100) : 0,
+        seenPct: total > 0 ? Math.round((seen / total) * 100) : 0
+      };
+    });
+
+    return {
+      totalBankSize,
+      uniqueSeenCount,
+      uniqueMasteredCount,
+      learningInProgressCount,
+      comebackWinsAllTime,
+      totalRepsAllTime,
+      exploredPct,
+      masteredPct,
+      learningPct,
+      currentRank,
+      nextRank,
+      rankProgressPct,
+      masteredToNextRank,
+      completedAttemptsCount: pastAttempts.length,
+      bestScaledScore,
+      latestScaledScore,
+      firstScaledScore,
+      scoreDeltaFromFirst,
+      domainMastery
+    };
+  }
+
   // Expose public API on window.NREMTCatEngine
   window.NREMTCatEngine = {
     DOMAIN_BLUEPRINT,
     DIFFICULTY_LABELS,
+    NATE_RANK_LADDER,
     getAllQuestions,
     saveUserCustomQuestion,
     getExposureHistory,
     resetExposureHistory,
     getPastAttempts,
     clearAllHistory,
+    saveActiveSession,
+    getActiveSession,
+    clearActiveSession,
     createExamSession,
     submitAnswer,
     finalizeSession,
     generateDiagnosticReport,
-    getQuestionPoolStats
+    getQuestionPoolStats,
+    getNateProgressStats
   };
 })();
