@@ -57,6 +57,17 @@ How merging works:
 
 Run `node scripts/test-sync.js` to simulate two devices syncing through a fake server.
 
+### Coach View
+
+[`coach.html`](./coach.html) (for example `youbetterpassnate.org/coach.html`) is a read-only progress page for a coach or parent. Enter Nate's sync code once and it shows:
+- His latest score and score trend, with the 950 passing line.
+- How he's doing in each domain, and which subtopics he misses most.
+- A calendar of the days he studied.
+- His review list, and any exam he's paused partway through.
+- Every exam, where opening one shows the questions he missed or guessed on, with his answer and the correct one.
+
+The page only calls `get_progress`. It never uploads, and never reads or writes the practice app's own saved data, so opening it on any device can't change anyone's progress. It remembers only the code being viewed, and checks for new data every minute while open. Opening `coach.html#code=XXXX-XXXX-XXXX-XXXX` fills in the code automatically. The code is never stored in the site's files, because GitHub Pages is public.
+
 Note: Supabase pauses free projects after about a week with no activity. Regular studying keeps it awake; if it does pause, restore it from the dashboard.
 
 ## Adding More Questions in the Future

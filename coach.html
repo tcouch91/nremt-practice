@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Coach View</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/coach.css" />
+</head>
+<body>
+  <!-- Read-only progress view for a coach or parent. It downloads Nate's synced progress with the
+       sync code and never uploads or touches the practice app's saved data on this device. -->
+  <header class="c-header">
+    <div class="c-header-inner">
+      <div class="c-brand">
+        <img src="favicon.svg" alt="" width="28" height="28" />
+        <div>
+          <h1>Coach View</h1>
+          <p class="c-sub">Nate's NREMT EMT practice progress</p>
+        </div>
+      </div>
+      <div class="c-status" id="c-status" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <main class="c-main">
+    <!-- Shown until a sync code is entered -->
+    <section class="c-card c-setup" id="c-setup" hidden>
+      <h2>Enter Nate's sync code</h2>
+      <p>
+        On Nate's practice app dashboard, tap <strong>Add a Device</strong> in the sync card to see it.
+        This page only reads his progress. It never changes anything on his devices.
+      </p>
+      <form id="c-code-form" class="c-code-form" autocomplete="off">
+        <input id="c-code-input" type="text" inputmode="text" spellcheck="false" autocapitalize="characters"
+               placeholder="XXXX-XXXX-XXXX-XXXX" aria-label="Sync code" maxlength="24" />
+        <button type="submit" class="c-btn c-btn-primary">View progress</button>
+      </form>
+      <p class="c-error" id="c-code-error" role="alert" hidden></p>
+    </section>
+
+    <div id="c-content" hidden>
+      <section class="c-banner" id="c-paused" hidden></section>
+
+      <section class="c-overview" aria-label="Overview">
+        <div class="c-card c-hero" id="c-hero"></div>
+        <div class="c-tiles" id="c-tiles"></div>
+      </section>
+
+      <section class="c-card">
+        <div class="c-card-head">
+          <h2>Practice scores</h2>
+          <p class="c-hint">Scaled score after each practice exam. 950 is the passing standard. Review rounds aren't scored.</p>
+        </div>
+        <div class="c-chart" id="c-score-chart"></div>
+      </section>
+
+      <div class="c-grid-2">
+        <section class="c-card">
+          <div class="c-card-head">
+            <h2>How he's doing by domain</h2>
+            <p class="c-hint" id="c-domain-hint"></p>
+          </div>
+          <div id="c-domains"></div>
+        </section>
+
+        <section class="c-card">
+          <div class="c-card-head">
+            <h2>When he studies</h2>
+            <p class="c-hint">Questions answered per day, last 5 weeks.</p>
+          </div>
+          <div id="c-activity"></div>
+        </section>
+      </div>
+
+      <div class="c-grid-2">
+        <section class="c-card">
+          <div class="c-card-head">
+            <h2>Topics to work on</h2>
+            <p class="c-hint">Subtopics he's missed most in practice exams.</p>
+          </div>
+          <div id="c-subtopics"></div>
+        </section>
+
+        <section class="c-card">
+          <div class="c-card-head">
+            <h2>Review list</h2>
+            <p class="c-hint">Questions he missed or flagged as a guess. Each one comes off after he answers it correctly without a flag.</p>
+          </div>
+          <div id="c-review"></div>
+        </section>
+      </div>
+
+      <section class="c-card">
+        <div class="c-card-head">
+          <h2>Exam history</h2>
+          <p class="c-hint">Newest first. Open an exam to see the questions he missed or guessed on.</p>
+        </div>
+        <div id="c-history"></div>
+      </section>
+
+      <footer class="c-footer">
+        <p>Read-only view of synced progress. It updates whenever one of Nate's devices syncs.</p>
+        <button type="button" class="c-link" id="c-change-code">Use a different sync code</button>
+      </footer>
+    </div>
+  </main>
+
+  <div class="c-tooltip" id="c-tooltip" role="tooltip" hidden></div>
+
+  <script src="data/questions-airway.js"></script>
+  <script src="data/questions-cardiology.js"></script>
+  <script src="data/questions-trauma.js"></script>
+  <script src="data/questions-medical.js"></script>
+  <script src="data/questions-operations.js"></script>
+  <script src="data/questions-custom.js"></script>
+  <script src="js/cat-engine.js"></script>
+  <script src="js/sync-config.js"></script>
+  <script src="js/coach.js"></script>
+</body>
+</html>
